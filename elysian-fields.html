@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Elysian Fields Attendance Kiosk | Linda Laryea</title>
+
+  <style>
+    :root {
+      --bg: #FFF9FC;
+      --card: #FFFFFF;
+      --soft: #FFF7FB;
+      --magenta: #A80B63;
+      --gold: #F3C24F;
+      --dark: #111827;
+      --body: #4B5563;
+      --muted: #6B7280;
+      --border: #F2D8E7;
+      --green: #15803D;
+      --green-soft: #ECFDF3;
+      --shadow: 0 20px 50px rgba(24, 39, 75, 0.07);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(1280px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 56px;
+    }
+
+    .navbar {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      box-shadow: 0 12px 35px rgba(24, 39, 75, 0.05);
+    }
+
+    .brand-name {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--magenta);
+    }
+
+    .brand-subtitle {
+      margin-top: 4px;
+      font-size: 10px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover {
+      color: var(--magenta);
+    }
+
+    .nav-button {
+      background: var(--magenta);
+      color: #FFFFFF;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: 800;
+    }
+
+    .hero {
+      margin-top: 48px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      padding: 64px;
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 56px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .gold-line {
+      width: 52px;
+      height: 5px;
+      background: var(--gold);
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow {
+      color: var(--magenta);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 5vw, 62px);
+      line-height: 1.08;
+      letter-spacing: -1.8px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-size: 36px;
+      line-height: 1.15;
+      margin-bottom: 18px;
+      letter-spacing: -0.8px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .accent {
+      color: var(--magenta);
+    }
+
+    .hero p,
+    .section-intro {
+      font-size: 18px;
+      color: var(--body);
+      max-width: 680px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .meta-card {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .meta-card strong {
+      display: block;
+      color: var(--magenta);
+      font-size: 13px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .meta-card span {
+      color: var(--dark);
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .kiosk-showcase {
+      background: linear-gradient(135deg, #FFF0F7, #F8F2F7);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      min-height: 440px;
+      display: grid;
+      place-items: center;
+      padding: 34px;
+    }
+
+    .kiosk-device {
+      width: 250px;
+      height: 390px;
+      background: #FFFFFF;
+      border: 10px solid #111827;
+      border-radius: 28px;
+      box-shadow: 0 22px 50px rgba(24, 39, 75, 0.16);
+      padding: 26px 22px;
+      position: relative;
+    }
+
+    .device-header {
+      height: 48px;
+      background: var(--magenta);
+      border-radius: 12px;
+      color: #FFFFFF;
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 34px;
+    }
+
+    .rfid-icon {
+      width: 100px;
+      height: 100px;
+      background: #FCEAF1;
+      border-radius: 50%;
+      margin: 0 auto 28px;
+      display: grid;
+      place-items: center;
+      color: var(--magenta);
+      font-size: 42px;
+      font-weight: 900;
+    }
+
+    .device-title {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--magenta);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .device-text {
+      text-align: center;
+      color: var(--body);
+      font-size: 13px;
+    }
+
+    .scanner {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: #111827;
+      border: 5px solid #F7D7E6;
+      position: absolute;
+      left: 50%;
+      bottom: -44px;
+      transform: translateX(-50%);
+      display: grid;
+      place-items: center;
+      color: #FFFFFF;
+      font-weight: 900;
+    }
+
+    .section {
+      margin-top: 72px;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 28px;
+    }
+
+    .card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      padding: 34px;
+      box-shadow: 0 16px 40px rgba(24, 39, 75, 0.05);
+    }
+
+    .card p {
+      color: var(--body);
+      font-size: 16px;
+    }
+
+    .highlight {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      margin-top: 22px;
+      color: var(--magenta);
+      font-weight: 800;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 28px;
+    }
+
+    .process-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 14px 35px rgba(24, 39, 75, 0.05);
+    }
+
+    .number {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--magenta);
+      color: #FFFFFF;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .before-after {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 28px;
+    }
+
+    .before,
+    .after {
+      border-radius: 26px;
+      padding: 34px;
+      border: 1px solid var(--border);
+    }
+
+    .before {
+      background: var(--soft);
+    }
+
+    .after {
+      background: var(--green-soft);
+      border-color: #BBF7D0;
+    }
+
+    .after h3 {
+      color: var(--green);
+    }
+
+    ul {
+      padding-left: 20px;
+      color: var(--body);
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .takeaway {
+      background: var(--magenta);
+      color: #FFFFFF;
+      border-radius: 32px;
+      padding: 48px;
+      margin-top: 72px;
+      box-shadow: var(--shadow);
+    }
+
+    .takeaway h2 {
+      color: #FFFFFF;
+    }
+
+    .takeaway p {
+      color: #FCEAF1;
+      font-size: 18px;
+      max-width: 860px;
+    }
+
+    footer {
+      margin-top: 40px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 26px 32px;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer-brand {
+      color: var(--magenta);
+      font-size: 26px;
+      font-weight: 900;
+    }
+
+    @media (max-width: 900px) {
+      .navbar,
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .hero,
+      .two-column,
+      .before-after,
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 36px 24px;
+      }
+
+      .meta-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <nav class="navbar" aria-label="Main navigation">
+      <a href="index.html" aria-label="Linda portfolio home">
+        <div class="brand-name">Linda</div>
+        <div class="brand-subtitle">UX Research & Design</div>
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#work">Case Studies</a>
+        <a href="index.html#about">About Me</a>
+        <a href="index.html#contact">Contact</a>
+        <a class="nav-button" href="index.html#contact">Let’s Connect ↗</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <div class="gold-line"></div>
+        <div class="eyebrow">UX Case Study</div>
+
+        <h1>
+          Elysian Fields
+          <span class="accent">Attendance Kiosk</span>
+        </h1>
+
+        <p>
+          A research-led RFID kiosk concept designed to reduce morning attendance friction for teachers and staff through a clearer, faster, and more accessible check-in experience.
+        </p>
+
+        <div class="meta-grid">
+          <div class="meta-card">
+            <strong>Role</strong>
+            <span>UX Researcher & Designer</span>
+          </div>
+
+          <div class="meta-card">
+            <strong>Duration</strong>
+            <span>8 months</span>
+          </div>
+
+          <div class="meta-card">
+            <strong>Methods</strong>
+            <span>Interviews, Testing</span>
+          </div>
+
+          <div class="meta-card">
+            <strong>Focus</strong>
+            <span>Accessibility</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="kiosk-showcase" aria-label="RFID kiosk visual mockup">
+        <div class="kiosk-device">
+          <div class="device-header">Welcome to Elysian Fields</div>
+          <div class="rfid-icon">ID</div>
+          <div class="device-title">Tap your ID card</div>
+          <div class="device-text">
+            Teachers and staff can check in quickly by holding their ID card near the reader.
+          </div>
+          <div class="scanner">RFID</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="gold-line"></div>
+      <div class="eyebrow">The Problem</div>
+      <h2>Manual attendance created unreliable records</h2>
+      <p class="section-intro">
+        Teachers and staff relied on a paper attendance book during busy morning routines. Because entries were often completed later from memory, attendance records could become delayed, incomplete, or inaccurate.
+      </p>
+
+      <div class="two-column">
+        <div class="card">
+          <h3>What was happening?</h3>
+          <p>
+            The paper book did not naturally fit into the arrival flow. Teachers were focused on children, morning preparation, and immediate responsibilities, making check-in easy to forget.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Core issue</h3>
+          <p>
+            The problem was not simply the paper format. The real issue was that the attendance task depended on memory during a hectic moment.
+          </p>
+          <div class="highlight">
+            Delayed recall led to forgotten check-ins and unreliable data.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="gold-line"></div>
+      <div class="eyebrow">Research Insight</div>
+      <h2>The solution had to fit the real environment</h2>
+      <p class="section-intro">
+        Research showed that the best solution was not just a better digital logbook. The interaction needed to move into the teacher’s natural entry path, reducing steps and making check-in almost effortless.
+      </p>
+
+      <div class="process-grid">
+        <div class="process-card">
+          <div class="number">01</div>
+          <h3>Understand routines</h3>
+          <p>Explore how teachers actually arrive, prepare, and move through the school environment.</p>
+        </div>
+
+        <div class="process-card">
+          <div class="number">02</div>
+          <h3>Reduce steps</h3>
+          <p>Remove unnecessary actions such as finding a phone, opening an app, or remembering to log later.</p>
+        </div>
+
+        <div class="process-card">
+          <div class="number">03</div>
+          <h3>Design for clarity</h3>
+          <p>Use a visible RFID kiosk, clear confirmation, and a simple fallback option for manual sign-in.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="gold-line"></div>
+      <div class="eyebrow">Design Evolution</div>
+      <h2>From mobile attendance idea to physical RFID kiosk</h2>
+
+      <div class="before-after">
+        <div class="before">
+          <h3>Before usability testing</h3>
+          <ul>
+            <li>Users would need to find and open their phones.</li>
+            <li>The process increased steps during a busy morning.</li>
+            <li>Small touch targets created extra UI friction.</li>
+          </ul>
+        </div>
+
+        <div class="after">
+          <h3>After usability testing</h3>
+          <ul>
+            <li>One-step physical proximity interaction.</li>
+            <li>Large visual target with a clear RFID anchor.</li>
+            <li>Confirmation screen with reset countdown for the next user.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="gold-line"></div>
+      <div class="eyebrow">Final Experience</div>
+      <h2>A clearer check-in flow for staff</h2>
+
+      <div class="process-grid">
+        <div class="process-card">
+          <div class="number">01</div>
+          <h3>Tap ID card</h3>
+          <p>The staff member holds their ID card near the RFID reader.</p>
+        </div>
+
+        <div class="process-card">
+          <div class="number">02</div>
+          <h3>See confirmation</h3>
+          <p>The kiosk gives visible feedback that attendance has been recorded.</p>
+        </div>
+
+        <div class="process-card">
+          <div class="number">03</div>
+          <h3>Auto reset</h3>
+          <p>The screen resets after a short countdown so the next staff member can check in.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="takeaway">
+      <h2>Key takeaway</h2>
+      <p>
+        True UX maturity means designing for the user’s environment, not just the screen. In this project, the strongest design decision was reducing effort by placing the interaction where the user naturally arrives.
+      </p>
+    </section>
+
+    <footer>
+      <div>
+        <div class="footer-brand">Linda</div>
+        <div>UX Research & Interaction Design</div>
+      </div>
+
+      <div>
+        © 2026 Linda Laryea. Designed with research, empathy, and accessibility in mind.
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
