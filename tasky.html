@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Tasky Case Study | Linda Laryea</title>
+
+  <style>
+    :root {
+      --bg: #F8F6FF;
+      --card: #FFFFFF;
+      --soft: #F3F0FF;
+      --violet: #6D5DF6;
+      --violet-dark: #4338CA;
+      --gold: #F3C24F;
+      --dark: #111827;
+      --body: #4B5563;
+      --muted: #6B7280;
+      --border: #E6DEFF;
+      --magenta: #A80B63;
+      --shadow: 0 20px 50px rgba(24, 39, 75, 0.07);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      width: min(1280px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 56px;
+    }
+
+    .navbar {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      box-shadow: 0 12px 35px rgba(24, 39, 75, 0.05);
+    }
+
+    .brand-name {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--magenta);
+    }
+
+    .brand-subtitle {
+      margin-top: 4px;
+      font-size: 10px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover {
+      color: var(--magenta);
+    }
+
+    .nav-button {
+      background: var(--magenta);
+      color: #FFFFFF;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: 800;
+    }
+
+    .back-link {
+      display: inline-flex;
+      margin: 36px 0 -18px;
+      color: var(--violet-dark);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      margin-top: 48px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      padding: 64px;
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 56px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .gold-line {
+      width: 52px;
+      height: 5px;
+      background: var(--gold);
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow {
+      color: var(--violet-dark);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 5vw, 62px);
+      line-height: 1.08;
+      letter-spacing: -1.8px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-size: 36px;
+      line-height: 1.15;
+      margin-bottom: 18px;
+      letter-spacing: -0.8px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .accent {
+      color: var(--violet-dark);
+    }
+
+    .hero p,
+    .section-intro {
+      font-size: 18px;
+      color: var(--body);
+      max-width: 720px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .meta-card {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .meta-card strong {
+      display: block;
+      color: var(--violet-dark);
+      font-size: 13px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .meta-card span {
+      color: var(--dark);
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .hero-image {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 24px;
+      min-height: 440px;
+      display: grid;
+      place-items: center;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-height: 420px;
+      object-fit: contain;
+      border-radius: 22px;
+      box-shadow: 0 18px 45px rgba(24, 39, 75, 0.12);
+    }
+
+    .section {
+      margin-top: 72px;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 28px;
+    }
+
+    .card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      padding: 34px;
+      box-shadow: 0 16px 40px rgba(24, 39, 75, 0.05);
+    }
+
+    .card p {
+      color: var(--body);
+      font-size: 16px;
+    }
+
+    .insight-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .insight-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 24px;
+      min-height: 160px;
+      box-shadow: 0 14px 35px rgba(24, 39, 75, 0.05);
+    }
+
+    .insight-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--soft);
+      color: var(--violet-dark);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .before-after {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 28px;
+    }
+
+    .before,
+    .after {
+      border-radius: 26px;
+      padding: 34px;
+      border: 1px solid var(--border);
+      background: #FFFFFF;
+      box-shadow: 0 16px 40px rgba(24, 39, 75, 0.05);
+    }
+
+    .after {
+      background: #F6F3FF;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 28px;
+    }
+
+    .process-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 14px 35px rgba(24, 39, 75, 0.05);
+    }
+
+    .number {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--violet);
+      color: #FFFFFF;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    ul {
+      padding-left: 20px;
+      color: var(--body);
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .image-section {
+      margin-top: 72px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      padding: 42px;
+      box-shadow: var(--shadow);
+    }
+
+    .image-section img {
+      width: 100%;
+      max-height: 900px;
+      object-fit: contain;
+      border-radius: 24px;
+      background: var(--soft);
+    }
+
+    .takeaway {
+      background: var(--violet-dark);
+      color: #FFFFFF;
+      border-radius: 32px;
+      padding: 48px;
+      margin-top: 72px;
+      box-shadow: var(--shadow);
+    }
+
+    .takeaway h2 {
+      color: #FFFFFF;
+    }
+
+    .takeaway p {
+      color: #EEF2FF;
+      font-size: 18px;
+      max-width: 900px;
+    }
+
+    footer {
+      margin-top: 40px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 26px 32px;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer-brand {
+      color: var(--magenta);
+      font-size: 26px;
+      font-weight: 900;
+    }
+
+    @media (max-width: 900px) {
+      .navbar,
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .hero,
+      .two-column,
+      .before-after,
+      .process-grid,
+      .insight-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 36px 24px;
+      }
+
+      .meta-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .image-section {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <nav class="navbar" aria-label="Main navigation">
+      <a href="index.html" aria-label="Linda portfolio home">
+        <div class="brand-name">Linda</div>
+        <div class="brand-subtitle">UX Research & Design</div>
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#work">Case Studies</a>
+        <a href="about.html">About Me</a>
+        <a href="index.html#contact">Contact</a>
+        <a class="nav-button" href="index.html#contact">Let’s Connect ↗</a>
+      </div>
+    </nav>
+
+    <a class="back-link" href="index.html#work">← Back to Selected Work</a>
+
+    <section class="hero">
+      <div>
+        <div class="gold-line"></div>
+        <div class="eyebrow">Product Design Case Study</div>
+
+        <h1>
+          Tasky
+          <span class="accent">Smart Family Noticeboard</span>
+        </h1>
+
+        <p>
+          An accessible family noticeboard for everyday coordination. Tasky helps families see what matters now, reduce mental overload, and manage routines with less friction.
+        </p>
+
+        <div class="meta-grid">
+          <div class="meta-card">
+            <strong>Role</strong>
+            <span>Product Designer</span>
+          </div>
+
+          <div class="meta-card">
+            <strong>Focus</strong>
+            <span>Family coordination</span>
+          </div>
+
+          <div class="meta-card">
+            <strong>Methods</strong>
+            <span>Research, prototyping</span>
+          </div>
+
+          <div class="meta-card">
+            <strong>Theme</strong>
+            <span>Accessibility</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img
+          src="tasky-case-study.png"
+          alt="Tasky smart family noticeboard case study design"
+        />
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="gold-line"></div>
+      <div class="eyebrow">The Problem</div>
+      <h2>Family organisation was not failing because families lacked calendars</h2>
+      <p class="section-intro">
+        Families were already using calendars, notes, reminders, and memory. The real challenge was that information was scattered, plans changed quickly, and the mental effort of keeping family life together became too heavy.
+      </p>
+
+      <div class="insight-grid">
+        <article class="insight-card">
+          <div class="insight-icon">01</div>
+          <h3>Mental overload</h3>
+          <p>Too much responsibility lived in one person’s head.</p>
+        </article>
+
+        <article class="insight-card">
+          <div class="insight-icon">02</div>
+          <h3>Plan changes</h3>
+          <p>Routines shifted quickly and were easy to miss.</p>
+        </article>
+
+        <article class="insight-card">
+          <div class="insight-icon">03</div>
+          <h3>Everything overlaps</h3>
+          <p>School, home, work, and family tasks competed for attention.</p>
+        </article>
+
+        <article class="insight-card">
+          <div class="insight-icon">04</div>
+          <h3>Home and work collide</h3>
+          <p>Parents needed clearer information at the right moment.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="gold-line"></div>
+      <div class="eyebrow">Research Insight</div>
+      <h2>The research challenged my first assumption</h2>
+      <p class="section-intro">
+        I initially thought families needed one better calendar. The research pointed to a different problem: families needed a shared, calm way to see what matters now.
+      </p>
+
+      <div class="before-after">
+        <div class="before">
+          <h3>Initial assumption</h3>
+          <p>Families need one calendar that combines everything.</p>
+        </div>
+
+        <div class="after">
+          <h3>Research insight</h3>
+          <p>Mental load and unexpected changes caused more stress than simply having too many tools.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="gold-line"></div>
+      <div class="eyebrow">Design Direction</div>
+      <h2>The solution did not need to become a better calendar</h2>
+      <p class="section-intro">
+        Instead, Tasky became a shared family noticeboard — a calm home display that highlights the most relevant information at the right time.
+      </p>
+
+      <div class="process-grid">
+        <article class="process-card">
+          <div class="number">01</div>
+          <h3>One view</h3>
+          <p>A shared home display helps families see what matters without opening multiple apps.</p>
+        </article>
+
+        <article class="process-card">
+          <div class="number">02</div>
+          <h3>One task at a time</h3>
+          <p>The interface reduces pressure by focusing attention on the next important action.</p>
+        </article>
+
+        <article class="process-card">
+          <div class="number">03</div>
+          <h3>Voice support</h3>
+          <p>Voice interaction helps Tasky feel more accessible and less dependent on touch.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="image-section">
+      <div class="gold-line"></div>
+      <div class="eyebrow">Full Case Study Preview</div>
+      <h2>A shared family noticeboard built around what matters now</h2>
+      <p class="section-intro">
+        The full visual case study below shows the complete storytelling flow, including problem framing, research insight, design strategy, final solution, and reflection.
+      </p>
+
+      <img
+        src="tasky-case-study.png"
+        alt="Full Tasky product design case study page"
+      />
+    </section>
+
+    <section class="takeaway">
+      <h2>Key takeaway</h2>
+      <p>
+        Tasky taught me that reducing cognitive load is not only about removing information. It is about giving families the right information, at the right priority, at the right moment.
+      </p>
+    </section>
+
+    <footer>
+      <div>
+        <div class="footer-brand">Linda</div>
+        <div>UX Research & Interaction Design</div>
+      </div>
+
+      <div>
+        © 2026 Linda Laryea. Designed with research, empathy, and accessibility in mind.
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
