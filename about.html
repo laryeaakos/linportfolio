@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>About Me | Linda Laryea</title>
+
+  <style>
+    :root {
+      --bg: #FFF9FC;
+      --card: #FFFFFF;
+      --soft: #FFF7FB;
+      --soft-pink: #FDE7F1;
+      --magenta: #A80B63;
+      --gold: #F3C24F;
+      --dark: #111827;
+      --body: #4B5563;
+      --muted: #6B7280;
+      --border: #F2D8E7;
+      --shadow: 0 20px 50px rgba(24, 39, 75, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(1280px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 56px;
+    }
+
+    .navbar {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      box-shadow: 0 12px 35px rgba(24, 39, 75, 0.05);
+    }
+
+    .brand-name {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--magenta);
+    }
+
+    .brand-subtitle {
+      margin-top: 4px;
+      font-size: 10px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover,
+    .nav-links .active {
+      color: var(--magenta);
+    }
+
+    .nav-button {
+      background: var(--magenta);
+      color: #FFFFFF;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: 800;
+    }
+
+    .hero {
+      margin-top: 48px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      padding: 64px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 56px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .gold-line {
+      width: 52px;
+      height: 5px;
+      background: var(--gold);
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow {
+      color: var(--magenta);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 5vw, 56px);
+      line-height: 1.12;
+      letter-spacing: -1.6px;
+      margin-bottom: 28px;
+      max-width: 690px;
+    }
+
+    h2 {
+      font-size: 34px;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .accent {
+      color: var(--magenta);
+    }
+
+    .hero-text {
+      font-size: 18px;
+      color: var(--body);
+      max-width: 650px;
+      margin-bottom: 22px;
+    }
+
+    .highlight-note {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px 22px;
+      color: #3B0A2A;
+      font-size: 15px;
+      font-weight: 700;
+      max-width: 620px;
+    }
+
+    .profile-card {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 36px;
+      min-height: 380px;
+      text-align: center;
+      box-shadow: 0 16px 40px rgba(24, 39, 75, 0.05);
+    }
+
+    .portrait {
+      width: 170px;
+      height: 170px;
+      margin: 0 auto 24px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, #FDE7F1, #FFFFFF);
+      border: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      color: var(--magenta);
+      font-size: 48px;
+      font-weight: 900;
+    }
+
+    .profile-card h2 {
+      font-size: 30px;
+      margin-bottom: 6px;
+    }
+
+    .role {
+      color: var(--magenta);
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .profile-tags {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .cards-row {
+      margin-top: 64px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .info-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: 0 16px 40px rgba(24, 39, 75, 0.05);
+    }
+
+    .card-title-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 26px;
+    }
+
+    .icon-circle {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--soft-pink);
+      color: var(--magenta);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .info-card h3 {
+      color: var(--magenta);
+      margin-bottom: 0;
+    }
+
+    .info-card p {
+      color: var(--body);
+      font-size: 15px;
+      margin-bottom: 18px;
+    }
+
+    .strong-line {
+      width: 42px;
+      height: 4px;
+      background: var(--magenta);
+      border-radius: 999px;
+      margin: 18px 0;
+    }
+
+    .bold-ending {
+      color: var(--magenta);
+      font-weight: 900;
+    }
+
+    .value-item {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .mini-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--soft-pink);
+      color: var(--magenta);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+    }
+
+    .value-item strong {
+      display: block;
+      color: var(--dark);
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+
+    .value-item span {
+      display: block;
+      color: var(--body);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .chip-group {
+      margin-bottom: 22px;
+    }
+
+    .chip-group strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      color: var(--magenta);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .approach {
+      margin-top: 64px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      padding: 58px 60px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .approach::after {
+      content: "";
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: #F7D7E6;
+      opacity: 0.35;
+      position: absolute;
+      top: 58px;
+      right: 80px;
+    }
+
+    .approach::before {
+      content: "";
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0.24;
+      position: absolute;
+      top: 145px;
+      right: 60px;
+    }
+
+    .approach-header {
+      max-width: 720px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .approach-header p {
+      color: var(--body);
+      font-size: 17px;
+    }
+
+    .process-grid {
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .process-card {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+    }
+
+    .number {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--magenta);
+      color: #FFFFFF;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .process-card h3 {
+      color: var(--dark);
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .process-card p {
+      color: var(--body);
+      font-size: 14px;
+    }
+
+    .cta {
+      margin-top: 64px;
+      background: var(--magenta);
+      color: #FFFFFF;
+      border-radius: 32px;
+      padding: 52px 60px;
+      display: flex;
+      justify-content: space-between;
+      gap: 32px;
+      align-items: center;
+      box-shadow: 0 20px 50px rgba(24, 39, 75, 0.08);
+    }
+
+    .cta small {
+      color: var(--gold);
+      font-weight: 900;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .cta h2 {
+      color: #FFFFFF;
+      font-size: 36px;
+      margin-top: 12px;
+      margin-bottom: 12px;
+      max-width: 700px;
+    }
+
+    .cta p {
+      color: #FCEAF1;
+      max-width: 740px;
+    }
+
+    .cta-actions {
+      display: grid;
+      gap: 14px;
+      min-width: 190px;
+    }
+
+    .cta-button-primary,
+    .cta-button-secondary {
+      border-radius: 14px;
+      padding: 15px 20px;
+      text-align: center;
+      font-weight: 900;
+      font-size: 14px;
+    }
+
+    .cta-button-primary {
+      background: #FFFFFF;
+      color: var(--magenta);
+    }
+
+    .cta-button-secondary {
+      border: 1px solid #F7D7E6;
+      color: #FFFFFF;
+    }
+
+    footer {
+      margin-top: 44px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 13px;
+      padding: 0 14px;
+    }
+
+    .footer-brand {
+      color: var(--magenta);
+      font-size: 26px;
+      font-weight: 900;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 26px;
+      font-weight: 700;
+    }
+
+    .footer-links .active {
+      color: var(--magenta);
+      font-weight: 900;
+    }
+
+    @media (max-width: 950px) {
+      .navbar,
+      .cta,
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links,
+      .footer-links {
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .hero,
+      .cards-row,
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero,
+      .approach {
+        padding: 36px 24px;
+      }
+
+      .approach::before,
+      .approach::after {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <nav class="navbar" aria-label="Main navigation">
+      <a href="index.html" aria-label="Linda portfolio home">
+        <div class="brand-name">Linda</div>
+        <div class="brand-subtitle">UX Research & Design</div>
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#work">Case Studies</a>
+        <a class="active" href="about.html">About Me</a>
+        <a href="index.html#contact">Contact</a>
+        <a class="nav-button" href="index.html#contact">Let’s Connect ↗</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <div class="gold-line"></div>
+        <div class="eyebrow">About Me</div>
+
+        <h1>
+          Designing with empathy, research, and
+          <span class="accent">accessibility</span>
+          at the centre.
+        </h1>
+
+        <p class="hero-text">
+          I’m a UX Researcher and Interaction Designer with a Master’s degree in Cognitive Science and a Bachelor’s degree in Psychology. My work is shaped by a deep interest in how people think, behave, and interact with digital systems.
+        </p>
+
+        <div class="highlight-note">
+          My goal is to create digital experiences that feel clear, inclusive, and easy to use for real people in real contexts.
+        </div>
+      </div>
+
+      <aside class="profile-card" aria-label="Linda Laryea profile summary">
+        <div class="portrait">LL</div>
+        <h2>Linda Laryea</h2>
+        <div class="role">UX Researcher & Interaction Designer</div>
+        <div class="profile-tags">Cognitive Science • Psychology • Accessibility</div>
+      </aside>
+    </section>
+
+    <section class="cards-row" aria-label="About Linda summary cards">
+      <article class="info-card">
+        <div class="card-title-row">
+          <div class="icon-circle">▤</div>
+          <h3>My Story</h3>
+        </div>
+
+        <p>
+          My academic journey in Cognitive Science and Psychology gave me a strong foundation in how people perceive, think, learn, and make decisions.
+        </p>
+
+        <p>
+          This understanding fuels my passion for creating user-centred designs that are intuitive, accessible, and meaningful.
+        </p>
+
+        <div class="strong-line"></div>
+
+        <p class="bold-ending">
+          I believe great design starts with deep empathy and ends with meaningful impact.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <div class="card-title-row">
+          <div class="icon-circle">✧</div>
+          <h3>My Design Values</h3>
+        </div>
+
+        <div class="value-item">
+          <div class="mini-icon">♥</div>
+          <div>
+            <strong>Human-Centred</strong>
+            <span>I design for real human needs, not just business goals.</span>
+          </div>
+        </div>
+
+        <div class="value-item">
+          <div class="mini-icon">✳</div>
+          <div>
+            <strong>Accessible by Design</strong>
+            <span>I believe everyone deserves equal access to digital tools.</span>
+          </div>
+        </div>
+
+        <div class="value-item">
+          <div class="mini-icon">↗</div>
+          <div>
+            <strong>Evidence-Based</strong>
+            <span>I use research and data to inform better design decisions.</span>
+          </div>
+        </div>
+
+        <div class="value-item">
+          <div class="mini-icon">✦</div>
+          <div>
+            <strong>Clarity & Simplicity</strong>
+            <span>I create experiences that are easy to understand and use.</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="info-card">
+        <div class="card-title-row">
+          <div class="icon-circle">✦</div>
+          <h3>Skills & Tools</h3>
+        </div>
+
+        <div class="chip-group">
+          <strong>UX Research</strong>
+          <div class="chips">
+            <span class="chip">Interviews</span>
+            <span class="chip">Personas</span>
+            <span class="chip">Testing</span>
+          </div>
+        </div>
+
+        <div class="chip-group">
+          <strong>Interaction Design</strong>
+          <div class="chips">
+            <span class="chip">Wireframes</span>
+            <span class="chip">Prototypes</span>
+            <span class="chip">Flows</span>
+          </div>
+        </div>
+
+        <div class="chip-group">
+          <strong>Tools</strong>
+          <div class="chips">
+            <span class="chip">Figma</span>
+            <span class="chip">Miro</span>
+            <span class="chip">Maze</span>
+            <span class="chip">FigJam</span>
+          </div>
+        </div>
+
+        <p>
+          Combining research, psychology, and visual design to create thoughtful digital experiences.
+        </p>
+      </article>
+    </section>
+
+    <section class="approach">
+      <div class="approach-header">
+        <div class="gold-line"></div>
+        <div class="eyebrow">My Approach</div>
+
+        <h2>
+          How I turn research into
+          <span class="accent">meaningful design</span>
+        </h2>
+
+        <p>
+          My process begins with understanding real people, then translating insights into clear, accessible, and usable digital experiences.
+        </p>
+      </div>
+
+      <div class="process-grid">
+        <article class="process-card">
+          <div class="number">01</div>
+          <h3>Understand</h3>
+          <p>I begin by learning about users, their goals, frustrations, behaviours, and real-life context.</p>
+        </article>
+
+        <article class="process-card">
+          <div class="number">02</div>
+          <h3>Define</h3>
+          <p>I identify the core problem, key user needs, and design opportunities before jumping into solutions.</p>
+        </article>
+
+        <article class="process-card">
+          <div class="number">03</div>
+          <h3>Design</h3>
+          <p>I create flows, wireframes, and interfaces that reduce friction and make tasks easier to complete.</p>
+        </article>
+
+        <article class="process-card">
+          <div class="number">04</div>
+          <h3>Test</h3>
+          <p>I test ideas with users, refine interactions, and improve clarity, accessibility, and usability.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div>
+        <small>Let’s work together</small>
+        <h2>Interested in thoughtful, accessible design?</h2>
+        <p>
+          I’m open to UX research, interaction design, and product design opportunities where human behaviour, clarity, and accessibility matter.
+        </p>
+      </div>
+
+      <div class="cta-actions">
+        <a class="cta-button-primary" href="index.html#contact">Let’s Connect</a>
+        <a class="cta-button-secondary" href="index.html#work">View Case Studies</a>
+      </div>
+    </section>
+
+    <footer>
+      <div>
+        <div class="footer-brand">Linda</div>
+        <div>© 2026 Linda Laryea. Designed with research, empathy, and accessibility in mind.</div>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#work">Case Studies</a>
+        <a class="active" href="about.html">About Me</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
