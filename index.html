@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linda Laryea | UX Research & Design Portfolio</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #FFF9FC;
+      color: #111827;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 56px;
+    }
+
+    .navbar {
+      background: #FFFFFF;
+      border: 1px solid #F2D8E7;
+      border-radius: 18px;
+      padding: 20px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      box-shadow: 0 12px 35px rgba(24, 39, 75, 0.06);
+    }
+
+    .logo {
+      font-size: 30px;
+      font-weight: 800;
+      color: #A80B63;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      font-size: 15px;
+      color: #4B5563;
+    }
+
+    .nav-links a:hover {
+      color: #A80B63;
+    }
+
+    .nav-button {
+      background: #A80B63;
+      color: #FFFFFF;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: 700;
+    }
+
+    .hero {
+      margin-top: 48px;
+      background: #FFFFFF;
+      border: 1px solid #F2D8E7;
+      border-radius: 32px;
+      padding: 72px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 48px;
+      align-items: center;
+      box-shadow: 0 20px 50px rgba(24, 39, 75, 0.06);
+    }
+
+    .eyebrow {
+      color: #A80B63;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .gold-line {
+      width: 52px;
+      height: 5px;
+      background: #F3C24F;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 68px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+
+    .accent {
+      color: #A80B63;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #4B5563;
+      max-width: 620px;
+      margin-bottom: 32px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .primary,
+    .secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 13px 18px;
+      border-radius: 14px;
+      font-weight: 700;
+    }
+
+    .primary {
+      background: #A80B63;
+      color: #FFFFFF;
+    }
+
+    .secondary {
+      background: #FFFFFF;
+      color: #A80B63;
+      border: 1px solid #F2D8E7;
+    }
+
+    .hero-card {
+      background: #FFF9FC;
+      border: 1px solid #F2D8E7;
+      border-radius: 28px;
+      padding: 32px;
+      min-height: 390px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .mockup {
+      background: #FFFFFF;
+      border: 1px solid #F2D8E7;
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 18px 40px rgba(24, 39, 75, 0.08);
+    }
+
+    .mockup-top {
+      height: 14px;
+      width: 120px;
+      background: #F7D7E6;
+      border-radius: 999px;
+      margin-bottom: 24px;
+    }
+
+    .mockup-title {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: #111827;
+    }
+
+    .mockup-text {
+      color: #4B5563;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .mockup-row {
+      display: grid;
+      gap: 12px;
+    }
+
+    .mockup-pill {
+      background: #FFF7FB;
+      border: 1px solid #F2D8E7;
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-weight: 700;
+      color: #A80B63;
+    }
+
+    .section {
+      margin-top: 72px;
+    }
+
+    .section-header {
+      max-width: 680px;
+      margin-bottom: 32px;
+    }
+
+    .section-header h2 {
+      font-size: 44px;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .section-header p {
+      font-size: 18px;
+      color: #4B5563;
+    }
+
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .case-card {
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: 0 16px 40px rgba(24, 39, 75, 0.06);
+    }
+
+    .case-image {
+      height: 210px;
+      border-radius: 16px;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .pink-bg {
+      background: #FFF0F7;
+      color: #A80B63;
+    }
+
+    .violet-bg {
+      background: #F3F0FF;
+      color: #6D5DF6;
+    }
+
+    .navy-bg {
+      background: #EEF3FF;
+      color: #1E2A5A;
+    }
+
+    .case-card h3 {
+      font-size: 22px;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+
+    .case-card p {
+      color: #4B5563;
+      font-size: 15px;
+      margin-bottom: 18px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .tag {
+      background: #FFF7FB;
+      color: #A80B63;
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .case-link {
+      color: #A80B63;
+      font-weight: 800;
+    }
+
+    .about-contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 72px;
+    }
+
+    .info-card {
+      background: #FFFFFF;
+      border: 1px solid #F2D8E7;
+      border-radius: 24px;
+      padding: 36px;
+      box-shadow: 0 16px 40px rgba(24, 39, 75, 0.05);
+    }
+
+    .info-card h2 {
+      font-size: 32px;
+      margin-bottom: 14px;
+    }
+
+    .info-card p {
+      color: #4B5563;
+      font-size: 17px;
+      margin-bottom: 22px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-option {
+      border: 1px solid #F2D8E7;
+      background: #FFF9FC;
+      border-radius: 16px;
+      padding: 16px;
+      color: #A80B63;
+      font-weight: 800;
+    }
+
+    footer {
+      margin-top: 56px;
+      padding: 28px 0 0;
+      color: #6B7280;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .navbar,
+      .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 36px 24px;
+      }
+
+      .case-grid,
+      .about-contact {
+        grid-template-columns: 1fr;
+      }
+
+      .section-header h2 {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <nav class="navbar">
+      <div>
+        <div class="logo">Lilac</div>
+        <small>UX RESEARCH & DESIGN</small>
+      </div>
+
+      <div class="nav-links">
+        <a href="#work">Case Studies</a>
+        <a href="#about">About Me</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-button" href="#contact">Let’s Connect</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <div class="gold-line"></div>
+        <div class="eyebrow">UX Research & Interaction Design</div>
+
+        <h1>
+          Designing meaningful digital experiences with
+          <span class="accent">accessibility</span> at the centre.
+        </h1>
+
+        <p>
+          I’m Linda Laryea, a UX Researcher and Interaction Designer with a background in Cognitive Science and Psychology. I create user-centred designs shaped by research, clarity, and real human behaviour.
+        </p>
+
+        <div class="actions">
+          <a class="primary" href="#work">View Case Studies</a>
+          <a class="secondary" href="#contact">Contact Me</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="mockup">
+          <div class="mockup-top"></div>
+          <div class="mockup-title">Research-led design</div>
+          <div class="mockup-text">
+            Portfolio focused on accessibility, user behaviour, usability, and everyday workflows.
+          </div>
+          <div class="mockup-row">
+            <div class="mockup-pill">User Research</div>
+            <div class="mockup-pill">Interaction Design</div>
+            <div class="mockup-pill">Accessible Interfaces</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" class="section">
+      <div class="section-header">
+        <div class="gold-line"></div>
+        <div class="eyebrow">Case Studies</div>
+        <h2>Selected Work</h2>
+        <p>
+          A collection of research-led product design projects focused on accessibility, clarity, decision-making, and meaningful everyday workflows.
+        </p>
+      </div>
+
+      <div class="case-grid">
+        <article class="case-card">
+          <div class="case-image pink-bg">Elysian Fields Attendance Kiosk</div>
+          <h3>Elysian Fields Attendance Kiosk</h3>
+          <p>
+            An RFID-enabled attendance kiosk designed to reduce morning check-in friction and support clearer school workflows.
+          </p>
+          <div class="tags">
+            <span class="tag">UX Research</span>
+            <span class="tag">Accessibility</span>
+            <span class="tag">RFID</span>
+          </div>
+          <a class="case-link" href="#">View Case Study →</a>
+        </article>
+
+        <article class="case-card">
+          <div class="case-image violet-bg">Tasky Smart Family Noticeboard</div>
+          <h3>Tasky — Smart Family Noticeboard</h3>
+          <p>
+            A calm home hub that helps families manage routines, reminders, and shared responsibilities with less friction.
+          </p>
+          <div class="tags">
+            <span class="tag">Product Design</span>
+            <span class="tag">Family Workflow</span>
+            <span class="tag">UI Design</span>
+          </div>
+          <a class="case-link" href="#">Coming Soon →</a>
+        </article>
+
+        <article class="case-card">
+          <div class="case-image navy-bg">AI Observability Tool</div>
+          <h3>AI Observability Tool</h3>
+          <p>
+            A monitoring dashboard that helps teams track AI system behaviour, detect anomalies, and investigate issues with confidence.
+          </p>
+          <div class="tags">
+            <span class="tag">Dashboard</span>
+            <span class="tag">AI Monitoring</span>
+            <span class="tag">B2B SaaS</span>
+          </div>
+          <a class="case-link" href="#">Coming Soon →</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="about-contact">
+      <div id="about" class="info-card">
+        <h2>About Me</h2>
+        <p>
+          With a Master’s degree in Cognitive Science and a Bachelor’s degree in Psychology, my work is shaped by a deep interest in how people think, behave, and interact with digital systems.
+        </p>
+        <a class="case-link" href="#">Read More →</a>
+      </div>
+
+      <div id="contact" class="info-card">
+        <h2>Let’s Connect</h2>
+        <p>
+          I’m open to UX research, interaction design, product design opportunities, and meaningful collaborations.
+        </p>
+
+        <div class="contact-list">
+          <a class="contact-option" href="mailto:your-email@example.com">Email me →</a>
+          <a class="contact-option" href="https://www.linkedin.com" target="_blank" rel="noreferrer">Connect on LinkedIn →</a>
+          <a class="contact-option" href="https://dribbble.com" target="_blank" rel="noreferrer">View Dribbble →</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © 2026 Linda Laryea. Designed with research, empathy, and accessibility in mind.
+    </footer>
+  </main>
+</body>
+</html>
