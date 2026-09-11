@@ -179,17 +179,16 @@
     }
 
     .portrait {
-      width: 170px;
-      height: 170px;
-      margin: 0 auto 24px;
-      border-radius: 28px;
-      background: linear-gradient(135deg, #FDE7F1, #FFFFFF);
-      border: 1px solid var(--border);
-      display: grid;
-      place-items: center;
-      color: var(--magenta);
-      font-size: 48px;
-      font-weight: 900;
+      .portrait-photo {
+  width: 170px;
+  height: 170px;
+  margin: 0 auto 24px;
+  border-radius: 28px;
+  object-fit: cover;
+  object-position: center;
+  border: 1px solid #F2D8E7;
+  box-shadow: 0 14px 35px rgba(24, 39, 75, 0.08);
+}
     }
 
     .profile-card h2 {
