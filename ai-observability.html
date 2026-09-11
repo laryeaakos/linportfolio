@@ -4,27 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>AI Observability Tool | Linda Laryea</title>
+  <title>AI Observability Interactive Case Study | Linda Laryea</title>
 
   <style>
     :root {
       --bg: #050816;
       --panel: #0B1020;
-      --card: #111827;
-      --card-2: #151B2E;
+      --panel-2: #111827;
+      --card: #151B2E;
       --text: #F8FAFC;
       --body: #CBD5E1;
       --muted: #94A3B8;
       --border: #26324A;
-      --accent: #7C3AED;
-      --accent-soft: rgba(124, 58, 237, 0.16);
+      --accent: #8B5CF6;
+      --accent-dark: #6D28D9;
+      --accent-soft: rgba(139, 92, 246, 0.18);
       --danger: #EF4444;
+      --danger-soft: #FFF1F2;
+      --success: #22C55E;
       --warning: #F59E0B;
-      --green: #22C55E;
-      --blue: #38BDF8;
-      --magenta: #A80B63;
       --gold: #F3C24F;
-      --shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
+      --magenta: #A80B63;
     }
 
     * {
@@ -40,7 +40,7 @@
     body {
       font-family: Arial, Helvetica, sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(124, 58, 237, 0.22), transparent 32%),
+        radial-gradient(circle at top left, rgba(139, 92, 246, 0.22), transparent 34%),
         radial-gradient(circle at top right, rgba(56, 189, 248, 0.12), transparent 28%),
         var(--bg);
       color: var(--text);
@@ -52,6 +52,10 @@
       text-decoration: none;
     }
 
+    button {
+      font-family: inherit;
+    }
+
     .page {
       width: min(1280px, calc(100% - 32px));
       margin: 0 auto;
@@ -59,7 +63,7 @@
     }
 
     .navbar {
-      background: rgba(11, 16, 32, 0.9);
+      background: rgba(11, 16, 32, 0.94);
       border: 1px solid var(--border);
       border-radius: 18px;
       padding: 18px 28px;
@@ -67,12 +71,12 @@
       align-items: center;
       justify-content: space-between;
       gap: 24px;
-      box-shadow: var(--shadow);
+      box-shadow: 0 22px 70px rgba(0, 0, 0, 0.32);
     }
 
     .brand-name {
       font-size: 30px;
-      font-weight: 800;
+      font-weight: 900;
       color: #FFFFFF;
     }
 
@@ -88,7 +92,7 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 30px;
+      gap: 28px;
       font-size: 14px;
       font-weight: 700;
       color: var(--body);
@@ -108,7 +112,7 @@
 
     .back-link {
       display: inline-flex;
-      margin: 34px 0 0;
+      margin: 34px 0 24px;
       color: #C4B5FD;
       font-size: 14px;
       font-weight: 800;
@@ -118,24 +122,16 @@
       text-decoration: underline;
     }
 
-    .hero {
-      margin-top: 26px;
-      background: rgba(11, 16, 32, 0.92);
-      border: 1px solid var(--border);
-      border-radius: 32px;
-      padding: 64px;
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 52px;
-      align-items: center;
-      box-shadow: var(--shadow);
+    .intro {
+      max-width: 880px;
+      margin-bottom: 28px;
     }
 
     .eyebrow {
       color: #C4B5FD;
       font-size: 12px;
       font-weight: 900;
-      letter-spacing: 1.3px;
+      letter-spacing: 1.4px;
       text-transform: uppercase;
       margin-bottom: 14px;
     }
@@ -149,173 +145,240 @@
     }
 
     h1 {
-      font-size: clamp(42px, 5vw, 68px);
-      line-height: 1.02;
+      font-size: clamp(40px, 5vw, 68px);
+      line-height: 1.03;
       letter-spacing: -2px;
-      margin-bottom: 22px;
-    }
-
-    h2 {
-      font-size: 36px;
-      line-height: 1.15;
-      letter-spacing: -0.8px;
-      margin-bottom: 14px;
-    }
-
-    h3 {
-      font-size: 21px;
-      line-height: 1.25;
-      margin-bottom: 8px;
-    }
-
-    .accent {
-      color: #A78BFA;
-    }
-
-    .lead {
-      color: var(--body);
-      font-size: 18px;
-      max-width: 700px;
-      margin-bottom: 24px;
-    }
-
-    .meta {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      margin-top: 28px;
-    }
-
-    .meta-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 16px;
-    }
-
-    .meta-card strong {
-      display: block;
-      color: #C4B5FD;
-      font-size: 12px;
-      letter-spacing: 0.9px;
-      text-transform: uppercase;
-      margin-bottom: 5px;
-    }
-
-    .meta-card span {
-      color: var(--text);
-      font-weight: 800;
-      font-size: 14px;
-    }
-
-    .dashboard {
-      background: #F8FAFC;
-      color: #111827;
-      border-radius: 26px;
-      padding: 0;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
-    }
-
-    .dash-layout {
-      display: grid;
-      grid-template-columns: 150px 1fr;
-      min-height: 420px;
-    }
-
-    .sidebar {
-      background: #071126;
-      color: #CBD5E1;
-      padding: 22px 16px;
-    }
-
-    .sidebar-logo {
-      color: #FFFFFF;
-      font-weight: 900;
-      margin-bottom: 28px;
-    }
-
-    .side-item {
-      padding: 10px 12px;
-      border-radius: 10px;
-      margin-bottom: 8px;
-      font-size: 13px;
-      font-weight: 700;
-      color: #94A3B8;
-    }
-
-    .side-item.active {
-      background: #7C3AED;
-      color: #FFFFFF;
-    }
-
-    .dash-main {
-      padding: 22px;
-    }
-
-    .dash-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 22px;
-      color: #64748B;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .observation {
-      background: #FFF7F7;
-      border: 1px solid #FECACA;
-      border-radius: 18px;
-      padding: 22px;
       margin-bottom: 18px;
     }
 
-    .observation small {
-      color: #EF4444;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
+    .intro p {
+      color: var(--body);
+      font-size: 18px;
+      max-width: 760px;
     }
 
-    .observation h3 {
-      margin-top: 8px;
+    .experience-shell {
+      background: rgba(11, 16, 32, 0.94);
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      padding: 26px;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
+    }
+
+    .experience-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .progress-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--success);
+      border-radius: 50%;
+      box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.12);
+    }
+
+    .screen {
+      min-height: 620px;
+      background:
+        radial-gradient(circle at top right, rgba(139, 92, 246, 0.13), transparent 34%),
+        #070B16;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 42px;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .screen.copy-only {
+      grid-template-columns: 1fr;
+      align-items: center;
+    }
+
+    .screen-copy {
+      max-width: 620px;
+    }
+
+    .screen-count {
+      color: #818CF8;
+      font-size: 12px;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .screen h2 {
+      font-size: clamp(34px, 4vw, 54px);
+      line-height: 1.04;
+      letter-spacing: -1.5px;
+      margin-bottom: 18px;
+    }
+
+    .screen p {
+      color: var(--body);
+      font-size: 17px;
+      max-width: 650px;
+      margin-bottom: 22px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      border: 0;
+      min-height: 44px;
+      padding: 13px 18px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #C4B5FD;
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: #8B5CF6;
+      color: #FFFFFF;
+    }
+
+    .visual {
+      background: #0B1020;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+      min-height: 420px;
+    }
+
+    .mini-dashboard {
+      background: #F8FAFC;
+      color: #111827;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.32);
+    }
+
+    .mini-layout {
+      display: grid;
+      grid-template-columns: 145px 1fr;
+      min-height: 390px;
+    }
+
+    .mini-side {
+      background: #071126;
+      padding: 20px 14px;
+      color: #CBD5E1;
+    }
+
+    .mini-logo {
+      color: #FFFFFF;
+      font-weight: 900;
+      margin-bottom: 24px;
+    }
+
+    .mini-nav {
+      padding: 9px 10px;
+      border-radius: 10px;
+      color: #94A3B8;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .mini-nav.active {
+      background: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .mini-main {
+      padding: 22px;
+    }
+
+    .mini-top {
+      display: flex;
+      justify-content: space-between;
+      color: #64748B;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .alert-card {
+      background: var(--danger-soft);
+      border: 1px solid #FECACA;
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .alert-card small {
+      color: var(--danger);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+    }
+
+    .alert-card h3 {
       font-size: 22px;
+      margin-top: 8px;
       color: #111827;
     }
 
     .metric-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-bottom: 18px;
+      gap: 10px;
+      margin-bottom: 14px;
     }
 
     .metric {
       background: #FFFFFF;
       border: 1px solid #E2E8F0;
       border-radius: 14px;
-      padding: 14px;
+      padding: 13px;
     }
 
     .metric strong {
       display: block;
       font-size: 20px;
       color: #111827;
-      margin-bottom: 4px;
     }
 
     .metric span {
       color: #64748B;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .mini-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      font-size: 11px;
+      font-weight: 800;
     }
 
     .white-card {
@@ -327,166 +390,175 @@
 
     .white-card h4 {
       margin-bottom: 10px;
-      color: #111827;
     }
 
-    .small-row {
+    .data-row {
       display: flex;
       justify-content: space-between;
+      gap: 12px;
       border-top: 1px solid #E2E8F0;
       padding-top: 10px;
       margin-top: 10px;
       color: #64748B;
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    .section {
-      margin-top: 64px;
-    }
-
-    .panel {
-      background: rgba(11, 16, 32, 0.92);
-      border: 1px solid var(--border);
-      border-radius: 30px;
-      padding: 54px;
-      box-shadow: var(--shadow);
-    }
-
-    .section-header {
-      max-width: 780px;
-      margin-bottom: 28px;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 22px;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 26px;
-    }
-
-    .card p,
-    .card li {
-      color: var(--body);
-      font-size: 15px;
-    }
-
-    .icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      background: var(--accent-soft);
-      color: #C4B5FD;
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      margin-bottom: 16px;
-    }
-
-    .danger-card {
-      background: rgba(239, 68, 68, 0.1);
-      border-color: rgba(239, 68, 68, 0.34);
-    }
-
-    .green-card {
-      background: rgba(34, 197, 94, 0.1);
-      border-color: rgba(34, 197, 94, 0.3);
-    }
-
-    .blue-card {
-      background: rgba(56, 189, 248, 0.1);
-      border-color: rgba(56, 189, 248, 0.3);
-    }
-
-    .warning-card {
-      background: rgba(245, 158, 11, 0.1);
-      border-color: rgba(245, 158, 11, 0.32);
-    }
-
-    .flow {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 16px;
-      margin-top: 28px;
-    }
-
-    .flow-step {
+    .dark-card {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 20px;
       padding: 22px;
+      margin-bottom: 14px;
     }
 
-    .flow-step strong {
-      color: #C4B5FD;
-      display: block;
+    .dark-card h3 {
+      font-size: 21px;
       margin-bottom: 8px;
     }
 
-    .prompt-box {
-      background: #060B18;
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 28px;
-      margin-top: 28px;
-    }
-
-    .prompt-box code {
-      color: #E0E7FF;
-      white-space: normal;
+    .dark-card p {
       font-size: 15px;
-      line-height: 1.7;
+      margin-bottom: 0;
     }
 
     .comparison {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      margin-top: 28px;
+      gap: 14px;
     }
 
-    ul {
-      padding-left: 20px;
+    .compare-card {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
     }
 
-    li {
+    .compare-card.active {
+      border-color: var(--accent);
+      box-shadow: inset 0 0 0 1px rgba(139, 92, 246, 0.35);
+    }
+
+    .compare-card small {
+      display: inline-flex;
+      color: #C4B5FD;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
       margin-bottom: 10px;
     }
 
-    .takeaway {
-      background: linear-gradient(135deg, #4338CA, #111827);
-      color: #FFFFFF;
-      border-radius: 30px;
-      padding: 48px;
-      box-shadow: var(--shadow);
+    .system-list {
+      display: grid;
+      gap: 12px;
     }
 
-    .takeaway p {
-      color: #E0E7FF;
-      font-size: 18px;
-      max-width: 900px;
+    .system-row {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .pill {
+      display: inline-flex;
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .pill.good {
+      background: rgba(34, 197, 94, 0.14);
+      color: #86EFAC;
+    }
+
+    .pill.changed {
+      background: rgba(239, 68, 68, 0.14);
+      color: #FCA5A5;
+    }
+
+    .flow-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .flow-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .flow-number {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: var(--accent-soft);
+      color: #C4B5FD;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+    }
+
+    .bottom-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+
+    .step-dots {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #334155;
+      border: none;
+    }
+
+    .dot.active {
+      background: var(--accent);
+      box-shadow: 0 0 0 5px rgba(139, 92, 246, 0.14);
+    }
+
+    .bottom-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .case-note {
+      margin-top: 28px;
+      background: rgba(11, 16, 32, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+      color: var(--body);
+    }
+
+    .case-note strong {
+      color: #FFFFFF;
     }
 
     footer {
-      margin-top: 44px;
+      margin-top: 40px;
       background: rgba(11, 16, 32, 0.9);
       border: 1px solid var(--border);
       border-radius: 22px;
@@ -505,9 +577,10 @@
       font-weight: 900;
     }
 
-    @media (max-width: 950px) {
+    @media (max-width: 900px) {
       .navbar,
-      footer {
+      footer,
+      .bottom-controls {
         flex-direction: column;
         align-items: flex-start;
       }
@@ -517,20 +590,14 @@
         gap: 16px;
       }
 
-      .hero,
-      .grid-2,
-      .grid-3,
-      .grid-4,
-      .comparison,
-      .flow,
-      .dash-layout,
-      .mini-grid {
+      .screen {
         grid-template-columns: 1fr;
+        padding: 26px;
       }
 
-      .hero,
-      .panel {
-        padding: 34px 24px;
+      .mini-layout,
+      .comparison {
+        grid-template-columns: 1fr;
       }
 
       .metric-grid {
@@ -538,11 +605,11 @@
       }
 
       h1 {
-        font-size: 44px;
+        font-size: 42px;
       }
 
-      h2 {
-        font-size: 30px;
+      .screen h2 {
+        font-size: 34px;
       }
     }
   </style>
@@ -567,320 +634,41 @@
 
     <a class="back-link" href="index.html#work">← Back to Selected Work</a>
 
-    <section class="hero">
-      <div>
-        <div class="gold-line"></div>
-        <div class="eyebrow">Interactive UX Case Study</div>
-
-        <h1>
-          AI Observability
-          <span class="accent">Investigation Tool</span>
-        </h1>
-
-        <p class="lead">
-          A dark-mode monitoring experience that helps teams understand abnormal AI system behaviour, investigate root causes, and move from confusion to confidence.
-        </p>
-
-        <div class="meta">
-          <div class="meta-card">
-            <strong>Project Type</strong>
-            <span>B2B SaaS Dashboard</span>
-          </div>
-
-          <div class="meta-card">
-            <strong>Focus</strong>
-            <span>AI monitoring</span>
-          </div>
-
-          <div class="meta-card">
-            <strong>Design Goal</strong>
-            <span>Reduce investigation effort</span>
-          </div>
-
-          <div class="meta-card">
-            <strong>Interaction</strong>
-            <span>Guided analysis flow</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="dashboard" aria-label="AI observability dashboard preview">
-        <div class="dash-layout">
-          <aside class="sidebar">
-            <div class="sidebar-logo">AI Observe</div>
-            <div class="side-item">CV Ranker</div>
-            <div class="side-item active">Overview</div>
-            <div class="side-item">Investigations</div>
-            <div class="side-item">Alerts</div>
-            <div class="side-item">Traces</div>
-            <div class="side-item">Settings</div>
-          </aside>
-
-          <section class="dash-main">
-            <div class="dash-top">
-              <span>Overview</span>
-              <span>Last 24 hours</span>
-            </div>
-
-            <div class="observation">
-              <small>Current observation</small>
-              <h3>Summary length is longer than usual</h3>
-              <p>Compared to the 7-day average</p>
-            </div>
-
-            <div class="metric-grid">
-              <div class="metric"><strong>8.1k</strong><span>Behavior health</span></div>
-              <div class="metric"><strong>2.47M</strong><span>Token usage</span></div>
-              <div class="metric"><strong>$5.8k</strong><span>Cost</span></div>
-              <div class="metric"><strong>2.8s</strong><span>Latency</span></div>
-            </div>
-
-            <div class="mini-grid">
-              <div class="white-card">
-                <h4>What changed?</h4>
-                <div class="small-row"><span>Prompt template</span><span>Updated</span></div>
-                <div class="small-row"><span>Model version</span><span>Stable</span></div>
-              </div>
-
-              <div class="white-card">
-                <h4>Potential impact</h4>
-                <div class="small-row"><span>Cost impact</span><span>High</span></div>
-                <div class="small-row"><span>Quality risk</span><span>Medium</span></div>
-              </div>
-            </div>
-          </section>
-        </div>
-      </div>
-    </section>
-
-    <section class="section panel">
-      <div class="section-header">
-        <div class="eyebrow">01 / Scenario Introduction</div>
-        <h2>Something has changed.</h2>
-        <p class="lead">
-          The experience begins with a calm scenario introduction instead of dropping users directly into a dense technical dashboard.
-        </p>
-      </div>
-
-      <div class="grid-3">
-        <article class="card">
-          <div class="icon">01</div>
-          <h3>Set the context</h3>
-          <p>Users first understand that an AI system has changed behaviour.</p>
-        </article>
-
-        <article class="card">
-          <div class="icon">02</div>
-          <h3>Reduce panic</h3>
-          <p>The flow avoids overwhelming users with too many metrics too early.</p>
-        </article>
-
-        <article class="card">
-          <div class="icon">03</div>
-          <h3>Invite action</h3>
-          <p>A clear next step helps the user begin investigation confidently.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section panel">
-      <div class="section-header">
-        <div class="eyebrow">02 / Anomaly Detected</div>
-        <h2>Unusual behaviour detected.</h2>
-        <p class="lead">
-          The system identifies a concrete issue: candidate CV summaries are significantly longer than usual.
-        </p>
-      </div>
-
-      <div class="grid-3">
-        <article class="card danger-card">
-          <div class="icon">!</div>
-          <h3>+35%</h3>
-          <p>Average summary length increased compared to the 7-day average.</p>
-        </article>
-
-        <article class="card warning-card">
-          <div class="icon">$</div>
-          <h3>Cost impact</h3>
-          <p>Longer outputs can increase token usage and monthly spend.</p>
-        </article>
-
-        <article class="card blue-card">
-          <div class="icon">?</div>
-          <h3>Investigation needed</h3>
-          <p>The user needs to know whether the change is harmless or risky.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section panel">
-      <div class="section-header">
-        <div class="eyebrow">03 / Dashboard Reveal</div>
-        <h2>What is the system seeing?</h2>
-        <p class="lead">
-          The dashboard reveals the anomaly in context, connecting system behaviour to cost, quality, latency, and recent changes.
-        </p>
-      </div>
-
-      <div class="dashboard">
-        <div class="dash-layout">
-          <aside class="sidebar">
-            <div class="sidebar-logo">AI Observe</div>
-            <div class="side-item active">Overview</div>
-            <div class="side-item">Investigations</div>
-            <div class="side-item">Alerts</div>
-          </aside>
-
-          <section class="dash-main">
-            <div class="observation">
-              <small>Current observation</small>
-              <h3>Summary length is longer than usual <span style="color:#EF4444;">+35%</span></h3>
-              <p>This connects the alert to evidence, not guesswork.</p>
-            </div>
-
-            <div class="metric-grid">
-              <div class="metric"><strong>8.1k</strong><span>Behavior health</span></div>
-              <div class="metric"><strong>2.47M</strong><span>Token usage</span></div>
-              <div class="metric"><strong>$5.8k</strong><span>Cost</span></div>
-              <div class="metric"><strong>0.6%</strong><span>Error rate</span></div>
-            </div>
-          </section>
-        </div>
-      </div>
-    </section>
-
-    <section class="section panel">
-      <div class="section-header">
-        <div class="eyebrow">04 / Impact Check</div>
-        <h2>So, is this actually a problem?</h2>
-        <p class="lead">
-          The design helps users move beyond “something changed” toward understanding impact, urgency, and whether action is needed.
-        </p>
-      </div>
-
-      <div class="grid-3">
-        <article class="card warning-card">
-          <h3>Token usage</h3>
-          <p>More tokens can increase operational cost.</p>
-        </article>
-
-        <article class="card danger-card">
-          <h3>Cost impact</h3>
-          <p>The change may affect monthly spend if it continues.</p>
-        </article>
-
-        <article class="card green-card">
-          <h3>Quality signal</h3>
-          <p>The system helps check whether output quality improved or declined.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section panel">
-      <div class="section-header">
-        <div class="eyebrow">05 / What Changed</div>
-        <h2>What changed?</h2>
-        <p class="lead">
-          The investigation flow points users toward recent system changes instead of forcing them to search blindly.
-        </p>
-      </div>
-
-      <div class="grid-3">
-        <article class="card">
-          <h3>Prompt template updated</h3>
-          <p>A recent prompt change may have affected summary length.</p>
-        </article>
-
-        <article class="card">
-          <h3>Embedding model stable</h3>
-          <p>Not every system component changed, helping narrow the search.</p>
-        </article>
-
-        <article class="card">
-          <h3>Retrieved configuration updated</h3>
-          <p>The system highlights changes that may explain the behaviour.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section panel">
-      <div class="section-header">
-        <div class="eyebrow">06 / Investigation Prompt</div>
-        <h2>The timing looks suspicious.</h2>
-        <p class="lead">
-          Instead of asking users to interpret raw logs alone, the interface supports guided investigation with a clear next question.
-        </p>
-      </div>
-
-      <div class="prompt-box">
-        <code>
-          Good place to start: Check whether summary length increased after the prompt template update. Then compare cost, latency, and output quality before and after the change.
-        </code>
-      </div>
-    </section>
-
-    <section class="section panel">
-      <div class="section-header">
-        <div class="eyebrow">07 / Environment Check</div>
-        <h2>Is anything else behaving unusually?</h2>
-        <p class="lead">
-          Users can check related system areas to see whether the issue is isolated or part of a wider environment problem.
-        </p>
-      </div>
-
-      <div class="grid-4">
-        <article class="card green-card"><h3>Retrieval</h3><p>Stable</p></article>
-        <article class="card green-card"><h3>Model</h3><p>Stable</p></article>
-        <article class="card green-card"><h3>Database</h3><p>Stable</p></article>
-        <article class="card green-card"><h3>Prompt</h3><p>Changed</p></article>
-      </div>
-    </section>
-
-    <section class="section panel">
-      <div class="section-header">
-        <div class="eyebrow">08 / Root Cause</div>
-        <h2>There’s the difference.</h2>
-        <p class="lead">
-          The design leads the user from alert to evidence, then toward a likely root cause.
-        </p>
-      </div>
-
-      <div class="comparison">
-        <article class="card">
-          <h3>Before</h3>
-          <p>Summaries were concise and focused on the most relevant candidate information.</p>
-        </article>
-
-        <article class="card danger-card">
-          <h3>After</h3>
-          <p>A revised prompt encouraged longer summaries, increasing output length and cost.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section panel">
-      <div class="section-header">
-        <div class="eyebrow">09 / Project Outro</div>
-        <h2>From anomaly to understanding.</h2>
-        <p class="lead">
-          The final experience shows how an observability tool can support investigation, not just monitoring.
-        </p>
-      </div>
-
-      <div class="flow">
-        <div class="flow-step"><strong>01</strong><p>Notice change</p></div>
-        <div class="flow-step"><strong>02</strong><p>Understand impact</p></div>
-        <div class="flow-step"><strong>03</strong><p>Check environment</p></div>
-        <div class="flow-step"><strong>04</strong><p>Find likely cause</p></div>
-        <div class="flow-step"><strong>05</strong><p>Decide next action</p></div>
-      </div>
-    </section>
-
-    <section class="section takeaway">
-      <div class="eyebrow">Why this design</div>
-      <h2>What happened? What does it mean? What should I do next?</h2>
+    <section class="intro">
+      <div class="gold-line"></div>
+      <div class="eyebrow">Interactive UX Case Study</div>
+      <h1>AI Observability Investigation Assistant</h1>
       <p>
-        This case study reframes AI observability around decision-making. The goal is not only to show metrics, but to help teams understand what changed, why it matters, and how to investigate with confidence.
+        This is a click-through experience designed to help users investigate abnormal AI system behaviour step by step, instead of facing a dense dashboard all at once.
+      </p>
+    </section>
+
+    <section class="experience-shell" aria-label="Interactive AI Observability case study">
+      <div class="experience-top">
+        <div class="progress-label">
+          <span class="status-dot"></span>
+          <span id="screenLabel">01 / Scenario Introduction</span>
+        </div>
+        <span>Interactive prototype</span>
+      </div>
+
+      <section id="screen" class="screen"></section>
+
+      <div class="bottom-controls">
+        <div class="step-dots" id="dots" aria-label="Prototype progress"></div>
+
+        <div class="bottom-actions">
+          <button class="btn btn-secondary" id="backBtn" type="button">← Back</button>
+          <button class="btn btn-secondary" id="restartBtn" type="button">Replay interaction</button>
+          <a class="btn btn-secondary" href="index.html#work">Exit case study</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-note">
+      <p>
+        <strong>Design intention:</strong> The interaction is structured around three user questions:
+        What happened? What does it mean? What should I do next? Each screen reveals only the information needed at that moment.
       </p>
     </section>
 
@@ -895,5 +683,435 @@
       </div>
     </footer>
   </main>
+
+  <script>
+    const screens = [
+      {
+        label: "01 / Scenario Introduction",
+        count: "01 — Scenario Introduction",
+        title: "Something has changed.",
+        body: "Recruiters are using an AI assistant to review candidate profiles and generate concise summaries. But today, the summaries feel different.",
+        visual: "flow",
+        primary: "See what happened →",
+        secondary: null,
+        next: 1
+      },
+      {
+        label: "02 / Anomaly Detected",
+        count: "02 — Anomaly Detected",
+        title: "Unusual behaviour detected.",
+        body: "Candidate CV summaries are 35% longer than usual. The system does not simply raise an alarm — it invites the user to investigate.",
+        visual: "alert",
+        primary: "Take a closer look →",
+        secondary: "Not yet",
+        next: 3,
+        secondaryNext: 2
+      },
+      {
+        label: "02B / Not Yet Response",
+        count: "02B — Not Yet Response",
+        title: "The system waits, but keeps the risk visible.",
+        body: "The user can delay investigation, but the interface explains why the change still matters: review time is already increasing.",
+        visual: "notYet",
+        primary: "Okay, investigate now →",
+        secondary: null,
+        next: 3
+      },
+      {
+        label: "03 / Dashboard Reveal",
+        count: "03 — Dashboard Reveal",
+        title: "What is the system seeing?",
+        body: "The dashboard reveals the anomaly in context, connecting the alert to summary length, cost, latency, and recent behaviour.",
+        visual: "dashboard",
+        primary: "See the impact →",
+        secondary: null,
+        next: 4
+      },
+      {
+        label: "04 / Impact Check",
+        count: "04 — Impact Check",
+        title: "So, is this actually a problem?",
+        body: "The design helps the user understand whether the behaviour change is harmless, costly, or risky for workflow quality.",
+        visual: "impact",
+        primary: "See what changed →",
+        secondary: null,
+        next: 5
+      },
+      {
+        label: "05 / What Changed",
+        count: "05 — What Changed",
+        title: "What changed?",
+        body: "Instead of forcing the user to search through raw logs, the assistant highlights recent system changes that may explain the anomaly.",
+        visual: "changes",
+        primary: "Investigate the timing →",
+        secondary: null,
+        next: 6
+      },
+      {
+        label: "06 / Investigation Prompt",
+        count: "06 — Investigation Prompt",
+        title: "The timing looks suspicious.",
+        body: "The prompt template was updated shortly before the summaries became longer. The assistant guides the user toward the most useful next check.",
+        visual: "prompt",
+        primary: "Check the environment →",
+        secondary: null,
+        next: 7
+      },
+      {
+        label: "07 / Environment Check",
+        count: "07 — Environment Check",
+        title: "Is anything else behaving unusually?",
+        body: "The user checks related system areas to see whether the issue is isolated or part of a wider environment problem.",
+        visual: "environment",
+        primary: "Compare prompt versions →",
+        secondary: null,
+        next: 8
+      },
+      {
+        label: "08 / Root Cause",
+        count: "08 — Root Cause",
+        title: "There’s the difference.",
+        body: "The revised prompt asks for more detailed explanations, causing longer summaries, higher token usage, and increased review effort.",
+        visual: "rootCause",
+        primary: "See system recovery →",
+        secondary: null,
+        next: 9
+      },
+      {
+        label: "08B / System Returns Normal",
+        count: "08B — System Returns Normal",
+        title: "The system returns toward normal.",
+        body: "After the prompt is adjusted, summary length and token usage begin moving back toward the expected range.",
+        visual: "normal",
+        primary: "Why this design? →",
+        secondary: null,
+        next: 10
+      },
+      {
+        label: "09 / Why This Design",
+        count: "09 — Why This Design",
+        title: "What happened? What does it mean? What should I do next?",
+        body: "The experience is designed around the questions users ask during uncertainty. It reduces cognitive load by revealing context, evidence, and next steps gradually.",
+        visual: "why",
+        primary: "Finish case study →",
+        secondary: null,
+        next: 11
+      },
+      {
+        label: "Project Outro",
+        count: "09 — Project Outro",
+        title: "From anomaly to understanding.",
+        body: "AI Observability Investigation Assistant turns monitoring into guided investigation. The user does not just see that something changed — they understand why it matters and what to do next.",
+        visual: "outro",
+        primary: "Replay interaction",
+        secondary: "Back to selected work",
+        next: 0,
+        secondaryHref: "index.html#work"
+      }
+    ];
+
+    const screenEl = document.getElementById("screen");
+    const labelEl = document.getElementById("screenLabel");
+    const dotsEl = document.getElementById("dots");
+    const backBtn = document.getElementById("backBtn");
+    const restartBtn = document.getElementById("restartBtn");
+
+    let current = 0;
+    let historyStack = [];
+
+    function dashboardVisual() {
+      return `
+        <div class="mini-dashboard">
+          <div class="mini-layout">
+            <aside class="mini-side">
+              <div class="mini-logo">AI Observe</div>
+              <div class="mini-nav">CV Ranker</div>
+              <div class="mini-nav active">Overview</div>
+              <div class="mini-nav">Investigations</div>
+              <div class="mini-nav">Alerts</div>
+              <div class="mini-nav">Traces</div>
+            </aside>
+
+            <section class="mini-main">
+              <div class="mini-top">
+                <span>Dashboard overview</span>
+                <span>Last 24 hours</span>
+              </div>
+
+              <div class="alert-card">
+                <small>Current observation</small>
+                <h3>Summary length is longer than usual <span style="color:#EF4444;">+35%</span></h3>
+                <p style="color:#64748B;margin:0;">Compared to the 7-day average.</p>
+              </div>
+
+              <div class="metric-grid">
+                <div class="metric"><strong>8.1k</strong><span>Behaviour health</span></div>
+                <div class="metric"><strong>2.47M</strong><span>Token usage</span></div>
+                <div class="metric"><strong>$5.8k</strong><span>Cost</span></div>
+                <div class="metric"><strong>2.8s</strong><span>Latency</span></div>
+              </div>
+
+              <div class="white-card">
+                <h4>Recent system signal</h4>
+                <div class="data-row"><span>Prompt template</span><span>Updated</span></div>
+                <div class="data-row"><span>Model version</span><span>Stable</span></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      `;
+    }
+
+    function visualTemplate(type) {
+      if (type === "dashboard") return dashboardVisual();
+
+      if (type === "alert") {
+        return `
+          <div class="dark-card">
+            <h3>Unusual behaviour detected</h3>
+            <p>Candidate CV summaries are 35% longer than usual.</p>
+          </div>
+          <div class="alert-card">
+            <small>Anomaly signal</small>
+            <h3>+35% summary length</h3>
+            <p style="color:#64748B;margin:0;">This may affect cost, review speed, and clarity.</p>
+          </div>
+        `;
+      }
+
+      if (type === "notYet") {
+        return `
+          <div class="dark-card">
+            <h3>Not investigated yet</h3>
+            <p>The user delays action, but the system keeps the potential impact visible.</p>
+          </div>
+          <div class="dark-card">
+            <h3>Recruiter review time is increasing</h3>
+            <p>The issue may already be affecting workflow efficiency.</p>
+          </div>
+        `;
+      }
+
+      if (type === "impact") {
+        return `
+          <div class="metric-grid">
+            <div class="metric"><strong>2.47M</strong><span>Token usage</span></div>
+            <div class="metric"><strong>+$1.2k</strong><span>Cost impact</span></div>
+            <div class="metric"><strong>+18%</strong><span>Review time</span></div>
+            <div class="metric"><strong>Stable</strong><span>Error rate</span></div>
+          </div>
+          <div class="dark-card">
+            <h3>Impact summary</h3>
+            <p>The anomaly is not a system crash. It is a behavioural change with cost and workflow consequences.</p>
+          </div>
+        `;
+      }
+
+      if (type === "changes") {
+        return `
+          <div class="flow-list">
+            <div class="flow-item">
+              <div class="flow-number">01</div>
+              <div><h3>Prompt template updated</h3><p>A recent wording change happened before the anomaly appeared.</p></div>
+            </div>
+            <div class="flow-item">
+              <div class="flow-number">02</div>
+              <div><h3>Embedding model unchanged</h3><p>No major retrieval model update was detected.</p></div>
+            </div>
+            <div class="flow-item">
+              <div class="flow-number">03</div>
+              <div><h3>Configuration updated</h3><p>Related settings changed during the same period.</p></div>
+            </div>
+          </div>
+        `;
+      }
+
+      if (type === "prompt") {
+        return `
+          <div class="dark-card">
+            <h3>Good place to start</h3>
+            <p>Check whether summary length increased after the prompt template update.</p>
+          </div>
+          <div class="dark-card">
+            <h3>But remember</h3>
+            <p>Before blaming the prompt, check whether other system areas are also behaving unusually.</p>
+          </div>
+        `;
+      }
+
+      if (type === "environment") {
+        return `
+          <div class="system-list">
+            <div class="system-row"><strong>Retrieval</strong><span class="pill good">Stable</span></div>
+            <div class="system-row"><strong>Model version</strong><span class="pill good">Stable</span></div>
+            <div class="system-row"><strong>Database</strong><span class="pill good">Stable</span></div>
+            <div class="system-row"><strong>Prompt template</strong><span class="pill changed">Changed</span></div>
+          </div>
+        `;
+      }
+
+      if (type === "rootCause") {
+        return `
+          <div class="comparison">
+            <div class="compare-card">
+              <small>Before</small>
+              <h3>Concise summary</h3>
+              <p>Summarise the candidate’s most relevant qualifications and experience in a concise format.</p>
+            </div>
+            <div class="compare-card active">
+              <small>After</small>
+              <h3>Detailed explanation</h3>
+              <p>Provide a detailed overview of the candidate’s experience, qualifications, achievements, and potential fit.</p>
+            </div>
+          </div>
+        `;
+      }
+
+      if (type === "normal") {
+        return `
+          <div class="dark-card">
+            <h3>Current summary behaviour</h3>
+            <p>The prompt adjustment reduces unnecessary detail and restores concise summaries.</p>
+          </div>
+          <div class="metric-grid">
+            <div class="metric"><strong>-27%</strong><span>Summary length</span></div>
+            <div class="metric"><strong>-24%</strong><span>Token usage</span></div>
+            <div class="metric"><strong>-16%</strong><span>Review time</span></div>
+            <div class="metric"><strong>Stable</strong><span>Quality score</span></div>
+          </div>
+        `;
+      }
+
+      if (type === "why") {
+        return `
+          <div class="flow-list">
+            <div class="flow-item">
+              <div class="flow-number">01</div>
+              <div><h3>What happened?</h3><p>The user first needs a clear description of the anomaly.</p></div>
+            </div>
+            <div class="flow-item">
+              <div class="flow-number">02</div>
+              <div><h3>What does it mean?</h3><p>The interface connects the anomaly to cost, time, and workflow impact.</p></div>
+            </div>
+            <div class="flow-item">
+              <div class="flow-number">03</div>
+              <div><h3>What should I do next?</h3><p>The system guides the user toward the next useful investigation step.</p></div>
+            </div>
+          </div>
+        `;
+      }
+
+      if (type === "outro") {
+        return `
+          <div class="dark-card">
+            <h3>Design outcome</h3>
+            <p>The interaction turns a confusing AI behaviour change into a guided investigation journey.</p>
+          </div>
+          <div class="flow-list">
+            <div class="flow-item"><div class="flow-number">01</div><div><h3>Notice</h3><p>Something has changed.</p></div></div>
+            <div class="flow-item"><div class="flow-number">02</div><div><h3>Investigate</h3><p>The user follows evidence step by step.</p></div></div>
+            <div class="flow-item"><div class="flow-number">03</div><div><h3>Understand</h3><p>The user reaches a clear explanation and next action.</p></div></div>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="flow-list">
+          <div class="flow-item"><div class="flow-number">01</div><div><h3>Scenario</h3><p>The user enters a guided investigation flow.</p></div></div>
+          <div class="flow-item"><div class="flow-number">02</div><div><h3>Anomaly</h3><p>The system reveals a behaviour change.</p></div></div>
+          <div class="flow-item"><div class="flow-number">03</div><div><h3>Investigation</h3><p>The user follows the evidence.</p></div></div>
+        </div>
+      `;
+    }
+
+    function renderDots() {
+      dotsEl.innerHTML = "";
+
+      screens.forEach((screen, index) => {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = index === current ? "dot active" : "dot";
+        dot.setAttribute("aria-label", "Go to " + screen.label);
+        dot.addEventListener("click", () => {
+          historyStack.push(current);
+          current = index;
+          render();
+        });
+        dotsEl.appendChild(dot);
+      });
+    }
+
+    function goTo(nextIndex) {
+      historyStack.push(current);
+      current = nextIndex;
+      render();
+    }
+
+    function render() {
+      const screen = screens[current];
+      labelEl.textContent = screen.label;
+
+      const primaryAction = screen.primary
+        ? `<button class="btn btn-primary" id="primaryAction" type="button">${screen.primary}</button>`
+        : "";
+
+      let secondaryAction = "";
+
+      if (screen.secondaryHref) {
+        secondaryAction = `<a class="btn btn-secondary" href="${screen.secondaryHref}">${screen.secondary}</a>`;
+      } else if (screen.secondary) {
+        secondaryAction = `<button class="btn btn-secondary" id="secondaryAction" type="button">${screen.secondary}</button>`;
+      }
+
+      screenEl.className = screen.visual === "flow" || screen.visual === "outro" ? "screen" : "screen";
+
+      screenEl.innerHTML = `
+        <div class="screen-copy">
+          <div class="screen-count">${screen.count}</div>
+          <h2>${screen.title}</h2>
+          <p>${screen.body}</p>
+          <div class="actions">
+            ${primaryAction}
+            ${secondaryAction}
+          </div>
+        </div>
+
+        <div class="visual" aria-label="Screen visual">
+          ${visualTemplate(screen.visual)}
+        </div>
+      `;
+
+      const primaryBtn = document.getElementById("primaryAction");
+      const secondaryBtn = document.getElementById("secondaryAction");
+
+      if (primaryBtn) {
+        primaryBtn.addEventListener("click", () => goTo(screen.next));
+      }
+
+      if (secondaryBtn && typeof screen.secondaryNext === "number") {
+        secondaryBtn.addEventListener("click", () => goTo(screen.secondaryNext));
+      }
+
+      backBtn.disabled = historyStack.length === 0;
+      backBtn.style.opacity = historyStack.length === 0 ? "0.45" : "1";
+      backBtn.style.cursor = historyStack.length === 0 ? "not-allowed" : "pointer";
+
+      renderDots();
+    }
+
+    backBtn.addEventListener("click", () => {
+      if (historyStack.length === 0) return;
+      current = historyStack.pop();
+      render();
+    });
+
+    restartBtn.addEventListener("click", () => {
+      current = 0;
+      historyStack = [];
+      render();
+    });
+
+    render();
+  </script>
 </body>
 </html>
