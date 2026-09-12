@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>CV | Linda Laryea</title>
+
+  <style>
+    :root {
+      --bg: #FFF9FC;
+      --card: #FFFFFF;
+      --soft: #FFF7FB;
+      --magenta: #A80B63;
+      --purple: #3B2A69;
+      --violet: #7C3AED;
+      --gold: #F3C24F;
+      --dark: #111827;
+      --body: #4B5563;
+      --muted: #6B7280;
+      --border: #F2D8E7;
+      --line: #E5E7EB;
+      --shadow: 0 22px 60px rgba(24, 39, 75, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    .page {
+      width: min(1280px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 56px;
+    }
+
+    .navbar {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      box-shadow: 0 12px 35px rgba(24, 39, 75, 0.05);
+    }
+
+    .brand-name {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--magenta);
+    }
+
+    .brand-subtitle {
+      margin-top: 4px;
+      font-size: 10px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover,
+    .nav-links .active {
+      color: var(--magenta);
+    }
+
+    .nav-links .active {
+      border-bottom: 3px solid var(--magenta);
+      padding-bottom: 8px;
+    }
+
+    .nav-button {
+      background: var(--magenta);
+      color: #FFFFFF;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: 800;
+      border-bottom: none !important;
+    }
+
+    .cv-top {
+      width: min(1000px, 100%);
+      margin: 48px auto 28px;
+      display: flex;
+      justify-content: space-between;
+      gap: 28px;
+      align-items: flex-start;
+    }
+
+    .cv-top h1 {
+      font-size: 42px;
+      line-height: 1.05;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+
+    .cv-top p {
+      max-width: 500px;
+      color: var(--body);
+      font-size: 17px;
+    }
+
+    .download-button {
+      background: var(--violet);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 12px;
+      padding: 16px 32px;
+      min-height: 48px;
+      font-size: 14px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(124, 58, 237, 0.24);
+      white-space: nowrap;
+    }
+
+    .download-button:hover {
+      background: #6D28D9;
+    }
+
+    .cv-card {
+      width: min(1000px, 100%);
+      margin: 0 auto;
+      background: #FFFFFF;
+      border-radius: 22px;
+      display: grid;
+      grid-template-columns: 310px 1fr;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid #F1E7F3;
+    }
+
+    .cv-sidebar {
+      background: var(--purple);
+      color: #FFFFFF;
+      padding: 44px 34px;
+    }
+
+    .sidebar-section {
+      margin-bottom: 34px;
+    }
+
+    .sidebar-section h3 {
+      font-size: 16px;
+      margin-bottom: 14px;
+    }
+
+    .sidebar-line {
+      width: 34px;
+      height: 2px;
+      background: #BFA8FF;
+      margin-bottom: 16px;
+    }
+
+    .sidebar-section p,
+    .sidebar-section li {
+      font-size: 13px;
+      color: #E9DFFF;
+      margin-bottom: 8px;
+    }
+
+    .sidebar-section ul {
+      padding-left: 16px;
+    }
+
+    .language-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 13px;
+      color: #E9DFFF;
+      margin-bottom: 8px;
+    }
+
+    .cv-main {
+      padding: 54px 48px;
+    }
+
+    .cv-name {
+      font-size: 46px;
+      line-height: 1;
+      letter-spacing: -1.2px;
+      margin-bottom: 10px;
+    }
+
+    .cv-role {
+      color: var(--violet);
+      font-size: 18px;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--line);
+      margin: 0 0 30px;
+    }
+
+    .main-section {
+      margin-bottom: 34px;
+    }
+
+    .main-section h2 {
+      font-size: 22px;
+      margin-bottom: 18px;
+    }
+
+    .main-section p {
+      color: var(--body);
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+
+    .timeline {
+      position: relative;
+      margin-left: 38px;
+      padding-left: 34px;
+      border-left: 2px solid #DDD6FE;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 24px;
+    }
+
+    .timeline-dot {
+      width: 16px;
+      height: 16px;
+      background: var(--violet);
+      border-radius: 50%;
+      position: absolute;
+      left: -43px;
+      top: 4px;
+    }
+
+    .timeline-year {
+      position: absolute;
+      left: -105px;
+      top: 0;
+      color: var(--violet);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .timeline-item h3,
+    .research-item h3,
+    .project-item h3 {
+      font-size: 17px;
+      margin-bottom: 3px;
+    }
+
+    .place {
+      color: var(--violet);
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .tags {
+      color: var(--violet);
+      font-size: 13px;
+      font-weight: 800;
+      margin-top: 8px;
+    }
+
+    .research-item,
+    .project-item {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+    }
+
+    .research-item:last-child,
+    .project-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    footer {
+      margin: 70px auto 0;
+      width: min(1280px, 100%);
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 26px 32px;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 13px;
+      box-shadow: 0 12px 35px rgba(24, 39, 75, 0.04);
+    }
+
+    .footer-brand {
+      color: var(--magenta);
+      font-size: 26px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 26px;
+      font-weight: 700;
+    }
+
+    .footer-links .active {
+      color: var(--magenta);
+      font-weight: 900;
+    }
+
+    @media (max-width: 950px) {
+      .navbar,
+      .cv-top,
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links,
+      .footer-links {
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .cv-card {
+        grid-template-columns: 1fr;
+      }
+
+      .cv-main {
+        padding: 38px 26px;
+      }
+
+      .cv-sidebar {
+        padding: 36px 26px;
+      }
+
+      .timeline {
+        margin-left: 0;
+      }
+
+      .timeline-year {
+        position: static;
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .timeline-dot {
+        left: -43px;
+      }
+
+      .cv-name {
+        font-size: 38px;
+      }
+    }
+
+    @media print {
+      body {
+        background: #FFFFFF;
+      }
+
+      .navbar,
+      .cv-top,
+      footer {
+        display: none;
+      }
+
+      .page {
+        width: 100%;
+        padding: 0;
+      }
+
+      .cv-card {
+        width: 100%;
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        grid-template-columns: 280px 1fr;
+      }
+
+      .cv-sidebar {
+        padding: 34px 26px;
+      }
+
+      .cv-main {
+        padding: 38px 34px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <nav class="navbar" aria-label="Main navigation">
+      <a href="index.html" aria-label="Linda portfolio home">
+        <div class="brand-name">Linda</div>
+        <div class="brand-subtitle">UX Research & Design</div>
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#work">Case Studies</a>
+        <a href="about.html">About Me</a>
+        <a class="active" href="cv.html">CV</a>
+        <a href="contact.html">Contact</a>
+        <a class="nav-button" href="contact.html">Let’s Connect</a>
+      </div>
+    </nav>
+
+    <section class="cv-top">
+      <div>
+        <h1>Curriculum Vitae</h1>
+        <p>
+          A concise overview of my experience across UX research, interaction design, and human-centred behavioural research.
+        </p>
+      </div>
+
+      <button class="download-button" type="button" onclick="window.print()">
+        Download CV ↓
+      </button>
+    </section>
+
+    <section class="cv-card" aria-label="Linda Laryea curriculum vitae">
+      <aside class="cv-sidebar">
+        <div class="sidebar-section">
+          <h3>Contact</h3>
+          <div class="sidebar-line"></div>
+          <p>linaryea2@gmail.com</p>
+          <p>Germany</p>
+          <p>LinkedIn<br />linkedin.com/in/linda-laryea-7bb2366b</p>
+          <p>Portfolio<br />linportfolio.vercel.app</p>
+        </div>
+
+        <div class="sidebar-section">
+          <h3>Core Skills</h3>
+          <div class="sidebar-line"></div>
+          <ul>
+            <li>UX Research</li>
+            <li>Interaction Design</li>
+            <li>User-Centred Design</li>
+            <li>Accessibility & Inclusive Design</li>
+            <li>Information Architecture</li>
+            <li>Prototyping</li>
+            <li>Usability Studies</li>
+          </ul>
+        </div>
+
+        <div class="sidebar-section">
+          <h3>Research Methods</h3>
+          <div class="sidebar-line"></div>
+          <ul>
+            <li>Human-Subject Research</li>
+            <li>Participant Recruitment</li>
+            <li>Experimental Design</li>
+            <li>Usability Studies</li>
+            <li>Behavioural Research</li>
+            <li>Eye Tracking</li>
+            <li>EEG / ERP</li>
+            <li>Reaction-Time Studies</li>
+            <li>Quantitative Analysis</li>
+          </ul>
+        </div>
+
+        <div class="sidebar-section">
+          <h3>Tools</h3>
+          <div class="sidebar-line"></div>
+          <ul>
+            <li>Figma</li>
+            <li>FigJam</li>
+            <li>Miro</li>
+            <li>Maze</li>
+            <li>E-Prime 2.0</li>
+            <li>EyeLink 1000</li>
+            <li>Brain Vision Analyzer</li>
+            <li>SPSS</li>
+          </ul>
+        </div>
+
+        <div class="sidebar-section">
+          <h3>Education</h3>
+          <div class="sidebar-line"></div>
+          <p><strong>MSc Cognitive Science</strong><br />Technical University of Kaiserslautern<br />2016 – 2020</p>
+          <p><strong>BSc Psychology</strong><br />University of Cape Coast, Ghana<br />2009 – 2013</p>
+        </div>
+
+        <div class="sidebar-section">
+          <h3>Professional Development</h3>
+          <div class="sidebar-line"></div>
+          <p><strong>Google UX Design Professional Certificate</strong><br />Google · Coursera<br />Completed</p>
+          <p><strong>UXQB Certification</strong><br />Exam preparation · In progress</p>
+          <p><strong>User Experience: The Ultimate Guide to Usability and UX</strong><br />Udemy<br />Completed</p>
+        </div>
+
+        <div class="sidebar-section">
+          <h3>Languages</h3>
+          <div class="sidebar-line"></div>
+          <div class="language-row"><span>English</span><span>Native/Bilingual</span></div>
+          <div class="language-row"><span>German</span><span>B2</span></div>
+        </div>
+      </aside>
+
+      <article class="cv-main">
+        <h2 class="cv-name">Linda Laryea</h2>
+        <div class="cv-role">UX Researcher & Interaction Designer</div>
+        <div class="divider"></div>
+
+        <section class="main-section">
+          <h2>Profile</h2>
+          <p>
+            UX Researcher and Interaction Designer with a background in Cognitive Science and Psychology. I design with cognition and emotion in mind, creating clear, accessible, and user-centred digital experiences. I also completed the <strong>Google UX Design Professional Certificate.</strong>
+          </p>
+        </section>
+
+        <section class="main-section">
+          <h2>Research & Professional Experience</h2>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <span class="timeline-year">Current</span>
+              <span class="timeline-dot"></span>
+              <h3>Independent UX Research & Interaction Design</h3>
+              <div class="place">Portfolio Practice</div>
+              <p>
+                Developing research-led digital product concepts focused on accessibility, clarity, and human-centred interaction.
+              </p>
+            </div>
+
+            <div class="timeline-item">
+              <span class="timeline-year">2020</span>
+              <span class="timeline-dot"></span>
+              <h3>Research Assistant</h3>
+              <div class="place">Technical University of Kaiserslautern</div>
+              <p>
+                Recruited participants, supported study protocols, and used participant feedback to improve experimental design.
+              </p>
+            </div>
+
+            <div class="timeline-item">
+              <span class="timeline-year">2018</span>
+              <span class="timeline-dot"></span>
+              <h3>Research Intern</h3>
+              <div class="place">University of Saarland</div>
+              <p>
+                Supported stimulus development, pilot testing, and human-subject data collection for trauma-memory research.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="main-section">
+          <h2>Selected Research</h2>
+
+          <div class="research-item">
+            <h3>Analytical Preference for Letters in Persons who are Literates</h3>
+            <div class="place">Master’s Thesis · Visual Cognition & Reading</div>
+            <p>
+              Human-subject study with 31 Ghanaian participants exploring how familiar letters and unfamiliar visual symbols are processed.
+            </p>
+            <div class="tags">E-Prime 2.0 · SPSS · Reaction Time · Repeated-Measures ANOVA</div>
+          </div>
+
+          <div class="research-item">
+            <h3>Reading Direction and Perceptual Span in Second-Language Reading</h3>
+            <div class="place">Eye-Tracking Study · Visual Attention & Reading Behaviour</div>
+            <p>
+              Investigated whether first-language reading direction influences visual information uptake while reading in English as a second language.
+            </p>
+            <div class="tags">EyeLink 1000 · Gaze Contingent Moving Window · Linear Mixed-Effects Model</div>
+          </div>
+
+          <div class="research-item">
+            <h3>P300 Amplitude Differences in an Ultra-Rapid Categorisation Task</h3>
+            <div class="place">EEG / ERP Study · Visual Categorisation & Cognitive Processing</div>
+            <p>
+              Investigated neural and behavioural responses during rapid animal-versus-food visual categorisation.
+            </p>
+            <div class="tags">EEG / ERP · 32-Electrode Setup · Brain Vision Analyzer · SPSS · P300</div>
+          </div>
+        </section>
+
+        <section class="main-section">
+          <h2>Selected UX Projects</h2>
+
+          <div class="project-item">
+            <h3>Elysian Fields Attendance Kiosk</h3>
+            <div class="place">UX Research · Interaction Design · Accessibility</div>
+            <p>
+              Designed an inclusive attendance experience to make staff check-in faster, clearer, and more accessible through RFID and manual interaction flows.
+            </p>
+            <div class="tags">Research · User Flows · Wireframing · Prototyping · Inclusive Interaction</div>
+          </div>
+
+          <div class="project-item">
+            <h3>Tasky — Family Organisation App</h3>
+            <div class="place">UX Research · Interaction Design · Accessibility</div>
+            <p>
+              Designed a family organisation concept that helps households structure, prioritise, and reschedule everyday tasks while reducing cognitive load.
+            </p>
+            <div class="tags">Research · Information Architecture · Task Flows · Prototyping · Accessibility</div>
+          </div>
+
+          <div class="project-item">
+            <h3>AI Observability Tool</h3>
+            <div class="place">UX Research · Interaction Design · Data Visualisation</div>
+            <p>
+              Designed an observability concept that helps users understand complex AI system behaviour through clear monitoring views, structured information, and actionable workflows.
+            </p>
+            <div class="tags">Research · Information Architecture · Dashboard Design · Prototyping · Data Hierarchy</div>
+          </div>
+        </section>
+      </article>
+    </section>
+
+    <footer>
+      <div>
+        <div class="footer-brand">Linda</div>
+        <div>© 2026 Linda Laryea. Designed with research, empathy, and accessibility in mind.</div>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#work">Case Studies</a>
+        <a href="about.html">About Me</a>
+        <a class="active" href="cv.html">CV</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
