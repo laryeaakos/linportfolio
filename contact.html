@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Contact | Linda Laryea</title>
+
+  <style>
+    :root {
+      --bg: #FFF9FC;
+      --card: #FFFFFF;
+      --soft: #FFF7FB;
+      --soft-pink: #FDE7F1;
+      --magenta: #A80B63;
+      --gold: #F3C24F;
+      --dark: #111827;
+      --body: #4B5563;
+      --muted: #6B7280;
+      --border: #F2D8E7;
+      --shadow: 0 20px 50px rgba(24, 39, 75, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(1280px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 56px;
+    }
+
+    .navbar {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      box-shadow: 0 12px 35px rgba(24, 39, 75, 0.05);
+    }
+
+    .brand-name {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--magenta);
+    }
+
+    .brand-subtitle {
+      margin-top: 4px;
+      font-size: 10px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover,
+    .nav-links .active {
+      color: var(--magenta);
+    }
+
+    .nav-button {
+      background: var(--magenta);
+      color: #FFFFFF;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: 800;
+    }
+
+    .hero {
+      margin-top: 48px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      padding: 64px;
+      display: grid;
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 64px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .gold-line {
+      width: 52px;
+      height: 5px;
+      background: var(--gold);
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow {
+      color: var(--magenta);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 5vw, 58px);
+      line-height: 1.18;
+      letter-spacing: -1.6px;
+      margin-bottom: 30px;
+      max-width: 720px;
+    }
+
+    h2 {
+      font-size: 34px;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .accent {
+      color: var(--magenta);
+    }
+
+    .hero-text {
+      color: var(--body);
+      font-size: 18px;
+      max-width: 690px;
+      margin-bottom: 34px;
+      font-weight: 700;
+    }
+
+    .highlight-note {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px 22px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      color: #3B0A2A;
+      max-width: 620px;
+      font-weight: 700;
+    }
+
+    .note-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--soft-pink);
+      color: var(--magenta);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      font-weight: 900;
+    }
+
+    .contact-card {
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 36px;
+      box-shadow: 0 22px 55px rgba(24, 39, 75, 0.08);
+    }
+
+    .contact-card h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .contact-card > p {
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 28px;
+    }
+
+    .contact-options {
+      display: grid;
+      gap: 16px;
+    }
+
+    .contact-option {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 48px 1fr 24px;
+      gap: 16px;
+      align-items: center;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .contact-option:hover {
+      transform: translateY(-2px);
+      border-color: #E9B8D1;
+      box-shadow: 0 14px 35px rgba(24, 39, 75, 0.07);
+    }
+
+    .option-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--soft-pink);
+      color: var(--magenta);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 18px;
+    }
+
+    .option-text strong {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 2px;
+      color: var(--dark);
+    }
+
+    .option-text span {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .arrow {
+      color: var(--magenta);
+      font-weight: 900;
+      font-size: 18px;
+    }
+
+    .open-to {
+      margin-top: 64px;
+    }
+
+    .open-to-header {
+      margin-bottom: 32px;
+    }
+
+    .open-to h2 {
+      font-size: 36px;
+    }
+
+    .open-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .open-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 18px;
+      align-items: start;
+      box-shadow: 0 16px 40px rgba(24, 39, 75, 0.05);
+    }
+
+    .open-card p {
+      color: var(--body);
+      font-size: 15px;
+    }
+
+    footer {
+      margin-top: 80px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 26px 32px;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 13px;
+      box-shadow: 0 12px 35px rgba(24, 39, 75, 0.04);
+    }
+
+    .footer-brand {
+      color: var(--magenta);
+      font-size: 26px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .footer-subtitle {
+      margin-top: 4px;
+      font-size: 10px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 26px;
+      font-weight: 700;
+    }
+
+    .footer-links .active {
+      color: var(--magenta);
+      font-weight: 900;
+    }
+
+    @media (max-width: 950px) {
+      .navbar,
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links,
+      .footer-links {
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .hero,
+      .open-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 36px 24px;
+      }
+
+      .contact-card {
+        padding: 28px 22px;
+      }
+
+      .contact-option {
+        grid-template-columns: 44px 1fr;
+      }
+
+      .arrow {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <nav class="navbar" aria-label="Main navigation">
+      <a href="index.html" aria-label="Linda portfolio home">
+        <div class="brand-name">Linda</div>
+        <div class="brand-subtitle">UX Research & Design</div>
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#work">Case Studies</a>
+        <a href="about.html">About Me</a>
+        <a class="active" href="contact.html">Contact</a>
+        <a class="nav-button" href="contact.html">Let’s Connect</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <div class="gold-line"></div>
+        <div class="eyebrow">Contact</div>
+
+        <h1>
+          Let’s create meaningful and
+          <span class="accent">inclusive experiences</span>
+          together.
+        </h1>
+
+        <p class="hero-text">
+          I’m open to UX research, interaction design, product design opportunities, and meaningful collaborations where human behaviour, clarity, and accessibility matter.
+        </p>
+
+        <div class="highlight-note">
+          <div class="note-icon">♥</div>
+          <div>
+            Whether you want to discuss a UX project, collaboration, or design opportunity, choose the easiest way to reach me.
+          </div>
+        </div>
+      </div>
+
+      <aside class="contact-card" aria-label="Contact options">
+        <h2>Choose how to connect</h2>
+        <p>
+          Pick the easiest way to reach me. I’m open to UX research, design, and collaboration conversations.
+        </p>
+
+        <div class="contact-options">
+          <a class="contact-option" href="mailto:your-email@example.com">
+            <div class="option-icon">✉</div>
+            <div class="option-text">
+              <strong>Email me</strong>
+              <span>For project enquiries and opportunities</span>
+            </div>
+            <div class="arrow">↗</div>
+          </a>
+
+          <a class="contact-option" href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+            <div class="option-icon">in</div>
+            <div class="option-text">
+              <strong>Connect on LinkedIn</strong>
+              <span>Let’s connect professionally</span>
+            </div>
+            <div class="arrow">↗</div>
+          </a>
+
+          <a class="contact-option" href="https://dribbble.com" target="_blank" rel="noopener noreferrer">
+            <div class="option-icon">◉</div>
+            <div class="option-text">
+              <strong>View my Dribbble</strong>
+              <span>See my visual design explorations</span>
+            </div>
+            <div class="arrow">↗</div>
+          </a>
+
+          <a class="contact-option" href="mailto:your-email@example.com?subject=UX%20Design%20Chat">
+            <div class="option-icon">▣</div>
+            <div class="option-text">
+              <strong>Schedule a chat</strong>
+              <span>For design discussions or collaborations</span>
+            </div>
+            <div class="arrow">↗</div>
+          </a>
+        </div>
+      </aside>
+    </section>
+
+    <section class="open-to">
+      <div class="open-to-header">
+        <div class="gold-line"></div>
+        <div class="eyebrow">Open to</div>
+        <h2>Ways we can work together</h2>
+      </div>
+
+      <div class="open-grid">
+        <article class="open-card">
+          <div class="option-icon">⌕</div>
+          <div>
+            <h3>UX Research</h3>
+            <p>
+              User interviews, usability testing, research synthesis, and insight-driven recommendations.
+            </p>
+          </div>
+        </article>
+
+        <article class="open-card">
+          <div class="option-icon">✦</div>
+          <div>
+            <h3>Interaction Design</h3>
+            <p>
+              Wireframes, user flows, prototypes, interface improvements, and accessible digital experiences.
+            </p>
+          </div>
+        </article>
+
+        <article class="open-card">
+          <div class="option-icon">♡</div>
+          <div>
+            <h3>Collaboration</h3>
+            <p>
+              Design discussions, portfolio reviews, product ideas, and meaningful creative opportunities.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      <div>
+        <div class="footer-brand">Linda</div>
+        <div class="footer-subtitle">UX Research & Design</div>
+        <div>© 2026 Linda Laryea. Designed with clarity, empathy, and accessibility in mind.</div>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#work">Case Studies</a>
+        <a href="about.html">About Me</a>
+        <a class="active" href="contact.html">Contact</a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
