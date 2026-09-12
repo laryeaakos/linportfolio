@@ -4,26 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Linda Laryea | UX Research & Interaction Design</title>
+  <title>Linda Laryea | UX Researcher & Interaction Designer</title>
 
   <style>
     :root {
       --bg: #FFF9FC;
       --card: #FFFFFF;
-      --soft-pink: #FFF0F7;
-      --soft-lilac: #F8F2F7;
+      --soft: #F8F2F7;
+      --soft-purple: #EFE9FF;
+      --soft-pink: #FDE7F1;
       --magenta: #A80B63;
       --gold: #F3C24F;
       --dark: #111827;
       --body: #4B5563;
       --muted: #6B7280;
       --border: #F2D8E7;
-      --neutral-border: #E5E7EB;
-      --violet: #6D5DF6;
-      --navy: #1E2A5A;
-      --blue-soft: #EEF3FF;
-      --violet-soft: #F3F0FF;
-      --shadow: 0 20px 50px rgba(24, 39, 75, 0.07);
+      --shadow: 0 22px 60px rgba(24, 39, 75, 0.08);
     }
 
     * {
@@ -48,11 +44,6 @@
       text-decoration: none;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
     .page {
       width: min(1280px, calc(100% - 32px));
       margin: 0 auto;
@@ -60,103 +51,92 @@
     }
 
     .navbar {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 18px 28px;
+      background: transparent;
+      border-bottom: 1px solid var(--border);
+      padding: 0 0 22px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 24px;
-      box-shadow: 0 12px 35px rgba(24, 39, 75, 0.05);
-      position: sticky;
-      top: 16px;
-      z-index: 10;
-    }
-
-    .brand {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
     }
 
     .brand-name {
-      font-size: 30px;
-      font-weight: 800;
+      font-size: 32px;
+      font-weight: 900;
       color: var(--magenta);
-      letter-spacing: -0.5px;
-    }
-
-    .brand-subtitle {
-      margin-top: 4px;
-      font-size: 10px;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-weight: 700;
+      font-style: italic;
+      letter-spacing: -1px;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 30px;
+      gap: 36px;
       font-size: 14px;
-      color: var(--dark);
       font-weight: 700;
     }
 
-    .nav-links a {
-      position: relative;
+    .nav-links a:hover,
+    .nav-links .active {
+      color: var(--magenta);
     }
 
-    .nav-links a:hover {
-      color: var(--magenta);
+    .nav-links .active {
+      border-bottom: 3px solid var(--magenta);
+      padding-bottom: 10px;
     }
 
     .nav-button {
       background: var(--magenta);
       color: #FFFFFF;
-      padding: 12px 18px;
+      padding: 13px 22px;
       border-radius: 12px;
       font-weight: 800;
+      border-bottom: none !important;
     }
 
     .hero {
-      margin-top: 48px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 32px;
-      padding: 64px;
+      min-height: 610px;
       display: grid;
-      grid-template-columns: 1fr 0.95fr;
-      gap: 56px;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 70px;
       align-items: center;
-      box-shadow: var(--shadow);
+      padding: 72px 0 56px;
+    }
+
+    .intro-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #F7D7E6;
+      color: var(--dark);
+      border-radius: 999px;
+      padding: 9px 18px;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 26px;
+    }
+
+    .intro-pill span {
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
     }
 
     .gold-line {
-      width: 52px;
+      width: 150px;
       height: 5px;
       background: var(--gold);
       border-radius: 999px;
-      margin-bottom: 18px;
-    }
-
-    .eyebrow {
-      color: var(--magenta);
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 1.3px;
-      text-transform: uppercase;
-      margin-bottom: 18px;
+      margin-bottom: 12px;
     }
 
     h1 {
-      font-size: clamp(42px, 5vw, 60px);
-      line-height: 1.08;
-      letter-spacing: -1.8px;
-      margin-bottom: 24px;
-      max-width: 680px;
+      font-size: clamp(44px, 6vw, 70px);
+      line-height: 1.07;
+      letter-spacing: -2px;
+      margin-bottom: 20px;
     }
 
     .accent {
@@ -164,466 +144,532 @@
     }
 
     .hero-text {
-      font-size: 18px;
       color: var(--body);
-      max-width: 640px;
-      margin-bottom: 30px;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 26px;
-    }
-
-    .primary,
-    .secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 13px 18px;
-      border-radius: 14px;
-      font-weight: 800;
-      font-size: 14px;
-    }
-
-    .primary {
-      background: var(--magenta);
-      color: #FFFFFF;
-    }
-
-    .secondary {
-      background: #FFFFFF;
-      color: var(--magenta);
-      border: 1px solid var(--border);
-    }
-
-    .hero-points {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      color: var(--muted);
-      font-size: 13px;
+      font-size: 20px;
+      line-height: 1.65;
       font-weight: 700;
-    }
-
-    .hero-point {
-      background: var(--soft-pink);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 8px 12px;
-    }
-
-    .hero-visual {
-      background: var(--soft-lilac);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 36px;
-      min-height: 420px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .dashboard-preview {
-      width: 100%;
-      background: #FFFFFF;
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 26px;
-      box-shadow: 0 20px 45px rgba(24, 39, 75, 0.09);
-    }
-
-    .preview-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 26px;
-    }
-
-    .preview-title {
-      color: var(--magenta);
-      font-weight: 800;
-      font-size: 16px;
-    }
-
-    .preview-pill {
-      background: var(--soft-pink);
-      color: var(--magenta);
-      border-radius: 999px;
-      padding: 7px 12px;
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    .preview-main {
-      height: 150px;
-      background: linear-gradient(135deg, #FFF7FB, #F8F2F7);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 22px;
-      margin-bottom: 16px;
-    }
-
-    .preview-main h3 {
-      font-size: 24px;
-      margin-bottom: 8px;
-    }
-
-    .preview-main p {
-      color: var(--body);
-      font-size: 14px;
-    }
-
-    .preview-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    .mini-card {
-      background: #FFFFFF;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 14px;
-      font-size: 13px;
-      color: var(--body);
-      font-weight: 700;
-    }
-
-    .section {
-      margin-top: 78px;
-    }
-
-    .section-header {
-      max-width: 720px;
-      margin-bottom: 34px;
-    }
-
-    .section-header h2 {
-      font-size: 46px;
-      line-height: 1.1;
-      letter-spacing: -1.2px;
-      margin-bottom: 14px;
-    }
-
-    .section-header p {
-      font-size: 18px;
-      color: var(--body);
-      max-width: 650px;
-    }
-
-    .case-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .case-card {
-      background: var(--card);
-      border: 1px solid var(--neutral-border);
-      border-radius: 22px;
-      overflow: hidden;
-      box-shadow: 0 16px 40px rgba(24, 39, 75, 0.06);
-    }
-
-    .case-image {
-      height: 250px;
-      margin: 16px;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      text-align: center;
-      font-weight: 900;
-      font-size: 24px;
-      line-height: 1.2;
-    }
-
-    .case-image.elysian {
-      background: linear-gradient(135deg, #FFF0F7, #F8F2F7);
-      color: var(--magenta);
-    }
-
-    .case-image.tasky {
-      background: linear-gradient(135deg, #F3F0FF, #FFFFFF);
-      color: var(--violet);
-      border-color: #E6DEFF;
-    }
-
-    .case-image.observe {
-      background: linear-gradient(135deg, #EEF3FF, #FFFFFF);
-      color: var(--navy);
-      border-color: #D8E0EA;
-    }
-
-    .case-content {
-      padding: 8px 20px 22px;
-    }
-
-    .case-title-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      margin-bottom: 14px;
-    }
-
-    .case-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      color: #FFFFFF;
-      flex-shrink: 0;
-      font-weight: 900;
-    }
-
-    .case-icon.magenta {
-      background: var(--magenta);
-    }
-
-    .case-icon.violet {
-      background: var(--violet);
-    }
-
-    .case-icon.navy {
-      background: var(--navy);
-    }
-
-    .case-card h3 {
-      font-size: 22px;
-      line-height: 1.25;
-      letter-spacing: -0.4px;
-    }
-
-    .case-card p {
-      color: var(--body);
-      font-size: 15px;
-      margin-bottom: 18px;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+      max-width: 600px;
       margin-bottom: 22px;
     }
 
-    .tag {
-      border-radius: 999px;
-      padding: 8px 11px;
-      font-size: 12px;
+    .hero-actions {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      min-height: 52px;
+      padding: 15px 26px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 900;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: var(--magenta);
+      color: #FFFFFF;
+    }
+
+    .btn-secondary {
+      background: #FFFFFF;
+      color: var(--magenta);
+      border: 2px solid var(--magenta);
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      color: var(--body);
+      font-size: 14px;
+    }
+
+    .hero-tags span {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .hero-tags span::before {
+      content: "";
+      width: 12px;
+      height: 12px;
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      background: transparent;
+    }
+
+    .hero-visual {
+      background: var(--soft-purple);
+      border-radius: 90px 0 0 90px;
+      min-height: 480px;
+      display: grid;
+      place-items: center;
+      padding: 70px 50px;
+    }
+
+    .laptop {
+      width: min(520px, 100%);
+      background: #5A0B3A;
+      border-radius: 0 0 18px 18px;
+      padding-bottom: 22px;
+      box-shadow: 0 24px 60px rgba(24, 39, 75, 0.18);
+    }
+
+    .screen-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 22px;
+      transform: translateY(-20px);
+    }
+
+    .mini-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      font-size: 8px;
       font-weight: 800;
     }
 
-    .tag.magenta {
-      background: #FFF0F7;
+    .mini-logo {
       color: var(--magenta);
-    }
-
-    .tag.violet {
-      background: var(--violet-soft);
-      color: var(--violet);
-    }
-
-    .tag.navy {
-      background: var(--blue-soft);
-      color: var(--navy);
-    }
-
-    .case-footer {
-      border-top: 1px solid var(--neutral-border);
-      padding-top: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      font-size: 15px;
+      font-style: italic;
       font-weight: 900;
     }
 
-    .case-link.magenta {
+    .mini-links {
+      display: flex;
+      gap: 12px;
+      color: var(--dark);
+    }
+
+    .mini-button {
+      background: var(--magenta);
+      color: #FFFFFF;
+      border-radius: 6px;
+      padding: 6px 10px;
+    }
+
+    .mini-content {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+    }
+
+    .mini-title {
+      font-size: 22px;
+      line-height: 1.12;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .mini-text {
+      color: var(--body);
+      font-size: 10px;
+      margin-bottom: 16px;
+    }
+
+    .mini-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .mini-actions div {
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-size: 8px;
+      font-weight: 900;
+    }
+
+    .mini-actions div:first-child {
+      background: var(--magenta);
+      color: white;
+    }
+
+    .mini-actions div:last-child {
+      border: 1px solid var(--magenta);
       color: var(--magenta);
     }
 
-    .case-link.violet {
-      color: var(--violet);
+    .mini-feature-list {
+      display: grid;
+      gap: 20px;
+      color: var(--body);
+      font-size: 13px;
+      font-weight: 700;
     }
 
-    .case-link.navy {
-      color: var(--navy);
+    .mini-feature-list span {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .info-grid {
-      margin-top: 78px;
+    .mini-feature-list span::before {
+      content: "";
+      width: 13px;
+      height: 13px;
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+    }
+
+    .laptop-base {
+      height: 6px;
+      width: 160px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      margin: -10px auto 0;
+    }
+
+    .featured {
+      margin-top: 26px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      padding: 64px 44px;
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 54px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      color: var(--magenta);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 36px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 999px;
+    }
+
+    .featured h2 {
+      font-size: 44px;
+      line-height: 1.12;
+      letter-spacing: -1px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .featured-text {
+      color: var(--body);
+      font-size: 18px;
+      text-align: center;
+      max-width: 420px;
+      margin: 0 auto 30px;
+    }
+
+    .benefits {
+      display: grid;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .benefits li {
+      list-style: none;
+      color: var(--body);
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .benefits li::before {
+      content: "✓";
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      color: var(--magenta);
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .kiosk-showcase {
+      border-left: 1px solid var(--border);
+      padding-left: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      min-height: 410px;
+    }
+
+    .kiosk-card {
+      width: 170px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 22px 45px rgba(24, 39, 75, 0.16);
+    }
+
+    .kiosk-card.main {
+      width: 210px;
+      transform: translateY(-26px);
+    }
+
+    .kiosk-top {
+      background: var(--magenta);
+      color: #FFFFFF;
+      text-align: center;
+      padding: 18px 12px;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .kiosk-body {
+      min-height: 250px;
+      padding: 24px 16px;
+      text-align: center;
+      background: #FFF9FC;
+    }
+
+    .rfid-icon {
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      background: var(--soft-pink);
+      color: var(--magenta);
+      display: grid;
+      place-items: center;
+      margin: 0 auto 18px;
+      font-size: 34px;
+      font-weight: 900;
+    }
+
+    .success-icon {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: #159447;
+      color: #FFFFFF;
+      display: grid;
+      place-items: center;
+      margin: 12px auto 18px;
+      font-size: 54px;
+      font-weight: 900;
+    }
+
+    .kiosk-body h3 {
+      color: var(--magenta);
+      font-size: 17px;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+
+    .kiosk-body p {
+      color: var(--body);
+      font-size: 11px;
+    }
+
+    .fake-input {
+      height: 22px;
+      border: 1px solid #E9B8D1;
+      border-radius: 6px;
+      margin-bottom: 9px;
+      background: white;
+    }
+
+    .small-kiosk-button {
+      margin-top: 16px;
+      background: var(--magenta);
+      color: white;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .info-cards {
+      margin-top: 58px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      gap: 36px;
     }
 
     .info-card {
       background: #FFFFFF;
       border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 32px;
-      box-shadow: 0 16px 40px rgba(24, 39, 75, 0.05);
+      border-radius: 26px;
+      padding: 28px;
+      min-height: 270px;
+      box-shadow: 0 18px 45px rgba(24, 39, 75, 0.06);
+    }
+
+    .card-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 14px;
+      background: var(--soft-pink);
+      color: var(--magenta);
+      display: grid;
+      place-items: center;
+      font-size: 26px;
+      font-weight: 900;
+      margin-bottom: 18px;
     }
 
     .info-card h3 {
-      color: var(--magenta);
-      font-size: 22px;
-      margin-bottom: 12px;
+      font-size: 28px;
+      margin-bottom: 16px;
     }
 
-    .info-card p {
+    .info-card p,
+    .info-card li {
       color: var(--body);
-      font-size: 15px;
+      font-size: 16px;
     }
 
-    .about-contact {
-      margin-top: 78px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
+    .info-card ul {
+      padding-left: 20px;
     }
 
-    .large-card {
-      background: #FFFFFF;
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 40px;
-      box-shadow: 0 16px 40px rgba(24, 39, 75, 0.05);
-    }
-
-    .large-card h2 {
-      font-size: 32px;
-      margin-bottom: 14px;
-    }
-
-    .large-card p {
-      color: var(--body);
-      font-size: 17px;
-      margin-bottom: 24px;
-    }
-
-    .contact-options {
-      display: grid;
-      gap: 12px;
-    }
-
-    .contact-option {
-      background: var(--soft-pink);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 16px 18px;
+    .learn-link {
       color: var(--magenta);
       font-weight: 900;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      display: inline-flex;
+      margin-top: 18px;
     }
 
     .cta {
-      margin-top: 78px;
-      background: var(--magenta);
-      color: #FFFFFF;
-      border-radius: 32px;
-      padding: 52px 60px;
-      display: flex;
-      justify-content: space-between;
-      gap: 32px;
+      margin-top: 96px;
+      background: var(--soft-purple);
+      border: 1px solid var(--gold);
+      border-radius: 26px;
+      padding: 48px 72px;
+      display: grid;
+      grid-template-columns: 140px 1fr auto;
+      gap: 36px;
       align-items: center;
-      box-shadow: 0 20px 50px rgba(24, 39, 75, 0.08);
     }
 
-    .cta small {
-      color: var(--gold);
+    .cta-icon {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: #F7D7E6;
+      color: var(--magenta);
+      display: grid;
+      place-items: center;
+      font-size: 34px;
       font-weight: 900;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
     }
 
     .cta h2 {
-      font-size: 36px;
-      line-height: 1.15;
-      margin-top: 12px;
-      margin-bottom: 12px;
-      max-width: 680px;
+      font-size: 42px;
+      line-height: 1.12;
+      letter-spacing: -1px;
     }
 
     .cta p {
-      color: #FCEAF1;
-      max-width: 680px;
-    }
-
-    .cta-button {
-      background: #FFFFFF;
-      color: var(--magenta);
-      border-radius: 14px;
-      padding: 15px 20px;
-      font-weight: 900;
-      white-space: nowrap;
+      color: var(--dark);
+      font-size: 17px;
     }
 
     footer {
-      margin-top: 40px;
-      background: #FFFFFF;
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 26px 32px;
-      display: flex;
-      justify-content: space-between;
-      gap: 24px;
+      margin-top: 140px;
+      border-top: 1px solid var(--border);
+      padding-top: 54px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 14px;
+      font-weight: 700;
     }
 
     .footer-brand {
       color: var(--magenta);
-      font-size: 26px;
+      font-size: 30px;
+      font-style: italic;
       font-weight: 900;
     }
 
-    @media (max-width: 950px) {
-      .navbar {
-        position: static;
+    .footer-icons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 14px;
+    }
+
+    .footer-icons a {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: #4B5563;
+      color: #FFFFFF;
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    @media (max-width: 1000px) {
+      .navbar,
+      footer {
+        grid-template-columns: 1fr;
         flex-direction: column;
         align-items: flex-start;
       }
 
       .nav-links {
         flex-wrap: wrap;
-        gap: 16px;
+        gap: 18px;
       }
 
       .hero,
-      .case-grid,
-      .info-grid,
-      .about-contact {
+      .featured,
+      .info-cards,
+      .cta {
         grid-template-columns: 1fr;
       }
 
-      .hero {
+      .kiosk-showcase {
+        border-left: none;
+        padding-left: 0;
+        flex-wrap: wrap;
+      }
+
+      .hero-visual {
+        border-radius: 40px;
+        padding: 36px 22px;
+      }
+
+      .featured {
         padding: 36px 24px;
       }
 
-      .section-header h2 {
-        font-size: 36px;
-      }
-
       .cta {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 38px 26px;
+        padding: 36px 24px;
       }
 
       footer {
-        flex-direction: column;
-        align-items: flex-start;
+        display: flex;
+        gap: 20px;
       }
     }
   </style>
@@ -632,267 +678,194 @@
 <body>
   <main class="page">
     <nav class="navbar" aria-label="Main navigation">
-      <a class="brand" href="#home" aria-label="Linda portfolio home">
-        <span class="brand-name">Linda</span>
-        <span class="brand-subtitle">UX Research & Design</span>
+      <a href="index.html" aria-label="Linda portfolio home">
+        <div class="brand-name">Linda</div>
       </a>
 
       <div class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#work">Case Studies</a>
+        <a class="active" href="index.html">Home</a>
+        <a href="index.html#featured">Case Studies</a>
         <a href="about.html">About Me</a>
         <a href="cv.html">CV</a>
-        <a href="#contact">Contact</a>
-        <a class="nav-button" href="#contact">Let’s Connect ↗</a>
+        <a href="contact.html">Contact</a>
+        <a class="nav-button" href="contact.html">Let’s Connect</a>
       </div>
     </nav>
 
-    <section id="home" class="hero">
+    <section class="hero">
       <div>
+        <div class="intro-pill"><span></span> Hi, I’m Linda Laryea</div>
         <div class="gold-line"></div>
-        <div class="eyebrow">UX Research & Interaction Design</div>
 
         <h1>
           Designing meaningful
           <span class="accent">digital experiences</span>
-          that make everyday workflows simple.
+          that make everyday workflows simple
         </h1>
 
         <p class="hero-text">
-          I’m Linda Laryea, a UX Researcher and Interaction Designer with a background in Cognitive Science and Psychology. I create user-centred designs shaped by research, accessibility, clarity, and real human behaviour.
+          I’m a UX Researcher & Interaction Designer who creates accessible, user-centred products with a focus on clarity, usability and impact.
         </p>
 
-        <div class="actions">
-          <a class="primary" href="#work">View Case Studies</a>
-          <a class="secondary" href="#contact">Contact Me</a>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#featured">View Case Studies →</a>
+          <a class="btn-secondary" href="about.html">About Me</a>
         </div>
 
-        <div class="hero-points" aria-label="Design focus areas">
-          <span class="hero-point">User Research</span>
-          <span class="hero-point">Interaction Design</span>
-          <span class="hero-point">Accessibility</span>
+        <div class="hero-tags">
+          <span>User-Centred Design</span>
+          <span>UX Research</span>
+          <span>Scalable Solutions</span>
         </div>
       </div>
 
-      <div class="hero-visual" aria-label="Portfolio preview">
-        <div class="dashboard-preview">
-          <div class="preview-header">
-            <div class="preview-title">Linda Portfolio</div>
-            <div class="preview-pill">Case Study</div>
+      <div class="hero-visual" aria-label="Portfolio preview illustration">
+        <div class="laptop">
+          <div class="screen-card">
+            <div class="mini-nav">
+              <div class="mini-logo">Linda</div>
+              <div class="mini-links">
+                <span>Home</span>
+                <span>Case Studies</span>
+                <span>About Me</span>
+                <span>Contact</span>
+                <span class="mini-button">Let’s Connect</span>
+              </div>
+            </div>
+
+            <div class="mini-content">
+              <div>
+                <div class="intro-pill" style="font-size:7px;padding:4px 8px;margin-bottom:8px;">Hi I’m Linda</div>
+                <div class="mini-title">
+                  Designing meaningful <span class="accent">digital experiences</span> that make everyday workflows simple
+                </div>
+                <div class="mini-text">
+                  I create accessible, research-led digital products with clarity, usability and impact.
+                </div>
+                <div class="mini-actions">
+                  <div>View Case Studies</div>
+                  <div>About Me</div>
+                </div>
+              </div>
+
+              <div class="mini-feature-list">
+                <span>User-Centred Design</span>
+                <span>UX Research</span>
+                <span>Scalable Solutions</span>
+              </div>
+            </div>
           </div>
 
-          <div class="preview-main">
-            <h3>Elysian Fields Attendance Kiosk</h3>
-            <p>Research-led RFID check-in experience for clearer school attendance workflows.</p>
-          </div>
+          <div class="laptop-base"></div>
+        </div>
+      </div>
+    </section>
 
-          <div class="preview-grid">
-            <div class="mini-card">Research insight</div>
-            <div class="mini-card">Accessible flow</div>
-            <div class="mini-card">RFID kiosk</div>
-            <div class="mini-card">Reduced friction</div>
+    <section class="featured" id="featured">
+      <div>
+        <div class="eyebrow">Featured Case Study</div>
+
+        <h2>Elysian Fields Attendance Kiosk</h2>
+
+        <p class="featured-text">
+          An inclusive RFID and manual sign-in kiosk designed to make staff attendance recording faster, simpler, and more reassuring.
+        </p>
+
+        <ul class="benefits">
+          <li>Improved check-in flow and reduced wait time</li>
+          <li>Inclusive design for all staff RFID + manual</li>
+          <li>Clear success feedback and auto-reset</li>
+        </ul>
+
+        <a class="btn-secondary" href="elysian-fields.html">View Case Study →</a>
+      </div>
+
+      <div class="kiosk-showcase" aria-label="Elysian Fields kiosk screens">
+        <div class="kiosk-card">
+          <div class="kiosk-top">Welcome to Elysian Fields</div>
+          <div class="kiosk-body">
+            <div class="rfid-icon">◉</div>
+            <h3>Tap your ID card</h3>
+            <p>Quick RFID sign-in for staff.</p>
+            <div class="small-kiosk-button">Sign in manually</div>
+          </div>
+        </div>
+
+        <div class="kiosk-card main">
+          <div class="kiosk-top">Welcome to Elysian Fields</div>
+          <div class="kiosk-body">
+            <div class="success-icon">✓</div>
+            <h3 style="color:#159447;">Attendance Confirmed</h3>
+            <p>Vivian<br />Logged at 8:15 AM</p>
+          </div>
+        </div>
+
+        <div class="kiosk-card">
+          <div class="kiosk-top">Welcome to Elysian Fields</div>
+          <div class="kiosk-body">
+            <h3>Sign in manually</h3>
+            <div class="fake-input"></div>
+            <div class="fake-input"></div>
+            <div class="fake-input"></div>
+            <div class="small-kiosk-button">Sign in</div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="work" class="section">
-      <div class="section-header">
-        <div class="gold-line"></div>
-        <div class="eyebrow">Case Studies</div>
-        <h2>Selected Work</h2>
-        <p>
-          A collection of research-led product design projects focused on accessibility, clarity, decision-making, and meaningful everyday workflows.
-        </p>
-      </div>
-
-      <div class="case-grid">
-        <article class="case-card">
-          <div class="case-image elysian">
-            Elysian Fields<br />Attendance Kiosk
-          </div>
-
-          <div class="case-content">
-            <div class="case-title-row">
-              <div class="case-icon magenta" aria-hidden="true">ID</div>
-              <h3>Elysian Fields Attendance Kiosk</h3>
-            </div>
-
-            <p>
-              An RFID-enabled attendance kiosk designed to reduce morning check-in friction and support clear, inclusive school workflows.
-            </p>
-
-            <div class="tags">
-              <span class="tag magenta">UX Research</span>
-              <span class="tag magenta">Interaction Design</span>
-              <span class="tag magenta">Accessibility</span>
-            </div>
-
-            <div class="case-footer">
-              <a class="case-link magenta"href="elysian-fields.html">View Case Study</a>
-              <span class="case-link magenta">→</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="case-card">
-          <div class="case-image tasky">
-            Tasky<br />Smart Family Noticeboard
-          </div>
-
-          <div class="case-content">
-            <div class="case-title-row">
-              <div class="case-icon violet" aria-hidden="true">♥</div>
-              <h3>Tasky — Smart Family Noticeboard</h3>
-            </div>
-
-            <p>
-              A calm home hub that helps families manage routines, reminders, and shared responsibilities with less friction.
-            </p>
-
-            <div class="tags">
-              <span class="tag violet">Product Design</span>
-              <span class="tag violet">Accessibility</span>
-              <span class="tag violet">Family Workflow</span>
-            </div>
-
-            <div class="case-footer">
-             <a class="case-link violet" href="tasky.html">View Case Study</a>
-              <span class="case-link violet">→</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="case-card">
-          <div class="case-image observe">
-            AI Observability<br />Tool
-          </div>
-
-          <div class="case-content">
-            <div class="case-title-row">
-              <div class="case-icon navy" aria-hidden="true">↗</div>
-              <h3>AI Observability Tool</h3>
-            </div>
-
-            <p>
-              A monitoring dashboard that helps teams track AI system behaviour, detect anomalies, and investigate issues with confidence.
-            </p>
-
-            <div class="tags">
-              <span class="tag navy">Dashboard Design</span>
-              <span class="tag navy">AI Monitoring</span>
-              <span class="tag navy">B2B SaaS</span>
-            </div>
-
-            <div class="case-footer">
-            <a class="case-link navy" href="ai-observability.html">View Case Study</a>
-              <span class="case-link navy">→</span>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="info-grid" aria-label="Design focus">
+    <section class="info-cards">
       <article class="info-card">
+        <div class="card-icon">↗</div>
         <h3>My Process</h3>
         <p>
-          I begin with user needs, context, and behaviour, then translate research insights into clear design decisions.
+          I follow a user-centred design process from research and ideation to prototyping and testing — ensuring every solution is usable and valuable.
         </p>
+        <a class="learn-link" href="about.html">Learn more →</a>
       </article>
 
       <article class="info-card">
-        <h3>What I Do</h3>
-        <p>
-          UX research, journey mapping, wireframing, prototyping, usability testing, and accessible interface design.
-        </p>
+        <div class="card-icon">&lt;/&gt;</div>
+        <ul>
+          <li>UX / UI Design</li>
+          <li>Interaction Design</li>
+          <li>Prototyping</li>
+          <li>UX Research</li>
+          <li>Usability Studies</li>
+        </ul>
       </article>
 
       <article class="info-card">
+        <div class="card-icon">●</div>
         <h3>About Me</h3>
         <p>
-          My background in Cognitive Science and Psychology helps me design with empathy, structure, and evidence.
+          With a background in Cognitive Science and Psychology, I’m passionate about understanding user behaviour through research and translating insights into clear, accessible, and user-centred design solutions.
         </p>
+        <a class="learn-link" href="about.html">More about me →</a>
       </article>
-    </section>
-
-    <section id="elysian" class="section">
-      <div class="section-header">
-        <div class="gold-line"></div>
-        <div class="eyebrow">Featured Case Study</div>
-        <h2>Elysian Fields Attendance Kiosk</h2>
-        <p>
-          A research-led RFID kiosk concept designed to reduce paper-based attendance friction and make staff check-in easier, clearer, and more accessible.
-        </p>
-      </div>
-
-      <div class="about-contact">
-        <div class="large-card">
-          <h2>The Problem</h2>
-          <p>
-            Teachers and staff relied on a paper attendance book, which led to delayed entries, forgotten check-ins, and unreliable attendance records during busy mornings.
-          </p>
-          <a class="case-link magenta" href="#contact">Discuss this project →</a>
-        </div>
-
-        <div class="large-card">
-          <h2>Key Insight</h2>
-          <p>
-            The solution was not just a better digital logbook. It was moving the check-in touchpoint into the teacher’s natural entry path using an RFID kiosk.
-          </p>
-          <a class="case-link magenta" href="#work">Back to selected work →</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="about-contact">
-      <div class="large-card">
-        <h2>About Me</h2>
-        <p>
-          I’m a UX Researcher and Interaction Designer with a Master’s degree in Cognitive Science and a Bachelor’s degree in Psychology. My work is shaped by a deep interest in how people think, behave, and interact with digital systems.
-        </p>
-        <a class="case-link magenta" href="#contact">Let’s connect →</a>
-      </div>
-
-      <div id="contact" class="large-card">
-        <h2>Contact</h2>
-        <p>
-          I prefer simple, direct contact options instead of long forms. Choose the channel that works best for you.
-        </p>
-
-        <div class="contact-options">
-          <a class="contact-option" href="mailto:your-email@example.com">
-            Email me <span>→</span>
-          </a>
-          <a class="contact-option" href="https://www.linkedin.com" target="_blank" rel="noreferrer">
-            Connect on LinkedIn <span>→</span>
-          </a>
-          <a class="contact-option" href="https://dribbble.com" target="_blank" rel="noreferrer">
-            View Dribbble <span>→</span>
-          </a>
-        </div>
-      </div>
     </section>
 
     <section class="cta">
+      <div class="cta-icon">♡</div>
+
       <div>
-        <small>Let’s work together</small>
-        <h2>Interested in thoughtful, accessible design?</h2>
+        <h2>Let’s build something meaningful <span class="accent">together.</span></h2>
         <p>
-          I’m open to UX research, interaction design, product design opportunities, and meaningful collaborations where human behaviour, clarity, and accessibility matter.
+          I’m open to new opportunities, collaborations, and meaningful digital product work.
         </p>
       </div>
-<a class="nav-button" href="index.html#contact">Let’s Connect</a>
+
+      <a class="btn-primary" href="contact.html">Get in Touch ↗</a>
     </section>
 
     <footer>
-      <div>
-        <div class="footer-brand">Linda</div>
-        <div>UX Research & Interaction Design</div>
-      </div>
+      <div class="footer-brand">Linda</div>
 
-      <div>
-        © 2026 Linda Laryea. Designed with research, empathy, and accessibility in mind.
+      <div>© 2026 Linda Laryea. All rights reserved.</div>
+
+      <div class="footer-icons">
+        <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">in</a>
+        <a href="https://dribbble.com" target="_blank" rel="noopener noreferrer">↗</a>
+        <a href="mailto:your-email@example.com">✉</a>
       </div>
     </footer>
   </main>
