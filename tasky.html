@@ -9,11 +9,12 @@
   <style>
     :root {
       --bg: #F8F6FF;
-      --card: #FFFFFF;
+      --section: #FFFFFF;
       --soft: #F3F0FF;
       --soft-2: #FAF8FF;
       --violet: #6D5DF6;
       --violet-dark: #4338CA;
+      --violet-light: #EDE9FE;
       --magenta: #A80B63;
       --gold: #F3C24F;
       --dark: #111827;
@@ -26,6 +27,7 @@
       --orange: #C2410C;
       --blue-soft: #EFF6FF;
       --blue: #1D4ED8;
+      --pink-soft: #FFF1F7;
       --shadow: 0 18px 45px rgba(24, 39, 75, 0.07);
     }
 
@@ -54,328 +56,318 @@
     .page {
       width: min(1180px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 24px 0 56px;
+      padding: 24px 0 80px;
     }
 
     .navbar {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 18px 28px;
+      border-bottom: 1px solid var(--border);
+      padding: 0 0 22px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 24px;
-      box-shadow: 0 12px 35px rgba(24, 39, 75, 0.05);
     }
 
     .brand-name {
-      font-size: 30px;
-      font-weight: 800;
       color: var(--magenta);
-    }
-
-    .brand-subtitle {
-      margin-top: 4px;
-      font-size: 10px;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-weight: 700;
+      font-size: 32px;
+      font-weight: 900;
+      font-style: italic;
+      letter-spacing: -1px;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 30px;
+      gap: 34px;
       font-size: 14px;
       font-weight: 700;
     }
 
+    .nav-links a:hover,
+    .nav-links .active {
+      color: var(--magenta);
+    }
+
+    .nav-links .active {
+      border-bottom: 3px solid var(--magenta);
+      padding-bottom: 10px;
+    }
+
     .nav-button {
       background: var(--magenta);
-      color: white;
-      padding: 12px 18px;
+      color: #FFFFFF;
+      padding: 13px 22px;
       border-radius: 12px;
       font-weight: 800;
+      border-bottom: none !important;
     }
 
     .back-link {
       display: inline-flex;
-      margin: 34px 0 0;
+      margin: 32px 0 20px;
       color: var(--violet-dark);
       font-size: 14px;
-      font-weight: 800;
+      font-weight: 900;
     }
 
-    .section {
-      margin-top: 64px;
+    .case-section {
+      padding: 62px 0;
+      border-bottom: 1px solid rgba(230, 222, 255, 0.75);
     }
 
-    .panel {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 54px;
-      box-shadow: var(--shadow);
+    .case-section:first-of-type {
+      padding-top: 24px;
+    }
+
+    .section-inner {
+      max-width: 1080px;
+      margin: 0 auto;
     }
 
     .hero {
-      margin-top: 26px;
       display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 44px;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 48px;
       align-items: center;
+      background: var(--soft-2);
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      padding: 38px;
+      box-shadow: 0 14px 35px rgba(24, 39, 75, 0.04);
     }
 
     .eyebrow {
       color: var(--violet-dark);
       font-size: 12px;
       font-weight: 900;
-      letter-spacing: 1.3px;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .gold-line {
-      width: 52px;
-      height: 5px;
-      background: var(--gold);
-      border-radius: 999px;
-      margin-bottom: 18px;
-    }
-
-    h1 {
-      font-size: clamp(44px, 6vw, 72px);
-      line-height: 0.98;
-      letter-spacing: -2px;
-      margin-bottom: 20px;
-    }
-
-    h2 {
-      font-size: 36px;
-      line-height: 1.12;
-      letter-spacing: -0.8px;
       margin-bottom: 14px;
     }
 
-    h3 {
-      font-size: 20px;
-      line-height: 1.2;
-      margin-bottom: 8px;
+    h1 {
+      font-size: clamp(48px, 7vw, 76px);
+      line-height: 0.96;
+      letter-spacing: -2px;
+      margin-bottom: 14px;
     }
 
-    .accent {
-      color: var(--violet-dark);
+    h2 {
+      font-size: clamp(32px, 4vw, 46px);
+      line-height: 1.08;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    h3 {
+      font-size: 19px;
+      line-height: 1.25;
+      margin-bottom: 8px;
     }
 
     .lead {
       color: var(--body);
       font-size: 18px;
-      max-width: 680px;
-      margin-bottom: 22px;
+      line-height: 1.7;
+      max-width: 700px;
     }
 
-    .meta {
+    .hero .lead {
+      font-size: 20px;
+      max-width: 520px;
+      margin-bottom: 28px;
+    }
+
+    .meta-row {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 16px;
       margin-top: 28px;
-    }
-
-    .meta-card {
-      background: var(--soft);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 16px;
-    }
-
-    .meta-card strong {
-      display: block;
-      color: var(--violet-dark);
-      font-size: 12px;
-      letter-spacing: 0.9px;
-      text-transform: uppercase;
-      margin-bottom: 5px;
-    }
-
-    .meta-card span {
-      font-weight: 800;
-      color: var(--dark);
+      color: var(--body);
       font-size: 14px;
+    }
+
+    .meta-row strong {
+      display: block;
+      color: var(--dark);
+      margin-bottom: 4px;
     }
 
     .quote-note {
-      margin-top: 22px;
-      background: var(--soft-2);
+      margin-top: 24px;
+      background: var(--violet-light);
       border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 18px;
+      border-radius: 16px;
+      padding: 16px 18px;
       color: var(--violet-dark);
       font-weight: 800;
       font-size: 14px;
     }
 
-    .tasky-preview {
-      background: var(--soft);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 28px;
-      min-height: 420px;
-    }
-
-    .dashboard {
-      background: #FFFFFF;
+    .mockup-wrap {
+      background: var(--violet-light);
       border: 1px solid var(--border);
       border-radius: 24px;
-      padding: 22px;
-      box-shadow: 0 20px 45px rgba(24, 39, 75, 0.12);
+      padding: 28px;
+      min-height: 390px;
+      display: grid;
+      place-items: center;
     }
 
-    .dashboard-top {
+    .tasky-dashboard {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 22px;
+      width: 100%;
+      box-shadow: 0 22px 50px rgba(67, 56, 202, 0.16);
+    }
+
+    .dash-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
+      gap: 16px;
     }
 
     .tasky-logo {
       display: flex;
       align-items: center;
       gap: 10px;
-      font-weight: 900;
       color: var(--violet-dark);
+      font-weight: 900;
     }
 
-    .logo-square {
+    .logo-box {
       width: 34px;
       height: 34px;
       border-radius: 10px;
       background: var(--violet);
-      color: white;
+      color: #FFFFFF;
       display: grid;
       place-items: center;
     }
 
-    .time-pill {
+    .time-box {
       background: var(--orange-soft);
       color: var(--orange);
       border-radius: 14px;
       padding: 10px 14px;
       font-weight: 900;
-      font-size: 18px;
     }
 
     .dash-grid {
       display: grid;
-      grid-template-columns: 1.3fr 0.8fr;
+      grid-template-columns: 1.15fr 0.85fr;
       gap: 16px;
     }
 
     .dash-card {
       background: var(--soft-2);
       border: 1px solid var(--border);
-      border-radius: 18px;
+      border-radius: 16px;
       padding: 18px;
     }
 
-    .big-task {
-      min-height: 150px;
-    }
-
-    .big-task h3 {
-      font-size: 26px;
-      color: var(--dark);
+    .dash-card h3 {
+      font-size: 24px;
     }
 
     .big-time {
       color: var(--violet);
-      font-size: 36px;
+      font-size: 34px;
+      line-height: 1;
       font-weight: 900;
-      margin-top: 8px;
-    }
-
-    .task-list {
-      display: grid;
-      gap: 10px;
-      margin-top: 14px;
+      margin: 10px 0 16px;
     }
 
     .task-row {
-      background: white;
+      background: #FFFFFF;
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 10px 12px;
+      margin-top: 10px;
+      color: var(--body);
+      font-size: 13px;
+      font-weight: 700;
       display: flex;
       justify-content: space-between;
-      font-size: 13px;
-      color: var(--body);
-      font-weight: 700;
+      gap: 14px;
     }
 
-    .voice-card {
-      margin-top: 16px;
+    .voice-ready {
+      margin-top: 14px;
       background: var(--green-soft);
       border: 1px solid #BBF7D0;
+      border-radius: 16px;
       color: var(--green);
-      border-radius: 18px;
       padding: 16px;
-      font-weight: 900;
       text-align: center;
+      font-weight: 900;
     }
 
-    .section-header {
-      max-width: 760px;
-      margin-bottom: 26px;
-    }
-
-    .grid-2 {
+    .split {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 34px;
+      align-items: start;
     }
 
-    .grid-3 {
+    .card-grid-2,
+    .card-grid-3,
+    .card-grid-4 {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
       gap: 18px;
     }
 
+    .card-grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card-grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card-grid-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
     .card {
-      background: white;
+      background: #FFFFFF;
       border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 26px;
-      box-shadow: 0 14px 35px rgba(24, 39, 75, 0.05);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 12px 30px rgba(24, 39, 75, 0.04);
     }
 
     .card p,
     .card li {
       color: var(--body);
-      font-size: 15px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .card ul {
+      padding-left: 18px;
     }
 
     .icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      background: var(--soft);
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: var(--violet-light);
       color: var(--violet-dark);
       display: grid;
       place-items: center;
       font-weight: 900;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .soft-green {
       background: var(--green-soft);
-      border-color: #BBF7D0;
+      border-color: #CFEAD8;
     }
 
     .soft-orange {
@@ -388,125 +380,184 @@
       border-color: #BFDBFE;
     }
 
+    .soft-pink {
+      background: var(--pink-soft);
+    }
+
+    .research-flow {
+      display: grid;
+      grid-template-columns: 1fr 70px 1fr;
+      gap: 18px;
+      align-items: center;
+      margin-top: 28px;
+    }
+
+    .arrow {
+      color: var(--violet);
+      font-size: 34px;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .small-note {
+      background: var(--violet-light);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px 16px;
+      color: var(--violet-dark);
+      font-size: 14px;
+      font-weight: 800;
+      margin-top: 24px;
+    }
+
     .mini-label {
       display: inline-flex;
-      background: var(--soft);
       color: var(--violet-dark);
-      border-radius: 999px;
-      padding: 8px 12px;
-      font-size: 12px;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .persona-note {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 12px 30px rgba(24, 39, 75, 0.04);
+    }
+
+    .persona-initial {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--violet-light);
+      color: var(--violet-dark);
+      display: grid;
+      place-items: center;
       font-weight: 900;
       margin-bottom: 14px;
     }
 
-    .arrow-block {
-      display: grid;
-      place-items: center;
-      color: var(--violet);
-      font-size: 34px;
-      font-weight: 900;
-    }
-
-    .flow-grid {
-      display: grid;
-      grid-template-columns: 1fr 80px 1fr;
-      gap: 22px;
-      align-items: center;
-    }
-
-    .concept-card {
-      min-height: 190px;
-    }
-
     .concept-visual {
-      height: 90px;
-      border-radius: 16px;
+      height: 105px;
       background: var(--soft);
       border: 1px solid var(--border);
+      border-radius: 16px;
       margin-bottom: 16px;
-      padding: 14px;
+      padding: 16px;
       display: grid;
-      gap: 8px;
+      gap: 9px;
     }
 
-    .fake-line {
-      height: 12px;
+    .line {
+      height: 13px;
       border-radius: 999px;
       background: #DDD6FE;
     }
 
-    .fake-line.short {
-      width: 60%;
+    .line.short {
+      width: 62%;
     }
 
-    .fake-line.green {
+    .line.green {
       background: #BBF7D0;
     }
 
-    .fake-line.orange {
+    .line.orange {
       background: #FED7AA;
     }
 
-    .final-showcase {
-      background: var(--soft);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 36px;
+    .strategy-card {
+      min-height: 155px;
+    }
+
+    .voice-grid {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 32px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .voice-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(24, 39, 75, 0.04);
+    }
+
+    .voice-icon {
+      width: 86px;
+      height: 86px;
+      border-radius: 18px;
+      background: var(--violet-light);
+      color: var(--violet);
+      display: grid;
+      place-items: center;
+      font-size: 28px;
+      font-weight: 900;
+      margin: 0 auto 16px;
+    }
+
+    .final-panel {
+      background: var(--violet-light);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 36px;
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 34px;
       align-items: center;
     }
 
     .final-points {
       display: grid;
-      gap: 14px;
+      gap: 16px;
     }
 
-    .point {
-      background: white;
+    .final-point {
+      background: #FFFFFF;
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 16px 18px;
-      font-weight: 800;
+      padding: 18px 20px;
       color: var(--dark);
+      font-weight: 900;
+      box-shadow: 0 12px 30px rgba(24, 39, 75, 0.04);
     }
 
-    .takeaway {
-      background: var(--violet-dark);
-      color: white;
-      border-radius: 30px;
-      padding: 46px;
-      box-shadow: var(--shadow);
-    }
-
-    .takeaway p {
-      color: #EEF2FF;
-      font-size: 18px;
-      max-width: 900px;
+    .reflection-line {
+      margin-top: 26px;
+      text-align: center;
+      color: var(--dark);
+      font-weight: 900;
+      font-size: 16px;
     }
 
     footer {
-      margin-top: 44px;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 26px 32px;
+      margin-top: 64px;
+      border-top: 1px solid var(--border);
+      padding-top: 38px;
       display: flex;
       justify-content: space-between;
       gap: 24px;
       align-items: center;
       color: var(--muted);
       font-size: 13px;
+      font-weight: 700;
     }
 
     .footer-brand {
       color: var(--magenta);
-      font-size: 26px;
+      font-size: 28px;
+      font-style: italic;
       font-weight: 900;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 950px) {
       .navbar,
       footer {
         flex-direction: column;
@@ -515,35 +566,35 @@
 
       .nav-links {
         flex-wrap: wrap;
-        gap: 16px;
+        gap: 18px;
       }
 
       .hero,
-      .grid-2,
-      .grid-3,
-      .grid-4,
-      .final-showcase {
+      .split,
+      .card-grid-2,
+      .card-grid-3,
+      .card-grid-4,
+      .research-flow,
+      .voice-grid,
+      .final-panel,
+      .dash-grid {
         grid-template-columns: 1fr;
       }
 
-      .flow-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .arrow-block {
+      .arrow {
         transform: rotate(90deg);
       }
 
-      .panel {
-        padding: 32px 22px;
+      .hero {
+        padding: 26px;
       }
 
       h1 {
-        font-size: 44px;
+        font-size: 48px;
       }
 
       h2 {
-        font-size: 30px;
+        font-size: 32px;
       }
     }
   </style>
@@ -554,465 +605,484 @@
     <nav class="navbar" aria-label="Main navigation">
       <a href="index.html" aria-label="Linda portfolio home">
         <div class="brand-name">Linda</div>
-        <div class="brand-subtitle">UX Research & Design</div>
       </a>
 
       <div class="nav-links">
         <a href="index.html">Home</a>
-        <a href="index.html#work">Case Studies</a>
+        <a class="active" href="case-studies.html">Case Studies</a>
         <a href="about.html">About Me</a>
         <a href="cv.html">CV</a>
-      <a href="contact.html">Contact</a>
-      <a class="nav-button" href="contact.html">Let’s Connect</a>
+        <a href="contact.html">Contact</a>
+        <a class="nav-button" href="contact.html">Let’s Connect</a>
       </div>
     </nav>
 
-    <a class="back-link" href="index.html#work">← Back to Selected Work</a>
+    <a class="back-link" href="case-studies.html">← Back to Case Studies</a>
 
-    <section class="hero panel">
-      <div>
-        <div class="gold-line"></div>
-        <div class="eyebrow">Product Design Case Study</div>
+    <section class="case-section">
+      <div class="section-inner hero">
+        <div>
+          <div class="eyebrow">Product Design Case Study</div>
 
-        <h1>Tasky</h1>
+          <h1>Tasky</h1>
 
-        <p class="lead">
-          An accessible family noticeboard for everyday coordination. A shared home display that keeps what matters now visible, makes changing plans easier to manage, and helps families reduce mental overload.
-        </p>
+          <p class="lead">
+            An accessible family noticeboard for everyday coordination. A shared home display that keeps what matters now visible, makes changing plans easier to manage, and helps families reduce mental overload.
+          </p>
 
-        <div class="meta">
-          <div class="meta-card">
-            <strong>Role</strong>
-            <span>Product Designer</span>
-          </div>
-
-          <div class="meta-card">
-            <strong>Focus</strong>
-            <span>Family coordination</span>
-          </div>
-
-          <div class="meta-card">
-            <strong>Responsibility</strong>
-            <span>Research • Product definition • UI design</span>
-          </div>
-
-          <div class="meta-card">
-            <strong>Theme</strong>
-            <span>Accessibility and calm routines</span>
-          </div>
-        </div>
-
-        <div class="quote-note">
-          Personal insight: Families do not need another calendar. They need a shared noticeboard that reduces mental effort.
-        </div>
-      </div>
-
-      <div class="tasky-preview">
-        <div class="dashboard">
-          <div class="dashboard-top">
-            <div class="tasky-logo">
-              <div class="logo-square">♥</div>
-              <div>
-                <div>Tasky</div>
-                <small>Smart Family Noticeboard</small>
-              </div>
-            </div>
-
-            <div class="time-pill">08:30</div>
-          </div>
-
-          <div class="dash-grid">
-            <div class="dash-card big-task">
-              <h3>School drop-off</h3>
-              <p>Today at</p>
-              <div class="big-time">08:00</div>
-              <div class="task-list">
-                <div class="task-row"><span>Leaves by 07:40</span><span>→</span></div>
-                <div class="task-row"><span>Lunch with Uncle Jan</span><span>10:30</span></div>
-              </div>
+          <div class="meta-row">
+            <div>
+              <strong>Role</strong>
+              Product Designer
             </div>
 
             <div>
-              <div class="dash-card">
-                <h3>Today’s tasks</h3>
-                <div class="task-list">
-                  <div class="task-row"><span>Targeted hand practice</span></div>
-                  <div class="task-row"><span>Guitar rehearsal</span></div>
-                  <div class="task-row"><span>Dentist appointment</span></div>
+              <strong>Responsibilities</strong>
+              Research · Product definition · UI design · Prototyping
+            </div>
+          </div>
+
+          <div class="quote-note">
+            Personal insight: Families don’t need another calendar. They need a shared noticeboard.
+          </div>
+        </div>
+
+        <div class="mockup-wrap">
+          <div class="tasky-dashboard">
+            <div class="dash-top">
+              <div class="tasky-logo">
+                <div class="logo-box">♥</div>
+                <div>
+                  <div>Tasky</div>
+                  <small>Smart Family Noticeboard</small>
                 </div>
               </div>
 
-              <div class="voice-card">Voice Assistant Ready</div>
+              <div class="time-box">08:30</div>
+            </div>
+
+            <div class="dash-grid">
+              <div class="dash-card">
+                <h3>School drop-off</h3>
+                <p>Today at</p>
+                <div class="big-time">08:00</div>
+                <div class="task-row"><span>Leave by 07:40</span><span>→</span></div>
+                <div class="task-row"><span>Lunch with Uncle Jan</span><span>10:30</span></div>
+              </div>
+
+              <div>
+                <div class="dash-card">
+                  <h3>Today</h3>
+                  <div class="task-row">Targeted hand practice</div>
+                  <div class="task-row">Guitar rehearsal</div>
+                  <div class="task-row">Dentist appointment</div>
+                </div>
+
+                <div class="voice-ready">Voice Assistant Ready</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section panel">
-      <div class="section-header">
-        <div class="eyebrow">01 / The Problem</div>
-        <h2>Family organisation wasn’t failing because families lacked calendars.</h2>
-        <p class="lead">
-          Plans were scattered across calendars, notes, reminders, and memory. The challenge was not simply scheduling more efficiently. It was reducing the mental effort of keeping family life together.
-        </p>
-      </div>
+    <section class="case-section">
+      <div class="section-inner split">
+        <div>
+          <div class="eyebrow">01 / The Problem</div>
+          <h2>Family organisation wasn’t failing because families lacked calendars.</h2>
+          <p class="lead">
+            Plans were scattered across calendars, messages, and memory. When life changed, responsibilities became easy to miss.
+          </p>
 
-      <div class="grid-4">
-        <article class="card">
-          <div class="icon">01</div>
-          <h3>Mental overload</h3>
-          <p>Too much responsibility stayed in one person’s head.</p>
-        </article>
+          <div class="small-note">
+            The challenge wasn’t simply scheduling more efficiently. It was reducing the mental effort of keeping family life together.
+          </div>
+        </div>
 
-        <article class="card soft-orange">
-          <div class="icon">02</div>
-          <h3>Plan change quickly</h3>
-          <p>Routines shifted fast, and updates were easy to miss.</p>
-        </article>
+        <div class="card-grid-2">
+          <article class="card">
+            <div class="icon">01</div>
+            <h3>Mental overload</h3>
+            <p>Too much responsibility lived in one person’s head.</p>
+          </article>
 
-        <article class="card soft-blue">
-          <div class="icon">03</div>
-          <h3>Everything overlaps</h3>
-          <p>School, home, work, and appointments competed for attention.</p>
-        </article>
+          <article class="card soft-orange">
+            <div class="icon">02</div>
+            <h3>Plan changes quickly</h3>
+            <p>Routines shifted quickly, and updates were easy to miss.</p>
+          </article>
 
-        <article class="card soft-green">
-          <div class="icon">04</div>
-          <h3>Home and work collide</h3>
-          <p>Parents needed calm information at the right moment.</p>
-        </article>
+          <article class="card soft-blue">
+            <div class="icon">03</div>
+            <h3>Everything overlaps</h3>
+            <p>School, home, work, and appointments competed for attention.</p>
+          </article>
+
+          <article class="card soft-green">
+            <div class="icon">04</div>
+            <h3>Home and work collide</h3>
+            <p>Parents needed calm information at the right moment.</p>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section class="section panel">
-      <div class="section-header">
+    <section class="case-section">
+      <div class="section-inner">
         <div class="eyebrow">02 / Research</div>
         <h2>The research challenged my first assumption.</h2>
         <p class="lead">
           I started by thinking families needed one better calendar. The interviews pointed to a different problem.
         </p>
-      </div>
 
-      <div class="flow-grid">
-        <article class="card">
-          <span class="mini-label">Initial assumption</span>
-          <h3>Families need one calendar that combines everything.</h3>
-          <p>A cleaner calendar seemed like the obvious solution.</p>
-        </article>
+        <div class="research-flow">
+          <article class="card">
+            <span class="mini-label">Initial assumption</span>
+            <h3>Families need one calendar that combines everything.</h3>
+            <p>A cleaner calendar seemed like the obvious solution.</p>
+          </article>
 
-        <div class="arrow-block">→</div>
+          <div class="arrow">→</div>
 
-        <article class="card">
-          <span class="mini-label">Research insight</span>
-          <h3>Mental load and unexpected changes caused more stress.</h3>
-          <p>The deeper problem was knowing what mattered now.</p>
-        </article>
-      </div>
-    </section>
+          <article class="card soft-pink">
+            <span class="mini-label">Research insight</span>
+            <h3>Mental load and unexpected changes caused more stress.</h3>
+            <p>The deeper problem was knowing what mattered now.</p>
+          </article>
+        </div>
 
-    <section class="section panel">
-      <div class="section-header">
-        <div class="eyebrow">03 / System & Audience</div>
-        <h2>A family system has more than one user.</h2>
-        <p class="lead">
-          The product is not only for one parent managing tasks. It supports multiple people who need different levels of visibility, responsibility, and access.
-        </p>
-      </div>
-
-      <div class="grid-3">
-        <article class="card">
-          <div class="icon">P</div>
-          <h3>Parents & guardians</h3>
-          <p>Need a clear way to coordinate routines, reminders, and changes.</p>
-        </article>
-
-        <article class="card soft-green">
-          <div class="icon">C</div>
-          <h3>Children & family members</h3>
-          <p>Need simple, visible guidance about what is happening next.</p>
-        </article>
-
-        <article class="card soft-orange">
-          <div class="icon">D</div>
-          <h3>Different access needs</h3>
-          <p>Need readable, calm, and accessible ways to understand information.</p>
-        </article>
+        <div class="small-note">
+          Pivot moment: Family overload is not always caused by missing tools. It often comes from too much scattered responsibility.
+        </div>
       </div>
     </section>
 
-    <section class="section panel">
-      <div class="section-header">
+    <section class="case-section">
+      <div class="section-inner">
+        <div class="split">
+          <div>
+            <div class="eyebrow">03 / System & Audience</div>
+            <h2>A family system has more than one user.</h2>
+            <p class="lead">
+              The product is not only for one parent managing tasks. It supports multiple people who need different levels of visibility, responsibility, and access.
+            </p>
+          </div>
+
+          <aside class="persona-note">
+            <div class="mini-label">Research note</div>
+            <div class="persona-initial">N</div>
+            <h3>Neelam</h3>
+            <p>
+              Represents a parent balancing work, school, home tasks, and unexpected changes throughout the day.
+            </p>
+          </aside>
+        </div>
+
+        <div class="card-grid-3" style="margin-top: 28px;">
+          <article class="card">
+            <div class="icon">P</div>
+            <h3>Parents & guardians</h3>
+            <p>Need a clear way to coordinate routines, reminders, and changes.</p>
+          </article>
+
+          <article class="card soft-green">
+            <div class="icon">C</div>
+            <h3>Children & family members</h3>
+            <p>Need simple, visible guidance about what is happening next.</p>
+          </article>
+
+          <article class="card soft-orange">
+            <div class="icon">D</div>
+            <h3>Different access needs</h3>
+            <p>Need readable, calm, and accessible ways to understand information.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="section-inner">
         <div class="eyebrow">04 / From Insight to Concept</div>
         <h2>The solution didn’t need to become a better calendar.</h2>
         <p class="lead">
           I moved away from a “busy family calendar” idea toward a shared display focused on visibility, clarity, and the next useful action.
         </p>
-      </div>
 
-      <div class="flow-grid">
-        <article class="card">
-          <span class="mini-label">Calendar idea</span>
-          <h3>One calendar for everything</h3>
-          <p>Useful, but still required users to search, remember, and interpret too much.</p>
-        </article>
+        <div class="research-flow">
+          <article class="card">
+            <span class="mini-label">Calendar idea</span>
+            <h3>One calendar for everything</h3>
+            <p>Useful, but still required users to search, remember, and interpret too much.</p>
+          </article>
 
-        <div class="arrow-block">→</div>
+          <div class="arrow">→</div>
 
-        <article class="card soft-blue">
-          <span class="mini-label">New direction</span>
-          <h3>A shared family noticeboard</h3>
-          <p>Always visible at home, calm, and focused on what matters now.</p>
-        </article>
+          <article class="card soft-blue">
+            <span class="mini-label">New direction</span>
+            <h3>A shared family noticeboard</h3>
+            <p>Always visible at home, calm, and focused on what matters now.</p>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section class="section panel">
-      <div class="section-header">
+    <section class="case-section">
+      <div class="section-inner">
         <div class="eyebrow">05 / Exploring the Concept</div>
         <h2>Exploring how family information should appear at home.</h2>
         <p class="lead">
           I explored different ways of balancing shared visibility with a calm, non-overwhelming interface.
         </p>
-      </div>
 
-      <div class="grid-3">
-        <article class="card concept-card">
-          <span class="mini-label">Direction 1</span>
-          <div class="concept-visual">
-            <div class="fake-line"></div>
-            <div class="fake-line short"></div>
-            <div class="fake-line"></div>
-          </div>
-          <h3>Everything in one view</h3>
-          <p>Useful for overview, but can become visually heavy.</p>
-        </article>
+        <div class="card-grid-3" style="margin-top: 28px;">
+          <article class="card">
+            <span class="mini-label">Direction 1</span>
+            <div class="concept-visual">
+              <div class="line"></div>
+              <div class="line short"></div>
+              <div class="line"></div>
+            </div>
+            <h3>Everything in one view</h3>
+            <p>Useful for overview, but can become visually heavy.</p>
+          </article>
 
-        <article class="card concept-card">
-          <span class="mini-label">Direction 2</span>
-          <div class="concept-visual">
-            <div class="fake-line"></div>
-            <div class="fake-line short"></div>
-            <div class="fake-line"></div>
-          </div>
-          <h3>Shared noticeboard</h3>
-          <p>Balanced visibility with calmer prioritisation.</p>
-        </article>
+          <article class="card">
+            <span class="mini-label">Direction 2</span>
+            <div class="concept-visual">
+              <div class="line"></div>
+              <div class="line short"></div>
+              <div class="line"></div>
+            </div>
+            <h3>Shared noticeboard</h3>
+            <p>Balanced visibility with calmer prioritisation.</p>
+          </article>
 
-        <article class="card concept-card soft-green">
-          <span class="mini-label">Direction 3</span>
-          <div class="concept-visual">
-            <div class="fake-line green"></div>
-            <div class="fake-line short green"></div>
-            <div class="fake-line green"></div>
-          </div>
-          <h3>One task at a time</h3>
-          <p>Focused and calm, but risked hiding useful context.</p>
-        </article>
-      </div>
+          <article class="card soft-green">
+            <span class="mini-label">Direction 3</span>
+            <div class="concept-visual">
+              <div class="line green"></div>
+              <div class="line short green"></div>
+              <div class="line green"></div>
+            </div>
+            <h3>One task at a time</h3>
+            <p>Focused and calm, but risked hiding useful context.</p>
+          </article>
+        </div>
 
-      <div class="quote-note">
-        Design realisation: Tasky needed to show what matters now, while still keeping the wider family rhythm visible.
-      </div>
-    </section>
-
-    <section class="section panel">
-      <div class="section-header">
-        <div class="eyebrow">06 / Product Strategy</div>
-        <h2>Turning the concept into a focused product.</h2>
-        <p class="lead">
-          I defined a small set of priorities to keep Tasky focused and avoid turning the interface into another overwhelming planning tool.
-        </p>
-      </div>
-
-      <div class="grid-3">
-        <article class="card">
-          <span class="mini-label">Priority 1</span>
-          <h3>What matters now</h3>
-          <p>Give family members a clear view of the next important thing.</p>
-        </article>
-
-        <article class="card soft-green">
-          <span class="mini-label">Priority 2</span>
-          <h3>Everyday coordination</h3>
-          <p>Support routines, reminders, school events, and family tasks.</p>
-        </article>
-
-        <article class="card soft-orange">
-          <span class="mini-label">Priority 3</span>
-          <h3>Is Tasky helping?</h3>
-          <p>Keep the product focused on reducing effort, not adding more noise.</p>
-        </article>
+        <div class="small-note">
+          Design realisation: Tasky needed to show what matters now, while still keeping the wider family rhythm visible.
+        </div>
       </div>
     </section>
 
-    <section class="section panel">
-      <div class="section-header">
+    <section class="case-section">
+      <div class="section-inner">
+        <div class="split">
+          <div>
+            <div class="eyebrow">06 / Product Strategy</div>
+            <h2>Turning the concept into a focused product.</h2>
+            <p class="lead">
+              I defined a small set of priorities to keep Tasky focused and avoid turning the interface into another overwhelming planning tool.
+            </p>
+          </div>
+
+          <aside class="card">
+            <span class="mini-label">Key product move</span>
+            <h3>Make everyday family coordination easier to see, understand and change.</h3>
+          </aside>
+        </div>
+
+        <div class="card-grid-3" style="margin-top: 28px;">
+          <article class="card strategy-card">
+            <span class="mini-label">Priority 1</span>
+            <h3>What matters now</h3>
+            <p>Give family members a clear view of the next important thing.</p>
+          </article>
+
+          <article class="card strategy-card soft-green">
+            <span class="mini-label">Priority 2</span>
+            <h3>Everyday coordination</h3>
+            <p>Support routines, reminders, school events, and family tasks.</p>
+          </article>
+
+          <article class="card strategy-card soft-orange">
+            <span class="mini-label">Priority 3</span>
+            <h3>Is Tasky helping?</h3>
+            <p>Keep the product focused on reducing effort, not adding more noise.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="section-inner">
         <div class="eyebrow">07 / Core User Flow</div>
         <h2>Designing around everyday moments.</h2>
         <p class="lead">
           Instead of opening many possible features, I focused on three moments that represent the core Tasky experience.
         </p>
-      </div>
 
-      <div class="grid-3">
-        <article class="card">
-          <span class="mini-label">01 / Home</span>
-          <h3>What matters right now?</h3>
-          <p>A calm overview of the next important family moment.</p>
-        </article>
+        <div class="card-grid-3" style="margin-top: 28px;">
+          <article class="card">
+            <span class="mini-label">01 / Home</span>
+            <h3>What matters right now?</h3>
+            <p>A calm overview of the next important family moment.</p>
+          </article>
 
-        <article class="card soft-green">
-          <span class="mini-label">02 / Ask</span>
-          <h3>“What’s happening tomorrow?”</h3>
-          <p>A simple way to ask for upcoming family plans.</p>
-        </article>
+          <article class="card soft-green">
+            <span class="mini-label">02 / Ask</span>
+            <h3>“What’s happening tomorrow?”</h3>
+            <p>A simple way to ask for upcoming family plans.</p>
+          </article>
 
-        <article class="card soft-orange">
-          <span class="mini-label">03 / Change</span>
-          <h3>Plans changed. Now what?</h3>
-          <p>Help families understand changes without confusion.</p>
-        </article>
+          <article class="card soft-orange">
+            <span class="mini-label">03 / Change</span>
+            <h3>Plans changed. Now what?</h3>
+            <p>Help families understand changes without confusion.</p>
+          </article>
+        </div>
+
+        <div class="small-note">
+          Each screen answers the user’s immediate question while reducing the need to search, remember, or compare information.
+        </div>
       </div>
     </section>
 
-    <section class="section panel">
-      <div class="section-header">
+    <section class="case-section">
+      <div class="section-inner">
         <div class="eyebrow">08 / Voice Interaction</div>
         <h2>Making voice feel like part of the home.</h2>
         <p class="lead">
           Voice offers a familiar way to access family information without needing to stop, look down, or touch the screen.
         </p>
-      </div>
 
-      <div class="grid-4">
-        <article class="card">
-          <div class="icon">01</div>
-          <h3>Ask Tasky</h3>
-          <p>Users can ask a simple question.</p>
-        </article>
+        <div class="voice-grid">
+          <article class="voice-card">
+            <div class="voice-icon">⌕</div>
+            <span class="mini-label">01 / Ask</span>
+            <h3>Ask Tasky</h3>
+            <p>Users can ask a simple question.</p>
+          </article>
 
-        <article class="card">
-          <div class="icon">02</div>
-          <h3>Listening</h3>
-          <p>The interface shows that it is listening.</p>
-        </article>
+          <article class="voice-card">
+            <div class="voice-icon">●</div>
+            <span class="mini-label">02 / Listening</span>
+            <h3>Listening</h3>
+            <p>The interface shows that it is listening.</p>
+          </article>
 
-        <article class="card">
-          <div class="icon">03</div>
-          <h3>Understanding</h3>
-          <p>Tasky processes the request calmly.</p>
-        </article>
+          <article class="voice-card">
+            <div class="voice-icon">✦</div>
+            <span class="mini-label">03 / Understand</span>
+            <h3>Understanding</h3>
+            <p>Tasky processes the request calmly.</p>
+          </article>
 
-        <article class="card">
-          <div class="icon">04</div>
-          <h3>Answer</h3>
-          <p>The result is clear, readable, and actionable.</p>
-        </article>
+          <article class="voice-card">
+            <div class="voice-icon">✓</div>
+            <span class="mini-label">04 / Answer</span>
+            <h3>Answer</h3>
+            <p>The result is clear and actionable.</p>
+          </article>
+        </div>
+
+        <div class="small-note">
+          Voice is an addition, not the only path. The screen remains useful and visible even when touch or voice is not preferred.
+        </div>
       </div>
     </section>
 
-    <section class="section panel">
-      <div class="section-header">
+    <section class="case-section">
+      <div class="section-inner">
         <div class="eyebrow">09 / Final Solution</div>
         <h2>A shared family noticeboard built around what matters now.</h2>
         <p class="lead">
           Tasky brings schedules, responsibilities, and changing plans into one calm home experience without requiring families to constantly check another app.
         </p>
-      </div>
 
-      <div class="final-showcase">
-        <div class="dashboard">
-          <div class="dashboard-top">
-            <div class="tasky-logo">
-              <div class="logo-square">♥</div>
-              <div>
-                <div>Tasky</div>
-                <small>Good morning, The Banin Family</small>
+        <div class="final-panel">
+          <div class="tasky-dashboard">
+            <div class="dash-top">
+              <div class="tasky-logo">
+                <div class="logo-box">♥</div>
+                <div>
+                  <div>Tasky</div>
+                  <small>Good morning, The Banin Family</small>
+                </div>
               </div>
-            </div>
-            <div class="time-pill">08:30</div>
-          </div>
 
-          <div class="dash-grid">
-            <div class="dash-card big-task">
-              <h3>School drop-off</h3>
-              <p>Today at</p>
-              <div class="big-time">08:00</div>
-              <div class="task-list">
+              <div class="time-box">08:30</div>
+            </div>
+
+            <div class="dash-grid">
+              <div class="dash-card">
+                <h3>School drop-off</h3>
+                <p>Today at</p>
+                <div class="big-time">08:00</div>
                 <div class="task-row"><span>Leave by 07:40</span><span>View routine →</span></div>
                 <div class="task-row"><span>Family dinner</span><span>18:30</span></div>
               </div>
-            </div>
 
-            <div>
-              <div class="dash-card">
-                <h3>Today’s focus</h3>
-                <div class="task-list">
-                  <div class="task-row"><span>Targeted hand practice</span></div>
-                  <div class="task-row"><span>Dentist appointment</span></div>
-                  <div class="task-row"><span>Book slot coach</span></div>
+              <div>
+                <div class="dash-card">
+                  <h3>Today’s focus</h3>
+                  <div class="task-row">Targeted hand practice</div>
+                  <div class="task-row">Dentist appointment</div>
+                  <div class="task-row">Book slot coach</div>
                 </div>
+
+                <div class="voice-ready">Ready — tap to talk to Tasky</div>
               </div>
-              <div class="voice-card">Ready — tap to talk to Tasky</div>
             </div>
           </div>
-        </div>
 
-        <div class="final-points">
-          <div class="point">What matters now</div>
-          <div class="point">Plan changes made clearer</div>
-          <div class="point">Multiple people can understand the day</div>
+          <div class="final-points">
+            <div class="final-point">What matters now</div>
+            <div class="final-point">Plan changes made clearer</div>
+            <div class="final-point">Multiple people can understand the day</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section panel">
-      <div class="section-header">
+    <section class="case-section">
+      <div class="section-inner">
         <div class="eyebrow">10 / Reflection</div>
         <h2>Designing for coordination meant designing for attention.</h2>
         <p class="lead">
           The project shifted my thinking from “adding more information” to reducing effort and helping families understand what matters at the right time.
         </p>
+
+        <div class="card-grid-3" style="margin-top: 28px;">
+          <article class="card">
+            <span class="mini-label">What changed</span>
+            <h3>Calendar → shared family system</h3>
+            <p>The research moved the concept beyond a simple scheduling tool.</p>
+          </article>
+
+          <article class="card soft-green">
+            <span class="mini-label">Accessibility</span>
+            <h3>More than one path</h3>
+            <p>Voice, visibility, and calm hierarchy reduce effort for different users.</p>
+          </article>
+
+          <article class="card soft-orange">
+            <span class="mini-label">Next</span>
+            <h3>Test in real homes</h3>
+            <p>The next step would be testing readability, placement, and interaction flow in everyday routines.</p>
+          </article>
+        </div>
+
+        <div class="reflection-line">
+          Tasky taught me that reducing cognitive load is not about removing information — it is about giving information the right priority, at the right moment.
+        </div>
       </div>
-
-      <div class="grid-3">
-        <article class="card">
-          <span class="mini-label">What changed</span>
-          <h3>Calendar → shared family system</h3>
-          <p>The research moved the concept beyond a simple scheduling tool.</p>
-        </article>
-
-        <article class="card soft-green">
-          <span class="mini-label">Accessibility</span>
-          <h3>More than one path</h3>
-          <p>Voice, visibility, and calm hierarchy reduce effort for different users.</p>
-        </article>
-
-        <article class="card soft-orange">
-          <span class="mini-label">Next</span>
-          <h3>Test in real homes</h3>
-          <p>The next step would be testing readability, placement, and interaction flow in everyday routines.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section takeaway">
-      <h2>Key takeaway</h2>
-      <p>
-        Tasky taught me that reducing cognitive load is not only about removing information. It is about giving families the right information, at the right priority, at the right moment.
-      </p>
     </section>
 
     <footer>
-      <div>
-        <div class="footer-brand">Linda</div>
-        <div>UX Research & Interaction Design</div>
-      </div>
-
-      <div>
-        © 2026 Linda Laryea. Designed with research, empathy, and accessibility in mind.
-      </div>
+      <div class="footer-brand">Linda</div>
+      <div>© 2026 Linda Laryea. Designed with research, empathy, and accessibility in mind.</div>
     </footer>
   </main>
 </body>
