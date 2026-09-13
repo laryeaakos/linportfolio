@@ -629,7 +629,161 @@
       font-size: 13px;
       font-weight: 900;
     }
+.thinking-board {
+  width: min(520px, 100%);
+  display: grid;
+  gap: 14px;
+}
 
+.thinking-step {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 18px;
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 16px;
+  align-items: start;
+  box-shadow: 0 18px 42px rgba(24, 39, 75, 0.08);
+}
+
+.thinking-step.research {
+  transform: translateX(-18px);
+}
+
+.thinking-step.design {
+  transform: translateX(18px);
+  background: #FFF7FB;
+  border-color: #E9B8D1;
+}
+
+.step-number {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: #FDE7F1;
+  color: var(--magenta);
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.thinking-step strong {
+  display: block;
+  color: var(--dark);
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+
+.thinking-step p {
+  color: var(--body);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.thinking-arrow {
+  color: var(--gold);
+  font-size: 28px;
+  font-weight: 900;
+  text-align: center;
+  line-height: 1;
+}
+
+.proof-strip {
+  margin-top: 10px;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 24px 28px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  box-shadow: 0 18px 45px rgba(24, 39, 75, 0.05);
+}
+
+.proof-item {
+  border-right: 1px solid var(--border);
+  padding-right: 18px;
+}
+
+.proof-item:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+
+.proof-item strong {
+  display: block;
+  color: var(--magenta);
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.proof-item span {
+  color: var(--body);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.project-preview {
+  margin-top: 34px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.project-preview-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 22px;
+  box-shadow: 0 14px 35px rgba(24, 39, 75, 0.05);
+}
+
+.project-preview-card strong {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: var(--dark);
+}
+
+.project-preview-card span {
+  display: block;
+  color: var(--body);
+  font-size: 14px;
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+
+.project-preview-card a {
+  color: var(--magenta);
+  font-size: 14px;
+  font-weight: 900;
+}
+
+@media (max-width: 1000px) {
+  .proof-strip,
+  .project-preview {
+    grid-template-columns: 1fr;
+  }
+
+  .proof-item {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding-right: 0;
+    padding-bottom: 14px;
+  }
+
+  .proof-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .thinking-step.research,
+  .thinking-step.design {
+    transform: none;
+  }
+}
     @media (max-width: 1000px) {
       .navbar,
       footer {
@@ -720,28 +874,36 @@
         </div>
       </div>
 
-      <div class="hero-visual" aria-label="Portfolio preview illustration">
-        <div class="laptop">
-          <div class="screen-card">
-            <div class="mini-nav">
-              <div class="mini-logo">Linda</div>
-              <div class="mini-links">
-                <span>Home</span>
-                <span>Case Studies</span>
-                <span>About Me</span>
-                <span>Contact</span>
-                <span class="mini-button">Let’s Connect</span>
-              </div>
-            </div>
+<div class="hero-visual" aria-label="UX research to design process illustration">
+  <div class="thinking-board">
+    <div class="thinking-step">
+      <div class="step-number">01</div>
+      <div>
+        <strong>User struggle</strong>
+        <p>Understand where people feel confused, delayed, or overwhelmed in real workflows.</p>
+      </div>
+    </div>
 
-            <div class="mini-content">
-              <div>
-                <div class="intro-pill" style="font-size:7px;padding:4px 8px;margin-bottom:8px;">Hi I’m Linda</div>
-                <div class="mini-title">
-  I research where users struggle, then design <span class="accent">simpler ways forward.</span>
-</div>
-               <div class="mini-text">
-  Turning user insights into clear, accessible digital experiences.
+    <div class="thinking-arrow">↓</div>
+
+    <div class="thinking-step research">
+      <div class="step-number">02</div>
+      <div>
+        <strong>Research insight</strong>
+        <p>Turn interviews, observations, and usability findings into clear design direction.</p>
+      </div>
+    </div>
+
+    <div class="thinking-arrow">↓</div>
+
+    <div class="thinking-step design">
+      <div class="step-number">03</div>
+      <div>
+        <strong>Simpler way forward</strong>
+        <p>Design accessible experiences that reduce friction and help users move with confidence.</p>
+      </div>
+    </div>
+  </div>
 </div>
                 <div class="mini-actions">
                   <div>View Case Studies</div>
@@ -761,7 +923,28 @@
         </div>
       </div>
     </section>
+<section class="proof-strip" aria-label="Professional background highlights">
+  <div class="proof-item">
+    <strong>Psychology</strong>
+    <span>Human behaviour and decision-making foundation</span>
+  </div>
 
+  <div class="proof-item">
+    <strong>Cognitive Science</strong>
+    <span>Understanding attention, memory, and mental load</span>
+  </div>
+
+  <div class="proof-item">
+    <strong>UX Research</strong>
+    <span>Interviews, usability studies, and insight synthesis</span>
+  </div>
+
+  <div class="proof-item">
+    <strong>Accessibility</strong>
+    <span>Designing clearer experiences for different user needs</span>
+  </div>
+</section>
+    
     <section class="featured" id="featured">
       <div>
         <div class="eyebrow">Featured Case Study</div>
@@ -813,7 +996,27 @@
         </div>
       </div>
     </section>
+    
+<section class="project-preview" aria-label="Selected project preview">
+  <article class="project-preview-card">
+    <strong>Elysian Fields</strong>
+    <span>RFID attendance kiosk for clearer and more reliable staff check-in.</span>
+    <a href="elysian-fields.html">View case study →</a>
+  </article>
 
+  <article class="project-preview-card">
+    <strong>Tasky</strong>
+    <span>Smart family noticeboard for reducing household coordination stress.</span>
+    <a href="tasky.html">View case study →</a>
+  </article>
+
+  <article class="project-preview-card">
+    <strong>AI Observability</strong>
+    <span>Interactive investigation flow for understanding AI system behaviour.</span>
+    <a href="ai-observability.html">View case study →</a>
+  </article>
+</section>
+    
     <section class="info-cards">
       <article class="info-card">
         <div class="card-icon">↗</div>
@@ -823,17 +1026,22 @@
         </p>
         <a class="learn-link" href="about.html">Learn more →</a>
       </article>
+      
+<article class="info-card">
+  <div class="card-icon">✦</div>
+  <h3>What I Do</h3>
+  <p>
+    I combine research, interaction design, prototyping, and accessibility to turn complex user problems into clearer digital experiences.
+  </p>
 
-      <article class="info-card">
-        <div class="card-icon">&lt;/&gt;</div>
-        <ul>
-          <li>UX / UI Design</li>
-          <li>Interaction Design</li>
-          <li>Prototyping</li>
-          <li>UX Research</li>
-          <li>Usability Studies</li>
-        </ul>
-      </article>
+  <ul>
+    <li>UX Research</li>
+    <li>Interaction Design</li>
+    <li>Prototyping</li>
+    <li>Usability Studies</li>
+    <li>Accessible Design</li>
+  </ul>
+</article>
 
       <article class="info-card">
         <div class="card-icon">●</div>
