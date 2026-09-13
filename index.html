@@ -60,20 +60,20 @@
       gap: 24px;
     }
 
-  .brand-name {
-  font-size: 34px;
-  font-weight: 900;
-  color: var(--magenta);
-  font-style: italic;
-  letter-spacing: -1.2px;
-  font-family: "Trebuchet MS", "Segoe Script", cursive, sans-serif;
-  transform: rotate(-2deg);
-}
+    .brand-name {
+      font-size: 34px;
+      font-weight: 900;
+      color: var(--magenta);
+      font-style: italic;
+      letter-spacing: -1.2px;
+      font-family: "Trebuchet MS", "Segoe Script", cursive, sans-serif;
+      transform: rotate(-2deg);
+    }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 36px;
+      gap: 34px;
       font-size: 14px;
       font-weight: 700;
     }
@@ -150,7 +150,7 @@
       font-size: 20px;
       line-height: 1.65;
       font-weight: 700;
-      max-width: 600px;
+      max-width: 650px;
       margin-bottom: 22px;
     }
 
@@ -216,124 +216,104 @@
       padding: 70px 50px;
     }
 
-    .laptop {
+    .thinking-board {
       width: min(520px, 100%);
-      background: #5A0B3A;
-      border-radius: 0 0 18px 18px;
-      padding-bottom: 22px;
-      box-shadow: 0 24px 60px rgba(24, 39, 75, 0.18);
+      display: grid;
+      gap: 14px;
     }
 
-    .screen-card {
+    .thinking-step {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 16px;
+      align-items: start;
+      box-shadow: 0 18px 42px rgba(24, 39, 75, 0.08);
+    }
+
+    .thinking-step.research {
+      transform: translateX(-18px);
+    }
+
+    .thinking-step.design {
+      transform: translateX(18px);
+      background: #FFF7FB;
+      border-color: #E9B8D1;
+    }
+
+    .step-number {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: #FDE7F1;
+      color: var(--magenta);
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .thinking-step strong {
+      display: block;
+      color: var(--dark);
+      font-size: 17px;
+      margin-bottom: 4px;
+    }
+
+    .thinking-step p {
+      color: var(--body);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .thinking-arrow {
+      color: var(--gold);
+      font-size: 28px;
+      font-weight: 900;
+      text-align: center;
+      line-height: 1;
+    }
+
+    .proof-strip {
+      margin-top: 10px;
       background: #FFFFFF;
       border: 1px solid var(--border);
       border-radius: 22px;
-      padding: 22px;
-      transform: translateY(-20px);
+      padding: 24px 28px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+      box-shadow: 0 18px 45px rgba(24, 39, 75, 0.05);
     }
 
-    .mini-nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-      font-size: 8px;
-      font-weight: 800;
+    .proof-item {
+      border-right: 1px solid var(--border);
+      padding-right: 18px;
     }
 
-    .mini-logo {
+    .proof-item:last-child {
+      border-right: none;
+      padding-right: 0;
+    }
+
+    .proof-item strong {
+      display: block;
       color: var(--magenta);
       font-size: 15px;
-      font-style: italic;
-      font-weight: 900;
+      margin-bottom: 4px;
     }
 
-    .mini-links {
-      display: flex;
-      gap: 12px;
-      color: var(--dark);
-    }
-
-    .mini-button {
-      background: var(--magenta);
-      color: #FFFFFF;
-      border-radius: 6px;
-      padding: 6px 10px;
-    }
-
-    .mini-content {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 24px;
-    }
-
-    .mini-title {
-      font-size: 22px;
-      line-height: 1.12;
-      font-weight: 900;
-      margin-bottom: 10px;
-    }
-
-    .mini-text {
-      color: var(--body);
-      font-size: 10px;
-      margin-bottom: 16px;
-    }
-
-    .mini-actions {
-      display: flex;
-      gap: 8px;
-    }
-
-    .mini-actions div {
-      border-radius: 6px;
-      padding: 8px 10px;
-      font-size: 8px;
-      font-weight: 900;
-    }
-
-    .mini-actions div:first-child {
-      background: var(--magenta);
-      color: white;
-    }
-
-    .mini-actions div:last-child {
-      border: 1px solid var(--magenta);
-      color: var(--magenta);
-    }
-
-    .mini-feature-list {
-      display: grid;
-      gap: 20px;
+    .proof-item span {
       color: var(--body);
       font-size: 13px;
       font-weight: 700;
     }
 
-    .mini-feature-list span {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .mini-feature-list span::before {
-      content: "";
-      width: 13px;
-      height: 13px;
-      border: 2px solid var(--gold);
-      border-radius: 50%;
-    }
-
-    .laptop-base {
-      height: 6px;
-      width: 160px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 999px;
-      margin: -10px auto 0;
-    }
-
     .featured {
-      margin-top: 26px;
+      margin-top: 58px;
       background: #FFFFFF;
       border: 1px solid var(--border);
       border-radius: 32px;
@@ -507,6 +487,42 @@
       font-weight: 900;
     }
 
+    .project-preview {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .project-preview-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 14px 35px rgba(24, 39, 75, 0.05);
+    }
+
+    .project-preview-card strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: var(--dark);
+    }
+
+    .project-preview-card span {
+      display: block;
+      color: var(--body);
+      font-size: 14px;
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+
+    .project-preview-card a {
+      color: var(--magenta);
+      font-size: 14px;
+      font-weight: 900;
+    }
+
     .info-cards {
       margin-top: 58px;
       display: grid;
@@ -549,6 +565,7 @@
 
     .info-card ul {
       padding-left: 20px;
+      margin-top: 14px;
     }
 
     .learn-link {
@@ -610,6 +627,7 @@
       font-size: 30px;
       font-style: italic;
       font-weight: 900;
+      font-family: "Trebuchet MS", "Segoe Script", cursive, sans-serif;
     }
 
     .footer-icons {
@@ -629,161 +647,7 @@
       font-size: 13px;
       font-weight: 900;
     }
-.thinking-board {
-  width: min(520px, 100%);
-  display: grid;
-  gap: 14px;
-}
 
-.thinking-step {
-  background: #FFFFFF;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 18px;
-  display: grid;
-  grid-template-columns: 52px 1fr;
-  gap: 16px;
-  align-items: start;
-  box-shadow: 0 18px 42px rgba(24, 39, 75, 0.08);
-}
-
-.thinking-step.research {
-  transform: translateX(-18px);
-}
-
-.thinking-step.design {
-  transform: translateX(18px);
-  background: #FFF7FB;
-  border-color: #E9B8D1;
-}
-
-.step-number {
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
-  background: #FDE7F1;
-  color: var(--magenta);
-  display: grid;
-  place-items: center;
-  font-size: 14px;
-  font-weight: 900;
-}
-
-.thinking-step strong {
-  display: block;
-  color: var(--dark);
-  font-size: 17px;
-  margin-bottom: 4px;
-}
-
-.thinking-step p {
-  color: var(--body);
-  font-size: 13px;
-  line-height: 1.55;
-}
-
-.thinking-arrow {
-  color: var(--gold);
-  font-size: 28px;
-  font-weight: 900;
-  text-align: center;
-  line-height: 1;
-}
-
-.proof-strip {
-  margin-top: 10px;
-  background: #FFFFFF;
-  border: 1px solid var(--border);
-  border-radius: 22px;
-  padding: 24px 28px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 22px;
-  box-shadow: 0 18px 45px rgba(24, 39, 75, 0.05);
-}
-
-.proof-item {
-  border-right: 1px solid var(--border);
-  padding-right: 18px;
-}
-
-.proof-item:last-child {
-  border-right: none;
-  padding-right: 0;
-}
-
-.proof-item strong {
-  display: block;
-  color: var(--magenta);
-  font-size: 15px;
-  margin-bottom: 4px;
-}
-
-.proof-item span {
-  color: var(--body);
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.project-preview {
-  margin-top: 34px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-}
-
-.project-preview-card {
-  background: #FFFFFF;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 22px;
-  box-shadow: 0 14px 35px rgba(24, 39, 75, 0.05);
-}
-
-.project-preview-card strong {
-  display: block;
-  font-size: 18px;
-  margin-bottom: 8px;
-  color: var(--dark);
-}
-
-.project-preview-card span {
-  display: block;
-  color: var(--body);
-  font-size: 14px;
-  line-height: 1.55;
-  margin-bottom: 16px;
-}
-
-.project-preview-card a {
-  color: var(--magenta);
-  font-size: 14px;
-  font-weight: 900;
-}
-
-@media (max-width: 1000px) {
-  .proof-strip,
-  .project-preview {
-    grid-template-columns: 1fr;
-  }
-
-  .proof-item {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-    padding-right: 0;
-    padding-bottom: 14px;
-  }
-
-  .proof-item:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
-
-  .thinking-step.research,
-  .thinking-step.design {
-    transform: none;
-  }
-}
     @media (max-width: 1000px) {
       .navbar,
       footer {
@@ -800,19 +664,38 @@
       .hero,
       .featured,
       .info-cards,
-      .cta {
+      .cta,
+      .proof-strip,
+      .project-preview {
         grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        border-radius: 40px;
+        padding: 36px 22px;
+      }
+
+      .thinking-step.research,
+      .thinking-step.design {
+        transform: none;
+      }
+
+      .proof-item {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding-right: 0;
+        padding-bottom: 14px;
+      }
+
+      .proof-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
       }
 
       .kiosk-showcase {
         border-left: none;
         padding-left: 0;
         flex-wrap: wrap;
-      }
-
-      .hero-visual {
-        border-radius: 40px;
-        padding: 36px 22px;
       }
 
       .featured {
@@ -834,12 +717,13 @@
 <body>
   <main class="page">
     <nav class="navbar" aria-label="Main navigation">
-      <a href="index.html" aria-label="Linda portfolio home">
-       <div class="brand-name">Linda </div>
+      <a href="index.html" aria-label="Linda Laryea portfolio home">
+        <div class="brand-name">Linda Laryea</div>
+      </a>
 
       <div class="nav-links">
         <a class="active" href="index.html">Home</a>
-      <a href="case-studies.html">Case Studies</a>
+        <a href="case-studies.html">Case Studies</a>
         <a href="about.html">About Me</a>
         <a href="cv.html">CV</a>
         <a href="contact.html">Contact</a>
@@ -848,87 +732,87 @@
     </nav>
 
     <section class="hero">
-      <section class="hero">
-  <div>
-    <div class="intro-pill"><span></span> Hi, I’m Linda Laryea</div>
-    <div class="gold-line"></div>
+      <div>
+        <div class="intro-pill"><span></span> Hi, I’m Linda Laryea</div>
+        <div class="gold-line"></div>
 
-    <h1>
-      I research where users struggle,
-      then design
-      <span class="accent">simpler ways forward.</span>
-    </h1>
+        <h1>
+          I research where users struggle,
+          then design
+          <span class="accent">simpler ways forward.</span>
+        </h1>
 
-    <p class="hero-text">
-      UX Researcher and Interaction Designer focused on turning user insights into clear, accessible digital experiences.
-    </p>
+        <p class="hero-text">
+          UX Researcher and Interaction Designer focused on turning user insights into clear, accessible digital experiences.
+        </p>
 
-    <div class="hero-actions">
-      <a class="btn-primary" href="case-studies.html">View Case Studies →</a>
-      <a class="btn-secondary" href="about.html">About Me</a>
-    </div>
+        <div class="hero-actions">
+          <a class="btn-primary" href="case-studies.html">View Case Studies →</a>
+          <a class="btn-secondary" href="about.html">About Me</a>
+        </div>
 
-    <div class="hero-tags">
-      <span>User-Centred Design</span>
-      <span>UX Research</span>
-      <span>Scalable Solutions</span>
-    </div>
-  </div>
-
-  <div class="hero-visual" aria-label="UX research to design process illustration">
-    <div class="thinking-board">
-      <div class="thinking-step">
-        <div class="step-number">01</div>
-        <div>
-          <strong>User struggle</strong>
-          <p>Understand where people feel confused, delayed, or overwhelmed in real workflows.</p>
+        <div class="hero-tags">
+          <span>User-Centred Design</span>
+          <span>UX Research</span>
+          <span>Scalable Solutions</span>
         </div>
       </div>
 
-      <div class="thinking-arrow">↓</div>
+      <div class="hero-visual" aria-label="UX research to design process illustration">
+        <div class="thinking-board">
+          <div class="thinking-step">
+            <div class="step-number">01</div>
+            <div>
+              <strong>User struggle</strong>
+              <p>Understand where people feel confused, delayed, or overwhelmed in real workflows.</p>
+            </div>
+          </div>
 
-      <div class="thinking-step research">
-        <div class="step-number">02</div>
-        <div>
-          <strong>Research insight</strong>
-          <p>Turn interviews, observations, and usability findings into clear design direction.</p>
+          <div class="thinking-arrow">↓</div>
+
+          <div class="thinking-step research">
+            <div class="step-number">02</div>
+            <div>
+              <strong>Research insight</strong>
+              <p>Turn interviews, observations, and usability findings into clear design direction.</p>
+            </div>
+          </div>
+
+          <div class="thinking-arrow">↓</div>
+
+          <div class="thinking-step design">
+            <div class="step-number">03</div>
+            <div>
+              <strong>Simpler way forward</strong>
+              <p>Design accessible experiences that reduce friction and help users move with confidence.</p>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="thinking-arrow">↓</div>
-
-      <div class="thinking-step design">
-        <div class="step-number">03</div>
-        <div>
-          <strong>Simpler way forward</strong>
-          <p>Design accessible experiences that reduce friction and help users move with confidence.</p>
-        </div>
+    <section class="proof-strip" aria-label="Professional background highlights">
+      <div class="proof-item">
+        <strong>Psychology</strong>
+        <span>Human behaviour and decision-making foundation</span>
       </div>
-    </div>
-  </div>
-</section>
-<section class="proof-strip" aria-label="Professional background highlights">
-  <div class="proof-item">
-    <strong>Psychology</strong>
-    <span>Human behaviour and decision-making foundation</span>
-  </div>
 
-  <div class="proof-item">
-    <strong>Cognitive Science</strong>
-    <span>Understanding attention, memory, and mental load</span>
-  </div>
+      <div class="proof-item">
+        <strong>Cognitive Science</strong>
+        <span>Understanding attention, memory, and mental load</span>
+      </div>
 
-  <div class="proof-item">
-    <strong>UX Research</strong>
-    <span>Interviews, usability studies, and insight synthesis</span>
-  </div>
+      <div class="proof-item">
+        <strong>UX Research</strong>
+        <span>Interviews, usability studies, and insight synthesis</span>
+      </div>
 
-  <div class="proof-item">
-    <strong>Accessibility</strong>
-    <span>Designing clearer experiences for different user needs</span>
-  </div>
-</section>
-    
+      <div class="proof-item">
+        <strong>Accessibility</strong>
+        <span>Designing clearer experiences for different user needs</span>
+      </div>
+    </section>
+
     <section class="featured" id="featured">
       <div>
         <div class="eyebrow">Featured Case Study</div>
@@ -980,27 +864,27 @@
         </div>
       </div>
     </section>
-    
-<section class="project-preview" aria-label="Selected project preview">
-  <article class="project-preview-card">
-    <strong>Elysian Fields</strong>
-    <span>RFID attendance kiosk for clearer and more reliable staff check-in.</span>
-    <a href="elysian-fields.html">View case study →</a>
-  </article>
 
-  <article class="project-preview-card">
-    <strong>Tasky</strong>
-    <span>Smart family noticeboard for reducing household coordination stress.</span>
-    <a href="tasky.html">View case study →</a>
-  </article>
+    <section class="project-preview" aria-label="Selected project preview">
+      <article class="project-preview-card">
+        <strong>Elysian Fields</strong>
+        <span>RFID attendance kiosk for clearer and more reliable staff check-in.</span>
+        <a href="elysian-fields.html">View case study →</a>
+      </article>
 
-  <article class="project-preview-card">
-    <strong>AI Observability</strong>
-    <span>Interactive investigation flow for understanding AI system behaviour.</span>
-    <a href="ai-observability.html">View case study →</a>
-  </article>
-</section>
-    
+      <article class="project-preview-card">
+        <strong>Tasky</strong>
+        <span>Smart family noticeboard for reducing household coordination stress.</span>
+        <a href="tasky.html">View case study →</a>
+      </article>
+
+      <article class="project-preview-card">
+        <strong>AI Observability</strong>
+        <span>Interactive investigation flow for understanding AI system behaviour.</span>
+        <a href="ai-observability.html">View case study →</a>
+      </article>
+    </section>
+
     <section class="info-cards">
       <article class="info-card">
         <div class="card-icon">↗</div>
@@ -1010,22 +894,22 @@
         </p>
         <a class="learn-link" href="about.html">Learn more →</a>
       </article>
-      
-<article class="info-card">
-  <div class="card-icon">✦</div>
-  <h3>What I Do</h3>
-  <p>
-    I combine research, interaction design, prototyping, and accessibility to turn complex user problems into clearer digital experiences.
-  </p>
 
-  <ul>
-    <li>UX Research</li>
-    <li>Interaction Design</li>
-    <li>Prototyping</li>
-    <li>Usability Studies</li>
-    <li>Accessible Design</li>
-  </ul>
-</article>
+      <article class="info-card">
+        <div class="card-icon">✦</div>
+        <h3>What I Do</h3>
+        <p>
+          I combine research, interaction design, prototyping, and accessibility to turn complex user problems into clearer digital experiences.
+        </p>
+
+        <ul>
+          <li>UX Research</li>
+          <li>Interaction Design</li>
+          <li>Prototyping</li>
+          <li>Usability Studies</li>
+          <li>Accessible Design</li>
+        </ul>
+      </article>
 
       <article class="info-card">
         <div class="card-icon">●</div>
@@ -1051,7 +935,7 @@
     </section>
 
     <footer>
-      <div class="footer-brand">Linda</div>
+      <div class="footer-brand">Linda Laryea</div>
 
       <div>© 2026 Linda Laryea. All rights reserved.</div>
 
