@@ -10,7 +10,6 @@
     :root {
       --bg: #FFF9FC;
       --card: #FFFFFF;
-      --soft: #F8F2F7;
       --soft-purple: #EFE9FF;
       --soft-pink: #FDE7F1;
       --magenta: #A80B63;
@@ -44,6 +43,11 @@
       text-decoration: none;
     }
 
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
     .page {
       width: min(1280px, calc(100% - 32px));
       margin: 0 auto;
@@ -51,7 +55,6 @@
     }
 
     .navbar {
-      background: transparent;
       border-bottom: 1px solid var(--border);
       padding: 0 0 22px;
       display: flex;
@@ -61,12 +64,12 @@
     }
 
     .brand-name {
-  font-size: 28px;
-  font-weight: 800;
-  color: var(--magenta);
-  letter-spacing: -0.4px;
-  font-family: Arial, Helvetica, sans-serif;
-}
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--magenta);
+      letter-spacing: -0.4px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
     .nav-links {
       display: flex;
@@ -323,6 +326,10 @@
       box-shadow: var(--shadow);
     }
 
+    .featured-copy {
+      max-width: 460px;
+    }
+
     .eyebrow {
       color: var(--magenta);
       font-size: 13px;
@@ -348,15 +355,17 @@
       line-height: 1.12;
       letter-spacing: -1px;
       margin-bottom: 24px;
-      text-align: center;
+      text-align: left;
+      max-width: 430px;
     }
 
     .featured-text {
       color: var(--body);
       font-size: 18px;
-      text-align: center;
-      max-width: 420px;
-      margin: 0 auto 30px;
+      line-height: 1.65;
+      text-align: left;
+      max-width: 430px;
+      margin: 0 0 30px;
     }
 
     .benefits {
@@ -389,100 +398,29 @@
       flex-shrink: 0;
     }
 
-    .kiosk-showcase {
+    .image-showcase {
       border-left: 1px solid var(--border);
       padding-left: 42px;
+      min-height: 410px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 18px;
-      min-height: 410px;
+      gap: 22px;
     }
 
-    .kiosk-card {
+    .homepage-kiosk-image {
       width: 170px;
+      height: auto;
+      object-fit: contain;
+      border-radius: 22px;
       background: #FFFFFF;
       border: 1px solid var(--border);
-      border-radius: 22px;
-      overflow: hidden;
       box-shadow: 0 22px 45px rgba(24, 39, 75, 0.16);
     }
 
-    .kiosk-card.main {
+    .homepage-kiosk-image.main-image {
       width: 210px;
       transform: translateY(-26px);
-    }
-
-    .kiosk-top {
-      background: var(--magenta);
-      color: #FFFFFF;
-      text-align: center;
-      padding: 18px 12px;
-      font-size: 11px;
-      font-weight: 900;
-    }
-
-    .kiosk-body {
-      min-height: 250px;
-      padding: 24px 16px;
-      text-align: center;
-      background: #FFF9FC;
-    }
-
-    .rfid-icon {
-      width: 82px;
-      height: 82px;
-      border-radius: 50%;
-      background: var(--soft-pink);
-      color: var(--magenta);
-      display: grid;
-      place-items: center;
-      margin: 0 auto 18px;
-      font-size: 34px;
-      font-weight: 900;
-    }
-
-    .success-icon {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      background: #159447;
-      color: #FFFFFF;
-      display: grid;
-      place-items: center;
-      margin: 12px auto 18px;
-      font-size: 54px;
-      font-weight: 900;
-    }
-
-    .kiosk-body h3 {
-      color: var(--magenta);
-      font-size: 17px;
-      line-height: 1.25;
-      margin-bottom: 10px;
-    }
-
-    .kiosk-body p {
-      color: var(--body);
-      font-size: 11px;
-    }
-
-    .fake-input {
-      height: 22px;
-      border: 1px solid #E9B8D1;
-      border-radius: 6px;
-      margin-bottom: 9px;
-      background: white;
-    }
-
-    .small-kiosk-button {
-      margin-top: 16px;
-      background: var(--magenta);
-      color: white;
-      border-radius: 8px;
-      padding: 10px;
-      font-size: 10px;
-      font-weight: 900;
     }
 
     .project-preview {
@@ -620,13 +558,13 @@
       font-weight: 700;
     }
 
-   .footer-brand {
-  color: var(--magenta);
-  font-size: 24px;
-  font-weight: 800;
-  letter-spacing: -0.3px;
-  font-family: Arial, Helvetica, sans-serif;
-}
+    .footer-brand {
+      color: var(--magenta);
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
     .footer-icons {
       display: flex;
@@ -690,14 +628,18 @@
         padding-bottom: 0;
       }
 
-      .kiosk-showcase {
+      .featured {
+        padding: 36px 24px;
+      }
+
+      .image-showcase {
         border-left: none;
         padding-left: 0;
         flex-wrap: wrap;
       }
 
-      .featured {
-        padding: 36px 24px;
+      .homepage-kiosk-image.main-image {
+        transform: none;
       }
 
       .cta {
@@ -812,7 +754,7 @@
     </section>
 
     <section class="featured" id="featured">
-      <div>
+      <div class="featured-copy">
         <div class="eyebrow">Featured Case Study</div>
 
         <h2>Elysian Fields Attendance Kiosk</h2>
@@ -830,36 +772,24 @@
         <a class="btn-secondary" href="elysian-fields.html">View Case Study →</a>
       </div>
 
-      <div class="kiosk-showcase" aria-label="Elysian Fields kiosk screens">
-        <div class="kiosk-card">
-          <div class="kiosk-top">Welcome to Elysian Fields</div>
-          <div class="kiosk-body">
-            <div class="rfid-icon">◉</div>
-            <h3>Tap your ID card</h3>
-            <p>Quick RFID sign-in for staff.</p>
-            <div class="small-kiosk-button">Sign in manually</div>
-          </div>
-        </div>
+      <div class="image-showcase" aria-label="Elysian Fields kiosk screen designs">
+        <img
+          class="homepage-kiosk-image"
+          src="homepage-rfid-screen.png"
+          alt="Elysian Fields RFID tap ID card screen"
+        />
 
-        <div class="kiosk-card main">
-          <div class="kiosk-top">Welcome to Elysian Fields</div>
-          <div class="kiosk-body">
-            <div class="success-icon">✓</div>
-            <h3 style="color:#159447;">Attendance Confirmed</h3>
-            <p>Vivian<br />Logged at 8:15 AM</p>
-          </div>
-        </div>
+        <img
+          class="homepage-kiosk-image main-image"
+          src="homepage-success-screen.png"
+          alt="Elysian Fields attendance confirmed success screen"
+        />
 
-        <div class="kiosk-card">
-          <div class="kiosk-top">Welcome to Elysian Fields</div>
-          <div class="kiosk-body">
-            <h3>Sign in manually</h3>
-            <div class="fake-input"></div>
-            <div class="fake-input"></div>
-            <div class="fake-input"></div>
-            <div class="small-kiosk-button">Sign in</div>
-          </div>
-        </div>
+        <img
+          class="homepage-kiosk-image"
+          src="homepage-manual-screen.png"
+          alt="Elysian Fields manual sign-in screen"
+        />
       </div>
     </section>
 
