@@ -18,6 +18,8 @@
       --body: #4B5563;
       --muted: #6B7280;
       --border: #F2D8E7;
+      --green: #159447;
+      --green-soft: #EAFBF0;
       --shadow: 0 22px 60px rgba(24, 39, 75, 0.08);
     }
 
@@ -41,11 +43,6 @@
     a {
       color: inherit;
       text-decoration: none;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
     }
 
     .page {
@@ -313,19 +310,18 @@
       font-weight: 700;
     }
 
-.featured {
-  margin-top: 58px;
-  background: #FFFFFF;
-  border: 1px solid var(--border);
-  border-radius: 32px;
-  padding: 64px 44px;
-  display: grid;
-  grid-template-columns: 0.82fr 1.18fr;
-  gap: 44px;
-  align-items: center;
-  box-shadow: var(--shadow);
-  overflow: hidden;
-}
+    .featured {
+      margin-top: 58px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      padding: 64px 44px;
+      display: grid;
+      grid-template-columns: 0.86fr 1.14fr;
+      gap: 54px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
 
     .featured-copy {
       max-width: 460px;
@@ -399,22 +395,193 @@
       flex-shrink: 0;
     }
 
-.featured-image-wrap {
-  border-left: 1px solid var(--border);
-  padding-left: 38px;
-  min-height: 430px;
-  display: grid;
-  place-items: center;
-}
+    .kiosk-showcase {
+      border-left: 1px solid var(--border);
+      padding-left: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      min-height: 430px;
+    }
 
-.featured-kiosk-group {
-  width: 100%;
-  max-width: 700px;
-  height: auto;
-  object-fit: contain;
-  border-radius: 24px;
-  transform: none;
-}
+    .kiosk-card {
+      width: 172px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 22px 45px rgba(24, 39, 75, 0.16);
+    }
+
+    .kiosk-card.main {
+      width: 214px;
+      transform: translateY(-26px);
+    }
+
+    .kiosk-top {
+      background: var(--magenta);
+      color: #FFFFFF;
+      text-align: center;
+      padding: 18px 12px 16px;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .kiosk-subtitle {
+      display: block;
+      color: #FFD7E9;
+      font-size: 7px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    .kiosk-body {
+      min-height: 260px;
+      padding: 24px 16px 18px;
+      text-align: center;
+      background: #FFF9FC;
+      position: relative;
+    }
+
+    .kiosk-body::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 52px;
+      background: #FAD5E7;
+      border-radius: 50% 50% 0 0;
+      opacity: 0.85;
+      z-index: 0;
+    }
+
+    .kiosk-body > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .rfid-icon {
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      background: var(--soft-pink);
+      color: var(--magenta);
+      display: grid;
+      place-items: center;
+      margin: 0 auto 18px;
+      font-size: 34px;
+      font-weight: 900;
+      box-shadow: 0 0 0 12px rgba(168, 11, 99, 0.06);
+    }
+
+    .success-icon {
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      background: var(--green);
+      color: #FFFFFF;
+      display: grid;
+      place-items: center;
+      margin: 2px auto 18px;
+      font-size: 58px;
+      font-weight: 900;
+    }
+
+    .kiosk-body h3 {
+      color: var(--magenta);
+      font-size: 17px;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+
+    .kiosk-body p {
+      color: var(--body);
+      font-size: 11px;
+      line-height: 1.55;
+    }
+
+    .success-title {
+      color: var(--green) !important;
+      font-size: 17px;
+      margin-bottom: 5px !important;
+    }
+
+    .success-name {
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 900;
+      margin-bottom: 2px;
+    }
+
+    .success-time {
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .reset-track {
+      width: 100%;
+      height: 6px;
+      background: #DFF7E7;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 14px auto 8px;
+    }
+
+    .reset-bar {
+      width: 78%;
+      height: 100%;
+      background: var(--green);
+      border-radius: 999px;
+    }
+
+    .reset-text {
+      color: var(--green);
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    .thank-you {
+      color: var(--muted);
+      font-size: 10px;
+      margin-top: 18px;
+    }
+
+    .fake-input {
+      height: 22px;
+      border: 1px solid #E9B8D1;
+      border-radius: 6px;
+      margin-bottom: 9px;
+      background: white;
+    }
+
+    .small-kiosk-button {
+      margin-top: 16px;
+      background: var(--magenta);
+      color: white;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .manual-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--soft-pink);
+      color: var(--magenta);
+      display: grid;
+      place-items: center;
+      margin: 0 auto 14px;
+      font-size: 18px;
+      font-weight: 900;
+    }
+
     .project-preview {
       margin-top: 34px;
       display: grid;
@@ -624,15 +791,15 @@
         padding: 36px 24px;
       }
 
-  .featured-image-wrap {
-  border-left: none;
-  padding-left: 0;
-  min-height: auto;
-}
+      .kiosk-showcase {
+        border-left: none;
+        padding-left: 0;
+        flex-wrap: wrap;
+      }
 
-.featured-kiosk-group {
-  max-width: 100%;
-}
+      .kiosk-card.main {
+        transform: none;
+      }
 
       .cta {
         padding: 36px 24px;
@@ -764,12 +931,64 @@
         <a class="btn-secondary" href="elysian-fields.html">View Case Study →</a>
       </div>
 
-      <div class="featured-image-wrap" aria-label="Elysian Fields kiosk screen designs">
-        <img
-          src="homepage-elysian-screens.png"
-          alt="Three Elysian Fields attendance kiosk screens showing RFID, success, and manual sign-in flows"
-          class="featured-kiosk-group"
-        />
+      <div class="kiosk-showcase" aria-label="Elysian Fields kiosk screen designs">
+        <article class="kiosk-card">
+          <div class="kiosk-top">
+            Welcome to Elysian Fields
+            <span class="kiosk-subtitle">Attendance Kiosk</span>
+          </div>
+
+          <div class="kiosk-body">
+            <div class="rfid-icon">◉</div>
+            <h3>Tap your ID card</h3>
+            <p>
+              Teachers and staff can check in quickly by holding their ID card near the reader.
+            </p>
+            <div class="small-kiosk-button">Sign in manually</div>
+          </div>
+        </article>
+
+        <article class="kiosk-card main">
+          <div class="kiosk-top">
+            Welcome to Elysian Fields
+            <span class="kiosk-subtitle">Attendance Kiosk</span>
+          </div>
+
+          <div class="kiosk-body">
+            <div class="success-icon">✓</div>
+            <h3 class="success-title">Attendance Confirmed</h3>
+            <div class="success-name">Vivian</div>
+            <div class="success-time">Logged at 8:15 AM</div>
+
+            <div class="reset-track">
+              <div class="reset-bar"></div>
+            </div>
+
+            <div class="reset-text">This screen will reset in 3 seconds.</div>
+            <div class="thank-you">Thank you!</div>
+          </div>
+        </article>
+
+        <article class="kiosk-card">
+          <div class="kiosk-top">
+            Welcome to Elysian Fields
+            <span class="kiosk-subtitle">Attendance Kiosk</span>
+          </div>
+
+          <div class="kiosk-body">
+            <div class="manual-icon">●</div>
+            <h3>Sign in manually</h3>
+            <p style="margin-bottom: 12px;">
+              Please enter your details to record your attendance.
+            </p>
+
+            <div class="fake-input"></div>
+            <div class="fake-input"></div>
+            <div class="fake-input"></div>
+
+            <div class="small-kiosk-button">Sign in</div>
+          </div>
+        </article>
       </div>
     </section>
 
