@@ -32,6 +32,10 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: Arial, Helvetica, sans-serif;
       background: var(--bg);
@@ -45,8 +49,8 @@
     }
 
     img {
-      width: 100%;
       display: block;
+      width: 100%;
     }
 
     .page {
@@ -65,17 +69,16 @@
     }
 
     .brand-name {
-      font-size: 32px;
-      font-weight: 900;
+      font-size: 28px;
+      font-weight: 800;
       color: var(--magenta);
-      font-style: italic;
-      letter-spacing: -1px;
+      letter-spacing: -0.4px;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 42px;
+      gap: 34px;
       font-size: 14px;
       font-weight: 700;
     }
@@ -93,7 +96,7 @@
     .nav-button {
       background: var(--magenta);
       color: #FFFFFF;
-      padding: 14px 24px;
+      padding: 13px 22px;
       border-radius: 12px;
       font-weight: 800;
       border-bottom: none !important;
@@ -102,17 +105,13 @@
     .work-section {
       margin-top: 54px;
       background: var(--section);
-      padding: 8px 0 32px;
-    }
-
-    .section-inner {
-      padding: 0 0 0;
+      border-radius: 0;
+      padding: 10px 0 46px;
     }
 
     .section-heading {
-      padding-top: 10px;
+      max-width: 760px;
       margin-bottom: 64px;
-      max-width: 720px;
     }
 
     .eyebrow {
@@ -146,13 +145,14 @@
       color: var(--body);
       font-size: 20px;
       line-height: 1.6;
-      max-width: 620px;
+      max-width: 650px;
     }
 
     .case-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 38px;
+      align-items: stretch;
     }
 
     .case-card {
@@ -161,10 +161,16 @@
       border-radius: 18px;
       overflow: hidden;
       box-shadow: var(--shadow);
-      min-height: 540px;
+      min-height: 590px;
       display: flex;
       flex-direction: column;
       position: relative;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .case-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 28px 70px rgba(24, 39, 75, 0.11);
     }
 
     .case-card::before {
@@ -194,7 +200,7 @@
     }
 
     .case-preview {
-      height: 252px;
+      height: 270px;
       border-radius: 14px;
       overflow: hidden;
       border: 1px solid var(--pink-border);
@@ -253,7 +259,7 @@
     }
 
     .ai .case-icon {
-      background: var(--violet);
+      background: var(--navy);
     }
 
     .case-card h2 {
@@ -328,8 +334,79 @@
       line-height: 1;
     }
 
+    .cta {
+      margin-top: 82px;
+      background: #FFFFFF;
+      border: 1px solid var(--pink-border);
+      border-radius: 24px;
+      padding: 34px 38px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 28px;
+      align-items: center;
+      box-shadow: 0 16px 45px rgba(24, 39, 75, 0.05);
+    }
+
+    .cta h2 {
+      font-size: 34px;
+      line-height: 1.15;
+      letter-spacing: -0.7px;
+      margin-bottom: 8px;
+    }
+
+    .cta p {
+      color: var(--body);
+      font-size: 16px;
+      max-width: 650px;
+    }
+
+    .btn-primary {
+      min-height: 52px;
+      padding: 15px 26px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 900;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--magenta);
+      color: #FFFFFF;
+      white-space: nowrap;
+    }
+
+    footer {
+      margin-top: 100px;
+      border-top: 1px solid var(--pink-border);
+      padding-top: 42px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .footer-brand {
+      color: var(--magenta);
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: flex-end;
+      gap: 26px;
+    }
+
+    .footer-links .active {
+      color: var(--magenta);
+      font-weight: 900;
+    }
+
     @media (max-width: 1050px) {
-      .case-grid {
+      .case-grid,
+      .cta {
         grid-template-columns: 1fr;
       }
 
@@ -338,17 +415,19 @@
       }
 
       .case-preview {
-        height: 320px;
+        height: 340px;
       }
     }
 
     @media (max-width: 760px) {
-      .navbar {
+      .navbar,
+      footer {
         flex-direction: column;
         align-items: flex-start;
       }
 
-      .nav-links {
+      .nav-links,
+      .footer-links {
         flex-wrap: wrap;
         gap: 18px;
       }
@@ -366,7 +445,16 @@
       }
 
       .case-preview {
-        height: 220px;
+        height: 230px;
+      }
+
+      .cta {
+        padding: 28px 22px;
+      }
+
+      footer {
+        display: flex;
+        gap: 20px;
       }
     }
   </style>
@@ -375,133 +463,157 @@
 <body>
   <main class="page">
     <nav class="navbar" aria-label="Main navigation">
-      <a href="index.html" aria-label="Linda portfolio home">
-        <div class="brand-name">Linda</div>
+      <a href="index.html" aria-label="Linda Laryea portfolio home">
+        <div class="brand-name">Linda Laryea</div>
       </a>
 
       <div class="nav-links">
         <a href="index.html">Home</a>
         <a class="active" href="case-studies.html">Case Studies</a>
         <a href="about.html">About Me</a>
+        <a href="cv.html">CV</a>
         <a href="contact.html">Contact</a>
         <a class="nav-button" href="contact.html">Let’s Connect</a>
       </div>
     </nav>
 
     <section class="work-section">
-      <div class="section-inner">
-        <header class="section-heading">
-          <div class="eyebrow">Case Studies</div>
+      <header class="section-heading">
+        <div class="eyebrow">Case Studies</div>
 
-          <h1>Selected Work</h1>
+        <h1>Selected Work</h1>
 
-          <p>
-            Research-led product design that improves accessibility, clarity, decision-making, and everyday workflows.
-          </p>
-        </header>
+        <p>
+          Research-led product design that improves accessibility, clarity, decision-making, and everyday workflows.
+        </p>
+      </header>
 
-        <section class="case-grid" aria-label="Selected case studies">
-          <article class="case-card elysian">
-            <div class="preview-wrap">
-              <div class="case-preview">
-                <img
-                  src="case-card-elysian.png"
-                  alt="Elysian Fields Attendance Kiosk case study preview"
-                />
-              </div>
+      <section class="case-grid" aria-label="Selected case studies">
+        <article class="case-card elysian">
+          <div class="preview-wrap">
+            <div class="case-preview">
+              <img
+                src="case-card-elysian.png"
+                alt="Elysian Fields Attendance Kiosk case study preview"
+              />
+            </div>
+          </div>
+
+          <div class="case-body">
+            <div class="case-title-row">
+              <div class="case-icon">✦</div>
+              <h2>Elysian Fields Attendance Kiosk</h2>
             </div>
 
-            <div class="case-body">
-              <div class="case-title-row">
-                <div class="case-icon">✦</div>
-                <h2>Elysian Fields Attendance Kiosk</h2>
-              </div>
+            <p class="case-description">
+              An RFID-enabled kiosk designed to reduce morning check-in friction and support clear, inclusive school workflows.
+            </p>
 
-              <p class="case-description">
-                An RFID-enabled kiosk designed to reduce morning check-in friction and support clear, inclusive school workflows.
-              </p>
-
-              <div class="tag-row">
-                <span class="tag">UX Research</span>
-                <span class="tag">Interaction Design</span>
-                <span class="tag">Accessibility</span>
-              </div>
-
-              <a class="case-footer" href="elysian-fields.html">
-                <span>View Case Study</span>
-                <span class="arrow">→</span>
-              </a>
-            </div>
-          </article>
-
-          <article class="case-card tasky">
-            <div class="preview-wrap">
-              <div class="case-preview">
-                <img
-                  src="case-card-tasky.png"
-                  alt="Tasky Smart Family Noticeboard case study preview"
-                />
-              </div>
+            <div class="tag-row">
+              <span class="tag">UX Research</span>
+              <span class="tag">Interaction Design</span>
+              <span class="tag">Accessibility</span>
             </div>
 
-            <div class="case-body">
-              <div class="case-title-row">
-                <div class="case-icon">♥</div>
-                <h2>Tasky — Smart Family Noticeboard</h2>
-              </div>
+            <a class="case-footer" href="elysian-fields.html">
+              <span>View Case Study</span>
+              <span class="arrow">→</span>
+            </a>
+          </div>
+        </article>
 
-              <p class="case-description">
-                A calm home hub that helps families manage routines, reminders, and shared responsibilities with less friction.
-              </p>
-
-              <div class="tag-row">
-                <span class="tag">Product Design</span>
-                <span class="tag">Accessibility</span>
-                <span class="tag">Family Workflow</span>
-              </div>
-
-              <a class="case-footer" href="tasky.html">
-                <span>View Case Study</span>
-                <span class="arrow">→</span>
-              </a>
+        <article class="case-card tasky">
+          <div class="preview-wrap">
+            <div class="case-preview">
+              <img
+                src="case-card-tasky.png"
+                alt="Tasky Smart Family Noticeboard case study preview"
+              />
             </div>
-          </article>
+          </div>
 
-          <article class="case-card ai">
-            <div class="preview-wrap">
-              <div class="case-preview">
-                <img
-                  src="case-card-ai-observability.png"
-                  alt="AI Observability Tool dashboard case study preview"
-                />
-              </div>
+          <div class="case-body">
+            <div class="case-title-row">
+              <div class="case-icon">♥</div>
+              <h2>Tasky — Smart Family Noticeboard</h2>
             </div>
 
-            <div class="case-body">
-              <div class="case-title-row">
-                <div class="case-icon">↗</div>
-                <h2>AI Observability Tool</h2>
-              </div>
+            <p class="case-description">
+              A calm home hub that helps families manage routines, reminders, and shared responsibilities with less friction.
+            </p>
 
-              <p class="case-description">
-                A monitoring dashboard that helps teams track AI system behaviour, detect anomalies, and investigate issues with confidence.
-              </p>
-
-              <div class="tag-row">
-                <span class="tag">Dashboard Design</span>
-                <span class="tag">AI Monitoring</span>
-                <span class="tag">B2B SaaS</span>
-              </div>
-
-              <a class="case-footer" href="ai-observability.html">
-                <span>View Case Study</span>
-                <span class="arrow">→</span>
-              </a>
+            <div class="tag-row">
+              <span class="tag">Product Design</span>
+              <span class="tag">Accessibility</span>
+              <span class="tag">Family Workflow</span>
             </div>
-          </article>
-        </section>
-      </div>
+
+            <a class="case-footer" href="tasky.html">
+              <span>View Case Study</span>
+              <span class="arrow">→</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="case-card ai">
+          <div class="preview-wrap">
+            <div class="case-preview">
+              <img
+                src="case-card-ai-observability.png"
+                alt="AI Observability Investigation Assistant dashboard preview"
+              />
+            </div>
+          </div>
+
+          <div class="case-body">
+            <div class="case-title-row">
+              <div class="case-icon">↗</div>
+              <h2>AI Observability Investigation Assistant</h2>
+            </div>
+
+            <p class="case-description">
+              An interactive investigation flow that helps teams detect AI behaviour changes, understand anomalies, and move from confusion to clarity.
+            </p>
+
+            <div class="tag-row">
+              <span class="tag">Dashboard Design</span>
+              <span class="tag">AI Monitoring</span>
+              <span class="tag">Interaction Flow</span>
+            </div>
+
+            <a class="case-footer" href="ai-observability.html">
+              <span>View Case Study</span>
+              <span class="arrow">→</span>
+            </a>
+          </div>
+        </article>
+      </section>
     </section>
+
+    <section class="cta">
+      <div>
+        <h2>Interested in research-led, accessible design?</h2>
+        <p>
+          I’m open to UX research, interaction design, product design opportunities, and meaningful collaborations.
+        </p>
+      </div>
+
+      <a class="btn-primary" href="contact.html">Let’s Connect ↗</a>
+    </section>
+
+    <footer>
+      <div class="footer-brand">Linda Laryea</div>
+
+      <div>© 2026 Linda Laryea. All rights reserved.</div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a class="active" href="case-studies.html">Case Studies</a>
+        <a href="about.html">About Me</a>
+        <a href="cv.html">CV</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </footer>
   </main>
 </body>
 </html>
