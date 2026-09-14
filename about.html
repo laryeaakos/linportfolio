@@ -12,13 +12,15 @@
       --card: #FFFFFF;
       --soft: #FFF7FB;
       --soft-pink: #FDE7F1;
+      --soft-purple: #F4EEFA;
       --magenta: #A80B63;
       --gold: #F3C24F;
       --dark: #111827;
       --body: #4B5563;
       --muted: #6B7280;
       --border: #F2D8E7;
-      --shadow: 0 20px 50px rgba(24, 39, 75, 0.06);
+      --green-soft: #ECFDF3;
+      --shadow: 0 20px 55px rgba(24, 39, 75, 0.07);
     }
 
     * {
@@ -43,43 +45,39 @@
       text-decoration: none;
     }
 
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
     .page {
       width: min(1280px, calc(100% - 32px));
       margin: 0 auto;
       padding: 24px 0 56px;
     }
 
+    /* NAVIGATION */
+
     .navbar {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 18px 28px;
+      border-bottom: 1px solid var(--border);
+      padding: 0 0 22px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 24px;
-      box-shadow: 0 12px 35px rgba(24, 39, 75, 0.05);
     }
 
     .brand-name {
-      font-size: 30px;
+      font-size: 28px;
       font-weight: 800;
       color: var(--magenta);
-    }
-
-    .brand-subtitle {
-      margin-top: 4px;
-      font-size: 10px;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-weight: 700;
+      letter-spacing: -0.4px;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 30px;
+      gap: 34px;
       font-size: 14px;
       font-weight: 700;
     }
@@ -89,116 +87,189 @@
       color: var(--magenta);
     }
 
+    .nav-links .active {
+      border-bottom: 3px solid var(--magenta);
+      padding-bottom: 10px;
+    }
+
     .nav-button {
       background: var(--magenta);
       color: #FFFFFF;
-      padding: 12px 18px;
+      padding: 13px 22px;
       border-radius: 12px;
       font-weight: 800;
+      border-bottom: none !important;
     }
 
-    .hero {
-      margin-top: 48px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 32px;
-      padding: 64px;
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 56px;
-      align-items: center;
-      box-shadow: var(--shadow);
-    }
+    /* SHARED */
 
     .gold-line {
       width: 52px;
-      height: 5px;
+      height: 4px;
       background: var(--gold);
       border-radius: 999px;
-      margin-bottom: 18px;
+      flex-shrink: 0;
+    }
+
+    .eyebrow-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 26px;
     }
 
     .eyebrow {
       color: var(--magenta);
       font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 1.3px;
+      font-weight: 900;
+      letter-spacing: 1px;
       text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-
-    h1 {
-      font-size: clamp(42px, 5vw, 56px);
-      line-height: 1.12;
-      letter-spacing: -1.6px;
-      margin-bottom: 28px;
-      max-width: 690px;
-    }
-
-    h2 {
-      font-size: 34px;
-      line-height: 1.15;
-      margin-bottom: 16px;
-    }
-
-    h3 {
-      font-size: 22px;
-      margin-bottom: 12px;
     }
 
     .accent {
       color: var(--magenta);
     }
 
-    .hero-text {
-      font-size: 18px;
+    .btn-primary,
+    .btn-secondary {
+      min-height: 52px;
+      padding: 14px 24px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 900;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--magenta);
+      color: #FFFFFF;
+      border: 2px solid var(--magenta);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #FFFFFF;
+      border: 2px solid rgba(255, 255, 255, 0.55);
+    }
+
+    /* HERO */
+
+    .hero {
+      margin-top: 54px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      padding: 60px;
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 64px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      font-size: clamp(44px, 5vw, 62px);
+      line-height: 1.08;
+      letter-spacing: -1.8px;
+      max-width: 720px;
+      margin-bottom: 28px;
+    }
+
+    .hero-copy {
       color: var(--body);
-      max-width: 650px;
-      margin-bottom: 22px;
+      font-size: 18px;
+      line-height: 1.8;
+      max-width: 700px;
+      margin-bottom: 28px;
     }
 
     .highlight-note {
+      max-width: 650px;
       background: var(--soft);
       border: 1px solid var(--border);
       border-radius: 18px;
-      padding: 18px 22px;
+      padding: 18px 20px;
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 14px;
+      align-items: center;
       color: #3B0A2A;
       font-size: 15px;
       font-weight: 700;
-      max-width: 620px;
     }
+
+    .highlight-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--soft-pink);
+      color: var(--magenta);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+    }
+
+    /* PROFILE CARD */
 
     .profile-card {
       background: var(--soft);
       border: 1px solid var(--border);
       border-radius: 28px;
-      padding: 36px;
-      min-height: 380px;
+      padding: 34px;
       text-align: center;
       box-shadow: 0 16px 40px rgba(24, 39, 75, 0.05);
     }
 
-      .portrait-photo {
-  width: 170px;
-  height: 170px;
-  margin: 0 auto 24px;
-  border-radius: 28px;
-  object-fit: cover;
-  object-position: center;
-  border: 1px solid #F2D8E7;
-  box-shadow: 0 14px 35px rgba(24, 39, 75, 0.08);
-}
-    
+    .portrait-wrap {
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 22px;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid #F2D8E7;
+      box-shadow: 0 14px 34px rgba(24, 39, 75, 0.09);
+      position: relative;
+    }
+
+    .portrait-wrap::before {
+      content: "";
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: #F8DCE9;
+      top: -16px;
+      left: 15px;
+      z-index: 0;
+    }
+
+    .portrait-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: relative;
+      z-index: 1;
+    }
 
     .profile-card h2 {
       font-size: 30px;
+      line-height: 1.1;
       margin-bottom: 6px;
     }
 
-    .role {
+    .profile-role {
       color: var(--magenta);
-      font-weight: 800;
-      margin-bottom: 10px;
+      font-size: 15px;
+      font-weight: 900;
+      margin-bottom: 12px;
     }
 
     .profile-tags {
@@ -207,72 +278,84 @@
       font-weight: 700;
     }
 
-    .cards-row {
-      margin-top: 64px;
+    /* THREE ABOUT CARDS */
+
+    .story-grid {
+      margin-top: 58px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
     }
 
-    .info-card {
+    .story-card {
       background: #FFFFFF;
       border: 1px solid var(--border);
       border-radius: 24px;
-      padding: 30px;
-      box-shadow: 0 16px 40px rgba(24, 39, 75, 0.05);
+      padding: 28px;
+      box-shadow: 0 16px 42px rgba(24, 39, 75, 0.05);
+      min-height: 390px;
     }
 
-    .card-title-row {
+    .story-heading {
       display: flex;
       align-items: center;
       gap: 14px;
       margin-bottom: 26px;
     }
 
-    .icon-circle {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
+    .story-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
       background: var(--soft-pink);
       color: var(--magenta);
       display: grid;
       place-items: center;
+      font-size: 22px;
       font-weight: 900;
       flex-shrink: 0;
     }
 
-    .info-card h3 {
+    .story-card h2 {
       color: var(--magenta);
-      margin-bottom: 0;
+      font-size: 24px;
     }
 
-    .info-card p {
+    .story-card p {
       color: var(--body);
       font-size: 15px;
-      margin-bottom: 18px;
+      line-height: 1.75;
+      margin-bottom: 14px;
     }
 
-    .strong-line {
+    .story-divider {
       width: 42px;
       height: 4px;
       background: var(--magenta);
       border-radius: 999px;
-      margin: 18px 0;
+      margin: 20px 0;
     }
 
-    .bold-ending {
-      color: var(--magenta);
+    .story-closing {
+      color: var(--dark) !important;
       font-weight: 900;
+    }
+
+    /* VALUES */
+
+    .value-list {
+      display: grid;
+      gap: 18px;
     }
 
     .value-item {
       display: grid;
-      grid-template-columns: 40px 1fr;
-      gap: 14px;
-      margin-bottom: 18px;
+      grid-template-columns: 38px 1fr;
+      gap: 12px;
+      align-items: start;
     }
 
-    .mini-icon {
+    .value-icon {
       width: 34px;
       height: 34px;
       border-radius: 50%;
@@ -280,112 +363,130 @@
       color: var(--magenta);
       display: grid;
       place-items: center;
+      font-size: 13px;
       font-weight: 900;
     }
 
     .value-item strong {
       display: block;
-      color: var(--dark);
       font-size: 14px;
-      margin-bottom: 3px;
+      margin-bottom: 2px;
     }
 
     .value-item span {
-      display: block;
       color: var(--body);
-      font-size: 13px;
-      line-height: 1.45;
+      font-size: 12px;
+      line-height: 1.55;
     }
 
-    .chip-group {
-      margin-bottom: 22px;
+    /* SKILLS */
+
+    .skill-group {
+      margin-bottom: 20px;
     }
 
-    .chip-group strong {
+    .skill-group strong {
       display: block;
-      margin-bottom: 10px;
       font-size: 14px;
+      margin-bottom: 10px;
     }
 
-    .chips {
+    .skill-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
 
-    .chip {
-      background: var(--soft);
+    .skill-tag {
       border: 1px solid var(--border);
+      background: var(--soft);
       color: var(--magenta);
       border-radius: 999px;
-      padding: 8px 12px;
-      font-size: 12px;
+      padding: 7px 12px;
+      font-size: 11px;
       font-weight: 800;
     }
 
+    .skill-note {
+      color: var(--muted) !important;
+      font-size: 12px !important;
+      line-height: 1.55 !important;
+      margin-top: 14px;
+    }
+
+    /* DESIGN APPROACH */
+
     .approach {
-      margin-top: 64px;
+      margin-top: 58px;
       background: #FFFFFF;
       border: 1px solid var(--border);
       border-radius: 32px;
-      padding: 58px 60px;
-      box-shadow: var(--shadow);
+      padding: 52px 42px;
+      box-shadow: 0 18px 48px rgba(24, 39, 75, 0.05);
       position: relative;
       overflow: hidden;
     }
 
-    .approach::after {
-      content: "";
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      background: #F7D7E6;
-      opacity: 0.35;
-      position: absolute;
-      top: 58px;
-      right: 80px;
-    }
-
     .approach::before {
       content: "";
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background: var(--gold);
-      opacity: 0.24;
       position: absolute;
-      top: 145px;
-      right: 60px;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: #F8EAF2;
+      right: 70px;
+      top: 36px;
     }
 
-    .approach-header {
-      max-width: 720px;
+    .approach::after {
+      content: "";
+      position: absolute;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: #F9E7B8;
+      right: 34px;
+      top: 116px;
+    }
+
+    .approach-copy {
       position: relative;
       z-index: 1;
+      max-width: 760px;
     }
 
-    .approach-header p {
+    .approach h2 {
+      font-size: clamp(34px, 4vw, 46px);
+      line-height: 1.12;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+
+    .approach-intro {
       color: var(--body);
-      font-size: 17px;
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 720px;
     }
 
     .process-grid {
-      margin-top: 32px;
+      position: relative;
+      z-index: 1;
+      margin-top: 34px;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 20px;
-      position: relative;
-      z-index: 1;
     }
 
     .process-card {
       background: var(--soft);
       border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 24px;
+      border-radius: 18px;
+      padding: 22px;
+      min-height: 185px;
     }
 
-    .number {
+    .process-number {
       width: 38px;
       height: 38px;
       border-radius: 50%;
@@ -399,94 +500,120 @@
     }
 
     .process-card h3 {
-      color: var(--dark);
-      font-size: 20px;
+      font-size: 19px;
       margin-bottom: 10px;
     }
 
     .process-card p {
       color: var(--body);
-      font-size: 14px;
+      font-size: 13px;
+      line-height: 1.65;
     }
+
+    /* CTA */
 
     .cta {
-      margin-top: 64px;
+      margin-top: 58px;
       background: var(--magenta);
+      border-radius: 30px;
+      padding: 42px 48px;
       color: #FFFFFF;
-      border-radius: 32px;
-      padding: 52px 60px;
-      display: flex;
-      justify-content: space-between;
-      gap: 32px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 42px;
       align-items: center;
-      box-shadow: 0 20px 50px rgba(24, 39, 75, 0.08);
+      overflow: hidden;
+      position: relative;
     }
 
-    .cta small {
+    .cta::before {
+      content: "";
+      position: absolute;
+      width: 210px;
+      height: 210px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      right: -10px;
+      top: -60px;
+    }
+
+    .cta::after {
+      content: "";
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: rgba(243, 194, 79, 0.2);
+      right: 36px;
+      bottom: -58px;
+    }
+
+    .cta-copy {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-label {
       color: var(--gold);
+      font-size: 12px;
       font-weight: 900;
-      letter-spacing: 1.2px;
+      letter-spacing: 0.8px;
       text-transform: uppercase;
+      margin-bottom: 10px;
     }
 
     .cta h2 {
-      color: #FFFFFF;
-      font-size: 36px;
-      margin-top: 12px;
-      margin-bottom: 12px;
+      font-size: clamp(30px, 4vw, 42px);
+      line-height: 1.15;
       max-width: 700px;
+      margin-bottom: 6px;
     }
 
     .cta p {
-      color: #FCEAF1;
-      max-width: 740px;
+      font-size: 15px;
+      line-height: 1.65;
+      max-width: 720px;
+      color: #FCE7F3;
     }
 
     .cta-actions {
+      position: relative;
+      z-index: 1;
       display: grid;
-      gap: 14px;
-      min-width: 190px;
+      gap: 12px;
+      min-width: 180px;
     }
 
-    .cta-button-primary,
-    .cta-button-secondary {
-      border-radius: 14px;
-      padding: 15px 20px;
-      text-align: center;
-      font-weight: 900;
-      font-size: 14px;
-    }
-
-    .cta-button-primary {
+    .cta .btn-primary {
       background: #FFFFFF;
       color: var(--magenta);
+      border-color: #FFFFFF;
     }
 
-    .cta-button-secondary {
-      border: 1px solid #F7D7E6;
-      color: #FFFFFF;
-    }
+    /* FOOTER */
 
     footer {
-      margin-top: 44px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      margin-top: 62px;
+      border-top: 1px solid var(--border);
+      padding: 34px 10px 0;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       gap: 24px;
+      align-items: center;
       color: var(--muted);
       font-size: 13px;
-      padding: 0 14px;
     }
 
     .footer-brand {
       color: var(--magenta);
-      font-size: 26px;
-      font-weight: 900;
+      font-size: 24px;
+      font-weight: 800;
     }
 
     .footer-links {
       display: flex;
-      gap: 26px;
+      justify-content: flex-end;
+      gap: 24px;
       font-weight: 700;
     }
 
@@ -495,9 +622,10 @@
       font-weight: 900;
     }
 
-    @media (max-width: 950px) {
+    /* RESPONSIVE */
+
+    @media (max-width: 1000px) {
       .navbar,
-      .cta,
       footer {
         flex-direction: column;
         align-items: flex-start;
@@ -506,23 +634,57 @@
       .nav-links,
       .footer-links {
         flex-wrap: wrap;
-        gap: 16px;
+        gap: 18px;
       }
 
       .hero,
-      .cards-row,
-      .process-grid {
+      .story-grid,
+      .process-grid,
+      .cta {
         grid-template-columns: 1fr;
       }
 
-      .hero,
-      .approach {
-        padding: 36px 24px;
+      .hero {
+        padding: 36px 26px;
+      }
+
+      .profile-card {
+        max-width: 480px;
+        width: 100%;
       }
 
       .approach::before,
       .approach::after {
-        display: none;
+        opacity: 0.45;
+      }
+
+      .cta-actions {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      footer {
+        display: flex;
+        gap: 18px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100% - 22px, 1280px);
+      }
+
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .approach,
+      .story-card {
+        padding: 24px;
+      }
+
+      .cta {
+        padding: 32px 24px;
       }
     }
   </style>
@@ -530,26 +692,30 @@
 
 <body>
   <main class="page">
+
+    <!-- NAVBAR -->
     <nav class="navbar" aria-label="Main navigation">
-      <a href="index.html" aria-label="Linda portfolio home">
-        <div class="brand-name">Linda</div>
-        <div class="brand-subtitle">UX Research & Design</div>
+      <a href="index.html" aria-label="Linda Laryea portfolio home">
+        <div class="brand-name">Linda Laryea</div>
       </a>
 
       <div class="nav-links">
         <a href="index.html">Home</a>
-    <a href="case-studies.html">Case Studies</a>
+        <a href="case-studies.html">Case Studies</a>
         <a class="active" href="about.html">About Me</a>
         <a href="cv.html">CV</a>
-     <a href="contact.html">Let’s Connect</a>
-     <a class="nav-button" href="contact.html">Let’s Connect</a>
+        <a href="contact.html">Contact</a>
+        <a class="nav-button" href="contact.html">Let’s Connect</a>
       </div>
     </nav>
 
+    <!-- HERO -->
     <section class="hero">
       <div>
-        <div class="gold-line"></div>
-        <div class="eyebrow">About Me</div>
+        <div class="eyebrow-row">
+          <span class="gold-line"></span>
+          <span class="eyebrow">About Me</span>
+        </div>
 
         <h1>
           Designing with empathy, research, and
@@ -557,199 +723,259 @@
           at the centre.
         </h1>
 
-        <p class="hero-text">
-          I’m a UX Researcher and Interaction Designer with a Master’s degree in Cognitive Science and a Bachelor’s degree in Psychology. My work is shaped by a deep interest in how people think, behave, and interact with digital systems.
+        <p class="hero-copy">
+          I’m a UX Researcher and Interaction Designer with a Master’s degree
+          in Cognitive Science and a Bachelor’s degree in Psychology. My work
+          is shaped by a deep interest in how people think, behave, and
+          interact with digital systems.
         </p>
 
         <div class="highlight-note">
-          My goal is to create digital experiences that feel clear, inclusive, and easy to use for real people in real contexts.
+          <div class="highlight-icon">♡</div>
+          <div>
+            My goal is to create digital experiences that feel clear,
+            inclusive, and easy to use for real people in real contexts.
+          </div>
         </div>
       </div>
 
-      <aside class="profile-card" aria-label="Linda Laryea profile summary">
-       <img
-  class="portrait-photo"
-  src="linda-profile.png"
-  alt="Portrait of Linda Laryea"
-/>
+      <aside class="profile-card">
+        <div class="portrait-wrap">
+          <img
+            src="linda-profile.png"
+            alt="Portrait of Linda Laryea"
+            class="portrait-photo"
+          />
+        </div>
+
         <h2>Linda Laryea</h2>
-        <div class="role">UX Researcher & Interaction Designer</div>
-        <div class="profile-tags">Cognitive Science • Psychology • Accessibility</div>
+
+        <div class="profile-role">
+          UX Researcher & Interaction Designer
+        </div>
+
+        <div class="profile-tags">
+          Cognitive Science • Psychology • Accessibility
+        </div>
       </aside>
     </section>
 
-    <section class="cards-row" aria-label="About Linda summary cards">
-      <article class="info-card">
-        <div class="card-title-row">
-          <div class="icon-circle">▤</div>
-          <h3>My Story</h3>
+    <!-- STORY / VALUES / SKILLS -->
+    <section class="story-grid">
+
+      <article class="story-card">
+        <div class="story-heading">
+          <div class="story-icon">▣</div>
+          <h2>My Story</h2>
         </div>
 
         <p>
-          My academic journey in Cognitive Science and Psychology gave me a strong foundation in how people perceive, think, learn, and make decisions.
+          My academic journey in Cognitive Science and Psychology gave me a
+          strong foundation in how people perceive, think, learn, and make
+          decisions.
         </p>
 
         <p>
-          This understanding fuels my passion for creating user-centred designs that are intuitive, accessible, and meaningful.
+          This understanding fuels my passion for creating user-centred
+          designs that are intuitive, accessible, and meaningful.
         </p>
 
-        <div class="strong-line"></div>
+        <div class="story-divider"></div>
 
-        <p class="bold-ending">
-          I believe great design starts with deep empathy and ends with meaningful impact.
+        <p class="story-closing">
+          I believe great design starts with deep empathy and ends with
+          meaningful impact.
         </p>
       </article>
 
-      <article class="info-card">
-        <div class="card-title-row">
-          <div class="icon-circle">✧</div>
-          <h3>My Design Values</h3>
+      <article class="story-card">
+        <div class="story-heading">
+          <div class="story-icon">♡</div>
+          <h2>My Design Values</h2>
         </div>
 
-        <div class="value-item">
-          <div class="mini-icon">♥</div>
-          <div>
-            <strong>Human-Centred</strong>
-            <span>I design for real human needs, not just business goals.</span>
+        <div class="value-list">
+          <div class="value-item">
+            <div class="value-icon">♡</div>
+            <div>
+              <strong>Human-Centred</strong>
+              <span>I design for real human needs, not just business goals.</span>
+            </div>
           </div>
-        </div>
 
-        <div class="value-item">
-          <div class="mini-icon">✳</div>
-          <div>
-            <strong>Accessible by Design</strong>
-            <span>I believe everyone deserves equal access to digital tools.</span>
+          <div class="value-item">
+            <div class="value-icon">✣</div>
+            <div>
+              <strong>Accessible by Design</strong>
+              <span>I believe everyone deserves equal access to digital tools.</span>
+            </div>
           </div>
-        </div>
 
-        <div class="value-item">
-          <div class="mini-icon">↗</div>
-          <div>
-            <strong>Evidence-Based</strong>
-            <span>I use research and data to inform better design decisions.</span>
+          <div class="value-item">
+            <div class="value-icon">↗</div>
+            <div>
+              <strong>Evidence-Based</strong>
+              <span>I use research and data to inform better design decisions.</span>
+            </div>
           </div>
-        </div>
 
-        <div class="value-item">
-          <div class="mini-icon">✦</div>
-          <div>
-            <strong>Clarity & Simplicity</strong>
-            <span>I create experiences that are easy to understand and use.</span>
+          <div class="value-item">
+            <div class="value-icon">✦</div>
+            <div>
+              <strong>Clarity & Simplicity</strong>
+              <span>I create experiences that are easy to understand and use.</span>
+            </div>
           </div>
         </div>
       </article>
 
-      <article class="info-card">
-        <div class="card-title-row">
-          <div class="icon-circle">✦</div>
-          <h3>Skills & Tools</h3>
+      <article class="story-card">
+        <div class="story-heading">
+          <div class="story-icon">✦</div>
+          <h2>Skills & Tools</h2>
         </div>
 
-        <div class="chip-group">
+        <div class="skill-group">
           <strong>UX Research</strong>
-          <div class="chips">
-            <span class="chip">Interviews</span>
-            <span class="chip">Personas</span>
-            <span class="chip">Testing</span>
+          <div class="skill-tags">
+            <span class="skill-tag">Interviews</span>
+            <span class="skill-tag">Personas</span>
+            <span class="skill-tag">Testing</span>
           </div>
         </div>
 
-        <div class="chip-group">
+        <div class="skill-group">
           <strong>Interaction Design</strong>
-          <div class="chips">
-            <span class="chip">Wireframes</span>
-            <span class="chip">Prototypes</span>
-            <span class="chip">Flows</span>
+          <div class="skill-tags">
+            <span class="skill-tag">Wireframes</span>
+            <span class="skill-tag">Prototypes</span>
+            <span class="skill-tag">Flows</span>
           </div>
         </div>
 
-        <div class="chip-group">
+        <div class="skill-group">
           <strong>Tools</strong>
-          <div class="chips">
-            <span class="chip">Figma</span>
-            <span class="chip">Miro</span>
-            <span class="chip">Maze</span>
-            <span class="chip">FigJam</span>
+          <div class="skill-tags">
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">Miro</span>
+            <span class="skill-tag">Maze</span>
+            <span class="skill-tag">FigJam</span>
           </div>
         </div>
 
-        <p>
-          Combining research, psychology, and visual design to create thoughtful digital experiences.
+        <p class="skill-note">
+          Combining research, psychology, and visual design to create thoughtful
+          digital experiences.
         </p>
       </article>
+
     </section>
 
+    <!-- APPROACH -->
     <section class="approach">
-      <div class="approach-header">
-        <div class="gold-line"></div>
-        <div class="eyebrow">My Approach</div>
+      <div class="approach-copy">
+        <div class="eyebrow-row">
+          <span class="gold-line"></span>
+          <span class="eyebrow">My Approach</span>
+        </div>
 
         <h2>
           How I turn research into
           <span class="accent">meaningful design</span>
         </h2>
 
-        <p>
-          My process begins with understanding real people, then translating insights into clear, accessible, and usable digital experiences.
+        <p class="approach-intro">
+          My process begins with understanding real people, then translating
+          insights into clear, accessible, and usable digital experiences.
         </p>
       </div>
 
       <div class="process-grid">
         <article class="process-card">
-          <div class="number">01</div>
+          <div class="process-number">01</div>
           <h3>Understand</h3>
-          <p>I begin by learning about users, their goals, frustrations, behaviours, and real-life context.</p>
+          <p>
+            I begin by learning about users, their goals, frustrations,
+            behaviours, and real-life context.
+          </p>
         </article>
 
         <article class="process-card">
-          <div class="number">02</div>
+          <div class="process-number">02</div>
           <h3>Define</h3>
-          <p>I identify the core problem, key user needs, and design opportunities before jumping into solutions.</p>
+          <p>
+            I identify the core problem, key user needs, and design
+            opportunities before jumping into solutions.
+          </p>
         </article>
 
         <article class="process-card">
-          <div class="number">03</div>
+          <div class="process-number">03</div>
           <h3>Design</h3>
-          <p>I create flows, wireframes, and interfaces that reduce friction and make tasks easier to complete.</p>
+          <p>
+            I create flows, wireframes, and interfaces that reduce friction and
+            make tasks easier to complete.
+          </p>
         </article>
 
         <article class="process-card">
-          <div class="number">04</div>
+          <div class="process-number">04</div>
           <h3>Test</h3>
-          <p>I test ideas with users, refine interactions, and improve clarity, accessibility, and usability.</p>
+          <p>
+            I test ideas with users, refine interactions, and improve clarity,
+            accessibility, and usability.
+          </p>
         </article>
       </div>
     </section>
 
+    <!-- CTA -->
     <section class="cta">
-      <div>
-        <small>Let’s work together</small>
-        <h2>Interested in thoughtful, accessible design?</h2>
+      <div class="cta-copy">
+        <div class="cta-label">Let’s Work Together</div>
+
+        <h2>
+          Interested in thoughtful, accessible design?
+        </h2>
+
         <p>
-          I’m open to UX research, interaction design, and product design opportunities where human behaviour, clarity, and accessibility matter.
+          I’m open to UX research, interaction design, product design
+          opportunities, and meaningful collaborations where human behaviour,
+          clarity, and accessibility matter.
         </p>
       </div>
 
       <div class="cta-actions">
-  <a class="btn-primary" href="contact.html">Let’s Connect</a>
-  <a class="btn-secondary" href="case-studies.html">View Case Studies</a>
-</div>
+        <a class="btn-primary" href="contact.html">
+          Let’s Connect
+        </a>
+
+        <a class="btn-secondary" href="case-studies.html">
+          View Case Studies
+        </a>
       </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
       <div>
-        <div class="footer-brand">Linda</div>
-        <div>© 2026 Linda Laryea. Designed with research, empathy, and accessibility in mind.</div>
+        <div class="footer-brand">Linda Laryea</div>
+        <div>
+          © 2026 Linda Laryea. Designed with research, empathy, and accessibility in mind.
+        </div>
       </div>
+
+      <div></div>
 
       <div class="footer-links">
         <a href="index.html">Home</a>
-        <a href="index.html#work">Case Studies</a>
+        <a href="case-studies.html">Case Studies</a>
         <a class="active" href="about.html">About Me</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="cv.html">CV</a>
+        <a href="contact.html">Contact</a>
       </div>
     </footer>
+
   </main>
 </body>
 </html>
