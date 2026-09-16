@@ -183,28 +183,25 @@
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
       gap: 42px;
-      align-items: center;
+     .hero {
+  background: var(--soft-purple);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 42px;
+  align-items: start;
+}
     }
+.hero > div:first-child {
+  padding-top: 8px;
+}
+ .hero-section-label {
+  margin-bottom: 20px;
+}
 
-    .case-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--magenta);
-      text-transform: uppercase;
-      font-size: 12px;
-      letter-spacing: 1px;
-      font-weight: 900;
-      margin-bottom: 22px;
-    }
-
-    .case-label::before {
-      content: "";
-      width: 42px;
-      height: 3px;
-      background: var(--gold);
-      border-radius: 999px;
-    }
+  
 
     .hero h1 {
       font-size: clamp(46px, 6vw, 68px);
@@ -224,21 +221,25 @@
       max-width: 620px;
     }
 
-    .hero-image {
-      background: #FFFFFF;
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      overflow: hidden;
-      padding: 14px;
-    }
+.hero-image {
+  width: 100%;
+  height: 100%;
+  min-height: 390px;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 10px;
+  overflow: hidden;
+}
 
-    .hero-image img {
-      width: 100%;
-      height: 390px;
-      border-radius: 18px;
-      object-fit: cover;
-    }
-
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 370px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 18px;
+}
     /* PROJECT OVERVIEW */
 
     .overview-grid {
@@ -678,11 +679,17 @@
 
     /* RESPONSIVE */
 
-    @media (max-width: 1000px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+ @media (max-width: 1000px) {
+  .hero-image {
+    height: auto;
+    min-height: 0;
+  }
+
+  .hero-image img {
+    height: auto;
+    min-height: 0;
+  }
+}
 
       .nav-links {
         flex-wrap: wrap;
@@ -740,7 +747,8 @@
     <!-- HERO -->
     <section class="hero">
       <div>
-        <div class="case-label">UX Research Case Study</div>
+     <div class="gold-line"></div>
+<div class="section-label hero-section-label">UX Research Case Study</div>
 
         <h1>
           Elysian Fields
