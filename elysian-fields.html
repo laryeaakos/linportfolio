@@ -61,7 +61,9 @@
       padding: 24px 0 70px;
     }
 
-    /* NAV */
+    /* =========================
+       NAVIGATION
+    ========================== */
 
     .navbar {
       border-bottom: 1px solid var(--border);
@@ -99,7 +101,7 @@
 
     .nav-button {
       background: var(--magenta);
-      color: #FFFFFF;
+      color: #FFFFFF !important;
       padding: 13px 22px;
       border-radius: 12px;
       font-weight: 800;
@@ -114,7 +116,9 @@
       font-weight: 800;
     }
 
-    /* SHARED SECTION STYLE */
+    /* =========================
+       SHARED SECTION STYLES
+    ========================== */
 
     .section {
       margin-top: 30px;
@@ -170,29 +174,30 @@
     .subsection-heading p {
       color: var(--body);
       font-size: 15px;
-      max-width: 780px;
+      line-height: 1.7;
+      max-width: 800px;
     }
 
-    /* HERO */
+    /* =========================
+       HERO
+    ========================== */
 
     .hero {
       background: var(--soft-purple);
       border: 1px solid var(--border);
       border-radius: 28px;
       padding: 40px;
+
       display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
+      grid-template-columns: 1.12fr 0.88fr;
       gap: 44px;
       align-items: center;
+
       box-shadow: var(--shadow);
     }
 
     .hero-copy-wrap {
       max-width: 650px;
-    }
-
-    .hero .gold-line {
-      margin-bottom: 14px;
     }
 
     .hero .section-label {
@@ -207,8 +212,8 @@
     }
 
     .hero h1 span {
-      color: var(--magenta);
       display: block;
+      color: var(--magenta);
     }
 
     .hero-copy {
@@ -218,33 +223,35 @@
       max-width: 620px;
     }
 
-.hero-image {
-  width: 100%;
-  background: #FFFFFF;
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 10px;
-  overflow: hidden;
-  align-self: center;
+    .hero-image {
+      width: 100%;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 10px;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-.hero-image img {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: 340px;
+      overflow: hidden;
+    }
 
-  object-fit: contain;
-  object-position: center;
+    .hero-image img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 340px;
 
-  border-radius: 16px;
-}
+      object-fit: contain;
+      object-position: center;
 
-    /* PROJECT OVERVIEW */
+      border-radius: 16px;
+    }
+
+    /* =========================
+       PROJECT OVERVIEW
+    ========================== */
 
     .overview-grid {
       display: grid;
@@ -306,7 +313,9 @@
       line-height: 1.75;
     }
 
-    /* RESEARCH */
+    /* =========================
+       RESEARCH
+    ========================== */
 
     .research-summary {
       display: grid;
@@ -353,6 +362,7 @@
       border: 1px solid var(--border);
       border-radius: 18px;
       padding: 22px;
+
       display: grid;
       grid-template-columns: 48px 1fr;
       gap: 16px;
@@ -364,8 +374,10 @@
       background: var(--magenta);
       color: #FFFFFF;
       border-radius: 50%;
+
       display: grid;
       place-items: center;
+
       font-size: 16px;
       font-weight: 900;
     }
@@ -381,7 +393,9 @@
       line-height: 1.7;
     }
 
-    /* VISUAL CARDS */
+    /* =========================
+       PERSONA / JOURNEY VISUALS
+    ========================== */
 
     .visual-card {
       margin-top: 24px;
@@ -393,86 +407,77 @@
 
     .visual-card img {
       width: 100%;
+      height: auto;
       border-radius: 14px;
       object-fit: contain;
     }
 
-    .visual-caption {
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.6;
-      margin-top: 12px;
-    }
-
-    /* DIGITAL WIREFRAMES + MOCKUPS SAME SIZE */
+    /* =========================
+       LOW-FIDELITY WIREFRAMES
+    ========================== */
 
     .design-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      margin-top: 24px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 28px;
     }
 
     .design-card {
+      background: var(--soft);
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 18px;
-      background: var(--soft);
+      padding: 20px;
+
       display: flex;
       flex-direction: column;
-      min-height: 620px;
     }
 
     .design-card h3 {
       font-size: 18px;
-      margin-bottom: 12px;
+      line-height: 1.35;
+      margin-bottom: 16px;
+    }
+
+    .design-image-frame {
+      width: 100%;
+      height: 420px;
+
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+
+      padding: 16px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      overflow: hidden;
+    }
+
+    .design-image-frame img {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+      object-position: center;
+
+      border-radius: 12px;
     }
 
     .design-card p {
       color: var(--body);
       font-size: 13px;
       line-height: 1.7;
-      margin-top: 14px;
-    }
-.design-image-frame {
-  height: 420px;
-  background: #FFFFFF;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.design-image-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-  border-radius: 12px;
-}
-
-    .comparison-image-frame {
-      height: 430px;
-      background: #FFFFFF;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 14px;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
+      margin-top: 16px;
     }
 
-    .comparison-image-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      border-radius: 12px;
-    }
-
-    /* USABILITY FINDINGS */
+    /* =========================
+       USABILITY FINDINGS
+    ========================== */
 
     .findings-grid {
       display: grid;
@@ -501,7 +506,9 @@
       line-height: 1.7;
     }
 
-    /* REFINEMENTS */
+    /* =========================
+       REFINEMENT
+    ========================== */
 
     .refinement-grid {
       display: grid;
@@ -515,9 +522,9 @@
       border-radius: 20px;
       padding: 18px;
       background: #FFFFFF;
+
       display: flex;
       flex-direction: column;
-      min-height: 620px;
     }
 
     .refinement-card h3 {
@@ -532,6 +539,33 @@
       margin-bottom: 14px;
     }
 
+    .comparison-image-frame {
+      width: 100%;
+      height: 420px;
+
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+
+      padding: 14px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      overflow: hidden;
+    }
+
+    .comparison-image-frame img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+      object-position: center;
+
+      border-radius: 12px;
+    }
+
     .final-image-card {
       margin-top: 24px;
       background: #FFFFFF;
@@ -542,38 +576,47 @@
 
     .final-image-card img {
       width: 100%;
+      height: auto;
       border-radius: 14px;
       object-fit: contain;
     }
 
-    /* ACCESSIBILITY */
+    /* =========================
+       ACCESSIBILITY
+    ========================== */
 
     .access-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
-      margin-top: 28px;
+      margin-top: 36px;
     }
 
     .access-card {
       background: #F9FAFB;
       border: 1px solid #E5E7EB;
       border-radius: 20px;
-      padding: 28px 22px 22px;
+
+      padding: 32px 22px 22px;
+
       position: relative;
     }
 
     .access-number {
       width: 54px;
       height: 54px;
+
       border-radius: 50%;
       background: var(--green);
       color: #FFFFFF;
+
       display: grid;
       place-items: center;
+
       font-size: 22px;
       font-weight: 900;
-      margin: -48px auto 22px;
+
+      margin: -52px auto 22px;
     }
 
     .access-card h3 {
@@ -593,7 +636,9 @@
       margin-bottom: 10px;
     }
 
-    /* TAKEAWAYS */
+    /* =========================
+       TAKEAWAYS
+    ========================== */
 
     .takeaway-grid {
       display: grid;
@@ -629,7 +674,9 @@
       margin-bottom: 18px;
     }
 
-    /* NEXT STEPS */
+    /* =========================
+       NEXT STEPS
+    ========================== */
 
     .next-grid {
       display: grid;
@@ -649,10 +696,13 @@
       width: 40px;
       height: 40px;
       border-radius: 50%;
+
       display: grid;
       place-items: center;
+
       background: #4B5563;
       color: #FFFFFF;
+
       font-weight: 900;
       margin-bottom: 16px;
     }
@@ -669,14 +719,20 @@
       line-height: 1.7;
     }
 
-    /* CTA */
+    /* =========================
+       CTA
+    ========================== */
 
     .cta {
       margin-top: 34px;
+
       background: var(--magenta);
       border-radius: 26px;
+
       padding: 40px;
+
       color: #FFFFFF;
+
       display: grid;
       grid-template-columns: 1fr auto;
       align-items: center;
@@ -697,21 +753,27 @@
     .cta-button {
       background: #FFFFFF;
       color: var(--magenta);
+
       border-radius: 12px;
       padding: 14px 22px;
+
       font-weight: 900;
       white-space: nowrap;
     }
 
-    /* FOOTER */
+    /* =========================
+       FOOTER
+    ========================== */
 
     footer {
       margin-top: 60px;
       border-top: 1px solid var(--border);
       padding-top: 34px;
+
       display: flex;
       justify-content: space-between;
       gap: 24px;
+
       color: var(--muted);
       font-size: 13px;
     }
@@ -722,9 +784,12 @@
       font-weight: 800;
     }
 
-    /* RESPONSIVE */
+    /* =========================
+       RESPONSIVE
+    ========================== */
 
     @media (max-width: 1000px) {
+
       .navbar {
         flex-direction: column;
         align-items: flex-start;
@@ -754,19 +819,18 @@
         padding: 30px;
       }
 
-      .hero-image img {
+      .hero-image {
         height: auto;
       }
 
-      .design-card,
-      .refinement-card {
-        min-height: auto;
+      .hero-image img {
+        height: auto;
+        max-height: none;
       }
 
       .design-image-frame,
       .comparison-image-frame {
-        height: auto;
-        min-height: 320px;
+        height: 390px;
       }
 
       .cta-button {
@@ -777,36 +841,90 @@
         flex-direction: column;
       }
     }
+
+    @media (max-width: 600px) {
+
+      .page {
+        width: min(100% - 20px, 1180px);
+      }
+
+      .section {
+        padding: 24px;
+      }
+
+      .hero {
+        padding: 24px;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .design-image-frame,
+      .comparison-image-frame {
+        height: 320px;
+      }
+    }
   </style>
 </head>
 
 <body>
+
   <main class="page">
 
-    <!-- NAV -->
-    <nav class="navbar">
-      <a href="index.html">
+    <!-- NAVIGATION -->
+
+    <nav class="navbar" aria-label="Main navigation">
+
+      <a href="index.html" aria-label="Linda Laryea portfolio home">
         <div class="brand-name">Linda Laryea</div>
       </a>
 
       <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a class="active" href="case-studies.html">Case Studies</a>
-        <a href="about.html">About Me</a>
-        <a href="cv.html">CV</a>
-        <a class="nav-button" href="contact.html">Let’s Connect</a>
+
+        <a href="index.html">
+          Home
+        </a>
+
+        <a class="active" href="case-studies.html">
+          Case Studies
+        </a>
+
+        <a href="about.html">
+          About Me
+        </a>
+
+        <a href="cv.html">
+          CV
+        </a>
+
+        <a class="nav-button" href="contact.html">
+          Let’s Connect
+        </a>
+
       </div>
+
     </nav>
+
+
+    <!-- BACK -->
 
     <a class="back-link" href="case-studies.html">
       ← Back to Case Studies
     </a>
 
+
     <!-- HERO -->
+
     <section class="hero">
+
       <div class="hero-copy-wrap">
+
         <div class="gold-line"></div>
-        <div class="section-label">UX Research Case Study</div>
+
+        <div class="section-label">
+          UX Research Case Study
+        </div>
 
         <h1>
           Elysian Fields
@@ -818,21 +936,35 @@
           friction through clear hierarchy, accessible identification, and a
           more reliable arrival workflow for teachers and administrators.
         </p>
+
       </div>
+
 
       <div class="hero-image">
+
         <img
           src="elysian-kiosk.png"
-          alt="Elysian Fields attendance kiosk in a school entry environment"
+          alt="Elysian Fields RFID attendance kiosk in a school entrance"
         />
+
       </div>
+
     </section>
 
+
     <!-- PROJECT OVERVIEW -->
+
     <section class="section">
+
       <div class="gold-line"></div>
-      <div class="section-label">Project Overview</div>
-      <h2 class="section-title">Designing around the real workflow</h2>
+
+      <div class="section-label">
+        Project Overview
+      </div>
+
+      <h2 class="section-title">
+        Designing around the real workflow
+      </h2>
 
       <p class="section-intro">
         The project took approximately eight months and was led through a
@@ -841,54 +973,93 @@
         kiosk interface.
       </p>
 
+
       <div class="overview-grid">
+
         <article class="overview-card">
           <strong>Product</strong>
-          <p>Automated attendance kiosk for teachers and administrators.</p>
+          <p>
+            Automated attendance kiosk for teachers and administrators.
+          </p>
         </article>
+
 
         <article class="overview-card">
           <strong>Duration</strong>
-          <p>Approximately 8 months.</p>
+          <p>
+            Approximately 8 months.
+          </p>
         </article>
+
 
         <article class="overview-card">
           <strong>My Role</strong>
-          <p>Lead Researcher & Designer — research-led.</p>
+          <p>
+            Lead Researcher & Designer — research-led.
+          </p>
         </article>
+
 
         <article class="overview-card">
           <strong>Responsibilities</strong>
-          <p>Cognitive research, interviews, workflow analysis and high-fidelity design.</p>
+          <p>
+            Cognitive research, interviews, workflow analysis and
+            high-fidelity design.
+          </p>
         </article>
+
       </div>
 
+
       <div class="problem-goal">
+
         <article class="info-panel problem-panel">
-          <h3>The problem</h3>
+
+          <h3>
+            The problem
+          </h3>
+
           <p>
             A manual paper attendance book forced teachers to remember and
             enter arrival times later. Delayed recall created inaccurate data,
             forgotten entries, and additional administrative friction.
           </p>
+
         </article>
 
+
         <article class="info-panel goal-panel">
-          <h3>The goal</h3>
+
+          <h3>
+            The goal
+          </h3>
+
           <p>
             Identify the real friction points and replace unreliable
             memory-based attendance tracking with an accessible, intuitive
             kiosk tailored to the arrival environment.
           </p>
+
         </article>
+
       </div>
+
     </section>
 
+
     <!-- UNDERSTANDING THE USER -->
+
     <section class="section">
+
       <div class="gold-line"></div>
-      <div class="section-label">Understanding the User</div>
-      <h2 class="section-title">Research changed the direction of the product</h2>
+
+      <div class="section-label">
+        Understanding the User
+      </div>
+
+      <h2 class="section-title">
+        Research changed the direction of the product
+      </h2>
 
       <p class="section-intro">
         Structured interviews with five key participants mapped the existing
@@ -896,153 +1067,249 @@
         was actually recorded.
       </p>
 
+
       <div class="research-summary">
+
         <article class="research-card hypothesis">
-          <h3>Initial hypothesis</h3>
+
+          <h3>
+            Initial hypothesis
+          </h3>
+
           <p>
             I assumed users were generally dissatisfied with the current
             attendance system and wanted the entire workflow replaced.
           </p>
+
         </article>
 
+
         <article class="research-card reality">
-          <h3>What the research showed</h3>
+
+          <h3>
+            What the research showed
+          </h3>
+
           <p>
             Users were comfortable with the familiar routine. The critical
             failure was inaccurate data caused by delayed logging and reliance
             on memory.
           </p>
+
         </article>
+
       </div>
+
 
       <div class="subsection-heading">
-        <h3>Research pain points</h3>
+
+        <h3>
+          Research pain points
+        </h3>
+
       </div>
 
+
       <div class="pain-grid">
+
         <article class="pain-card">
-          <div class="pain-number">1</div>
+
+          <div class="pain-number">
+            1
+          </div>
+
           <div>
-            <h3>Delayed memory-based logging</h3>
+
+            <h3>
+              Delayed memory-based logging
+            </h3>
+
             <p>
               Teachers often remembered attendance later in the day, producing
               inaccurate times, forgotten entries, and retroactive corrections.
             </p>
+
           </div>
+
         </article>
+
 
         <article class="pain-card">
-          <div class="pain-number">2</div>
+
+          <div class="pain-number">
+            2
+          </div>
+
           <div>
-            <h3>The system missed the natural entry path</h3>
+
+            <h3>
+              The system missed the natural entry path
+            </h3>
+
             <p>
-              The paper book did not intercept the user during arrival. Busy
-              educators could completely forget to sign in during hectic
+              The paper book did not intercept the user during arrival.
+              Busy educators could completely forget to sign in during hectic
               morning routines.
             </p>
+
           </div>
+
         </article>
+
       </div>
 
+
+      <!-- PERSONA -->
+
       <div class="subsection-heading">
-        <h3>Persona: Vivian</h3>
+
+        <h3>
+          Persona: Vivian
+        </h3>
+
         <p>
           Vivian represents a busy early childhood educator working in a
           high-distraction morning environment.
         </p>
+
       </div>
 
+
       <div class="visual-card">
+
         <img
           src="elysian-persona-vivian.png"
           alt="Vivian persona showing goals, frustrations and attendance problem statement"
         />
+
       </div>
 
+
+      <!-- JOURNEY MAP -->
+
       <div class="subsection-heading">
-        <h3>User journey map</h3>
+
+        <h3>
+          User journey map
+        </h3>
+
         <p>
           Mapping Vivian’s arrival exposed the real design opportunity:
           attendance needed to become part of the physical arrival path rather
           than another task to remember.
         </p>
+
       </div>
+
 
       <div class="visual-card">
+
         <img
           src="elysian-journey-map.png"
-          alt="Vivian user journey map showing arrival, task displacement, friction and correction"
+          alt="Vivian user journey map"
         />
+
       </div>
+
     </section>
 
+
     <!-- STARTING THE DESIGN -->
-<section class="section">
-  <div class="gold-line"></div>
-  <div class="section-label">Starting the Design</div>
 
-  <h2 class="section-title">
-    The first concept started as a mobile attendance app
-  </h2>
+    <section class="section">
 
-  <p class="section-intro">
-    Early digital wireframes explored a mobile-first attendance flow.
-    The concept focused on giving staff a simple way to identify themselves,
-    view their arrival time, and confirm attendance with minimal interaction.
-    Usability testing later showed that the mobile format created unnecessary
-    cognitive and practical friction, leading the design toward an RFID kiosk.
-  </p>
+      <div class="gold-line"></div>
 
-  <div class="design-grid">
-
-    <article class="design-card">
-      <h3>Low-fidelity wireframe — Clock-in state</h3>
-
-      <div class="design-image-frame">
-       <img
-  src="elysian-lowfi-clockin-clean.png"
-  alt="Low-fidelity mobile attendance app wireframe showing Vivian and the Clock In action"
-/>
-          alt="Low-fidelity mobile attendance app wireframe showing Vivian, the current time and a Clock In button"
-        />
+      <div class="section-label">
+        Starting the Design
       </div>
 
-      <p>
-        The initial clock-in screen focused on three pieces of information:
-        user identity, arrival time, and one clear primary action.
-        The goal was to reduce the paper attendance process to a simple
-        digital confirmation.
+      <h2 class="section-title">
+        The first concept started as a mobile attendance app
+      </h2>
+
+      <p class="section-intro">
+        Early digital wireframes explored a mobile-first attendance flow.
+        The concept focused on giving staff a simple way to identify themselves,
+        view their arrival time, and confirm attendance with minimal interaction.
+        Usability testing later showed that the mobile format created unnecessary
+        cognitive and practical friction, leading the design toward an RFID kiosk.
       </p>
-    </article>
 
-    <article class="design-card">
-      <h3>Low-fidelity wireframe — Confirmation state</h3>
 
-      <div class="design-image-frame">
-       <img
-  src="elysian-lowfi-confirmed-clean.png"
-  alt="Low-fidelity mobile attendance confirmation wireframe for Vivian"
-/>
-          alt="Low-fidelity mobile attendance confirmation wireframe showing Vivian and a successful attendance confirmation"
-        />
+      <div class="design-grid">
+
+        <!-- CLOCK-IN -->
+
+        <article class="design-card">
+
+          <h3>
+            Low-fidelity wireframe — Clock-in state
+          </h3>
+
+          <div class="design-image-frame">
+
+            <img
+              src="elysian-lowfi-clockin-clean.png"
+              alt="Low-fidelity mobile attendance app wireframe showing Vivian and the Clock In action"
+            />
+
+          </div>
+
+          <p>
+            The initial clock-in screen focused on three pieces of information:
+            user identity, arrival time, and one clear primary action.
+            The goal was to reduce the paper attendance process to a simple
+            digital confirmation.
+          </p>
+
+        </article>
+
+
+        <!-- CONFIRMATION -->
+
+        <article class="design-card">
+
+          <h3>
+            Low-fidelity wireframe — Confirmation state
+          </h3>
+
+          <div class="design-image-frame">
+
+            <img
+              src="elysian-lowfi-confirmed-clean.png"
+              alt="Low-fidelity mobile attendance confirmation wireframe showing Vivian and successful attendance confirmation"
+            />
+
+          </div>
+
+          <p>
+            The confirmation state was designed to provide immediate closure
+            after clocking in. Vivian’s identity, timestamp, and success message
+            make it clear that attendance has been recorded before the
+            interface returns to the home state.
+          </p>
+
+        </article>
+
       </div>
 
-      <p>
-        The confirmation state was designed to give immediate closure after
-        clocking in. Vivian’s identity, timestamp, and success message make it
-        clear that attendance has been recorded before the interface returns
-        to the home state.
-      </p>
-    </article>
+    </section>
 
-  </div>
-</section>
 
     <!-- USABILITY STUDY -->
+
     <section class="section">
+
       <div class="gold-line"></div>
-      <div class="section-label">Usability Study</div>
-      <h2 class="section-title">Testing disproved the mobile-app direction</h2>
+
+      <div class="section-label">
+        Usability Study
+      </div>
+
+      <h2 class="section-title">
+        Testing disproved the mobile-app direction
+      </h2>
 
       <p class="section-intro">
         An unmoderated Maze study was conducted with the same five participants.
@@ -1050,43 +1317,80 @@
         behavioural reactions.
       </p>
 
+
       <div class="findings-grid">
+
         <article class="finding">
-          <strong>Hardware & accessibility mismatch</strong>
+
+          <strong>
+            Hardware & accessibility mismatch
+          </strong>
+
           <p>
             A significant portion of the target group did not actively rely on
             smartphones during working hours, creating an immediate adoption
             barrier.
           </p>
+
         </article>
 
+
         <article class="finding">
-          <strong>Elevated cognitive load</strong>
+
+          <strong>
+            Elevated cognitive load
+          </strong>
+
           <p>
             Locating a phone, opening an app, and navigating a login flow added
             steps during an already high-stress morning routine.
           </p>
+
         </article>
 
+
         <article class="finding">
-          <strong>UI friction</strong>
+
+          <strong>
+            UI friction
+          </strong>
+
           <p>
             The confirmation target was too small and the interface lacked a
             strong information hierarchy, leading to unnecessary frustration.
           </p>
+
         </article>
+
       </div>
+
     </section>
 
+
     <!-- REFINING THE DESIGN -->
+
     <section class="section">
+
       <div class="gold-line"></div>
-      <div class="section-label">Refining the Design</div>
-      <h2 class="section-title">Small visual changes addressed real behavioural problems</h2>
+
+      <div class="section-label">
+        Refining the Design
+      </div>
+
+      <h2 class="section-title">
+        Small visual changes addressed real behavioural problems
+      </h2>
+
 
       <div class="refinement-grid">
+
+        <!-- RFID CHANGE -->
+
         <article class="refinement-card">
-          <h3>Making the RFID interaction obvious</h3>
+
+          <h3>
+            Making the RFID interaction obvious
+          </h3>
 
           <p>
             Illuminating circles were added as a pre-attentive visual anchor,
@@ -1094,16 +1398,26 @@
             approaching the kiosk.
           </p>
 
+
           <div class="comparison-image-frame">
+
             <img
               src="attendance_kiosk_before_and_after.png"
-              alt="Before and after RFID state showing the added illuminated interaction rings"
+              alt="Before and after RFID interface state showing the added interaction rings"
             />
+
           </div>
+
         </article>
 
+
+        <!-- CONFIRMATION CHANGE -->
+
         <article class="refinement-card">
-          <h3>Adding closure to the confirmation state</h3>
+
+          <h3>
+            Adding closure to the confirmation state
+          </h3>
 
           <p>
             Users felt the transition back to the home screen was too sudden.
@@ -1111,51 +1425,85 @@
             kiosk ready for the next person.
           </p>
 
+
           <div class="comparison-image-frame">
+
             <img
               src="before_and_after_kiosk_usability_study.png"
-              alt="Before and after arrival confirmation state showing the added reset message"
+              alt="Before and after confirmation state showing the reset notification"
             />
+
           </div>
+
         </article>
+
       </div>
+
+
+      <!-- FINAL SCREENS -->
 
       <div class="subsection-heading">
-        <h3>Final interface states</h3>
+
+        <h3>
+          Final interface states
+        </h3>
+
         <p>
-          The final kiosk interface supports a visible RFID state, clear arrival
-          confirmation, and a manual PIN fallback path for users who cannot use
-          their card.
+          The final kiosk interface supports a visible RFID state, clear
+          arrival confirmation, and a manual PIN fallback path for users
+          who cannot use their card.
         </p>
+
       </div>
+
 
       <div class="final-image-card">
+
         <img
           src="attendance_kiosk_interface_states.png"
-          alt="Final Elysian Fields kiosk interface states: RFID, arrival confirmation, and manual PIN fallback"
+          alt="Final Elysian Fields kiosk interface showing RFID state, arrival confirmation state and manual PIN fallback state"
         />
+
       </div>
+
     </section>
 
+
     <!-- ACCESSIBILITY -->
+
     <section class="section">
+
       <div class="gold-line"></div>
-      <div class="section-label">Accessibility</div>
-      <h2 class="section-title">Accessibility considerations shaped the interaction</h2>
+
+      <div class="section-label">
+        Accessibility
+      </div>
+
+      <h2 class="section-title">
+        Accessibility considerations shaped the interaction
+      </h2>
 
       <p class="section-intro">
         Accessibility was considered across visual perception, motor precision,
-        cognitive load, processing time, and system feedback rather than treated
-        as a final visual check.
+        cognitive load, processing time, and system feedback rather than being
+        treated as a final visual check.
       </p>
 
-      <div class="access-grid">
-        <article class="access-card">
-          <div class="access-number">1</div>
 
-          <h3>Visual accessibility & color contrast</h3>
+      <div class="access-grid">
+
+        <article class="access-card">
+
+          <div class="access-number">
+            1
+          </div>
+
+          <h3>
+            Visual accessibility & color contrast
+          </h3>
 
           <ul>
+
             <li>
               High contrast supports users with low vision and color vision
               deficiencies.
@@ -1166,15 +1514,24 @@
               enlarged so it could be read from a distance and in different
               lighting conditions.
             </li>
+
           </ul>
+
         </article>
 
-        <article class="access-card">
-          <div class="access-number">2</div>
 
-          <h3>Cognitive load & motor precision</h3>
+        <article class="access-card">
+
+          <div class="access-number">
+            2
+          </div>
+
+          <h3>
+            Cognitive load & motor precision
+          </h3>
 
           <ul>
+
             <li>
               RFID proximity interaction removes the fine motor precision
               required by small smartphone touch targets.
@@ -1185,18 +1542,27 @@
               trigger, supporting users experiencing stress or cognitive
               fatigue during morning transitions.
             </li>
+
           </ul>
+
         </article>
 
-        <article class="access-card">
-          <div class="access-number">3</div>
 
-          <h3>System transparency & temporal constraints</h3>
+        <article class="access-card">
+
+          <div class="access-number">
+            3
+          </div>
+
+          <h3>
+            System transparency & temporal constraints
+          </h3>
 
           <ul>
+
             <li>
-              The reset notification gives users additional time to verify the
-              success state before the screen changes.
+              The reset notification gives users additional time to verify
+              the success state before the screen changes.
             </li>
 
             <li>
@@ -1204,20 +1570,38 @@
               confirmation to support users with visual impairments or users
               looking away while tapping their badge.
             </li>
+
           </ul>
+
         </article>
+
       </div>
+
     </section>
 
+
     <!-- TAKEAWAYS -->
+
     <section class="section">
+
       <div class="gold-line"></div>
-      <div class="section-label">Going Forward</div>
-      <h2 class="section-title">Takeaways</h2>
+
+      <div class="section-label">
+        Going Forward
+      </div>
+
+      <h2 class="section-title">
+        Takeaways
+      </h2>
+
 
       <div class="takeaway-grid">
+
         <article class="takeaway-card">
-          <h3>Impact</h3>
+
+          <h3>
+            Impact
+          </h3>
 
           <p class="quote">
             “True UX maturity means designing for the user’s environment,
@@ -1226,92 +1610,154 @@
 
           <p>
             Testing disproved the mobile concept, so rather than patching the
-            interface, the project moved to the larger system problem. The
-            result was a shift from a digital chore to a physical intervention
-            embedded in the user’s natural arrival environment.
+            interface, the project moved to the larger system problem.
+            The result was a shift from a digital chore to a physical
+            intervention embedded in the user’s natural arrival environment.
           </p>
+
         </article>
+
 
         <article class="takeaway-card">
-          <h3>What I learned</h3>
+
+          <h3>
+            What I learned
+          </h3>
 
           <p>
-            This project changed how I define a successful interface. Sometimes
-            the strongest user experience is the one that requires the least
-            attention to a screen.
+            This project changed how I define a successful interface.
+            Sometimes the strongest user experience is the one that requires
+            the least attention to a screen.
           </p>
+
         </article>
+
       </div>
+
     </section>
 
+
     <!-- NEXT STEPS -->
+
     <section class="section">
+
       <div class="gold-line"></div>
-      <div class="section-label">Next Steps</div>
-      <h2 class="section-title">Where I would take the project next</h2>
+
+      <div class="section-label">
+        Next Steps
+      </div>
+
+      <h2 class="section-title">
+        Where I would take the project next
+      </h2>
+
 
       <div class="next-grid">
-        <article class="next-card">
-          <div class="next-number">1</div>
 
-          <h3>Hardware prototyping & contextual testing</h3>
+        <article class="next-card">
+
+          <div class="next-number">
+            1
+          </div>
+
+          <h3>
+            Hardware prototyping & contextual testing
+          </h3>
 
           <p>
             Build a physical prototype using a mounted display and RFID reader,
             then test ergonomics and placement in a real school hallway to
             validate the natural-entry-path hypothesis.
           </p>
+
         </article>
 
-        <article class="next-card">
-          <div class="next-number">2</div>
 
-          <h3>Multi-user stress testing</h3>
+        <article class="next-card">
+
+          <div class="next-number">
+            2
+          </div>
+
+          <h3>
+            Multi-user stress testing
+          </h3>
 
           <p>
             Simulate the morning rush with several educators arriving together
             to evaluate queue behaviour and optimise the reset threshold.
           </p>
+
         </article>
 
-        <article class="next-card">
-          <div class="next-number">3</div>
 
-          <h3>Administrative dashboard integration</h3>
+        <article class="next-card">
+
+          <div class="next-number">
+            3
+          </div>
+
+          <h3>
+            Administrative dashboard integration
+          </h3>
 
           <p>
             Design the secondary administrator and payroll ecosystem so
-            real-time kiosk data can support attendance monitoring, anomaly
-            detection, and staff scheduling without manual data entry.
+            real-time kiosk data can support attendance monitoring,
+            anomaly detection, and staff scheduling without manual data entry.
           </p>
+
         </article>
+
       </div>
+
     </section>
+
 
     <!-- CTA -->
+
     <section class="cta">
+
       <div>
-        <h2>Interested in accessible, context-aware design?</h2>
+
+        <h2>
+          Interested in accessible, context-aware design?
+        </h2>
 
         <p>
-          Let’s connect to discuss UX research, interaction design, and
-          human-centred product work.
+          Let’s connect to discuss UX research, interaction design,
+          and human-centred product work.
         </p>
+
       </div>
 
-      <a class="cta-button" href="contact.html">
+
+      <a
+        class="cta-button"
+        href="contact.html"
+      >
         Let’s Connect
       </a>
+
     </section>
 
+
+    <!-- FOOTER -->
+
     <footer>
-      <div class="footer-brand">Linda Laryea</div>
+
+      <div class="footer-brand">
+        Linda Laryea
+      </div>
 
       <div>
-        © 2026 Linda Laryea. Designed with research, empathy, and accessibility in mind.
+        © 2026 Linda Laryea. Designed with research, empathy,
+        and accessibility in mind.
       </div>
+
     </footer>
 
   </main>
+
 </body>
 </html>
