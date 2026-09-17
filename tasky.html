@@ -644,88 +644,415 @@
     /* =========================
        CONCEPT EXPLORATION
     ========================== */
+/* =========================
+   CONCEPT EXPLORATION
+========================== */
 
-    .concept-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+.concept-section {
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
 
-      gap: 17px;
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 
-      margin-top: 28px;
-    }
+  gap: 20px;
 
-    .concept-card {
-      background: #FFFFFF;
+  margin-top: 30px;
+}
 
-      border: 1px solid var(--border);
-      border-radius: 18px;
+.concept-card {
+  position: relative;
 
-      padding: 14px;
-    }
+  background: #FFFFFF;
 
-    .concept-screen {
-      height: 160px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
 
-      border-radius: 13px;
+  padding: 14px 14px 22px;
 
-      margin-bottom: 14px;
+  box-shadow: 0 12px 30px rgba(54, 45, 100, 0.035);
+}
 
-      padding: 17px;
+.featured-concept {
+  border-color: #CEC4FF;
 
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+  box-shadow:
+    0 16px 35px rgba(109, 93, 246, 0.09);
+}
 
-    .concept-card:nth-child(1) .concept-screen {
-      background: #F3F1F8;
-    }
+.concept-screen {
+  width: 100%;
+  height: 230px;
 
-    .concept-card:nth-child(2) .concept-screen {
-      background: var(--purple-soft);
-    }
+  border-radius: 16px;
 
-    .concept-card:nth-child(3) .concept-screen {
-      background: var(--mint);
-    }
+  padding: 18px;
 
-    .fake-line {
-      height: 9px;
+  margin-bottom: 20px;
 
-      border-radius: 999px;
+  overflow: hidden;
+}
 
-      background: rgba(88, 79, 150, 0.18);
+.concept-card:nth-child(1) .concept-screen {
+  background: #F3F1F8;
+}
 
-      margin-bottom: 8px;
-    }
+.concept-card:nth-child(2) .concept-screen {
+  background: #F1EDFF;
+}
 
-    .fake-line.small {
-      width: 55%;
-    }
+.concept-card:nth-child(3) .concept-screen {
+  background: #EAF8F1;
+}
 
-    .fake-line.medium {
-      width: 78%;
-    }
 
-    .fake-panel {
-      height: 65px;
+/* COMMON MINI UI */
 
-      border-radius: 10px;
+.concept-line {
+  display: block;
 
-      background: rgba(255,255,255,0.75);
-    }
+  height: 8px;
 
-    .concept-card h3 {
-      font-size: 15px;
-      margin-bottom: 5px;
-    }
+  background: rgba(91, 83, 153, 0.16);
 
-    .concept-card p {
-      color: var(--body);
+  border-radius: 999px;
 
-      font-size: 11px;
-      line-height: 1.55;
-    }
+  margin-bottom: 7px;
+}
+
+.line-long {
+  width: 72%;
+}
+
+.line-medium {
+  width: 58%;
+}
+
+.line-short {
+  width: 34%;
+}
+
+.concept-dot {
+  width: 18px;
+  height: 18px;
+
+  border-radius: 6px;
+
+  background: var(--purple);
+
+  flex-shrink: 0;
+}
+
+.purple-block {
+  background: #DDD5FF !important;
+}
+
+.peach-block {
+  background: #FFE9CC !important;
+}
+
+.mint-block {
+  background: #DDF4E8 !important;
+}
+
+
+/* CONCEPT 1 — EVERYTHING */
+
+.concept-topbar {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 17px;
+}
+
+.calendar-grid {
+  height: 155px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 7px;
+}
+
+.calendar-column {
+  background: rgba(255,255,255,0.75);
+
+  border-radius: 9px;
+
+  padding: 8px 6px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.calendar-column > span {
+  width: 55%;
+  height: 6px;
+
+  margin: 0 auto 3px;
+
+  background: rgba(91, 83, 153, 0.15);
+
+  border-radius: 999px;
+}
+
+.event-block {
+  min-height: 35px;
+
+  border-radius: 7px;
+}
+
+
+/* CONCEPT 2 — NOTICEBOARD */
+
+.noticeboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  margin-bottom: 13px;
+}
+
+.small-time-block {
+  width: 58px;
+  height: 34px;
+
+  border-radius: 8px;
+
+  background: rgba(255,255,255,0.8);
+}
+
+.noticeboard-main {
+  display: grid;
+  grid-template-columns: 1.5fr 0.75fr;
+
+  gap: 9px;
+}
+
+.notice-primary {
+  min-height: 112px;
+
+  background: rgba(255,255,255,0.78);
+
+  border-radius: 12px;
+
+  padding: 13px;
+}
+
+.mini-label {
+  display: block;
+
+  width: 72px;
+  height: 7px;
+
+  background: #DDD5FF;
+
+  border-radius: 999px;
+
+  margin-bottom: 11px;
+}
+
+.notice-icon {
+  width: 38px;
+  height: 38px;
+
+  border-radius: 50%;
+
+  background: #DDD5FF;
+
+  margin-bottom: 10px;
+}
+
+.notice-side {
+  display: grid;
+  gap: 8px;
+}
+
+.notice-small {
+  border-radius: 10px;
+
+  min-height: 52px;
+}
+
+.notice-bottom {
+  background: rgba(255,255,255,0.72);
+
+  border-radius: 10px;
+
+  padding: 8px 10px;
+
+  margin-top: 9px;
+}
+
+.notice-row {
+  height: 7px;
+
+  background: rgba(91, 83, 153, 0.13);
+
+  border-radius: 999px;
+
+  margin: 5px 0;
+}
+
+
+/* CONCEPT 3 — FOCUS */
+
+.concept-focus {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.focus-label {
+  color: var(--purple);
+
+  background: #FFFFFF;
+
+  border-radius: 999px;
+
+  padding: 5px 12px;
+
+  font-size: 8px;
+  font-weight: 900;
+
+  letter-spacing: 0.4px;
+
+  margin-bottom: 11px;
+}
+
+.focus-icon {
+  width: 58px;
+  height: 58px;
+
+  border-radius: 50%;
+
+  background: #D7CFFF;
+
+  margin-bottom: 12px;
+}
+
+.focus-title {
+  width: 58%;
+  height: 14px;
+
+  background: rgba(91, 83, 153, 0.23);
+
+  border-radius: 999px;
+
+  margin-bottom: 9px;
+}
+
+.focus-time {
+  width: 32%;
+  height: 11px;
+
+  background: #C5B9FF;
+
+  border-radius: 999px;
+
+  margin-bottom: 14px;
+}
+
+.focus-button {
+  width: 72%;
+  height: 25px;
+
+  border-radius: 999px;
+
+  background: var(--purple);
+
+  margin-bottom: 12px;
+}
+
+.focus-secondary {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 7px;
+}
+
+.focus-small-card {
+  height: 34px;
+
+  border-radius: 8px;
+}
+
+
+/* CARD CONTENT */
+
+.concept-number {
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  background: var(--purple-soft);
+  color: var(--purple);
+
+  font-size: 13px;
+  font-weight: 900;
+
+  margin-bottom: 12px;
+}
+
+.featured-concept .concept-number {
+  background: #FFF0D7;
+  color: #A66930;
+}
+
+.concept-card:nth-child(3) .concept-number {
+  background: var(--mint);
+  color: var(--mint-dark);
+}
+
+.concept-card h3 {
+  font-size: 17px;
+
+  margin-bottom: 7px;
+}
+
+.concept-card p {
+  color: var(--body);
+
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.concept-decision {
+  margin-top: 24px;
+
+  padding: 14px 17px;
+}
+
+.concept-decision strong {
+  color: var(--purple-dark);
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+
+  .concept-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .concept-screen {
+    height: 260px;
+  }
+
+}
 
     /* =========================
        PRODUCT STRATEGY
@@ -1609,105 +1936,192 @@
 
     <!-- CONCEPT EXPLORATION -->
 
-    <section class="section plain">
+  <section class="section plain concept-section">
 
-      <div class="tiny-label">
-        05 · Exploring the Concept
+  <div class="tiny-label">
+    05 · Exploring the Concept
+  </div>
+
+  <h2>
+    Exploring how family information should appear at home.
+  </h2>
+
+  <p class="section-intro">
+    I explored different ways of balancing shared visibility with a calm,
+    low-effort experience. Each direction tested a different level of
+    information density and focus.
+  </p>
+
+
+  <div class="concept-grid">
+
+    <!-- CONCEPT 1 -->
+    <article class="concept-card">
+
+      <div class="concept-screen concept-overview">
+
+        <div class="concept-topbar">
+          <span class="concept-dot"></span>
+          <span class="concept-line line-long"></span>
+          <span class="concept-line line-short"></span>
+        </div>
+
+        <div class="calendar-grid">
+
+          <div class="calendar-column">
+            <span></span>
+            <div class="event-block purple-block"></div>
+            <div class="event-block peach-block"></div>
+          </div>
+
+          <div class="calendar-column">
+            <span></span>
+            <div class="event-block mint-block"></div>
+          </div>
+
+          <div class="calendar-column">
+            <span></span>
+            <div class="event-block purple-block"></div>
+            <div class="event-block mint-block"></div>
+          </div>
+
+          <div class="calendar-column">
+            <span></span>
+            <div class="event-block peach-block"></div>
+          </div>
+
+        </div>
+
       </div>
 
-      <h2>
-        Exploring how family information should appear at home.
-      </h2>
+      <div class="concept-number">01</div>
 
-      <p class="section-intro">
-        I explored different ways of balancing shared visibility
-        with a calm, low-effort experience.
+      <h3>
+        Everything in one view
+      </h3>
+
+      <p>
+        A calendar-style overview that exposes as much family information
+        as possible at once.
       </p>
 
+    </article>
 
-      <div class="concept-grid">
 
-        <article class="concept-card">
+    <!-- CONCEPT 2 -->
+    <article class="concept-card featured-concept">
 
-          <div class="concept-screen">
+      <div class="concept-screen concept-noticeboard">
 
-            <div>
-              <div class="fake-line small"></div>
-              <div class="fake-line medium"></div>
-            </div>
+        <div class="noticeboard-header">
 
-            <div class="fake-panel"></div>
+          <div>
+            <span class="concept-line line-medium"></span>
+            <span class="concept-line line-short"></span>
+          </div>
+
+          <div class="small-time-block"></div>
+
+        </div>
+
+        <div class="noticeboard-main">
+
+          <div class="notice-primary">
+
+            <span class="mini-label"></span>
+
+            <div class="notice-icon"></div>
+
+            <span class="concept-line line-medium"></span>
+            <span class="concept-line line-short"></span>
 
           </div>
 
-          <h3>
-            Everything in one view
-          </h3>
 
-          <p>
-            Maximum information visibility in one place.
-          </p>
+          <div class="notice-side">
 
-        </article>
-
-
-        <article class="concept-card">
-
-          <div class="concept-screen">
-
-            <div>
-              <div class="fake-line small"></div>
-              <div class="fake-line medium"></div>
-            </div>
-
-            <div class="fake-panel"></div>
+            <div class="notice-small peach-block"></div>
+            <div class="notice-small mint-block"></div>
 
           </div>
 
-          <h3>
-            Shared noticeboard
-          </h3>
+        </div>
 
-          <p>
-            A calm family overview organised around shared context.
-          </p>
+        <div class="notice-bottom">
 
-        </article>
+          <div class="notice-row"></div>
+          <div class="notice-row"></div>
 
-
-        <article class="concept-card">
-
-          <div class="concept-screen">
-
-            <div>
-              <div class="fake-line small"></div>
-              <div class="fake-line medium"></div>
-            </div>
-
-            <div class="fake-panel"></div>
-
-          </div>
-
-          <h3>
-            One task at a time
-          </h3>
-
-          <p>
-            Prioritise what matters right now to reduce overload.
-          </p>
-
-        </article>
+        </div>
 
       </div>
 
+      <div class="concept-number">02</div>
 
-      <div class="note-bar">
-        Design direction: keep the shared visibility,
-        but make the current priority the strongest visual element.
+      <h3>
+        Shared noticeboard
+      </h3>
+
+      <p>
+        A balanced family hub that keeps shared plans visible while creating
+        a clear hierarchy around what matters most.
+      </p>
+
+    </article>
+
+
+    <!-- CONCEPT 3 -->
+    <article class="concept-card">
+
+      <div class="concept-screen concept-focus">
+
+        <div class="focus-label">
+          HAPPENING NOW
+        </div>
+
+        <div class="focus-icon"></div>
+
+        <div class="focus-title"></div>
+        <div class="focus-time"></div>
+
+        <div class="focus-button"></div>
+
+        <div class="focus-secondary">
+
+          <div class="focus-small-card peach-block"></div>
+          <div class="focus-small-card mint-block"></div>
+
+        </div>
+
       </div>
 
-    </section>
+      <div class="concept-number">03</div>
 
+      <h3>
+        One task at a time
+      </h3>
+
+      <p>
+        A focused direction that gives the current activity most of the
+        attention and keeps everything else secondary.
+      </p>
+
+    </article>
+
+  </div>
+
+
+  <div class="note-bar concept-decision">
+
+    <strong>Design direction:</strong>
+
+    The shared noticeboard offered the strongest balance — enough visibility
+    for the whole family, while still allowing the current priority to become
+    the strongest visual element.
+
+  </div>
+
+</section>
 
     <!-- PRODUCT STRATEGY -->
 
