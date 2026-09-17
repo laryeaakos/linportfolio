@@ -273,8 +273,21 @@
 
   background: #FFFFFF;
 }
-    .hero-text {
-  transform: translateY(-28px);
+/* Keep proper space between Back link and hero */
+.back-link {
+  margin: 30px 0 22px;
+}
+
+/* Do not let the hero move upward */
+.hero {
+  margin-top: 0;
+}
+
+/* Move ONLY the text slightly upward inside the hero */
+.hero-text {
+  position: relative;
+  top: -18px;
+  transform: none;
 }
 
     /* =========================
@@ -815,13 +828,11 @@
     /* =========================
        RESPONSIVE
     ========================== */
-
-    @media (max-width: 1000px) {
-
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+@media (max-width: 1000px) {
+  .hero-text {
+    top: 0;
+  }
+}
 
       .nav-links {
         flex-wrap: wrap;
@@ -943,32 +954,40 @@
 
 
     <!-- HERO -->
-<div class="hero-text">
-    <section class="hero">
+<a class="back-link" href="case-studies.html">
+  ← Back to Case Studies
+</a>
 
-      <div class="hero-copy-wrap">
+<section class="hero">
 
-        <div class="gold-line"></div>
+  <div class="hero-text">
 
-        <div class="section-label">
-          UX Research Case Study
-        </div>
+    <div class="gold-line"></div>
 
-        <h1>
-          Elysian Fields
-          <span>Attendance Kiosk</span>
-        </h1>
+    <div class="section-label">
+      UX Research Case Study
+    </div>
 
-        <p class="hero-copy">
-          An automated attendance kiosk designed to reduce morning clock-in
-          friction through clear hierarchy, accessible identification, and a
-          more reliable arrival workflow for teachers and administrators.
-        </p>
+    <h1>
+      Elysian Fields
+      <span>Attendance Kiosk</span>
+    </h1>
 
+    <p>
+      An automated attendance kiosk designed to reduce morning clock-in friction
+      through clear hierarchy, accessible identification, and a more reliable
+      arrival workflow for teachers and administrators.
+    </p>
+
+  </div>
+
+  <div class="hero-image hero-video">
+    <!-- your video -->
+  </div>
+
+</section>
       </div>
 
-
-      <div class="hero-image">
 
       <div class="hero-image hero-video">
   <video
