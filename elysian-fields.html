@@ -259,42 +259,38 @@
       font-size: 18px;
       line-height: 1.75;
     }
-.hero-points {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-
+.hero-kiosk-description {
   margin-top: 26px;
+
+  max-width: 640px;
+
+  padding: 18px 20px;
+
+  background: rgba(255, 255, 255, 0.62);
+
+  border: 1px solid var(--border);
+  border-radius: 16px;
 }
 
-.hero-point {
-  display: flex;
-  align-items: center;
-  gap: 9px;
+.hero-kiosk-description strong {
+  display: block;
 
-  color: var(--dark);
-
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1.3;
-}
-
-.hero-point-icon {
-  width: 34px;
-  height: 34px;
-
-  display: grid;
-  place-items: center;
-
-  flex-shrink: 0;
-
-  border-radius: 50%;
-
-  background: var(--soft-pink);
   color: var(--magenta);
 
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 900;
+
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+
+  margin-bottom: 7px;
+}
+
+.hero-kiosk-description p {
+  color: var(--body);
+
+  font-size: 13px;
+  line-height: 1.7;
 }
     .problem-feature {
   margin-top: 30px;
@@ -1177,6 +1173,20 @@
         </p>
 
       </div>
+      <div class="hero-kiosk-description">
+
+  <strong>
+    About the kiosk
+  </strong>
+
+  <p>
+    The Elysian Fields Attendance Kiosk is a shared, entry-point attendance
+    system designed for teachers and staff. Users identify themselves with
+    an RFID card, receive immediate confirmation of their recorded arrival
+    time, and the interface automatically resets for the next person.
+  </p>
+
+</div>
 
 
       <div class="hero-video-wrap">
@@ -1202,80 +1212,6 @@
           </video>
 
         </div>
-
-      </div>
-      <div class="hero-points">
-
-  <div class="hero-point">
-    <span class="hero-point-icon">◎</span>
-    <span>User-Centered<br>Design</span>
-  </div>
-
-  <div class="hero-point">
-    <span class="hero-point-icon">✓</span>
-    <span>Reliable &<br>Accurate</span>
-  </div>
-
-  <div class="hero-point">
-    <span class="hero-point-icon">♿</span>
-    <span>Inclusive &<br>Accessible</span>
-  </div>
-
-</div>
-
-    </section>
-    <section class="problem-feature">
-
-  <div class="problem-image">
-
-    <img
-      src="attendance-book.jpg"
-      alt="Previous paper attendance book used to record staff arrival times"
-    />
-
-  </div>
-
-
-  <div class="problem-content">
-
-    <div class="gold-line"></div>
-
-    <div class="section-label">
-      The Problem
-    </div>
-
-    <h2>
-      Manual attendance relied too heavily on memory.
-    </h2>
-
-    <p>
-      The existing paper-based attendance process required teachers
-      and staff to record their arrival time manually. When they did
-      not complete the task immediately, they had to remember the
-      exact time later.
-    </p>
-
-    <ul class="problem-list">
-
-      <li>
-        Delayed logging increased the chance of inaccurate arrival times.
-      </li>
-
-      <li>
-        Staff could forget to record attendance during busy morning routines.
-      </li>
-
-      <li>
-        The paper book was easy to miss because it was not naturally
-        positioned within the arrival workflow.
-      </li>
-
-    </ul>
-
-  </div>
-
-</section>
-
 
     <!-- =====================================
          PROJECT OVERVIEW
@@ -1345,6 +1281,59 @@
       </div>
 
     </section>
+
+    </section>
+    <section class="problem-feature">
+
+  <div class="problem-image">
+
+    <img
+      src="attendance-book.jpg"
+      alt="Previous paper attendance book used to record staff arrival times"
+    />
+
+  </div>
+
+
+  <div class="problem-content">
+
+    <div class="gold-line"></div>
+
+    <div class="section-label">
+      The Problem
+    </div>
+
+    <h2>
+      Manual attendance relied too heavily on memory.
+    </h2>
+
+    <p>
+      The existing paper-based attendance process required teachers
+      and staff to record their arrival time manually. When they did
+      not complete the task immediately, they had to remember the
+      exact time later.
+    </p>
+
+    <ul class="problem-list">
+
+      <li>
+        Delayed logging increased the chance of inaccurate arrival times.
+      </li>
+
+      <li>
+        Staff could forget to record attendance during busy morning routines.
+      </li>
+
+      <li>
+        The paper book was easy to miss because it was not naturally
+        positioned within the arrival workflow.
+      </li>
+
+    </ul>
+
+  </div>
+
+</section>
 
 
     <!-- =====================================
