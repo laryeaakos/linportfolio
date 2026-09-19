@@ -48,8 +48,10 @@
 
     body {
       font-family: Arial, Helvetica, sans-serif;
+
       background: var(--bg);
       color: var(--dark);
+
       line-height: 1.6;
     }
 
@@ -62,9 +64,16 @@
       font: inherit;
     }
 
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
     .page {
       width: min(1180px, calc(100% - 32px));
+
       margin: 0 auto;
+
       padding: 24px 0 70px;
     }
 
@@ -77,6 +86,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       gap: 24px;
 
       padding-bottom: 22px;
@@ -96,6 +106,7 @@
     .nav-links {
       display: flex;
       align-items: center;
+
       gap: 32px;
 
       font-size: 14px;
@@ -136,7 +147,9 @@
 
       display: grid;
       grid-template-columns: 1fr auto;
+
       gap: 36px;
+
       align-items: center;
 
       background: var(--purple-soft);
@@ -167,16 +180,18 @@
       font-weight: 900;
 
       letter-spacing: 1px;
+
       text-transform: uppercase;
     }
 
     .cv-header h1 {
+      margin-bottom: 14px;
+
       font-size: clamp(42px, 5vw, 58px);
+
       line-height: 1.04;
 
       letter-spacing: -1.7px;
-
-      margin-bottom: 14px;
     }
 
     .cv-header p {
@@ -190,13 +205,14 @@
 
 
     /* =====================================
-       CONTROLS
+       CV CONTROLS
     ====================================== */
 
     .cv-controls {
-      min-width: 230px;
+      width: 230px;
 
       display: grid;
+
       gap: 14px;
     }
 
@@ -233,11 +249,11 @@
     }
 
     .download-button {
+      min-height: 49px;
+
       display: flex;
       align-items: center;
       justify-content: center;
-
-      min-height: 49px;
 
       padding: 12px 18px;
 
@@ -256,11 +272,11 @@
 
 
     /* =====================================
-       CURRENT LANGUAGE INDICATOR
+       LANGUAGE LABEL
     ====================================== */
 
     .current-language {
-      margin-top: 22px;
+      margin-top: 28px;
 
       display: flex;
       align-items: center;
@@ -281,55 +297,29 @@
 
 
     /* =====================================
-       CV PDF DISPLAY
+       CV IMAGE DISPLAY
     ====================================== */
 
-/* =====================================
-   CV PDF DISPLAY
-===================================== */
+    .cv-display {
+      width: 100%;
 
-.cv-viewer {
-  margin-top: 14px;
+      margin-top: 16px;
 
-  padding: 0;
-  background: transparent;
+      display: flex;
+      justify-content: center;
 
-  border: none;
-  border-radius: 0;
-
-  box-shadow: none;
-}
-
-.cv-frame {
-  display: block;
-
-  width: 100%;
-  height: 1120px;
-
-  background: transparent;
-
-  border: none;
-  border-radius: 0;
-}
-
-    /* =====================================
-       OPEN PDF FALLBACK
-    ====================================== */
-
-    .pdf-fallback {
-      margin-top: 14px;
-
-      text-align: center;
-
-      color: var(--muted);
-
-      font-size: 12px;
+      background: transparent;
     }
 
-    .pdf-fallback a {
-      color: var(--magenta);
+    .cv-display img {
+      width: 100%;
+      max-width: 1040px;
 
-      font-weight: 800;
+      height: auto;
+
+      object-fit: contain;
+
+      background: transparent;
     }
 
 
@@ -338,7 +328,7 @@
     ====================================== */
 
     .cta {
-      margin-top: 34px;
+      margin-top: 38px;
 
       padding: 38px 40px;
 
@@ -346,6 +336,7 @@
       grid-template-columns: 1fr auto;
 
       gap: 25px;
+
       align-items: center;
 
       background: var(--magenta);
@@ -355,10 +346,11 @@
     }
 
     .cta h2 {
-      font-size: 30px;
-      line-height: 1.2;
-
       margin-bottom: 7px;
+
+      font-size: 30px;
+
+      line-height: 1.2;
     }
 
     .cta p {
@@ -387,10 +379,12 @@
 
     footer {
       margin-top: 55px;
+
       padding-top: 31px;
 
       display: flex;
       justify-content: space-between;
+
       gap: 22px;
 
       border-top: 1px solid var(--border);
@@ -421,6 +415,7 @@
 
       .nav-links {
         flex-wrap: wrap;
+
         gap: 18px;
       }
 
@@ -430,11 +425,6 @@
 
       .cv-controls {
         width: 100%;
-        min-width: 0;
-      }
-
-      .cv-frame {
-        height: 950px;
       }
 
       .cta {
@@ -448,6 +438,7 @@
       footer {
         flex-direction: column;
       }
+
     }
 
 
@@ -467,24 +458,21 @@
 
       .current-language {
         flex-direction: column;
+
         align-items: flex-start;
       }
 
-      .cv-viewer {
-        padding: 7px;
-      }
-
-      .cv-frame {
-        height: 700px;
+      .cv-display img {
+        width: 100%;
       }
 
       .cta {
         padding: 27px;
       }
+
     }
 
   </style>
-
 </head>
 
 
@@ -493,7 +481,9 @@
   <main class="page">
 
 
-    <!-- NAVIGATION -->
+    <!-- =====================================
+         NAVIGATION
+    ====================================== -->
 
     <nav class="navbar" aria-label="Main navigation">
 
@@ -539,9 +529,12 @@
     </nav>
 
 
-    <!-- CV HEADER -->
+    <!-- =====================================
+         CV HEADER
+    ====================================== -->
 
     <section class="cv-header">
+
 
       <div>
 
@@ -569,6 +562,7 @@
       <!-- LANGUAGE + DOWNLOAD -->
 
       <div class="cv-controls">
+
 
         <div
           class="language-switch"
@@ -609,7 +603,9 @@
     </section>
 
 
-    <!-- CURRENT VERSION -->
+    <!-- =====================================
+         CURRENT LANGUAGE
+    ====================================== -->
 
     <div class="current-language">
 
@@ -617,47 +613,32 @@
         CV — English
       </h2>
 
+
       <span>
-        Select a language above to switch versions.
+        Choose English or Deutsch above.
       </span>
 
     </div>
 
 
-    <!-- ACTUAL CV DISPLAY -->
+    <!-- =====================================
+         CV IMAGE
+    ====================================== -->
 
-    <section class="cv-viewer">
+    <section class="cv-display">
 
-      <iframe
-        id="cvFrame"
-        class="cv-frame"
-        src="Linda-Laryea-CV-EN.pdf#view=FitH"
-        title="Linda Laryea English CV"
-      >
-      </iframe>
+      <img
+        id="cvImage"
+        src="Linda-Laryea-CV-EN.png"
+        alt="Linda Laryea English CV"
+      />
 
     </section>
 
 
-    <!-- PDF FALLBACK -->
-
-    <div class="pdf-fallback">
-
-      Having trouble viewing the CV?
-
-      <a
-        id="openPDFLink"
-        href="Linda-Laryea-CV-EN.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Open the PDF in a new tab ↗
-      </a>
-
-    </div>
-
-
-    <!-- CTA -->
+    <!-- =====================================
+         CTA
+    ====================================== -->
 
     <section class="cta">
 
@@ -685,13 +666,16 @@
     </section>
 
 
-    <!-- FOOTER -->
+    <!-- =====================================
+         FOOTER
+    ====================================== -->
 
     <footer>
 
       <div class="footer-brand">
         Linda Laryea
       </div>
+
 
       <div>
         © 2026 Linda Laryea. Designed with research,
@@ -700,8 +684,13 @@
 
     </footer>
 
+
   </main>
 
+
+  <!-- =====================================
+       LANGUAGE SWITCH SCRIPT
+  ====================================== -->
 
   <script>
 
@@ -711,47 +700,58 @@
     const germanButton =
       document.getElementById("germanButton");
 
-    const cvFrame =
-      document.getElementById("cvFrame");
+    const cvImage =
+      document.getElementById("cvImage");
 
     const downloadButton =
       document.getElementById("downloadButton");
-
-    const openPDFLink =
-      document.getElementById("openPDFLink");
 
     const currentCVTitle =
       document.getElementById("currentCVTitle");
 
 
-    const englishCV =
+    const englishImage =
+      "Linda-Laryea-CV-EN.png";
+
+    const germanImage =
+      "Linda-Laryea-CV-DE.png";
+
+
+    const englishPDF =
       "Linda-Laryea-CV-EN.pdf";
 
-    const germanCV =
+    const germanPDF =
       "Linda-Laryea-CV-DE.pdf";
 
+
+    /* =====================================
+       ENGLISH CV
+    ====================================== */
 
     function showEnglishCV() {
 
       englishButton.classList.add("active");
+
       germanButton.classList.remove("active");
 
-      cvFrame.src =
-        englishCV + "#view=FitH";
 
-      cvFrame.title =
+      cvImage.src =
+        englishImage;
+
+
+      cvImage.alt =
         "Linda Laryea English CV";
 
+
       downloadButton.href =
-        englishCV;
+        englishPDF;
+
 
       downloadButton.setAttribute(
         "download",
         "Linda-Laryea-CV-EN.pdf"
       );
 
-      openPDFLink.href =
-        englishCV;
 
       currentCVTitle.textContent =
         "CV — English";
@@ -759,33 +759,44 @@
     }
 
 
+    /* =====================================
+       GERMAN CV
+    ====================================== */
+
     function showGermanCV() {
 
       germanButton.classList.add("active");
+
       englishButton.classList.remove("active");
 
-      cvFrame.src =
-        germanCV + "#view=FitH";
 
-      cvFrame.title =
+      cvImage.src =
+        germanImage;
+
+
+      cvImage.alt =
         "Linda Laryea German CV";
 
+
       downloadButton.href =
-        germanCV;
+        germanPDF;
+
 
       downloadButton.setAttribute(
         "download",
         "Linda-Laryea-CV-DE.pdf"
       );
 
-      openPDFLink.href =
-        germanCV;
 
       currentCVTitle.textContent =
         "Lebenslauf — Deutsch";
 
     }
 
+
+    /* =====================================
+       BUTTON EVENTS
+    ====================================== */
 
     englishButton.addEventListener(
       "click",
@@ -799,6 +810,7 @@
     );
 
   </script>
+
 
 </body>
 
