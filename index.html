@@ -582,13 +582,30 @@
       font-size: 18px;
       font-weight: 900;
     }
-
     .project-preview {
-      margin-top: 34px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #ece5f2;
+  border-radius: 22px;
+  padding: 12px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(31, 24, 54, 0.08);
+}
+
+.project-preview img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 14px;
+}
+
+ <div class="project-preview">
+  <img
+    src="tasky-final-dashboard.png"
+    alt="Tasky smart family noticeboard dashboard"
+  />
+</div>
 
     .project-preview-card {
       background: #FFFFFF;
