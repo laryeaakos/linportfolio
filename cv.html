@@ -150,6 +150,45 @@
     .download-button:hover {
       background: #6D28D9;
     }
+    .cv-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.cv-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 13px 20px;
+
+  background: #A80B63;
+  color: #FFFFFF;
+
+  border: 2px solid #A80B63;
+  border-radius: 12px;
+
+  font-size: 14px;
+  font-weight: 800;
+
+  text-decoration: none;
+}
+
+.cv-button:hover {
+  background: #83074C;
+  border-color: #83074C;
+}
+
+.cv-button.secondary {
+  background: #FFFFFF;
+  color: #A80B63;
+}
+
+.cv-button.secondary:hover {
+  background: #FDE7F1;
+}
 
     .cv-card {
       width: min(1000px, 100%);
@@ -448,11 +487,27 @@
         </p>
       </div>
 
-      <button class="download-button" type="button" onclick="window.print()">
-        Download CV ↓
-      </button>
-    </section>
+ <div class="cv-actions">
 
+  <a
+    href="Linda-Laryea-CV-EN.pdf"
+    class="cv-button"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    View CV — English
+  </a>
+
+  <a
+    href="Linda-Laryea-CV-DE.pdf"
+    class="cv-button secondary"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Lebenslauf — Deutsch
+  </a>
+
+</div>
     <section class="cv-card" aria-label="Linda Laryea curriculum vitae">
       <aside class="cv-sidebar">
         <div class="sidebar-section">
