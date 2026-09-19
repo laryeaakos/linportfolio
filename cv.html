@@ -19,12 +19,7 @@
 
       --gold: #F3C24F;
 
-      --purple: #49357C;
       --purple-soft: #F3EEFA;
-
-      --pink-soft: #FDE7F1;
-      --green-soft: #EAF7F0;
-      --yellow-soft: #FFF6E4;
 
       --dark: #111827;
       --body: #4B5563;
@@ -53,10 +48,8 @@
 
     body {
       font-family: Arial, Helvetica, sans-serif;
-
       background: var(--bg);
       color: var(--dark);
-
       line-height: 1.6;
     }
 
@@ -65,9 +58,12 @@
       text-decoration: none;
     }
 
+    button {
+      font: inherit;
+    }
+
     .page {
       width: min(1180px, calc(100% - 32px));
-
       margin: 0 auto;
       padding: 24px 0 70px;
     }
@@ -81,7 +77,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-
       gap: 24px;
 
       padding-bottom: 22px;
@@ -101,7 +96,6 @@
     .nav-links {
       display: flex;
       align-items: center;
-
       gap: 32px;
 
       font-size: 14px;
@@ -132,29 +126,41 @@
 
 
     /* =====================================
-       CV HERO
+       CV INTRO
     ====================================== */
 
-    .cv-hero {
-      display: grid;
-      grid-template-columns: 1fr auto;
-
-      gap: 32px;
-      align-items: center;
-
+    .cv-header {
       margin-top: 42px;
 
-      padding: 38px 40px;
+      padding: 36px 40px;
+
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 36px;
+      align-items: center;
 
       background: var(--purple-soft);
 
       border: 1px solid var(--border);
-      border-radius: 28px;
+      border-radius: 26px;
 
       box-shadow: var(--shadow);
     }
 
-    .hero-label {
+    .gold-line {
+      width: 46px;
+      height: 3px;
+
+      margin-bottom: 13px;
+
+      background: var(--gold);
+
+      border-radius: 999px;
+    }
+
+    .section-label {
+      margin-bottom: 10px;
+
       color: var(--magenta);
 
       font-size: 11px;
@@ -162,112 +168,128 @@
 
       letter-spacing: 1px;
       text-transform: uppercase;
-
-      margin-bottom: 10px;
     }
 
-    .cv-hero h1 {
-      font-size: clamp(46px, 6vw, 66px);
+    .cv-header h1 {
+      font-size: clamp(42px, 5vw, 58px);
+      line-height: 1.04;
 
-      line-height: 1;
+      letter-spacing: -1.7px;
 
-      letter-spacing: -2px;
-
-      margin-bottom: 17px;
+      margin-bottom: 14px;
     }
 
-    .cv-hero h1 span {
-      display: block;
-
-      color: var(--magenta);
-    }
-
-    .cv-hero p {
-      max-width: 670px;
+    .cv-header p {
+      max-width: 650px;
 
       color: var(--body);
 
-      font-size: 17px;
+      font-size: 16px;
       line-height: 1.75;
     }
 
 
-    /* CV BUTTONS */
+    /* =====================================
+       CONTROLS
+    ====================================== */
 
-    .cv-actions {
+    .cv-controls {
+      min-width: 230px;
+
       display: grid;
-
-      gap: 12px;
-
-      min-width: 200px;
+      gap: 14px;
     }
 
-    .cv-button {
+    .language-switch {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      padding: 4px;
+
+      background: #FFFFFF;
+
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .language-button {
+      cursor: pointer;
+
+      padding: 10px 14px;
+
+      background: transparent;
+      color: var(--body);
+
+      border: 0;
+      border-radius: 9px;
+
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .language-button.active {
+      background: var(--magenta);
+      color: #FFFFFF;
+    }
+
+    .download-button {
       display: flex;
       align-items: center;
       justify-content: center;
 
-      min-height: 50px;
+      min-height: 49px;
 
-      padding: 13px 19px;
+      padding: 12px 18px;
 
       background: var(--magenta);
       color: #FFFFFF;
 
-      border: 2px solid var(--magenta);
       border-radius: 12px;
 
       font-size: 13px;
       font-weight: 800;
-
-      text-align: center;
     }
 
-    .cv-button:hover {
+    .download-button:hover {
       background: var(--magenta-dark);
-      border-color: var(--magenta-dark);
     }
 
-    .cv-button.secondary {
+
+    /* =====================================
+       CURRENT LANGUAGE INDICATOR
+    ====================================== */
+
+    .current-language {
+      margin-top: 22px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+    }
+
+    .current-language h2 {
+      font-size: 20px;
+    }
+
+    .current-language span {
+      color: var(--muted);
+
+      font-size: 12px;
+    }
+
+
+    /* =====================================
+       CV PDF DISPLAY
+    ====================================== */
+
+    .cv-viewer {
+      margin-top: 14px;
+
+      padding: 14px;
+
       background: #FFFFFF;
-      color: var(--magenta);
-    }
-
-    .cv-button.secondary:hover {
-      background: var(--pink-soft);
-    }
-
-
-    /* =====================================
-       MAIN CV LAYOUT
-    ====================================== */
-
-    .cv-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 310px;
-
-      gap: 26px;
-
-      align-items: start;
-
-      margin-top: 28px;
-    }
-
-
-    /* =====================================
-       MAIN COLUMN
-    ====================================== */
-
-    .cv-main {
-      display: grid;
-
-      gap: 24px;
-    }
-
-    .cv-section {
-      padding: 32px;
-
-      background: var(--white);
 
       border: 1px solid var(--border);
       border-radius: 24px;
@@ -275,316 +297,37 @@
       box-shadow: var(--shadow);
     }
 
-    .section-heading {
-      display: flex;
-      align-items: center;
+    .cv-frame {
+      width: 100%;
+      height: 1120px;
 
-      gap: 10px;
+      display: block;
 
-      margin-bottom: 22px;
-    }
+      background: #F5F5F5;
 
-    .section-line {
-      width: 38px;
-      height: 3px;
-
-      background: var(--gold);
-
-      border-radius: 999px;
-    }
-
-    .section-heading h2 {
-      font-size: 25px;
-
-      line-height: 1.2;
-    }
-
-    .cv-section > p {
-      color: var(--body);
-
-      font-size: 14px;
-      line-height: 1.75;
-    }
-
-
-    /* =====================================
-       PROFILE
-    ====================================== */
-
-    .profile-highlight {
-      padding: 22px;
-
-      background: var(--purple-soft);
-
-      border-radius: 17px;
-
-      color: var(--body);
-
-      font-size: 15px;
-      line-height: 1.75;
-    }
-
-
-    /* =====================================
-       PROJECTS
-    ====================================== */
-
-    .project-list {
-      display: grid;
-
-      gap: 18px;
-    }
-
-    .project-card {
-      padding: 22px;
-
-      border: 1px solid var(--border);
-      border-radius: 18px;
-    }
-
-    .project-card:nth-child(1) {
-      background: var(--pink-soft);
-    }
-
-    .project-card:nth-child(2) {
-      background: var(--green-soft);
-    }
-
-    .project-card:nth-child(3) {
-      background: var(--purple-soft);
-    }
-
-    .project-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-
-      gap: 20px;
-
-      margin-bottom: 9px;
-    }
-
-    .project-card h3 {
-      font-size: 18px;
-
-      line-height: 1.3;
-    }
-
-    .project-type {
-      color: var(--magenta);
-
-      font-size: 10px;
-      font-weight: 900;
-
-      text-transform: uppercase;
-
-      white-space: nowrap;
-    }
-
-    .project-card p {
-      color: var(--body);
-
-      font-size: 13px;
-      line-height: 1.7;
-    }
-
-    .project-card a {
-      display: inline-flex;
-
-      margin-top: 12px;
-
-      color: var(--magenta);
-
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-
-    /* =====================================
-       EDUCATION
-    ====================================== */
-
-    .education-list {
-      display: grid;
-
-      gap: 15px;
-    }
-
-    .education-item {
-      padding: 19px;
-
-      background: #FAF9FC;
-
-      border: 1px solid var(--border);
+      border: 0;
       border-radius: 16px;
     }
 
-    .education-item strong {
-      display: block;
-
-      font-size: 16px;
-
-      margin-bottom: 4px;
-    }
-
-    .education-item span {
-      color: var(--body);
-
-      font-size: 13px;
-    }
-
 
     /* =====================================
-       SIDEBAR
+       OPEN PDF FALLBACK
     ====================================== */
 
-    .cv-sidebar {
-      display: grid;
-
-      gap: 20px;
-    }
-
-    .sidebar-card {
-      padding: 25px;
-
-      background: var(--white);
-
-      border: 1px solid var(--border);
-      border-radius: 22px;
-
-      box-shadow: var(--shadow);
-    }
-
-    .sidebar-card.dark {
-      background: var(--purple);
-      color: #FFFFFF;
-
-      border-color: var(--purple);
-    }
-
-    .sidebar-card h2 {
-      font-size: 19px;
-
-      margin-bottom: 18px;
-    }
-
-
-    /* CONTACT */
-
-    .contact-list {
-      display: grid;
-
-      gap: 13px;
-    }
-
-    .contact-item {
-      font-size: 12px;
-      line-height: 1.6;
-    }
-
-    .contact-item strong {
-      display: block;
-
-      color: #DCCFFF;
-
-      font-size: 10px;
-
-      text-transform: uppercase;
-
-      margin-bottom: 3px;
-    }
-
-    .contact-item a:hover {
-      text-decoration: underline;
-    }
-
-
-    /* =====================================
-       SKILLS
-    ====================================== */
-
-    .skill-list {
-      display: flex;
-      flex-wrap: wrap;
-
-      gap: 8px;
-    }
-
-    .skill {
-      padding: 8px 10px;
-
-      background: var(--purple-soft);
-
-      color: var(--purple);
-
-      border-radius: 999px;
-
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-
-    /* =====================================
-       METHODS
-    ====================================== */
-
-    .method-list {
-      display: grid;
-
-      gap: 10px;
-
-      list-style: none;
-    }
-
-    .method-list li {
-      position: relative;
-
-      padding-left: 18px;
-
-      color: var(--body);
-
-      font-size: 12px;
-      line-height: 1.55;
-    }
-
-    .method-list li::before {
-      content: "•";
-
-      position: absolute;
-
-      left: 0;
-      top: 0;
-
-      color: var(--magenta);
-
-      font-weight: 900;
-    }
-
-
-    /* =====================================
-       TOOLS
-    ====================================== */
-
-    .tool-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-
-      gap: 9px;
-    }
-
-    .tool {
-      padding: 10px;
-
-      background: #FAF9FC;
-
-      border-radius: 10px;
-
-      color: var(--body);
-
-      font-size: 11px;
-      font-weight: 700;
+    .pdf-fallback {
+      margin-top: 14px;
 
       text-align: center;
+
+      color: var(--muted);
+
+      font-size: 12px;
+    }
+
+    .pdf-fallback a {
+      color: var(--magenta);
+
+      font-weight: 800;
     }
 
 
@@ -593,15 +336,15 @@
     ====================================== */
 
     .cta {
+      margin-top: 34px;
+
+      padding: 38px 40px;
+
       display: grid;
       grid-template-columns: 1fr auto;
 
       gap: 25px;
       align-items: center;
-
-      margin-top: 30px;
-
-      padding: 38px 40px;
 
       background: var(--magenta);
       color: #FFFFFF;
@@ -611,7 +354,6 @@
 
     .cta h2 {
       font-size: 30px;
-
       line-height: 1.2;
 
       margin-bottom: 7px;
@@ -642,13 +384,12 @@
     ====================================== */
 
     footer {
-      display: flex;
-      justify-content: space-between;
-
-      gap: 22px;
-
       margin-top: 55px;
       padding-top: 31px;
+
+      display: flex;
+      justify-content: space-between;
+      gap: 22px;
 
       border-top: 1px solid var(--border);
 
@@ -678,27 +419,20 @@
 
       .nav-links {
         flex-wrap: wrap;
-
         gap: 18px;
       }
 
-      .cv-hero {
+      .cv-header {
         grid-template-columns: 1fr;
       }
 
-      .cv-actions {
-        display: flex;
-        flex-wrap: wrap;
-
+      .cv-controls {
+        width: 100%;
         min-width: 0;
       }
 
-      .cv-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .cv-sidebar {
-        grid-template-columns: 1fr 1fr;
+      .cv-frame {
+        height: 950px;
       }
 
       .cta {
@@ -721,40 +455,30 @@
         width: min(100% - 20px, 1180px);
       }
 
-      .cv-hero {
-        padding: 25px;
-      }
-
-      .cv-hero h1 {
-        font-size: 44px;
-      }
-
-      .cv-actions {
-        flex-direction: column;
-      }
-
-      .cv-button {
-        width: 100%;
-      }
-
-      .cv-section {
+      .cv-header {
         padding: 24px;
       }
 
-      .cv-sidebar {
-        grid-template-columns: 1fr;
+      .cv-header h1 {
+        font-size: 42px;
       }
 
-      .project-top {
+      .current-language {
         flex-direction: column;
+        align-items: flex-start;
+      }
 
-        gap: 5px;
+      .cv-viewer {
+        padding: 7px;
+      }
+
+      .cv-frame {
+        height: 700px;
       }
 
       .cta {
         padding: 27px;
       }
-
     }
 
   </style>
@@ -767,9 +491,7 @@
   <main class="page">
 
 
-    <!-- =====================================
-         NAVIGATION
-    ====================================== -->
+    <!-- NAVIGATION -->
 
     <nav class="navbar" aria-label="Main navigation">
 
@@ -815,57 +537,69 @@
     </nav>
 
 
-    <!-- =====================================
-         CV HERO
-    ====================================== -->
+    <!-- CV HEADER -->
 
-    <section class="cv-hero">
-
+    <section class="cv-header">
 
       <div>
 
-        <div class="hero-label">
+        <div class="gold-line"></div>
+
+        <div class="section-label">
           Curriculum Vitae
         </div>
 
 
         <h1>
           Linda Laryea
-          <span>
-            UX Researcher & Interaction Designer
-          </span>
         </h1>
 
 
         <p>
-          I combine a background in Cognitive Science and Psychology
-          with UX research and interaction design to understand how
-          people think, where they struggle, and how digital experiences
-          can become clearer, more accessible and easier to use.
+          A concise overview of my experience across UX research,
+          interaction design, cognitive science and human-centred
+          behavioural research.
         </p>
 
       </div>
 
 
-      <div class="cv-actions">
+      <!-- LANGUAGE + DOWNLOAD -->
+
+      <div class="cv-controls">
+
+        <div
+          class="language-switch"
+          aria-label="Choose CV language"
+        >
+
+          <button
+            class="language-button active"
+            id="englishButton"
+            type="button"
+          >
+            English
+          </button>
+
+
+          <button
+            class="language-button"
+            id="germanButton"
+            type="button"
+          >
+            Deutsch
+          </button>
+
+        </div>
+
 
         <a
+          id="downloadButton"
+          class="download-button"
           href="Linda-Laryea-CV-EN.pdf"
-          class="cv-button"
-          target="_blank"
-          rel="noopener noreferrer"
+          download
         >
-          View CV — English
-        </a>
-
-
-        <a
-          href="Linda-Laryea-CV-DE.pdf"
-          class="cv-button secondary"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Lebenslauf — Deutsch
+          Download CV ↓
         </a>
 
       </div>
@@ -873,460 +607,67 @@
     </section>
 
 
-    <!-- =====================================
-         CV CONTENT
-    ====================================== -->
+    <!-- CURRENT VERSION -->
 
-    <div class="cv-layout">
+    <div class="current-language">
 
+      <h2 id="currentCVTitle">
+        CV — English
+      </h2>
 
-      <!-- =================================
-           MAIN
-      ================================== -->
-
-      <div class="cv-main">
-
-
-        <!-- PROFILE -->
-
-        <section class="cv-section">
-
-          <div class="section-heading">
-
-            <div class="section-line"></div>
-
-            <h2>
-              Profile
-            </h2>
-
-          </div>
-
-
-          <div class="profile-highlight">
-
-            UX Researcher and Interaction Designer with an academic
-            background in Cognitive Science and Psychology.
-            I’m particularly interested in understanding user behaviour,
-            reducing cognitive load and translating research findings
-            into accessible, practical digital experiences.
-
-          </div>
-
-        </section>
-
-
-        <!-- SELECTED PROJECTS -->
-
-        <section class="cv-section">
-
-          <div class="section-heading">
-
-            <div class="section-line"></div>
-
-            <h2>
-              Selected UX Projects
-            </h2>
-
-          </div>
-
-
-          <div class="project-list">
-
-
-            <!-- ELYSIAN -->
-
-            <article class="project-card">
-
-              <div class="project-top">
-
-                <h3>
-                  Elysian Fields Attendance Kiosk
-                </h3>
-
-                <span class="project-type">
-                  UX Research
-                </span>
-
-              </div>
-
-
-              <p>
-                Researched and designed an RFID-enabled staff attendance
-                kiosk after participant interviews and usability testing
-                revealed that memory-based logging, rather than dissatisfaction
-                with the existing routine, was the core problem.
-              </p>
-
-
-              <a href="elysian-fields.html">
-                View case study →
-              </a>
-
-            </article>
-
-
-            <!-- TASKY -->
-
-            <article class="project-card">
-
-              <div class="project-top">
-
-                <h3>
-                  Tasky — Smart Family Noticeboard
-                </h3>
-
-                <span class="project-type">
-                  Product Design
-                </span>
-
-              </div>
-
-
-              <p>
-                Designed a shared family noticeboard concept focused on
-                reducing mental overload, improving visibility of changing
-                plans and supporting touch and voice interaction.
-              </p>
-
-
-              <a href="tasky.html">
-                View case study →
-              </a>
-
-            </article>
-
-
-            <!-- AI -->
-
-            <article class="project-card">
-
-              <div class="project-top">
-
-                <h3>
-                  AI Observability Investigation Assistant
-                </h3>
-
-                <span class="project-type">
-                  Interaction Design
-                </span>
-
-              </div>
-
-
-              <p>
-                Designed an interactive investigation experience for
-                understanding abnormal AI-system behaviour using progressive
-                disclosure, guided reasoning and actionable next steps.
-              </p>
-
-
-              <a href="ai-observability.html">
-                View case study →
-              </a>
-
-            </article>
-
-          </div>
-
-        </section>
-
-
-        <!-- EDUCATION -->
-
-        <section class="cv-section">
-
-          <div class="section-heading">
-
-            <div class="section-line"></div>
-
-            <h2>
-              Education
-            </h2>
-
-          </div>
-
-
-          <div class="education-list">
-
-
-            <article class="education-item">
-
-              <strong>
-                Master’s Degree in Cognitive Science
-              </strong>
-
-              <span>
-                Focus on cognition, behaviour and human-centred research.
-              </span>
-
-            </article>
-
-
-            <article class="education-item">
-
-              <strong>
-                Bachelor’s Degree in Psychology
-              </strong>
-
-              <span>
-                Foundation in human behaviour, cognition and psychological research.
-              </span>
-
-            </article>
-
-          </div>
-
-        </section>
-
-
-        <!-- RESEARCH BACKGROUND -->
-
-        <section class="cv-section">
-
-          <div class="section-heading">
-
-            <div class="section-line"></div>
-
-            <h2>
-              Research Background
-            </h2>
-
-          </div>
-
-
-          <p>
-            My academic and UX work has involved behavioural research,
-            participant interviews, usability studies and understanding
-            how people perceive, remember and respond to information.
-            This research foundation informs how I approach interaction
-            design and accessibility.
-          </p>
-
-        </section>
-
-      </div>
-
-
-      <!-- =================================
-           SIDEBAR
-      ================================== -->
-
-      <aside class="cv-sidebar">
-
-
-        <!-- CONTACT -->
-
-        <section class="sidebar-card dark">
-
-          <h2>
-            Contact
-          </h2>
-
-
-          <div class="contact-list">
-
-
-            <div class="contact-item">
-
-              <strong>
-                Email
-              </strong>
-
-              <a href="mailto:linlaryea2@gmail.com">
-                linlaryea2@gmail.com
-              </a>
-
-            </div>
-
-
-            <div class="contact-item">
-
-              <strong>
-                Location
-              </strong>
-
-              Germany
-
-            </div>
-
-
-            <div class="contact-item">
-
-              <strong>
-                LinkedIn
-              </strong>
-
-              <a
-                href="https://www.linkedin.com/in/linda-laryea-7bb2366b/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View LinkedIn profile ↗
-              </a>
-
-            </div>
-
-
-            <div class="contact-item">
-
-              <strong>
-                Portfolio
-              </strong>
-
-              <a href="index.html">
-                linportfolio.vercel.app
-              </a>
-
-            </div>
-
-          </div>
-
-        </section>
-
-
-        <!-- CORE SKILLS -->
-
-        <section class="sidebar-card">
-
-          <h2>
-            Core Skills
-          </h2>
-
-
-          <div class="skill-list">
-
-            <span class="skill">
-              UX Research
-            </span>
-
-            <span class="skill">
-              Interaction Design
-            </span>
-
-            <span class="skill">
-              User-Centred Design
-            </span>
-
-            <span class="skill">
-              Accessibility
-            </span>
-
-            <span class="skill">
-              Information Architecture
-            </span>
-
-            <span class="skill">
-              Prototyping
-            </span>
-
-            <span class="skill">
-              Usability Testing
-            </span>
-
-            <span class="skill">
-              Journey Mapping
-            </span>
-
-          </div>
-
-        </section>
-
-
-        <!-- METHODS -->
-
-        <section class="sidebar-card">
-
-          <h2>
-            Research Methods
-          </h2>
-
-
-          <ul class="method-list">
-
-            <li>
-              User Interviews
-            </li>
-
-            <li>
-              Usability Testing
-            </li>
-
-            <li>
-              Participant Observation
-            </li>
-
-            <li>
-              Journey Mapping
-            </li>
-
-            <li>
-              Persona Development
-            </li>
-
-            <li>
-              Behavioural Research
-            </li>
-
-            <li>
-              Think-Aloud Studies
-            </li>
-
-          </ul>
-
-        </section>
-
-
-        <!-- TOOLS -->
-
-        <section class="sidebar-card">
-
-          <h2>
-            Tools
-          </h2>
-
-
-          <div class="tool-grid">
-
-            <div class="tool">
-              Figma
-            </div>
-
-            <div class="tool">
-              Maze
-            </div>
-
-            <div class="tool">
-              Miro
-            </div>
-
-            <div class="tool">
-              Google Forms
-            </div>
-
-          </div>
-
-        </section>
-
-      </aside>
+      <span>
+        Select a language above to switch versions.
+      </span>
 
     </div>
 
 
-    <!-- =====================================
-         CTA
-    ====================================== -->
+    <!-- ACTUAL CV DISPLAY -->
+
+    <section class="cv-viewer">
+
+      <iframe
+        id="cvFrame"
+        class="cv-frame"
+        src="Linda-Laryea-CV-EN.pdf#view=FitH"
+        title="Linda Laryea English CV"
+      >
+      </iframe>
+
+    </section>
+
+
+    <!-- PDF FALLBACK -->
+
+    <div class="pdf-fallback">
+
+      Having trouble viewing the CV?
+
+      <a
+        id="openPDFLink"
+        href="Linda-Laryea-CV-EN.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Open the PDF in a new tab ↗
+      </a>
+
+    </div>
+
+
+    <!-- CTA -->
 
     <section class="cta">
 
       <div>
 
         <h2>
-          Let’s work together.
+          Interested in working together?
         </h2>
 
         <p>
-          I’m open to UX research, interaction design,
-          product design and meaningful collaboration opportunities.
+          Let’s connect to discuss UX research,
+          interaction design and meaningful product opportunities.
         </p>
 
       </div>
@@ -1342,9 +683,7 @@
     </section>
 
 
-    <!-- =====================================
-         FOOTER
-    ====================================== -->
+    <!-- FOOTER -->
 
     <footer>
 
@@ -1359,8 +698,105 @@
 
     </footer>
 
-
   </main>
+
+
+  <script>
+
+    const englishButton =
+      document.getElementById("englishButton");
+
+    const germanButton =
+      document.getElementById("germanButton");
+
+    const cvFrame =
+      document.getElementById("cvFrame");
+
+    const downloadButton =
+      document.getElementById("downloadButton");
+
+    const openPDFLink =
+      document.getElementById("openPDFLink");
+
+    const currentCVTitle =
+      document.getElementById("currentCVTitle");
+
+
+    const englishCV =
+      "Linda-Laryea-CV-EN.pdf";
+
+    const germanCV =
+      "Linda-Laryea-CV-DE.pdf";
+
+
+    function showEnglishCV() {
+
+      englishButton.classList.add("active");
+      germanButton.classList.remove("active");
+
+      cvFrame.src =
+        englishCV + "#view=FitH";
+
+      cvFrame.title =
+        "Linda Laryea English CV";
+
+      downloadButton.href =
+        englishCV;
+
+      downloadButton.setAttribute(
+        "download",
+        "Linda-Laryea-CV-EN.pdf"
+      );
+
+      openPDFLink.href =
+        englishCV;
+
+      currentCVTitle.textContent =
+        "CV — English";
+
+    }
+
+
+    function showGermanCV() {
+
+      germanButton.classList.add("active");
+      englishButton.classList.remove("active");
+
+      cvFrame.src =
+        germanCV + "#view=FitH";
+
+      cvFrame.title =
+        "Linda Laryea German CV";
+
+      downloadButton.href =
+        germanCV;
+
+      downloadButton.setAttribute(
+        "download",
+        "Linda-Laryea-CV-DE.pdf"
+      );
+
+      openPDFLink.href =
+        germanCV;
+
+      currentCVTitle.textContent =
+        "Lebenslauf — Deutsch";
+
+    }
+
+
+    englishButton.addEventListener(
+      "click",
+      showEnglishCV
+    );
+
+
+    germanButton.addEventListener(
+      "click",
+      showGermanCV
+    );
+
+  </script>
 
 </body>
 
