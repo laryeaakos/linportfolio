@@ -1061,8 +1061,17 @@
       }
 
       .problem-image {
-        min-height: 280px;
-      }
+  width: 220px;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.problem-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
       .study-grid,
       .access-grid,
@@ -1409,10 +1418,10 @@
 
           <div class="problem-image">
 
-            <img
-              src="attendance-book.jpg"
-              alt="Previous paper attendance book used to record arrival times"
-            />
+           <img
+  src="attendance-book-safe-square.jpg"
+  alt="Previous paper attendance book used to record staff arrival times"
+/>
 
           </div>
 
