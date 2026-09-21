@@ -2,17 +2,39 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="icon" type="image/png" href="/favicon.png" />
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    id="metaDescription"
+    name="description"
+    content="Curriculum Vitae of Linda Laryea, UX Researcher and Interaction Designer."
+  />
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="/favicon.png"
+  />
 
   <title>CV | Linda Laryea</title>
 
+
   <style>
+
+    /* =====================================
+       DESIGN TOKENS
+    ====================================== */
+
     :root {
       --bg: #FFF9FC;
       --white: #FFFFFF;
+      --surface: #FFFFFF;
 
       --magenta: #A80B63;
       --magenta-dark: #83074C;
@@ -27,8 +49,12 @@
 
       --border: #F2D8E7;
 
+      --focus: #111827;
+
       --shadow:
         0 18px 50px rgba(80, 47, 67, 0.06);
+
+      --text-scale: 1;
     }
 
 
@@ -42,39 +68,154 @@
       padding: 0;
     }
 
+
     html {
       scroll-behavior: smooth;
+
+      font-size:
+        calc(16px * var(--text-scale));
     }
+
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-      background: var(--bg);
-      color: var(--dark);
+      background:
+        var(--bg);
 
-      line-height: 1.6;
+      color:
+        var(--dark);
+
+      line-height:
+        1.6;
+
+      transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
     }
+
 
     a {
       color: inherit;
       text-decoration: none;
     }
 
+
     button {
       font: inherit;
+      cursor: pointer;
     }
+
 
     img {
       display: block;
       max-width: 100%;
     }
 
+
+    /* =====================================
+       SCREEN READER ONLY
+    ====================================== */
+
+    .sr-only {
+      position: absolute;
+
+      width: 1px;
+      height: 1px;
+
+      padding: 0;
+      margin: -1px;
+
+      overflow: hidden;
+
+      clip: rect(0, 0, 0, 0);
+
+      white-space: nowrap;
+
+      border: 0;
+    }
+
+
+    /* =====================================
+       KEYBOARD FOCUS
+    ====================================== */
+
+    :focus-visible {
+      outline:
+        3px solid var(--focus);
+
+      outline-offset:
+        4px;
+    }
+
+
+    .nav-button:focus-visible,
+    .download-button:focus-visible {
+      outline-color:
+        var(--gold);
+    }
+
+
+    /* =====================================
+       SKIP LINK
+    ====================================== */
+
+    .skip-link {
+      position: fixed;
+
+      top: 12px;
+      left: 12px;
+
+      z-index: 99999;
+
+      padding:
+        12px 18px;
+
+      background:
+        var(--dark);
+
+      color:
+        #FFFFFF;
+
+      border-radius:
+        10px;
+
+      font-size:
+        0.875rem;
+
+      font-weight:
+        800;
+
+      transform:
+        translateY(-180%);
+
+      transition:
+        transform 0.2s ease;
+    }
+
+
+    .skip-link:focus {
+      transform:
+        translateY(0);
+    }
+
+
+    /* =====================================
+       PAGE
+    ====================================== */
+
     .page {
-      width: min(1180px, calc(100% - 32px));
+      width:
+        min(1180px, calc(100% - 32px));
 
-      margin: 0 auto;
+      margin:
+        0 auto;
 
-      padding: 24px 0 70px;
+      padding:
+        24px 0 70px;
     }
 
 
@@ -83,243 +224,999 @@
     ====================================== */
 
     .navbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display:
+        flex;
 
-      gap: 24px;
+      align-items:
+        center;
 
-      padding-bottom: 22px;
+      justify-content:
+        space-between;
 
-      border-bottom: 1px solid var(--border);
+      gap:
+        24px;
+
+      padding-bottom:
+        22px;
+
+      border-bottom:
+        1px solid var(--border);
     }
+
 
     .brand-name {
-      color: var(--magenta);
+      color:
+        var(--magenta);
 
-      font-size: 28px;
-      font-weight: 800;
+      font-size:
+        1.75rem;
 
-      letter-spacing: -0.4px;
+      font-weight:
+        800;
+
+      letter-spacing:
+        -0.4px;
+
+      white-space:
+        nowrap;
     }
+
+
+    .nav-right {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        20px;
+    }
+
 
     .nav-links {
-      display: flex;
-      align-items: center;
+      display:
+        flex;
 
-      gap: 32px;
+      align-items:
+        center;
 
-      font-size: 14px;
-      font-weight: 700;
+      gap:
+        32px;
+
+      font-size:
+        0.875rem;
+
+      font-weight:
+        700;
     }
+
+
+    .nav-links a {
+      min-height:
+        44px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+    }
+
 
     .nav-links a:hover,
     .nav-links .active {
-      color: var(--magenta);
+      color:
+        var(--magenta);
     }
+
 
     .nav-links .active {
-      padding-bottom: 10px;
+      padding-bottom:
+        10px;
 
-      border-bottom: 3px solid var(--magenta);
+      border-bottom:
+        3px solid var(--magenta);
     }
 
+
     .nav-button {
-      padding: 13px 22px;
+      min-height:
+        44px;
 
-      background: var(--magenta);
-      color: #FFFFFF !important;
+      padding:
+        0 22px;
 
-      border-radius: 12px;
+      display:
+        inline-flex;
 
-      border-bottom: 0 !important;
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF !important;
+
+      border-radius:
+        12px;
+
+      border-bottom:
+        0 !important;
+    }
+
+
+    .nav-button:hover {
+      background:
+        var(--magenta-dark);
+    }
+
+
+    /* =====================================
+       GLOBAL LANGUAGE + ACCESSIBILITY
+    ====================================== */
+
+    .nav-tools {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        8px;
+    }
+
+
+    .site-language-switcher {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      padding:
+        3px;
+
+      background:
+        var(--surface);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        10px;
+    }
+
+
+    .site-language-button {
+      min-width:
+        44px;
+
+      min-height:
+        40px;
+
+      padding:
+        0 9px;
+
+      background:
+        transparent;
+
+      color:
+        var(--body);
+
+      border:
+        0;
+
+      border-radius:
+        7px;
+
+      font-size:
+        0.75rem;
+
+      font-weight:
+        800;
+    }
+
+
+    .site-language-button.active {
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
+    }
+
+
+    .accessibility-button {
+      min-width:
+        44px;
+
+      min-height:
+        44px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      gap:
+        7px;
+
+      padding:
+        0 12px;
+
+      background:
+        var(--surface);
+
+      color:
+        var(--dark);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        10px;
+
+      font-size:
+        0.8rem;
+
+      font-weight:
+        800;
+    }
+
+
+    .accessibility-button:hover {
+      background:
+        var(--purple-soft);
+    }
+
+
+    /* =====================================
+       ACCESSIBILITY PANEL
+    ====================================== */
+
+    .accessibility-panel {
+      position:
+        fixed;
+
+      top:
+        92px;
+
+      right:
+        24px;
+
+      z-index:
+        10000;
+
+      width:
+        min(340px, calc(100vw - 32px));
+
+      padding:
+        22px;
+
+      background:
+        var(--surface);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        18px;
+
+      box-shadow:
+        0 24px 70px
+        rgba(17, 24, 39, 0.16);
+    }
+
+
+    .accessibility-panel[hidden] {
+      display: none;
+    }
+
+
+    .a11y-panel-header {
+      display:
+        flex;
+
+      align-items:
+        flex-start;
+
+      justify-content:
+        space-between;
+
+      gap:
+        18px;
+
+      margin-bottom:
+        20px;
+    }
+
+
+    .a11y-panel-header h2 {
+      margin:
+        0 0 3px;
+
+      font-size:
+        1.1rem;
+    }
+
+
+    .a11y-panel-header p {
+      margin: 0;
+
+      color:
+        var(--muted);
+
+      font-size:
+        0.76rem;
+    }
+
+
+    .panel-close {
+      min-width:
+        44px;
+
+      min-height:
+        44px;
+
+      background:
+        var(--purple-soft);
+
+      color:
+        var(--dark);
+
+      border:
+        0;
+
+      border-radius:
+        10px;
+
+      font-size:
+        1.25rem;
+    }
+
+
+    .a11y-group {
+      padding:
+        16px 0;
+
+      border-top:
+        1px solid var(--border);
+    }
+
+
+    .a11y-group:first-of-type {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+
+    .a11y-label {
+      display: block;
+
+      margin-bottom:
+        10px;
+
+      color:
+        var(--dark);
+
+      font-size:
+        0.8rem;
+
+      font-weight:
+        800;
+    }
+
+
+    /* =====================================
+       TEXT SIZE
+    ====================================== */
+
+    .text-size-controls {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap:
+        8px;
+    }
+
+
+    .text-size-button {
+      min-height:
+        44px;
+
+      background:
+        var(--surface);
+
+      color:
+        var(--dark);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        9px;
+
+      font-weight:
+        800;
+    }
+
+
+    .text-size-button.active {
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
+
+      border-color:
+        var(--magenta);
+    }
+
+
+    /* =====================================
+       TOGGLES
+    ====================================== */
+
+    .toggle-row {
+      min-height:
+        48px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        20px;
+    }
+
+
+    .toggle-copy strong {
+      display: block;
+
+      font-size:
+        0.82rem;
+    }
+
+
+    .toggle-copy span {
+      display: block;
+
+      margin-top:
+        2px;
+
+      color:
+        var(--muted);
+
+      font-size:
+        0.7rem;
+    }
+
+
+    .switch {
+      position:
+        relative;
+
+      width:
+        50px;
+
+      height:
+        28px;
+
+      flex:
+        0 0 auto;
+    }
+
+
+    .switch input {
+      position:
+        absolute;
+
+      opacity:
+        0;
+
+      width:
+        1px;
+
+      height:
+        1px;
+    }
+
+
+    .switch-track {
+      position:
+        absolute;
+
+      inset:
+        0;
+
+      background:
+        #D1D5DB;
+
+      border-radius:
+        999px;
+
+      transition:
+        background 0.2s ease;
+    }
+
+
+    .switch-track::after {
+      content:
+        "";
+
+      position:
+        absolute;
+
+      width:
+        20px;
+
+      height:
+        20px;
+
+      left:
+        4px;
+
+      top:
+        4px;
+
+      background:
+        #FFFFFF;
+
+      border-radius:
+        50%;
+
+      box-shadow:
+        0 2px 7px rgba(0, 0, 0, 0.18);
+
+      transition:
+        transform 0.2s ease;
+    }
+
+
+    .switch input:checked +
+    .switch-track {
+      background:
+        var(--magenta);
+    }
+
+
+    .switch input:checked +
+    .switch-track::after {
+      transform:
+        translateX(22px);
+    }
+
+
+    .switch input:focus-visible +
+    .switch-track {
+      outline:
+        3px solid var(--focus);
+
+      outline-offset:
+        3px;
+    }
+
+
+    /* =====================================
+       READ ALOUD
+    ====================================== */
+
+    .read-controls {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap:
+        8px;
+    }
+
+
+    .read-button {
+      min-height:
+        44px;
+
+      background:
+        var(--surface);
+
+      color:
+        var(--dark);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        9px;
+
+      font-size:
+        0.75rem;
+
+      font-weight:
+        800;
+    }
+
+
+    .read-button:hover {
+      background:
+        var(--purple-soft);
+    }
+
+
+    .read-button.primary-read {
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
+
+      border-color:
+        var(--magenta);
+    }
+
+
+    .read-button:disabled {
+      opacity:
+        0.45;
+
+      cursor:
+        not-allowed;
+    }
+
+
+    .reset-button {
+      width:
+        100%;
+
+      min-height:
+        44px;
+
+      background:
+        var(--surface);
+
+      color:
+        var(--magenta);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        9px;
+
+      font-size:
+        0.75rem;
+
+      font-weight:
+        800;
     }
 
 
     /* =====================================
        CV INTRO
+       ORIGINAL DESIGN
     ====================================== */
 
     .cv-header {
-      margin-top: 42px;
+      margin-top:
+        42px;
 
-      padding: 36px 40px;
+      padding:
+        36px 40px;
 
-      display: grid;
-      grid-template-columns: 1fr auto;
+      display:
+        grid;
 
-      gap: 36px;
+      grid-template-columns:
+        1fr auto;
 
-      align-items: center;
+      gap:
+        36px;
 
-      background: var(--purple-soft);
+      align-items:
+        center;
 
-      border: 1px solid var(--border);
-      border-radius: 26px;
+      background:
+        var(--purple-soft);
 
-      box-shadow: var(--shadow);
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        26px;
+
+      box-shadow:
+        var(--shadow);
     }
+
 
     .gold-line {
-      width: 46px;
-      height: 3px;
+      width:
+        46px;
 
-      margin-bottom: 13px;
+      height:
+        3px;
 
-      background: var(--gold);
+      margin-bottom:
+        13px;
 
-      border-radius: 999px;
+      background:
+        var(--gold);
+
+      border-radius:
+        999px;
     }
+
 
     .section-label {
-      margin-bottom: 10px;
+      margin-bottom:
+        10px;
 
-      color: var(--magenta);
+      color:
+        var(--magenta);
 
-      font-size: 11px;
-      font-weight: 900;
+      font-size:
+        0.6875rem;
 
-      letter-spacing: 1px;
+      font-weight:
+        900;
 
-      text-transform: uppercase;
+      letter-spacing:
+        1px;
+
+      text-transform:
+        uppercase;
     }
+
 
     .cv-header h1 {
-      margin-bottom: 14px;
+      margin-bottom:
+        14px;
 
-      font-size: clamp(42px, 5vw, 58px);
+      font-size:
+        clamp(2.625rem, 5vw, 3.625rem);
 
-      line-height: 1.04;
+      line-height:
+        1.04;
 
-      letter-spacing: -1.7px;
+      letter-spacing:
+        -1.7px;
     }
 
+
     .cv-header p {
-      max-width: 650px;
+      max-width:
+        650px;
 
-      color: var(--body);
+      color:
+        var(--body);
 
-      font-size: 16px;
-      line-height: 1.75;
+      font-size:
+        1rem;
+
+      line-height:
+        1.75;
     }
 
 
     /* =====================================
-       CV CONTROLS
+       CV-SPECIFIC CONTROLS
     ====================================== */
 
     .cv-controls {
-      width: 230px;
+      width:
+        230px;
 
-      display: grid;
+      display:
+        grid;
 
-      gap: 14px;
+      gap:
+        14px;
     }
 
-    .language-switch {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
 
-      padding: 4px;
+    .cv-language-switch {
+      display:
+        grid;
 
-      background: #FFFFFF;
+      grid-template-columns:
+        1fr 1fr;
 
-      border: 1px solid var(--border);
-      border-radius: 12px;
+      padding:
+        4px;
+
+      background:
+        #FFFFFF;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        12px;
     }
 
-    .language-button {
-      cursor: pointer;
 
-      padding: 10px 14px;
+    .cv-language-button {
+      min-height:
+        44px;
 
-      background: transparent;
-      color: var(--body);
+      padding:
+        10px 14px;
 
-      border: 0;
-      border-radius: 9px;
+      background:
+        transparent;
 
-      font-size: 13px;
-      font-weight: 800;
+      color:
+        var(--body);
+
+      border:
+        0;
+
+      border-radius:
+        9px;
+
+      font-size:
+        0.8125rem;
+
+      font-weight:
+        800;
     }
 
-    .language-button.active {
-      background: var(--magenta);
-      color: #FFFFFF;
+
+    .cv-language-button.active {
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
     }
+
 
     .download-button {
-      min-height: 49px;
+      min-height:
+        49px;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display:
+        flex;
 
-      padding: 12px 18px;
+      align-items:
+        center;
 
-      background: var(--magenta);
-      color: #FFFFFF;
+      justify-content:
+        center;
 
-      border-radius: 12px;
+      padding:
+        12px 18px;
 
-      font-size: 13px;
-      font-weight: 800;
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
+
+      border-radius:
+        12px;
+
+      font-size:
+        0.8125rem;
+
+      font-weight:
+        800;
     }
 
+
     .download-button:hover {
-      background: var(--magenta-dark);
+      background:
+        var(--magenta-dark);
     }
 
 
     /* =====================================
-       LANGUAGE LABEL
+       CURRENT CV LANGUAGE
     ====================================== */
 
     .current-language {
-      margin-top: 28px;
+      margin-top:
+        28px;
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display:
+        flex;
 
-      gap: 20px;
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        20px;
     }
+
 
     .current-language h2 {
-      font-size: 20px;
+      font-size:
+        1.25rem;
     }
 
-    .current-language span {
-      color: var(--muted);
 
-      font-size: 12px;
+    .current-language span {
+      color:
+        var(--muted);
+
+      font-size:
+        0.75rem;
     }
 
 
     /* =====================================
-       CV IMAGE DISPLAY
+       CV IMAGE
     ====================================== */
 
     .cv-display {
-      width: 100%;
+      width:
+        100%;
 
-      margin-top: 16px;
+      margin-top:
+        16px;
 
-      display: flex;
-      justify-content: center;
+      display:
+        flex;
 
-      background: transparent;
+      justify-content:
+        center;
+
+      background:
+        transparent;
     }
 
+
+    .cv-figure {
+      width:
+        100%;
+
+      margin:
+        0;
+
+      display:
+        flex;
+
+      justify-content:
+        center;
+    }
+
+
     .cv-display img {
-      width: 100%;
-      max-width: 1040px;
+      width:
+        100%;
 
-      height: auto;
+      max-width:
+        1040px;
 
-      object-fit: contain;
+      height:
+        auto;
 
-      background: transparent;
+      object-fit:
+        contain;
+
+      background:
+        transparent;
     }
 
 
@@ -328,48 +1225,86 @@
     ====================================== */
 
     .cta {
-      margin-top: 38px;
+      margin-top:
+        38px;
 
-      padding: 38px 40px;
+      padding:
+        38px 40px;
 
-      display: grid;
-      grid-template-columns: 1fr auto;
+      display:
+        grid;
 
-      gap: 25px;
+      grid-template-columns:
+        1fr auto;
 
-      align-items: center;
+      gap:
+        25px;
 
-      background: var(--magenta);
-      color: #FFFFFF;
+      align-items:
+        center;
 
-      border-radius: 25px;
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
+
+      border-radius:
+        25px;
     }
+
 
     .cta h2 {
-      margin-bottom: 7px;
+      margin-bottom:
+        7px;
 
-      font-size: 30px;
+      font-size:
+        1.875rem;
 
-      line-height: 1.2;
+      line-height:
+        1.2;
     }
+
 
     .cta p {
-      max-width: 700px;
+      max-width:
+        700px;
 
-      color: #FBE8F2;
+      color:
+        #FBE8F2;
     }
 
+
     .cta-button {
-      padding: 14px 22px;
+      min-height:
+        48px;
 
-      background: #FFFFFF;
-      color: var(--magenta);
+      padding:
+        14px 22px;
 
-      border-radius: 11px;
+      display:
+        inline-flex;
 
-      font-weight: 900;
+      align-items:
+        center;
 
-      white-space: nowrap;
+      justify-content:
+        center;
+
+      background:
+        #FFFFFF;
+
+      color:
+        var(--magenta);
+
+      border-radius:
+        11px;
+
+      font-weight:
+        900;
+
+      white-space:
+        nowrap;
     }
 
 
@@ -378,27 +1313,229 @@
     ====================================== */
 
     footer {
-      margin-top: 55px;
+      margin-top:
+        55px;
 
-      padding-top: 31px;
+      padding-top:
+        31px;
 
-      display: flex;
-      justify-content: space-between;
+      display:
+        flex;
 
-      gap: 22px;
+      justify-content:
+        space-between;
 
-      border-top: 1px solid var(--border);
+      gap:
+        22px;
 
-      color: var(--muted);
+      border-top:
+        1px solid var(--border);
 
-      font-size: 12px;
+      color:
+        var(--muted);
+
+      font-size:
+        0.75rem;
     }
 
-    .footer-brand {
-      color: var(--magenta);
 
-      font-size: 22px;
-      font-weight: 800;
+    .footer-brand {
+      color:
+        var(--magenta);
+
+      font-size:
+        1.375rem;
+
+      font-weight:
+        800;
+    }
+
+
+    /* =====================================
+       BACK TO TOP
+    ====================================== */
+
+    .back-to-top {
+      position:
+        fixed;
+
+      right:
+        24px;
+
+      bottom:
+        24px;
+
+      z-index:
+        9000;
+
+      width:
+        50px;
+
+      height:
+        50px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
+
+      border:
+        0;
+
+      border-radius:
+        50%;
+
+      box-shadow:
+        0 10px 30px
+        rgba(168, 11, 99, 0.25);
+
+      font-size:
+        1.25rem;
+
+      font-weight:
+        900;
+
+      opacity:
+        0;
+
+      visibility:
+        hidden;
+
+      transform:
+        translateY(12px);
+
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0.2s ease;
+    }
+
+
+    .back-to-top.visible {
+      opacity:
+        1;
+
+      visibility:
+        visible;
+
+      transform:
+        translateY(0);
+    }
+
+
+    /* =====================================
+       HIGH CONTRAST
+    ====================================== */
+
+    body.high-contrast {
+      --bg: #FFFFFF;
+      --white: #FFFFFF;
+      --surface: #FFFFFF;
+
+      --magenta: #7B0048;
+      --magenta-dark: #580033;
+
+      --gold: #A56600;
+
+      --purple-soft: #F4F2FF;
+
+      --dark: #000000;
+      --body: #111111;
+      --muted: #303030;
+
+      --border: #555555;
+
+      --focus: #000000;
+
+      --shadow: none;
+    }
+
+
+    body.high-contrast
+    .cv-header,
+
+    body.high-contrast
+    .accessibility-panel,
+
+    body.high-contrast
+    .site-language-switcher,
+
+    body.high-contrast
+    .cv-language-switch {
+      border-width:
+        2px;
+    }
+
+
+    body.high-contrast
+    .nav-button,
+
+    body.high-contrast
+    .download-button,
+
+    body.high-contrast
+    .back-to-top {
+      border:
+        2px solid #000000;
+    }
+
+
+    /* =====================================
+       REDUCED MOTION
+    ====================================== */
+
+    body.reduce-motion *,
+    body.reduce-motion *::before,
+    body.reduce-motion *::after {
+      animation-duration:
+        0.01ms !important;
+
+      animation-iteration-count:
+        1 !important;
+
+      transition-duration:
+        0.01ms !important;
+
+      scroll-behavior:
+        auto !important;
+    }
+
+
+    @media
+    (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior:
+          auto;
+      }
+
+
+      *,
+      *::before,
+      *::after {
+        animation-duration:
+          0.01ms !important;
+
+        animation-iteration-count:
+          1 !important;
+
+        transition-duration:
+          0.01ms !important;
+
+        scroll-behavior:
+          auto !important;
+      }
+
     }
 
 
@@ -406,299 +1543,1237 @@
        RESPONSIVE
     ====================================== */
 
-    @media (max-width: 1000px) {
+    @media
+    (max-width: 1180px) {
 
       .navbar {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction:
+          column;
+
+        align-items:
+          flex-start;
+
+        padding:
+          18px 0 22px;
       }
+
+
+      .nav-right {
+        width:
+          100%;
+
+        justify-content:
+          space-between;
+
+        flex-wrap:
+          wrap;
+      }
+
 
       .nav-links {
-        flex-wrap: wrap;
-
-        gap: 18px;
-      }
-
-      .cv-header {
-        grid-template-columns: 1fr;
-      }
-
-      .cv-controls {
-        width: 100%;
-      }
-
-      .cta {
-        grid-template-columns: 1fr;
-      }
-
-      .cta-button {
-        justify-self: start;
-      }
-
-      footer {
-        flex-direction: column;
+        flex-wrap:
+          wrap;
       }
 
     }
 
 
-    @media (max-width: 620px) {
-
-      .page {
-        width: min(100% - 20px, 1180px);
-      }
+    @media
+    (max-width: 1000px) {
 
       .cv-header {
-        padding: 24px;
+        grid-template-columns:
+          1fr;
       }
 
-      .cv-header h1 {
-        font-size: 42px;
+
+      .cv-controls {
+        width:
+          100%;
       }
 
-      .current-language {
-        flex-direction: column;
-
-        align-items: flex-start;
-      }
-
-      .cv-display img {
-        width: 100%;
-      }
 
       .cta {
-        padding: 27px;
+        grid-template-columns:
+          1fr;
+      }
+
+
+      .cta-button {
+        justify-self:
+          start;
+      }
+
+
+      footer {
+        flex-direction:
+          column;
+      }
+
+    }
+
+
+    @media
+    (max-width: 760px) {
+
+      .page {
+        width:
+          min(100% - 22px, 1180px);
+      }
+
+
+      .nav-right {
+        display:
+          grid;
+
+        gap:
+          16px;
+      }
+
+
+      .nav-links {
+        gap:
+          10px 18px;
+      }
+
+
+      .nav-tools {
+        width:
+          100%;
+
+        justify-content:
+          space-between;
+      }
+
+
+      .accessibility-panel {
+        top:
+          16px;
+
+        right:
+          16px;
+      }
+
+    }
+
+
+    @media
+    (max-width: 620px) {
+
+      .cv-header {
+        padding:
+          24px;
+      }
+
+
+      .cv-header h1 {
+        font-size:
+          2.625rem;
+      }
+
+
+      .current-language {
+        flex-direction:
+          column;
+
+        align-items:
+          flex-start;
+      }
+
+
+      .cv-display img {
+        width:
+          100%;
+      }
+
+
+      .cta {
+        padding:
+          27px;
+      }
+
+
+      .back-to-top {
+        right:
+          16px;
+
+        bottom:
+          16px;
       }
 
     }
 
   </style>
+
 </head>
 
 
 <body>
 
-  <main class="page">
+
+  <!-- =====================================
+       SKIP LINK
+  ====================================== -->
+
+  <a
+    class="skip-link"
+    href="#main-content"
+    data-i18n="skip"
+  >
+    Skip to main content
+  </a>
+
+
+  <div
+    id="a11yStatus"
+    class="sr-only"
+    role="status"
+    aria-live="polite"
+  ></div>
+
+
+  <div class="page">
 
 
     <!-- =====================================
          NAVIGATION
     ====================================== -->
 
-    <nav class="navbar" aria-label="Main navigation">
+    <header data-no-read>
 
-      <a href="index.html">
+      <nav
+        class="navbar"
+        aria-label="Main navigation"
+        data-i18n-aria-label="mainNavigation"
+      >
 
-        <div class="brand-name">
-          Linda Laryea
-        </div>
-
-      </a>
-
-
-      <div class="nav-links">
-
-        <a href="index.html">
-          Home
-        </a>
-
-        <a href="case-studies.html">
-          Case Studies
-        </a>
-
-        <a href="about.html">
-          About Me
-        </a>
 
         <a
-          href="cv.html"
-          class="active"
+          href="index.html"
+          aria-label="Linda Laryea portfolio home"
         >
-          CV
+
+          <div class="brand-name">
+            Linda Laryea
+          </div>
+
         </a>
+
+
+        <div class="nav-right">
+
+
+          <div class="nav-links">
+
+            <a
+              href="index.html"
+              data-i18n="home"
+            >
+              Home
+            </a>
+
+
+            <a
+              href="case-studies.html"
+              data-i18n="caseStudies"
+            >
+              Case Studies
+            </a>
+
+
+            <a
+              href="about.html"
+              data-i18n="aboutMe"
+            >
+              About Me
+            </a>
+
+
+            <a
+              href="cv.html"
+              class="active"
+              aria-current="page"
+              data-i18n="cv"
+            >
+              CV
+            </a>
+
+
+            <a
+              href="contact.html"
+              class="nav-button"
+              data-i18n="letsConnect"
+            >
+              Let’s Connect
+            </a>
+
+          </div>
+
+
+          <!-- SITE LANGUAGE + ACCESSIBILITY -->
+
+          <div class="nav-tools">
+
+
+            <div
+              class="site-language-switcher"
+              role="group"
+              aria-label="Choose language"
+              data-i18n-aria-label="chooseLanguage"
+            >
+
+              <button
+                type="button"
+                id="languageEN"
+                class="site-language-button active"
+                aria-pressed="true"
+                aria-label="Switch to English"
+                data-i18n-aria-label="switchEnglish"
+              >
+                EN
+              </button>
+
+
+              <button
+                type="button"
+                id="languageDE"
+                class="site-language-button"
+                aria-pressed="false"
+                aria-label="Switch to German"
+                data-i18n-aria-label="switchGerman"
+              >
+                DE
+              </button>
+
+            </div>
+
+
+            <button
+              type="button"
+              id="accessibilityButton"
+              class="accessibility-button"
+              aria-expanded="false"
+              aria-controls="accessibilityPanel"
+            >
+
+              <span aria-hidden="true">
+                Aa
+              </span>
+
+
+              <span data-i18n="accessibility">
+                Accessibility
+              </span>
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </nav>
+
+    </header>
+
+
+    <!-- =====================================
+         ACCESSIBILITY PANEL
+    ====================================== -->
+
+    <aside
+      id="accessibilityPanel"
+      class="accessibility-panel"
+      aria-labelledby="accessibilityPanelTitle"
+      hidden
+      data-no-read
+    >
+
+
+      <div class="a11y-panel-header">
+
+        <div>
+
+          <h2
+            id="accessibilityPanelTitle"
+            data-i18n="accessibility"
+          >
+            Accessibility
+          </h2>
+
+
+          <p data-i18n="accessibilityDescription">
+            Adjust the page to suit your needs.
+          </p>
+
+        </div>
+
+
+        <button
+          type="button"
+          id="closeAccessibility"
+          class="panel-close"
+          aria-label="Close accessibility settings"
+          data-i18n-aria-label="closeAccessibility"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <!-- TEXT SIZE -->
+
+      <div class="a11y-group">
+
+        <span
+          class="a11y-label"
+          data-i18n="textSize"
+        >
+          Text size
+        </span>
+
+
+        <div
+          class="text-size-controls"
+          role="group"
+          aria-label="Text size"
+          data-i18n-aria-label="textSize"
+        >
+
+          <button
+            type="button"
+            class="text-size-button"
+            data-size="small"
+            aria-label="Decrease text size"
+            data-i18n-aria-label="decreaseText"
+          >
+            A−
+          </button>
+
+
+          <button
+            type="button"
+            class="text-size-button active"
+            data-size="default"
+            aria-label="Default text size"
+            data-i18n-aria-label="defaultText"
+          >
+            A
+          </button>
+
+
+          <button
+            type="button"
+            class="text-size-button"
+            data-size="large"
+            aria-label="Increase text size"
+            data-i18n-aria-label="increaseText"
+          >
+            A+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- HIGH CONTRAST -->
+
+      <div class="a11y-group">
+
+        <div class="toggle-row">
+
+          <div class="toggle-copy">
+
+            <strong data-i18n="highContrast">
+              High contrast
+            </strong>
+
+            <span data-i18n="highContrastDescription">
+              Increase visual contrast.
+            </span>
+
+          </div>
+
+
+          <label class="switch">
+
+            <input
+              id="contrastToggle"
+              type="checkbox"
+              aria-label="High contrast"
+              data-i18n-aria-label="highContrast"
+            />
+
+            <span
+              class="switch-track"
+              aria-hidden="true"
+            ></span>
+
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <!-- REDUCED MOTION -->
+
+      <div class="a11y-group">
+
+        <div class="toggle-row">
+
+          <div class="toggle-copy">
+
+            <strong data-i18n="reduceMotion">
+              Reduce motion
+            </strong>
+
+            <span data-i18n="reduceMotionDescription">
+              Minimise animation and movement.
+            </span>
+
+          </div>
+
+
+          <label class="switch">
+
+            <input
+              id="motionToggle"
+              type="checkbox"
+              aria-label="Reduce motion"
+              data-i18n-aria-label="reduceMotion"
+            />
+
+            <span
+              class="switch-track"
+              aria-hidden="true"
+            ></span>
+
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <!-- READ ALOUD -->
+
+      <div class="a11y-group">
+
+        <span
+          class="a11y-label"
+          data-i18n="readPage"
+        >
+          Read page aloud
+        </span>
+
+
+        <div class="read-controls">
+
+          <button
+            type="button"
+            id="readPlay"
+            class="read-button primary-read"
+            data-i18n="play"
+          >
+            Play
+          </button>
+
+
+          <button
+            type="button"
+            id="readPause"
+            class="read-button"
+            data-i18n="pause"
+          >
+            Pause
+          </button>
+
+
+          <button
+            type="button"
+            id="readStop"
+            class="read-button"
+            data-i18n="stop"
+          >
+            Stop
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- RESET -->
+
+      <div class="a11y-group">
+
+        <button
+          type="button"
+          id="resetAccessibility"
+          class="reset-button"
+          data-i18n="resetSettings"
+        >
+          Reset accessibility settings
+        </button>
+
+      </div>
+
+    </aside>
+
+
+    <!-- =====================================
+         MAIN CONTENT
+    ====================================== -->
+
+    <main
+      id="main-content"
+      tabindex="-1"
+    >
+
+
+      <!-- =================================
+           CV HEADER
+      ================================== -->
+
+      <section
+        class="cv-header readable-content"
+        aria-labelledby="cv-page-heading"
+      >
+
+
+        <div>
+
+          <div
+            class="gold-line"
+            aria-hidden="true"
+          ></div>
+
+
+          <div
+            class="section-label"
+            data-i18n="curriculumVitae"
+          >
+            Curriculum Vitae
+          </div>
+
+
+          <h1 id="cv-page-heading">
+            Linda Laryea
+          </h1>
+
+
+          <p data-i18n="cvIntro">
+            A concise overview of my experience across UX research,
+            interaction design, cognitive science and human-centred
+            behavioural research.
+          </p>
+
+        </div>
+
+
+        <!-- CV-SPECIFIC LANGUAGE + DOWNLOAD -->
+
+        <div
+          class="cv-controls"
+          data-no-read
+        >
+
+
+          <div
+            class="cv-language-switch"
+            role="group"
+            aria-label="Choose CV language"
+            data-i18n-aria-label="chooseCVLanguage"
+          >
+
+            <button
+              class="cv-language-button active"
+              id="englishButton"
+              type="button"
+              aria-pressed="true"
+              data-i18n="englishCV"
+            >
+              English
+            </button>
+
+
+            <button
+              class="cv-language-button"
+              id="germanButton"
+              type="button"
+              aria-pressed="false"
+              data-i18n="germanCV"
+            >
+              Deutsch
+            </button>
+
+          </div>
+
+
+          <a
+            id="downloadButton"
+            class="download-button"
+            href="Linda-Laryea-CV-EN.pdf"
+            download="Linda-Laryea-CV-EN.pdf"
+          >
+
+            <span data-i18n="downloadCV">
+              Download CV ↓
+            </span>
+
+          </a>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================
+           CURRENT CV LANGUAGE
+      ================================== -->
+
+      <section
+        class="current-language readable-content"
+        aria-live="polite"
+      >
+
+        <h2 id="currentCVTitle">
+          CV — English
+        </h2>
+
+
+        <span
+          id="cvLanguageHint"
+          data-i18n="cvLanguageHint"
+        >
+          Choose English or Deutsch above.
+        </span>
+
+      </section>
+
+
+      <!-- =================================
+           CV IMAGE
+      ================================== -->
+
+      <section
+        class="cv-display readable-content"
+        aria-labelledby="currentCVTitle"
+      >
+
+        <figure class="cv-figure">
+
+          <img
+            id="cvImage"
+            src="Linda-Laryea-CV-EN.png"
+            alt="Linda Laryea English CV"
+            aria-describedby="cvImageDescription"
+          />
+
+
+          <figcaption
+            id="cvImageDescription"
+            class="sr-only"
+          >
+            Linda Larya's CV is displayed visually as an image.
+            A PDF version can be downloaded using the Download CV button.
+          </figcaption>
+
+        </figure>
+
+      </section>
+
+
+      <!-- =================================
+           CTA
+      ================================== -->
+
+      <section
+        class="cta readable-content"
+        aria-labelledby="cta-heading"
+      >
+
+        <div>
+
+          <h2
+            id="cta-heading"
+            data-i18n="ctaHeading"
+          >
+            Interested in working together?
+          </h2>
+
+
+          <p data-i18n="ctaCopy">
+            Let’s connect to discuss UX research,
+            interaction design and meaningful product opportunities.
+          </p>
+
+        </div>
+
 
         <a
           href="contact.html"
-          class="nav-button"
+          class="cta-button"
+          data-i18n="letsConnect"
+          data-no-read
         >
           Let’s Connect
         </a>
 
-      </div>
+      </section>
 
-    </nav>
-
-
-    <!-- =====================================
-         CV HEADER
-    ====================================== -->
-
-    <section class="cv-header">
-
-
-      <div>
-
-        <div class="gold-line"></div>
-
-        <div class="section-label">
-          Curriculum Vitae
-        </div>
-
-
-        <h1>
-          Linda Laryea
-        </h1>
-
-
-        <p>
-          A concise overview of my experience across UX research,
-          interaction design, cognitive science and human-centred
-          behavioural research.
-        </p>
-
-      </div>
-
-
-      <!-- LANGUAGE + DOWNLOAD -->
-
-      <div class="cv-controls">
-
-
-        <div
-          class="language-switch"
-          aria-label="Choose CV language"
-        >
-
-          <button
-            class="language-button active"
-            id="englishButton"
-            type="button"
-          >
-            English
-          </button>
-
-
-          <button
-            class="language-button"
-            id="germanButton"
-            type="button"
-          >
-            Deutsch
-          </button>
-
-        </div>
-
-
-        <a
-          id="downloadButton"
-          class="download-button"
-          href="Linda-Laryea-CV-EN.pdf"
-          download
-        >
-          Download CV ↓
-        </a>
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================
-         CURRENT LANGUAGE
-    ====================================== -->
-
-    <div class="current-language">
-
-      <h2 id="currentCVTitle">
-        CV — English
-      </h2>
-
-
-      <span>
-        Choose English or Deutsch above.
-      </span>
-
-    </div>
-
-
-    <!-- =====================================
-         CV IMAGE
-    ====================================== -->
-
-    <section class="cv-display">
-
-      <img
-        id="cvImage"
-        src="Linda-Laryea-CV-EN.png"
-        alt="Linda Laryea English CV"
-      />
-
-    </section>
-
-
-    <!-- =====================================
-         CTA
-    ====================================== -->
-
-    <section class="cta">
-
-      <div>
-
-        <h2>
-          Interested in working together?
-        </h2>
-
-        <p>
-          Let’s connect to discuss UX research,
-          interaction design and meaningful product opportunities.
-        </p>
-
-      </div>
-
-
-      <a
-        href="contact.html"
-        class="cta-button"
-      >
-        Let’s Connect
-      </a>
-
-    </section>
+    </main>
 
 
     <!-- =====================================
          FOOTER
     ====================================== -->
 
-    <footer>
+    <footer data-no-read>
 
       <div class="footer-brand">
         Linda Laryea
       </div>
 
 
-      <div>
+      <div data-i18n="footerCopy">
         © 2026 Linda Laryea. Designed with research,
         empathy and accessibility in mind.
       </div>
 
     </footer>
 
-
-  </main>
+  </div>
 
 
   <!-- =====================================
-       LANGUAGE SWITCH SCRIPT
+       BACK TO TOP
+  ====================================== -->
+
+  <button
+    type="button"
+    id="backToTop"
+    class="back-to-top"
+    aria-label="Back to top"
+    data-i18n-aria-label="backToTop"
+    data-no-read
+  >
+    ↑
+  </button>
+
+
+  <!-- =====================================
+       JAVASCRIPT
   ====================================== -->
 
   <script>
+
+    /* =====================================
+       TRANSLATIONS
+    ====================================== */
+
+    const translations = {
+
+      en: {
+
+        pageTitle:
+          "CV | Linda Laryea",
+
+        metaDescription:
+          "Curriculum Vitae of Linda Laryea, UX Researcher and Interaction Designer.",
+
+
+        skip:
+          "Skip to main content",
+
+        mainNavigation:
+          "Main navigation",
+
+        chooseLanguage:
+          "Choose language",
+
+        switchEnglish:
+          "Switch to English",
+
+        switchGerman:
+          "Switch to German",
+
+
+        home:
+          "Home",
+
+        caseStudies:
+          "Case Studies",
+
+        aboutMe:
+          "About Me",
+
+        cv:
+          "CV",
+
+        letsConnect:
+          "Let’s Connect",
+
+
+        accessibility:
+          "Accessibility",
+
+        accessibilityDescription:
+          "Adjust the page to suit your needs.",
+
+        closeAccessibility:
+          "Close accessibility settings",
+
+        textSize:
+          "Text size",
+
+        decreaseText:
+          "Decrease text size",
+
+        defaultText:
+          "Default text size",
+
+        increaseText:
+          "Increase text size",
+
+        highContrast:
+          "High contrast",
+
+        highContrastDescription:
+          "Increase visual contrast.",
+
+        reduceMotion:
+          "Reduce motion",
+
+        reduceMotionDescription:
+          "Minimise animation and movement.",
+
+        readPage:
+          "Read page aloud",
+
+        play:
+          "Play",
+
+        pause:
+          "Pause",
+
+        stop:
+          "Stop",
+
+        resetSettings:
+          "Reset accessibility settings",
+
+
+        curriculumVitae:
+          "Curriculum Vitae",
+
+        cvIntro:
+          "A concise overview of my experience across UX research, interaction design, cognitive science and human-centred behavioural research.",
+
+
+        chooseCVLanguage:
+          "Choose CV language",
+
+        englishCV:
+          "English",
+
+        germanCV:
+          "Deutsch",
+
+        downloadCV:
+          "Download CV ↓",
+
+        cvLanguageHint:
+          "Choose English or Deutsch above.",
+
+        cvEnglishTitle:
+          "CV — English",
+
+        cvGermanTitle:
+          "CV — German",
+
+        cvEnglishAlt:
+          "Linda Laryea English CV",
+
+        cvGermanAlt:
+          "Linda Laryea German CV",
+
+        cvEnglishDescription:
+          "Linda Laryea's English CV is displayed visually as an image. A PDF version can be downloaded using the Download CV button.",
+
+        cvGermanDescription:
+          "Linda Laryea's German CV is displayed visually as an image. A PDF version can be downloaded using the Download CV button.",
+
+
+        ctaHeading:
+          "Interested in working together?",
+
+        ctaCopy:
+          "Let’s connect to discuss UX research, interaction design and meaningful product opportunities.",
+
+
+        footerCopy:
+          "© 2026 Linda Laryea. Designed with research, empathy and accessibility in mind.",
+
+
+        backToTop:
+          "Back to top",
+
+
+        languageChanged:
+          "Language changed to English.",
+
+        settingsReset:
+          "Accessibility settings reset.",
+
+        contrastEnabled:
+          "High contrast enabled.",
+
+        contrastDisabled:
+          "High contrast disabled.",
+
+        motionEnabled:
+          "Reduced motion enabled.",
+
+        motionDisabled:
+          "Reduced motion disabled.",
+
+        readingStarted:
+          "Reading started.",
+
+        readingPaused:
+          "Reading paused.",
+
+        readingResumed:
+          "Reading resumed.",
+
+        readingStopped:
+          "Reading stopped.",
+
+        readUnsupported:
+          "Read aloud is not supported by this browser."
+      },
+
+
+      de: {
+
+        pageTitle:
+          "Lebenslauf | Linda Laryea",
+
+        metaDescription:
+          "Lebenslauf von Linda Laryea, UX Researcherin und Interaction Designerin.",
+
+
+        skip:
+          "Zum Hauptinhalt springen",
+
+        mainNavigation:
+          "Hauptnavigation",
+
+        chooseLanguage:
+          "Sprache auswählen",
+
+        switchEnglish:
+          "Auf Englisch wechseln",
+
+        switchGerman:
+          "Auf Deutsch wechseln",
+
+
+        home:
+          "Startseite",
+
+        caseStudies:
+          "Fallstudien",
+
+        aboutMe:
+          "Über mich",
+
+        cv:
+          "Lebenslauf",
+
+        letsConnect:
+          "Kontakt aufnehmen",
+
+
+        accessibility:
+          "Barrierefreiheit",
+
+        accessibilityDescription:
+          "Passe die Seite an deine Bedürfnisse an.",
+
+        closeAccessibility:
+          "Einstellungen zur Barrierefreiheit schließen",
+
+        textSize:
+          "Textgröße",
+
+        decreaseText:
+          "Text verkleinern",
+
+        defaultText:
+          "Standardtextgröße",
+
+        increaseText:
+          "Text vergrößern",
+
+        highContrast:
+          "Hoher Kontrast",
+
+        highContrastDescription:
+          "Erhöht den visuellen Kontrast.",
+
+        reduceMotion:
+          "Bewegung reduzieren",
+
+        reduceMotionDescription:
+          "Animationen und Bewegungen minimieren.",
+
+        readPage:
+          "Seite vorlesen",
+
+        play:
+          "Start",
+
+        pause:
+          "Pause",
+
+        stop:
+          "Stopp",
+
+        resetSettings:
+          "Barrierefreiheit zurücksetzen",
+
+
+        curriculumVitae:
+          "Lebenslauf",
+
+        cvIntro:
+          "Ein kompakter Überblick über meine Erfahrungen in UX Research, Interaction Design, Kognitionswissenschaft und menschenzentrierter Verhaltensforschung.",
+
+
+        chooseCVLanguage:
+          "Sprache des Lebenslaufs auswählen",
+
+        englishCV:
+          "Englisch",
+
+        germanCV:
+          "Deutsch",
+
+        downloadCV:
+          "Lebenslauf herunterladen ↓",
+
+        cvLanguageHint:
+          "Wähle oben Englisch oder Deutsch.",
+
+        cvEnglishTitle:
+          "Lebenslauf — Englisch",
+
+        cvGermanTitle:
+          "Lebenslauf — Deutsch",
+
+        cvEnglishAlt:
+          "Englischer Lebenslauf von Linda Laryea",
+
+        cvGermanAlt:
+          "Deutscher Lebenslauf von Linda Laryea",
+
+        cvEnglishDescription:
+          "Der englische Lebenslauf von Linda Laryea wird als Bild dargestellt. Eine PDF-Version kann über die Schaltfläche zum Herunterladen geöffnet werden.",
+
+        cvGermanDescription:
+          "Der deutsche Lebenslauf von Linda Laryea wird als Bild dargestellt. Eine PDF-Version kann über die Schaltfläche zum Herunterladen geöffnet werden.",
+
+
+        ctaHeading:
+          "Interesse an einer Zusammenarbeit?",
+
+        ctaCopy:
+          "Lass uns über UX Research, Interaction Design und sinnvolle Produktmöglichkeiten sprechen.",
+
+
+        footerCopy:
+          "© 2026 Linda Laryea. Mit Research, Empathie und Barrierefreiheit im Mittelpunkt gestaltet.",
+
+
+        backToTop:
+          "Nach oben",
+
+
+        languageChanged:
+          "Sprache auf Deutsch geändert.",
+
+        settingsReset:
+          "Einstellungen zur Barrierefreiheit wurden zurückgesetzt.",
+
+        contrastEnabled:
+          "Hoher Kontrast aktiviert.",
+
+        contrastDisabled:
+          "Hoher Kontrast deaktiviert.",
+
+        motionEnabled:
+          "Reduzierte Bewegung aktiviert.",
+
+        motionDisabled:
+          "Reduzierte Bewegung deaktiviert.",
+
+        readingStarted:
+          "Vorlesen gestartet.",
+
+        readingPaused:
+          "Vorlesen pausiert.",
+
+        readingResumed:
+          "Vorlesen fortgesetzt.",
+
+        readingStopped:
+          "Vorlesen gestoppt.",
+
+        readUnsupported:
+          "Die Vorlesefunktion wird von diesem Browser nicht unterstützt."
+      }
+
+    };
+
+
+    /* =====================================
+       FILES
+    ====================================== */
+
+    const englishImage =
+      "Linda-Laryea-CV-EN.png";
+
+    const germanImage =
+      "Linda-Laryea-CV-DE.png";
+
+    const englishPDF =
+      "Linda-Laryea-CV-EN.pdf";
+
+    const germanPDF =
+      "Linda-Laryea-CV-DE.pdf";
+
+
+    /* =====================================
+       ELEMENTS
+    ====================================== */
+
+    const languageEN =
+      document.getElementById("languageEN");
+
+    const languageDE =
+      document.getElementById("languageDE");
+
 
     const englishButton =
       document.getElementById("englishButton");
 
     const germanButton =
       document.getElementById("germanButton");
+
 
     const cvImage =
       document.getElementById("cvImage");
@@ -709,108 +2784,1185 @@
     const currentCVTitle =
       document.getElementById("currentCVTitle");
 
-
-    const englishImage =
-      "Linda-Laryea-CV-EN.png";
-
-    const germanImage =
-      "Linda-Laryea-CV-DE.png";
+    const cvImageDescription =
+      document.getElementById("cvImageDescription");
 
 
-    const englishPDF =
-      "Linda-Laryea-CV-EN.pdf";
+    const accessibilityButton =
+      document.getElementById("accessibilityButton");
 
-    const germanPDF =
-      "Linda-Laryea-CV-DE.pdf";
+    const accessibilityPanel =
+      document.getElementById("accessibilityPanel");
+
+    const closeAccessibility =
+      document.getElementById("closeAccessibility");
+
+
+    const contrastToggle =
+      document.getElementById("contrastToggle");
+
+    const motionToggle =
+      document.getElementById("motionToggle");
+
+    const textSizeButtons =
+      document.querySelectorAll(".text-size-button");
+
+
+    const readPlay =
+      document.getElementById("readPlay");
+
+    const readPause =
+      document.getElementById("readPause");
+
+    const readStop =
+      document.getElementById("readStop");
+
+
+    const resetAccessibility =
+      document.getElementById("resetAccessibility");
+
+    const backToTop =
+      document.getElementById("backToTop");
+
+    const a11yStatus =
+      document.getElementById("a11yStatus");
+
+    const metaDescription =
+      document.getElementById("metaDescription");
+
+
+    let currentLanguage =
+      localStorage.getItem(
+        "portfolioLanguage"
+      ) || "en";
+
+
+    let currentCVLanguage =
+      localStorage.getItem(
+        "portfolioCVLanguage"
+      ) || currentLanguage;
+
+
+    let speechUtterance =
+      null;
+
+    let isPaused =
+      false;
 
 
     /* =====================================
-       ENGLISH CV
+       ANNOUNCEMENTS
     ====================================== */
 
-    function showEnglishCV() {
+    function announce(message) {
 
-      englishButton.classList.add("active");
-
-      germanButton.classList.remove("active");
-
-
-      cvImage.src =
-        englishImage;
+      a11yStatus.textContent =
+        "";
 
 
-      cvImage.alt =
-        "Linda Laryea English CV";
+      window.setTimeout(
+        () => {
 
+          a11yStatus.textContent =
+            message;
 
-      downloadButton.href =
-        englishPDF;
-
-
-      downloadButton.setAttribute(
-        "download",
-        "Linda-Laryea-CV-EN.pdf"
+        },
+        40
       );
-
-
-      currentCVTitle.textContent =
-        "CV — English";
 
     }
 
 
     /* =====================================
-       GERMAN CV
+       CV DOCUMENT LANGUAGE
     ====================================== */
 
-    function showGermanCV() {
+    function showCV(
+      language,
+      savePreference = true
+    ) {
 
-      germanButton.classList.add("active");
-
-      englishButton.classList.remove("active");
-
-
-      cvImage.src =
-        germanImage;
+      currentCVLanguage =
+        language;
 
 
-      cvImage.alt =
-        "Linda Laryea German CV";
+      if (savePreference) {
+
+        localStorage.setItem(
+          "portfolioCVLanguage",
+          language
+        );
+
+      }
 
 
-      downloadButton.href =
-        germanPDF;
+      const isEnglish =
+        language === "en";
 
 
-      downloadButton.setAttribute(
-        "download",
-        "Linda-Laryea-CV-DE.pdf"
+      englishButton.classList.toggle(
+        "active",
+        isEnglish
       );
 
 
-      currentCVTitle.textContent =
-        "Lebenslauf — Deutsch";
+      germanButton.classList.toggle(
+        "active",
+        !isEnglish
+      );
+
+
+      englishButton.setAttribute(
+        "aria-pressed",
+        isEnglish ? "true" : "false"
+      );
+
+
+      germanButton.setAttribute(
+        "aria-pressed",
+        !isEnglish ? "true" : "false"
+      );
+
+
+      if (isEnglish) {
+
+        cvImage.src =
+          englishImage;
+
+
+        downloadButton.href =
+          englishPDF;
+
+
+        downloadButton.setAttribute(
+          "download",
+          "Linda-Laryea-CV-EN.pdf"
+        );
+
+
+        currentCVTitle.textContent =
+          translations[currentLanguage]
+            .cvEnglishTitle;
+
+
+        cvImage.alt =
+          translations[currentLanguage]
+            .cvEnglishAlt;
+
+
+        cvImageDescription.textContent =
+          translations[currentLanguage]
+            .cvEnglishDescription;
+
+      } else {
+
+        cvImage.src =
+          germanImage;
+
+
+        downloadButton.href =
+          germanPDF;
+
+
+        downloadButton.setAttribute(
+          "download",
+          "Linda-Laryea-CV-DE.pdf"
+        );
+
+
+        currentCVTitle.textContent =
+          translations[currentLanguage]
+            .cvGermanTitle;
+
+
+        cvImage.alt =
+          translations[currentLanguage]
+            .cvGermanAlt;
+
+
+        cvImageDescription.textContent =
+          translations[currentLanguage]
+            .cvGermanDescription;
+
+      }
 
     }
 
-
-    /* =====================================
-       BUTTON EVENTS
-    ====================================== */
 
     englishButton.addEventListener(
       "click",
-      showEnglishCV
+      () => {
+
+        showCV(
+          "en",
+          true
+        );
+
+      }
     );
 
 
     germanButton.addEventListener(
       "click",
-      showGermanCV
+      () => {
+
+        showCV(
+          "de",
+          true
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       SITE LANGUAGE
+    ====================================== */
+
+    function applyLanguage(
+      language,
+      announceChange = false
+    ) {
+
+      currentLanguage =
+        language;
+
+
+      document.documentElement.lang =
+        language;
+
+
+      localStorage.setItem(
+        "portfolioLanguage",
+        language
+      );
+
+
+      document.title =
+        translations[language]
+          .pageTitle;
+
+
+      metaDescription.setAttribute(
+        "content",
+        translations[language]
+          .metaDescription
+      );
+
+
+      document
+        .querySelectorAll(
+          "[data-i18n]"
+        )
+        .forEach(
+          element => {
+
+            const key =
+              element.getAttribute(
+                "data-i18n"
+              );
+
+
+            if (
+              translations[language] &&
+              translations[language][key]
+            ) {
+
+              element.textContent =
+                translations[language][key];
+
+            }
+
+          }
+        );
+
+
+      document
+        .querySelectorAll(
+          "[data-i18n-aria-label]"
+        )
+        .forEach(
+          element => {
+
+            const key =
+              element.getAttribute(
+                "data-i18n-aria-label"
+              );
+
+
+            if (
+              translations[language] &&
+              translations[language][key]
+            ) {
+
+              element.setAttribute(
+                "aria-label",
+                translations[language][key]
+              );
+
+            }
+
+          }
+        );
+
+
+      const englishSelected =
+        language === "en";
+
+
+      languageEN.classList.toggle(
+        "active",
+        englishSelected
+      );
+
+
+      languageDE.classList.toggle(
+        "active",
+        !englishSelected
+      );
+
+
+      languageEN.setAttribute(
+        "aria-pressed",
+        englishSelected
+          ? "true"
+          : "false"
+      );
+
+
+      languageDE.setAttribute(
+        "aria-pressed",
+        !englishSelected
+          ? "true"
+          : "false"
+      );
+
+
+      /*
+        Refresh CV labels because the
+        page language may have changed.
+      */
+
+      showCV(
+        currentCVLanguage,
+        false
+      );
+
+
+      /*
+        If the visitor deliberately
+        switches the whole site language,
+        also show the matching CV.
+      */
+
+      if (announceChange) {
+
+        showCV(
+          language,
+          true
+        );
+
+
+        announce(
+          translations[language]
+            .languageChanged
+        );
+
+      }
+
+
+      stopReading(false);
+
+    }
+
+
+    languageEN.addEventListener(
+      "click",
+      () => {
+
+        applyLanguage(
+          "en",
+          true
+        );
+
+      }
+    );
+
+
+    languageDE.addEventListener(
+      "click",
+      () => {
+
+        applyLanguage(
+          "de",
+          true
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       ACCESSIBILITY PANEL
+    ====================================== */
+
+    function openAccessibilityPanel() {
+
+      accessibilityPanel.hidden =
+        false;
+
+
+      accessibilityButton.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
+
+      closeAccessibility.focus();
+
+    }
+
+
+    function closeAccessibilityPanel() {
+
+      accessibilityPanel.hidden =
+        true;
+
+
+      accessibilityButton.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+
+      accessibilityButton.focus();
+
+    }
+
+
+    accessibilityButton.addEventListener(
+      "click",
+      () => {
+
+        if (
+          accessibilityPanel.hidden
+        ) {
+
+          openAccessibilityPanel();
+
+        } else {
+
+          closeAccessibilityPanel();
+
+        }
+
+      }
+    );
+
+
+    closeAccessibility.addEventListener(
+      "click",
+      closeAccessibilityPanel
+    );
+
+
+    document.addEventListener(
+      "keydown",
+      event => {
+
+        if (
+          event.key === "Escape" &&
+          !accessibilityPanel.hidden
+        ) {
+
+          closeAccessibilityPanel();
+
+        }
+
+      }
+    );
+
+
+    document.addEventListener(
+      "click",
+      event => {
+
+        if (
+          accessibilityPanel.hidden
+        ) {
+          return;
+        }
+
+
+        const clickedInsidePanel =
+          accessibilityPanel.contains(
+            event.target
+          );
+
+
+        const clickedButton =
+          accessibilityButton.contains(
+            event.target
+          );
+
+
+        if (
+          !clickedInsidePanel &&
+          !clickedButton
+        ) {
+
+          accessibilityPanel.hidden =
+            true;
+
+
+          accessibilityButton.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =====================================
+       TEXT SIZE
+    ====================================== */
+
+    function applyTextSize(size) {
+
+      let scale =
+        1;
+
+
+      if (
+        size === "small"
+      ) {
+
+        scale =
+          0.92;
+
+      }
+
+
+      if (
+        size === "large"
+      ) {
+
+        scale =
+          1.15;
+
+      }
+
+
+      document.documentElement
+        .style
+        .setProperty(
+          "--text-scale",
+          scale
+        );
+
+
+      localStorage.setItem(
+        "portfolioTextSize",
+        size
+      );
+
+
+      textSizeButtons.forEach(
+        button => {
+
+          button.classList.toggle(
+            "active",
+            button.dataset.size === size
+          );
+
+        }
+      );
+
+    }
+
+
+    textSizeButtons.forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            applyTextSize(
+              button.dataset.size
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       HIGH CONTRAST
+    ====================================== */
+
+    function applyContrast(
+      enabled,
+      announceChange = false
+    ) {
+
+      document.body.classList.toggle(
+        "high-contrast",
+        enabled
+      );
+
+
+      contrastToggle.checked =
+        enabled;
+
+
+      localStorage.setItem(
+        "portfolioContrast",
+        enabled
+          ? "true"
+          : "false"
+      );
+
+
+      if (announceChange) {
+
+        announce(
+          enabled
+            ? translations[currentLanguage]
+                .contrastEnabled
+            : translations[currentLanguage]
+                .contrastDisabled
+        );
+
+      }
+
+    }
+
+
+    contrastToggle.addEventListener(
+      "change",
+      () => {
+
+        applyContrast(
+          contrastToggle.checked,
+          true
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       REDUCED MOTION
+    ====================================== */
+
+    function applyMotionPreference(
+      enabled,
+      announceChange = false
+    ) {
+
+      document.body.classList.toggle(
+        "reduce-motion",
+        enabled
+      );
+
+
+      motionToggle.checked =
+        enabled;
+
+
+      localStorage.setItem(
+        "portfolioReducedMotion",
+        enabled
+          ? "true"
+          : "false"
+      );
+
+
+      if (announceChange) {
+
+        announce(
+          enabled
+            ? translations[currentLanguage]
+                .motionEnabled
+            : translations[currentLanguage]
+                .motionDisabled
+        );
+
+      }
+
+    }
+
+
+    motionToggle.addEventListener(
+      "change",
+      () => {
+
+        applyMotionPreference(
+          motionToggle.checked,
+          true
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       READ ALOUD
+    ====================================== */
+
+    const speechSupported =
+      "speechSynthesis" in window &&
+      "SpeechSynthesisUtterance" in window;
+
+
+    if (!speechSupported) {
+
+      readPlay.disabled =
+        true;
+
+      readPause.disabled =
+        true;
+
+      readStop.disabled =
+        true;
+
+    }
+
+
+    function getReadablePageText() {
+
+      const readableSections =
+        document.querySelectorAll(
+          ".readable-content"
+        );
+
+
+      const textParts =
+        [];
+
+
+      readableSections.forEach(
+        section => {
+
+          const clone =
+            section.cloneNode(true);
+
+
+          clone
+            .querySelectorAll(
+              "[data-no-read], img, button, [aria-hidden='true']"
+            )
+            .forEach(
+              element => {
+
+                element.remove();
+
+              }
+            );
+
+
+          const sectionText =
+            clone.innerText
+              .replace(
+                /\s+/g,
+                " "
+              )
+              .trim();
+
+
+          if (sectionText) {
+
+            textParts.push(
+              sectionText
+            );
+
+          }
+
+        }
+      );
+
+
+      return textParts.join(
+        ". "
+      );
+
+    }
+
+
+    function startReading() {
+
+      if (!speechSupported) {
+
+        announce(
+          translations[currentLanguage]
+            .readUnsupported
+        );
+
+        return;
+
+      }
+
+
+      if (
+        window.speechSynthesis.speaking &&
+        isPaused
+      ) {
+
+        window.speechSynthesis.resume();
+
+
+        isPaused =
+          false;
+
+
+        announce(
+          translations[currentLanguage]
+            .readingResumed
+        );
+
+
+        return;
+
+      }
+
+
+      window.speechSynthesis.cancel();
+
+
+      const text =
+        getReadablePageText();
+
+
+      speechUtterance =
+        new SpeechSynthesisUtterance(
+          text
+        );
+
+
+      speechUtterance.lang =
+        currentLanguage === "de"
+          ? "de-DE"
+          : "en-US";
+
+
+      speechUtterance.rate =
+        0.95;
+
+
+      speechUtterance.pitch =
+        1;
+
+
+      speechUtterance.onend =
+        () => {
+
+          isPaused =
+            false;
+
+        };
+
+
+      window.speechSynthesis.speak(
+        speechUtterance
+      );
+
+
+      isPaused =
+        false;
+
+
+      announce(
+        translations[currentLanguage]
+          .readingStarted
+      );
+
+    }
+
+
+    function pauseReading() {
+
+      if (
+        speechSupported &&
+        window.speechSynthesis.speaking &&
+        !isPaused
+      ) {
+
+        window.speechSynthesis.pause();
+
+
+        isPaused =
+          true;
+
+
+        announce(
+          translations[currentLanguage]
+            .readingPaused
+        );
+
+      }
+
+    }
+
+
+    function stopReading(
+      announceStop = true
+    ) {
+
+      if (!speechSupported) {
+        return;
+      }
+
+
+      window.speechSynthesis.cancel();
+
+
+      isPaused =
+        false;
+
+
+      if (announceStop) {
+
+        announce(
+          translations[currentLanguage]
+            .readingStopped
+        );
+
+      }
+
+    }
+
+
+    readPlay.addEventListener(
+      "click",
+      startReading
+    );
+
+
+    readPause.addEventListener(
+      "click",
+      pauseReading
+    );
+
+
+    readStop.addEventListener(
+      "click",
+      () => {
+
+        stopReading(true);
+
+      }
+    );
+
+
+    /* =====================================
+       RESET ACCESSIBILITY
+    ====================================== */
+
+    resetAccessibility.addEventListener(
+      "click",
+      () => {
+
+        applyTextSize(
+          "default"
+        );
+
+
+        applyContrast(
+          false
+        );
+
+
+        applyMotionPreference(
+          false
+        );
+
+
+        stopReading(
+          false
+        );
+
+
+        localStorage.removeItem(
+          "portfolioTextSize"
+        );
+
+
+        localStorage.removeItem(
+          "portfolioContrast"
+        );
+
+
+        localStorage.removeItem(
+          "portfolioReducedMotion"
+        );
+
+
+        announce(
+          translations[currentLanguage]
+            .settingsReset
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       BACK TO TOP
+    ====================================== */
+
+    window.addEventListener(
+      "scroll",
+      () => {
+
+        backToTop.classList.toggle(
+          "visible",
+          window.scrollY > 500
+        );
+
+      },
+      {
+        passive: true
+      }
+    );
+
+
+    backToTop.addEventListener(
+      "click",
+      () => {
+
+        const reducedMotion =
+          document.body
+            .classList
+            .contains(
+              "reduce-motion"
+            ) ||
+
+          window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches;
+
+
+        window.scrollTo({
+
+          top:
+            0,
+
+          behavior:
+            reducedMotion
+              ? "auto"
+              : "smooth"
+
+        });
+
+      }
+    );
+
+
+    /* =====================================
+       LOAD SAVED SETTINGS
+    ====================================== */
+
+    function loadPreferences() {
+
+      /*
+        Same keys as index.html,
+        case-studies.html and about.html.
+      */
+
+      applyLanguage(
+        currentLanguage,
+        false
+      );
+
+
+      /*
+        Restore whichever CV document
+        the visitor last selected.
+      */
+
+      showCV(
+        currentCVLanguage,
+        false
+      );
+
+
+      const savedTextSize =
+        localStorage.getItem(
+          "portfolioTextSize"
+        ) || "default";
+
+
+      applyTextSize(
+        savedTextSize
+      );
+
+
+      const savedContrast =
+        localStorage.getItem(
+          "portfolioContrast"
+        ) === "true";
+
+
+      applyContrast(
+        savedContrast,
+        false
+      );
+
+
+      const savedMotion =
+        localStorage.getItem(
+          "portfolioReducedMotion"
+        );
+
+
+      if (
+        savedMotion !== null
+      ) {
+
+        applyMotionPreference(
+          savedMotion === "true",
+          false
+        );
+
+      } else {
+
+        motionToggle.checked =
+          window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches;
+
+      }
+
+    }
+
+
+    loadPreferences();
+
+
+    /* =====================================
+       STOP SPEECH ON PAGE EXIT
+    ====================================== */
+
+    window.addEventListener(
+      "beforeunload",
+      () => {
+
+        if (speechSupported) {
+
+          window.speechSynthesis.cancel();
+
+        }
+
+      }
     );
 
   </script>
-
 
 </body>
 
