@@ -3,27 +3,46 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="icon" type="image/png" href="/favicon.png" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    name="description"
+    content="Linda Laryea — UX Researcher and Interaction Designer focused on research, accessibility and clear digital experiences."
+  />
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="/favicon.png"
+  />
 
   <title>Linda Laryea | UX Researcher & Interaction Designer</title>
 
+
   <style>
+
+    /* =====================================
+       DESIGN TOKENS
+    ====================================== */
+
     :root {
       --bg: #FFF9FC;
-      --white: #FFFFFF;
+      --surface: #FFFFFF;
 
       --magenta: #A80B63;
       --magenta-dark: #83074C;
 
       --gold: #F3C24F;
 
-      --purple-soft: #F3EEFA;
       --pink-soft: #FDE7F1;
+      --purple-soft: #F3EEFA;
       --green-soft: #EAF7F0;
-      --yellow-soft: #FFF6E4;
-      --blue-soft: #EEF5FF;
+
+      --green: #159447;
 
       --dark: #111827;
       --body: #4B5563;
@@ -31,8 +50,12 @@
 
       --border: #F2D8E7;
 
+      --focus: #111827;
+
       --shadow:
-        0 18px 50px rgba(80, 47, 67, 0.06);
+        0 18px 55px rgba(80, 47, 67, 0.07);
+
+      --text-scale: 1;
     }
 
 
@@ -42,125 +65,615 @@
 
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
+
 
     html {
       scroll-behavior: smooth;
+      font-size: calc(16px * var(--text-scale));
     }
 
+
     body {
-      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
       background: var(--bg);
       color: var(--dark);
 
       line-height: 1.6;
+
+      transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
 
     img {
       display: block;
       max-width: 100%;
     }
 
-    .page {
-      width: min(1180px, calc(100% - 32px));
 
-      margin: 0 auto;
-      padding: 24px 0 70px;
+    button,
+    a {
+      font: inherit;
+    }
+
+
+    button {
+      cursor: pointer;
+    }
+
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+
+    p {
+      color: var(--body);
     }
 
 
     /* =====================================
-       NAVIGATION
+       VISUALLY HIDDEN
     ====================================== */
 
+    .sr-only {
+      position: absolute;
+
+      width: 1px;
+      height: 1px;
+
+      padding: 0;
+      margin: -1px;
+
+      overflow: hidden;
+
+      clip: rect(0, 0, 0, 0);
+
+      white-space: nowrap;
+
+      border: 0;
+    }
+
+
+    /* =====================================
+       KEYBOARD FOCUS
+    ====================================== */
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 4px;
+    }
+
+
+    .primary-button:focus-visible,
+    .nav-cta:focus-visible,
+    .case-button:focus-visible {
+      outline-color: var(--gold);
+    }
+
+
+    /* =====================================
+       SKIP LINK
+    ====================================== */
+
+    .skip-link {
+      position: fixed;
+
+      top: 12px;
+      left: 12px;
+
+      z-index: 99999;
+
+      padding: 12px 18px;
+
+      background: var(--dark);
+      color: #FFFFFF;
+
+      border-radius: 10px;
+
+      font-size: 0.875rem;
+      font-weight: 800;
+
+      transform: translateY(-180%);
+
+      transition: transform 0.2s ease;
+    }
+
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+
+    /* =====================================
+       PAGE WIDTH
+    ====================================== */
+
+    .site-shell {
+      width: min(1180px, calc(100% - 32px));
+
+      margin: 0 auto;
+    }
+
+
+    /* =====================================
+       HEADER / NAV
+    ====================================== */
+
+    .site-header {
+      width: 100%;
+
+      background: var(--bg);
+    }
+
+
     .navbar {
+      min-height: 84px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
 
       gap: 24px;
 
-      padding-bottom: 22px;
-
       border-bottom: 1px solid var(--border);
     }
 
-    .brand-name {
+
+    .brand {
       color: var(--magenta);
 
-      font-size: 28px;
+      font-size: 1.75rem;
       font-weight: 800;
 
-      letter-spacing: -0.4px;
+      letter-spacing: -0.04em;
+
+      white-space: nowrap;
     }
+
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+
+      gap: 20px;
+    }
+
 
     .nav-links {
       display: flex;
       align-items: center;
 
-      gap: 32px;
+      gap: 28px;
 
-      font-size: 14px;
+      list-style: none;
+
+      padding: 0;
+      margin: 0;
+    }
+
+
+    .nav-links a {
+      min-height: 44px;
+
+      display: inline-flex;
+      align-items: center;
+
+      color: var(--dark);
+
+      font-size: 0.875rem;
       font-weight: 700;
     }
 
+
     .nav-links a:hover,
-    .nav-links .active {
+    .nav-links a[aria-current="page"] {
       color: var(--magenta);
     }
 
-    .nav-links .active {
-      padding-bottom: 10px;
 
+    .nav-links a[aria-current="page"] {
       border-bottom: 3px solid var(--magenta);
     }
 
-    .nav-button {
-      padding: 13px 22px;
+
+    .nav-cta {
+      min-height: 44px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0 20px;
 
       background: var(--magenta);
       color: #FFFFFF !important;
 
-      border-radius: 12px;
+      border-radius: 11px;
 
       border-bottom: 0 !important;
     }
 
 
     /* =====================================
-       SHARED
+       NAV ACCESSIBILITY CONTROLS
     ====================================== */
 
-    .gold-line {
-      width: 46px;
-      height: 3px;
+    .nav-tools {
+      display: flex;
+      align-items: center;
 
-      margin-bottom: 13px;
-
-      background: var(--gold);
-
-      border-radius: 999px;
+      gap: 8px;
     }
 
-    .section-label {
-      margin-bottom: 11px;
 
+    .language-switcher {
+      display: flex;
+      align-items: center;
+
+      padding: 3px;
+
+      background: var(--surface);
+
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+
+    .language-button {
+      min-width: 44px;
+      min-height: 40px;
+
+      padding: 0 9px;
+
+      border: 0;
+      border-radius: 7px;
+
+      background: transparent;
+      color: var(--body);
+
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+
+
+    .language-button.active {
+      background: var(--magenta);
+      color: #FFFFFF;
+    }
+
+
+    .accessibility-button {
+      min-width: 44px;
+      min-height: 44px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 7px;
+
+      padding: 0 12px;
+
+      background: var(--surface);
+      color: var(--dark);
+
+      border: 1px solid var(--border);
+      border-radius: 10px;
+
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+
+    .accessibility-button:hover {
+      background: var(--purple-soft);
+    }
+
+
+    /* =====================================
+       ACCESSIBILITY PANEL
+    ====================================== */
+
+    .accessibility-panel {
+      position: fixed;
+
+      top: 92px;
+      right: 24px;
+
+      z-index: 10000;
+
+      width: min(340px, calc(100vw - 32px));
+
+      padding: 22px;
+
+      background: var(--surface);
+
+      border: 1px solid var(--border);
+      border-radius: 18px;
+
+      box-shadow:
+        0 24px 70px rgba(17, 24, 39, 0.16);
+    }
+
+
+    .accessibility-panel[hidden] {
+      display: none;
+    }
+
+
+    .a11y-panel-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+
+      gap: 18px;
+
+      margin-bottom: 20px;
+    }
+
+
+    .a11y-panel-header h2 {
+      margin: 0 0 3px;
+
+      font-size: 1.1rem;
+    }
+
+
+    .a11y-panel-header p {
+      margin: 0;
+
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+
+    .panel-close {
+      min-width: 44px;
+      min-height: 44px;
+
+      border: 0;
+      border-radius: 10px;
+
+      background: var(--purple-soft);
+
+      color: var(--dark);
+
+      font-size: 1.25rem;
+    }
+
+
+    .a11y-group {
+      padding: 16px 0;
+
+      border-top: 1px solid var(--border);
+    }
+
+
+    .a11y-group:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+
+    .a11y-label {
+      display: block;
+
+      margin-bottom: 10px;
+
+      color: var(--dark);
+
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+
+    /* TEXT SIZE */
+
+    .text-size-controls {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 8px;
+    }
+
+
+    .text-size-button {
+      min-height: 44px;
+
+      border: 1px solid var(--border);
+      border-radius: 9px;
+
+      background: var(--surface);
+      color: var(--dark);
+
+      font-weight: 800;
+    }
+
+
+    .text-size-button.active {
+      background: var(--magenta);
+      color: #FFFFFF;
+
+      border-color: var(--magenta);
+    }
+
+
+    /* SWITCHES */
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      min-height: 48px;
+    }
+
+
+    .toggle-copy strong {
+      display: block;
+
+      font-size: 0.82rem;
+    }
+
+
+    .toggle-copy span {
+      display: block;
+
+      margin-top: 2px;
+
+      color: var(--muted);
+
+      font-size: 0.7rem;
+    }
+
+
+    .switch {
+      position: relative;
+
+      width: 50px;
+      height: 28px;
+
+      flex: 0 0 auto;
+    }
+
+
+    .switch input {
+      position: absolute;
+
+      opacity: 0;
+
+      width: 1px;
+      height: 1px;
+    }
+
+
+    .switch-track {
+      position: absolute;
+
+      inset: 0;
+
+      background: #D1D5DB;
+
+      border-radius: 999px;
+
+      transition: background 0.2s ease;
+    }
+
+
+    .switch-track::after {
+      content: "";
+
+      position: absolute;
+
+      width: 20px;
+      height: 20px;
+
+      left: 4px;
+      top: 4px;
+
+      background: #FFFFFF;
+
+      border-radius: 50%;
+
+      box-shadow:
+        0 2px 7px rgba(0, 0, 0, 0.18);
+
+      transition: transform 0.2s ease;
+    }
+
+
+    .switch input:checked + .switch-track {
+      background: var(--magenta);
+    }
+
+
+    .switch input:checked + .switch-track::after {
+      transform: translateX(22px);
+    }
+
+
+    .switch input:focus-visible + .switch-track {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+
+    /* READ ALOUD */
+
+    .read-controls {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 8px;
+    }
+
+
+    .read-button {
+      min-height: 44px;
+
+      border: 1px solid var(--border);
+      border-radius: 9px;
+
+      background: var(--surface);
+      color: var(--dark);
+
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+
+
+    .read-button:hover {
+      background: var(--purple-soft);
+    }
+
+
+    .read-button.primary-read {
+      background: var(--magenta);
+      color: #FFFFFF;
+
+      border-color: var(--magenta);
+    }
+
+
+    .read-button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+
+    .reset-button {
+      width: 100%;
+      min-height: 44px;
+
+      border: 1px solid var(--border);
+      border-radius: 9px;
+
+      background: var(--surface);
       color: var(--magenta);
 
-      font-size: 11px;
-      font-weight: 900;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
 
-      letter-spacing: 1.1px;
 
-      text-transform: uppercase;
+    /* =====================================
+       MAIN
+    ====================================== */
+
+    main {
+      padding: 48px 0 0;
     }
 
 
@@ -169,43 +682,74 @@
     ====================================== */
 
     .hero {
-      padding: 72px 0 55px;
-
       display: grid;
-      grid-template-columns: 1.12fr 0.88fr;
+      grid-template-columns:
+        minmax(0, 1.03fr)
+        minmax(360px, 0.97fr);
 
-      gap: 60px;
+      gap: 48px;
+
       align-items: center;
     }
 
-    .hero-eyebrow {
-      color: var(--magenta);
 
-      font-size: 14px;
-      font-weight: 800;
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+
+      gap: 10px;
 
       margin-bottom: 18px;
+
+      color: var(--magenta);
+
+      font-size: 0.73rem;
+      font-weight: 900;
+
+      letter-spacing: 0.11em;
+
+      text-transform: uppercase;
     }
+
+
+    .eyebrow-line {
+      width: 42px;
+      height: 3px;
+
+      background: var(--gold);
+
+      border-radius: 999px;
+    }
+
 
     .hero h1 {
-      max-width: 760px;
+      max-width: 730px;
 
-      font-size: clamp(48px, 6vw, 72px);
-      line-height: 1.04;
+      margin: 0;
 
-      letter-spacing: -2.3px;
+      font-size:
+        clamp(3.2rem, 6.2vw, 5.7rem);
 
-      margin-bottom: 24px;
+      line-height: 0.99;
+
+      letter-spacing: -0.055em;
     }
+
+
+    .hero h1 span {
+      color: var(--magenta);
+    }
+
 
     .hero-description {
-      max-width: 680px;
+      max-width: 670px;
 
-      color: var(--body);
+      margin: 25px 0 0;
 
-      font-size: 18px;
-      line-height: 1.75;
+      font-size: 1.08rem;
+      line-height: 1.8;
     }
+
 
     .hero-actions {
       display: flex;
@@ -216,86 +760,193 @@
       margin-top: 28px;
     }
 
+
     .primary-button,
     .secondary-button {
+      min-height: 48px;
+
       display: inline-flex;
       align-items: center;
       justify-content: center;
 
-      min-height: 48px;
+      padding: 0 20px;
 
-      padding: 13px 21px;
+      border-radius: 11px;
 
-      border-radius: 12px;
-
-      font-size: 14px;
+      font-size: 0.84rem;
       font-weight: 800;
     }
+
 
     .primary-button {
       background: var(--magenta);
       color: #FFFFFF;
     }
 
+
     .primary-button:hover {
       background: var(--magenta-dark);
     }
 
+
     .secondary-button {
-      background: #FFFFFF;
+      background: var(--surface);
       color: var(--magenta);
 
-      border: 1px solid var(--magenta);
+      border: 1px solid var(--border);
     }
 
 
-    /* HERO RIGHT */
-
-    .hero-side {
-      display: grid;
-      gap: 14px;
+    .secondary-button:hover {
+      background: var(--pink-soft);
     }
 
-    .hero-side-card {
-      padding: 23px;
 
-      border-radius: 20px;
-    }
+    /* HERO VISUAL */
 
-    .hero-side-card:nth-child(1) {
+    .hero-visual {
+      min-height: 470px;
+
+      position: relative;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 32px;
+
+      overflow: hidden;
+
       background: var(--purple-soft);
+
+      border: 1px solid var(--border);
+      border-radius: 32px;
     }
 
-    .hero-side-card:nth-child(2) {
-      background: var(--green-soft);
+
+    .hero-visual::before {
+      content: "";
+
+      position: absolute;
+
+      width: 250px;
+      height: 250px;
+
+      top: -85px;
+      right: -60px;
+
+      background: var(--gold);
+
+      opacity: 0.18;
+
+      border-radius: 50%;
     }
 
-    .hero-side-card:nth-child(3) {
-      background: var(--yellow-soft);
+
+    .hero-visual::after {
+      content: "";
+
+      position: absolute;
+
+      width: 180px;
+      height: 180px;
+
+      bottom: -80px;
+      left: -65px;
+
+      background: var(--magenta);
+
+      opacity: 0.09;
+
+      border-radius: 50%;
     }
 
-    .hero-side-number {
-      color: var(--magenta);
 
-      font-size: 11px;
-      font-weight: 900;
+    .hero-message-card {
+      position: relative;
 
-      margin-bottom: 6px;
+      z-index: 1;
+
+      width: min(100%, 410px);
+
+      padding: 32px;
+
+      background: var(--surface);
+
+      border: 1px solid var(--border);
+      border-radius: 23px;
+
+      box-shadow: var(--shadow);
     }
 
-    .hero-side-card strong {
+
+    .hero-message-card small {
       display: block;
 
-      font-size: 17px;
+      margin-bottom: 12px;
 
-      margin-bottom: 6px;
+      color: var(--magenta);
+
+      font-size: 0.68rem;
+      font-weight: 900;
+
+      letter-spacing: 0.09em;
+
+      text-transform: uppercase;
     }
 
-    .hero-side-card p {
-      color: var(--body);
 
-      font-size: 13px;
-      line-height: 1.65;
+    .hero-message-card h2 {
+      margin: 0;
+
+      font-size: 1.7rem;
+      line-height: 1.25;
+    }
+
+
+    .hero-message-card p {
+      margin: 14px 0 0;
+
+      font-size: 0.88rem;
+      line-height: 1.7;
+    }
+
+
+    .mini-insights {
+      display: grid;
+
+      gap: 10px;
+
+      margin-top: 22px;
+    }
+
+
+    .mini-insight {
+      display: flex;
+      align-items: center;
+
+      gap: 11px;
+
+      padding: 11px 13px;
+
+      background: var(--bg);
+
+      border-radius: 10px;
+
+      font-size: 0.76rem;
+      font-weight: 700;
+    }
+
+
+    .insight-dot {
+      width: 9px;
+      height: 9px;
+
+      flex: 0 0 auto;
+
+      background: var(--gold);
+
+      border-radius: 50%;
     }
 
 
@@ -303,164 +954,23 @@
        FOUNDATION STRIP
     ====================================== */
 
-    .foundation {
+    .foundation-strip {
+      margin-top: 58px;
+
       display: grid;
       grid-template-columns: repeat(4, 1fr);
 
-      gap: 1px;
-
-      margin-bottom: 34px;
-
       overflow: hidden;
 
-      background: var(--border);
+      background: var(--surface);
 
       border: 1px solid var(--border);
-      border-radius: 20px;
-
-      box-shadow: var(--shadow);
+      border-radius: 18px;
     }
+
 
     .foundation-item {
-      min-height: 115px;
-
-      padding: 20px;
-
-      background: #FFFFFF;
-    }
-
-    .foundation-item strong {
-      display: block;
-
-      color: var(--magenta);
-
-      font-size: 13px;
-
-      margin-bottom: 6px;
-    }
-
-    .foundation-item p {
-      color: var(--body);
-
-      font-size: 12px;
-      line-height: 1.6;
-    }
-
-
-    /* =====================================
-       FEATURED CASE STUDY
-    ====================================== */
-
-    .featured-case-study {
-      display: grid;
-      grid-template-columns: 0.92fr 1.08fr;
-
-      gap: 42px;
-      align-items: center;
-
-      padding: 42px;
-
-      background: #FFFFFF;
-
-      border: 1px solid var(--border);
-      border-radius: 28px;
-
-      box-shadow: var(--shadow);
-    }
-
-    .featured-copy {
-      padding-right: 10px;
-    }
-
-    .featured-copy h2 {
-      font-size: clamp(38px, 4.6vw, 54px);
-      line-height: 1.08;
-
-      letter-spacing: -1.4px;
-
-      margin-bottom: 19px;
-    }
-
-    .featured-description {
-      max-width: 520px;
-
-      color: var(--body);
-
-      font-size: 16px;
-      line-height: 1.75;
-    }
-
-
-    /* BENEFITS */
-
-    .featured-benefits {
-      display: grid;
-
-      gap: 14px;
-
-      margin-top: 25px;
-    }
-
-    .benefit {
-      display: flex;
-      align-items: center;
-
-      gap: 11px;
-
-      color: var(--body);
-
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .benefit-icon {
-      width: 27px;
-      height: 27px;
-
-      display: grid;
-      place-items: center;
-
-      flex-shrink: 0;
-
-      color: var(--magenta);
-
-      border: 2px solid var(--gold);
-      border-radius: 50%;
-
-      font-size: 12px;
-      font-weight: 900;
-    }
-
-    .case-study-button {
-      display: inline-flex;
-
-      margin-top: 28px;
-
-      padding: 13px 20px;
-
-      color: var(--magenta);
-
-      border: 2px solid var(--magenta);
-      border-radius: 12px;
-
-      font-size: 14px;
-      font-weight: 800;
-    }
-
-    .case-study-button:hover {
-      background: var(--magenta);
-      color: #FFFFFF;
-    }
-
-
-    /* =====================================
-       REAL ELYSIAN VISUAL
-    ====================================== */
-
-    .featured-visual {
-      width: 100%;
-
-      min-height: 390px;
+      min-height: 86px;
 
       display: flex;
       align-items: center;
@@ -468,95 +978,281 @@
 
       padding: 18px;
 
-      background: var(--purple-soft);
+      text-align: center;
 
-      border-radius: 24px;
+      font-size: 0.79rem;
+      font-weight: 800;
 
-      overflow: hidden;
+      border-right: 1px solid var(--border);
     }
 
-    .featured-visual img {
-      display: block;
 
-      width: 100%;
-      max-width: 650px;
-      height: auto;
-
-      object-fit: contain;
-      object-position: center;
+    .foundation-item:last-child {
+      border-right: 0;
     }
 
 
     /* =====================================
-       WHAT I BRING
+       SECTION HEADER
     ====================================== */
 
-    .about-strip {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+    .section-intro {
+      margin-top: 92px;
 
-      gap: 20px;
-
-      margin-top: 32px;
+      max-width: 730px;
     }
 
-    .about-card {
-      padding: 27px;
 
-      background: #FFFFFF;
+    .section-intro h2 {
+      margin: 0;
+
+      font-size:
+        clamp(2rem, 4vw, 3.3rem);
+
+      line-height: 1.1;
+
+      letter-spacing: -0.04em;
+    }
+
+
+    .section-intro p {
+      margin: 16px 0 0;
+
+      font-size: 0.97rem;
+      line-height: 1.75;
+    }
+
+
+    /* =====================================
+       FEATURED PROJECT
+    ====================================== */
+
+    .featured-project {
+      margin-top: 30px;
+
+      display: grid;
+      grid-template-columns:
+        minmax(0, 0.9fr)
+        minmax(380px, 1.1fr);
+
+      gap: 40px;
+
+      align-items: center;
+
+      padding: 38px;
+
+      background: var(--surface);
 
       border: 1px solid var(--border);
-      border-radius: 22px;
+      border-radius: 28px;
 
       box-shadow: var(--shadow);
     }
 
-    .about-icon {
-      width: 43px;
-      height: 43px;
 
-      display: grid;
-      place-items: center;
+    .project-label {
+      margin-bottom: 13px;
 
-      margin-bottom: 18px;
-
-      background: var(--pink-soft);
       color: var(--magenta);
 
-      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 900;
 
+      letter-spacing: 0.1em;
+
+      text-transform: uppercase;
+    }
+
+
+    .featured-project h3 {
+      margin: 0;
+
+      font-size: 2rem;
+      line-height: 1.2;
+    }
+
+
+    .featured-project p {
+      margin: 16px 0 0;
+
+      font-size: 0.9rem;
+      line-height: 1.75;
+    }
+
+
+    .project-benefits {
+      display: grid;
+
+      gap: 11px;
+
+      margin-top: 22px;
+    }
+
+
+    .benefit {
+      display: flex;
+      align-items: flex-start;
+
+      gap: 11px;
+
+      color: var(--body);
+
+      font-size: 0.82rem;
+      line-height: 1.55;
+    }
+
+
+    .benefit-icon {
+      width: 22px;
+      height: 22px;
+
+      flex: 0 0 auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-top: 1px;
+
+      background: var(--green-soft);
+      color: var(--green);
+
+      border-radius: 50%;
+
+      font-size: 0.7rem;
       font-weight: 900;
     }
 
-    .about-card:nth-child(2) .about-icon {
+
+    .case-button {
+      min-height: 48px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-top: 25px;
+      padding: 0 19px;
+
+      background: var(--magenta);
+      color: #FFFFFF;
+
+      border-radius: 11px;
+
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+
+    .case-button:hover {
+      background: var(--magenta-dark);
+    }
+
+
+    .project-image {
+      padding: 16px;
+
+      background: var(--purple-soft);
+
+      border-radius: 21px;
+    }
+
+
+    .project-image img {
+      width: 100%;
+      height: auto;
+
+      background: #FFFFFF;
+
+      border-radius: 15px;
+    }
+
+
+    /* =====================================
+       THREE CARDS
+    ====================================== */
+
+    .overview-grid {
+      margin-top: 32px;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 18px;
+    }
+
+
+    .overview-card {
+      min-height: 245px;
+
+      padding: 26px;
+
+      border: 1px solid var(--border);
+      border-radius: 21px;
+    }
+
+
+    .overview-card:nth-child(1) {
+      background: var(--pink-soft);
+    }
+
+
+    .overview-card:nth-child(2) {
       background: var(--green-soft);
     }
 
-    .about-card:nth-child(3) .about-icon {
-      background: var(--yellow-soft);
+
+    .overview-card:nth-child(3) {
+      background: var(--purple-soft);
     }
 
-    .about-card h3 {
-      font-size: 21px;
 
-      margin-bottom: 9px;
+    .card-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 38px;
+      height: 38px;
+
+      margin-bottom: 20px;
+
+      background: var(--surface);
+      color: var(--magenta);
+
+      border-radius: 10px;
+
+      font-size: 0.75rem;
+      font-weight: 900;
     }
 
-    .about-card p {
-      color: var(--body);
 
-      font-size: 13px;
+    .overview-card h3 {
+      margin: 0;
+
+      font-size: 1.25rem;
+    }
+
+
+    .overview-card p {
+      margin: 12px 0 0;
+
+      font-size: 0.82rem;
       line-height: 1.7;
     }
 
-    .about-card a {
+
+    .overview-card a {
+      min-height: 44px;
+
       display: inline-flex;
+      align-items: center;
 
       margin-top: 15px;
 
       color: var(--magenta);
 
-      font-size: 13px;
+      font-size: 0.78rem;
       font-weight: 800;
     }
 
@@ -566,42 +1262,54 @@
     ====================================== */
 
     .cta {
-      margin-top: 34px;
-
-      padding: 42px;
+      margin-top: 88px;
 
       display: grid;
       grid-template-columns: 1fr auto;
 
-      gap: 25px;
+      gap: 30px;
+
       align-items: center;
+
+      padding: 42px;
 
       background: var(--magenta);
       color: #FFFFFF;
 
-      border-radius: 26px;
+      border-radius: 27px;
     }
+
 
     .cta h2 {
-      font-size: 32px;
-      line-height: 1.2;
+      margin: 0;
 
-      margin-bottom: 8px;
+      font-size: 2rem;
+      line-height: 1.2;
     }
 
+
     .cta p {
-      max-width: 700px;
+      max-width: 680px;
+
+      margin: 9px 0 0;
 
       color: #FBE8F2;
     }
 
-    .cta-button {
-      padding: 14px 22px;
+
+    .cta a {
+      min-height: 48px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0 22px;
 
       background: #FFFFFF;
       color: var(--magenta);
 
-      border-radius: 12px;
+      border-radius: 11px;
 
       font-weight: 900;
 
@@ -614,46 +1322,194 @@
     ====================================== */
 
     footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-
-      gap: 30px;
-
       margin-top: 58px;
-      padding-top: 31px;
+      padding: 32px 0 42px;
+
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+
+      gap: 28px;
 
       border-top: 1px solid var(--border);
-
-      color: var(--muted);
-
-      font-size: 12px;
     }
+
 
     .footer-brand {
       color: var(--magenta);
 
-      font-size: 22px;
+      font-size: 1.35rem;
       font-weight: 800;
     }
 
-    .footer-right {
+
+    .footer-copy {
+      margin-top: 6px;
+
+      color: var(--muted);
+
+      font-size: 0.74rem;
+    }
+
+
+    .footer-links {
       display: flex;
       flex-wrap: wrap;
-
-      justify-content: flex-end;
 
       gap: 18px;
     }
 
-    .footer-right a {
+
+    .footer-links a {
+      min-height: 44px;
+
+      display: inline-flex;
+      align-items: center;
+
       color: var(--body);
 
+      font-size: 0.76rem;
       font-weight: 700;
     }
 
-    .footer-right a:hover {
+
+    .footer-links a:hover {
       color: var(--magenta);
+    }
+
+
+    /* =====================================
+       BACK TO TOP
+    ====================================== */
+
+    .back-to-top {
+      position: fixed;
+
+      right: 24px;
+      bottom: 24px;
+
+      z-index: 9000;
+
+      width: 50px;
+      height: 50px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: var(--magenta);
+      color: #FFFFFF;
+
+      border: 0;
+      border-radius: 50%;
+
+      box-shadow:
+        0 10px 30px rgba(168, 11, 99, 0.25);
+
+      font-size: 1.25rem;
+      font-weight: 900;
+
+      opacity: 0;
+      visibility: hidden;
+
+      transform: translateY(12px);
+
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0.2s ease;
+    }
+
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+
+      transform: translateY(0);
+    }
+
+
+    /* =====================================
+       HIGH CONTRAST MODE
+    ====================================== */
+
+    body.high-contrast {
+      --bg: #FFFFFF;
+      --surface: #FFFFFF;
+
+      --magenta: #7B0048;
+      --magenta-dark: #580033;
+
+      --gold: #A56600;
+
+      --pink-soft: #FFF2F8;
+      --purple-soft: #F2F0F7;
+      --green-soft: #EDF8F0;
+
+      --green: #006B30;
+
+      --dark: #000000;
+      --body: #111111;
+      --muted: #303030;
+
+      --border: #616161;
+
+      --focus: #000000;
+
+      --shadow: none;
+    }
+
+
+    body.high-contrast .hero-visual,
+    body.high-contrast .overview-card,
+    body.high-contrast .featured-project,
+    body.high-contrast .foundation-strip,
+    body.high-contrast .accessibility-panel {
+      border-width: 2px;
+    }
+
+
+    body.high-contrast .primary-button,
+    body.high-contrast .nav-cta,
+    body.high-contrast .case-button,
+    body.high-contrast .back-to-top {
+      border: 2px solid #000000;
+    }
+
+
+    /* =====================================
+       REDUCED MOTION
+    ====================================== */
+
+    body.reduce-motion *,
+    body.reduce-motion *::before,
+    body.reduce-motion *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+
+      transition-duration: 0.01ms !important;
+
+      scroll-behavior: auto !important;
+    }
+
+
+    @media (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+
+        scroll-behavior: auto !important;
+      }
+
     }
 
 
@@ -661,199 +1517,698 @@
        RESPONSIVE
     ====================================== */
 
-    @media (max-width: 1000px) {
+    @media (max-width: 1060px) {
 
       .navbar {
         flex-direction: column;
         align-items: flex-start;
+
+        padding: 22px 0;
       }
+
+
+      .nav-right {
+        width: 100%;
+
+        justify-content: space-between;
+
+        flex-wrap: wrap;
+      }
+
 
       .nav-links {
         flex-wrap: wrap;
-
-        gap: 18px;
       }
+
 
       .hero {
         grid-template-columns: 1fr;
-
-        gap: 35px;
       }
 
-      .foundation {
+
+      .hero-visual {
+        min-height: 390px;
+      }
+
+
+      .featured-project {
+        grid-template-columns: 1fr;
+      }
+
+
+      .project-image {
+        max-width: 760px;
+      }
+
+
+      .overview-grid {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+
+    @media (max-width: 760px) {
+
+      .site-shell {
+        width: min(100% - 22px, 1180px);
+      }
+
+
+      .nav-right {
+        display: grid;
+
+        gap: 16px;
+      }
+
+
+      .nav-links {
+        gap: 10px 18px;
+      }
+
+
+      .nav-tools {
+        width: 100%;
+
+        justify-content: space-between;
+      }
+
+
+      main {
+        padding-top: 34px;
+      }
+
+
+      .hero h1 {
+        font-size: clamp(2.7rem, 13vw, 4rem);
+      }
+
+
+      .hero-visual {
+        min-height: 340px;
+        padding: 20px;
+      }
+
+
+      .hero-message-card {
+        padding: 24px;
+      }
+
+
+      .foundation-strip {
         grid-template-columns: 1fr 1fr;
       }
 
-      .featured-case-study {
-        grid-template-columns: 1fr;
 
-        padding: 32px;
+      .foundation-item:nth-child(2) {
+        border-right: 0;
       }
 
-      .featured-copy {
-        padding-right: 0;
+
+      .foundation-item:nth-child(-n+2) {
+        border-bottom: 1px solid var(--border);
       }
 
-      .featured-visual {
-        min-height: auto;
+
+      .section-intro {
+        margin-top: 68px;
       }
 
-      .about-strip {
-        grid-template-columns: 1fr;
+
+      .featured-project {
+        padding: 23px;
       }
+
 
       .cta {
         grid-template-columns: 1fr;
+
+        padding: 28px;
       }
 
-      .cta-button {
+
+      .cta a {
         justify-self: start;
       }
+
 
       footer {
         flex-direction: column;
       }
 
-      .footer-right {
-        justify-content: flex-start;
+
+      .accessibility-panel {
+        top: 16px;
+        right: 16px;
       }
+
     }
 
 
-    @media (max-width: 620px) {
+    @media (max-width: 480px) {
 
-      .page {
-        width: min(100% - 20px, 1180px);
-      }
-
-      .hero {
-        padding-top: 45px;
-      }
-
-      .hero h1 {
-        font-size: 45px;
-      }
-
-      .hero-description {
-        font-size: 16px;
-      }
-
-      .foundation {
+      .foundation-strip {
         grid-template-columns: 1fr;
       }
 
-      .featured-case-study {
-        padding: 24px;
+
+      .foundation-item {
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
       }
 
-      .featured-copy h2 {
-        font-size: 38px;
+
+      .foundation-item:last-child {
+        border-bottom: 0;
       }
 
-      .featured-visual {
-        padding: 10px;
+
+      .hero-actions {
+        flex-direction: column;
       }
 
-      .cta {
-        padding: 28px;
+
+      .primary-button,
+      .secondary-button {
+        width: 100%;
       }
+
+
+      .back-to-top {
+        right: 16px;
+        bottom: 16px;
+      }
+
     }
 
   </style>
+
 </head>
 
 
 <body>
 
-  <main class="page">
+
+  <!-- =====================================
+       SKIP LINK
+  ====================================== -->
+
+  <a
+    class="skip-link"
+    href="#main-content"
+    data-i18n="skip"
+  >
+    Skip to main content
+  </a>
 
 
-    <!-- =====================================
-         NAVIGATION
-    ====================================== -->
+  <!-- SCREEN READER STATUS -->
 
-    <nav class="navbar" aria-label="Main navigation">
-
-      <a href="index.html">
-
-        <div class="brand-name">
-          Linda Laryea
-        </div>
-
-      </a>
+  <div
+    id="a11yStatus"
+    class="sr-only"
+    role="status"
+    aria-live="polite"
+  ></div>
 
 
-      <div class="nav-links">
+  <!-- =====================================
+       HEADER
+  ====================================== -->
+
+  <header class="site-header" data-no-read>
+
+    <div class="site-shell">
+
+      <nav
+        class="navbar"
+        aria-label="Main navigation"
+        data-i18n-aria-label="mainNavigation"
+      >
+
+
+        <!-- BRAND -->
 
         <a
           href="index.html"
-          class="active"
+          class="brand"
+          aria-label="Linda Laryea home"
         >
-          Home
+          Linda Laryea
         </a>
 
-        <a href="case-studies.html">
-          Case Studies
-        </a>
 
-        <a href="about.html">
-          About Me
-        </a>
+        <div class="nav-right">
 
-        <a href="cv.html">
-          CV
-        </a>
 
-        <a
-          href="contact.html"
-          class="nav-button"
+          <!-- MAIN NAV -->
+
+          <ul class="nav-links">
+
+            <li>
+              <a
+                href="index.html"
+                aria-current="page"
+                data-i18n="home"
+              >
+                Home
+              </a>
+            </li>
+
+
+            <li>
+              <a
+                href="case-studies.html"
+                data-i18n="caseStudies"
+              >
+                Case Studies
+              </a>
+            </li>
+
+
+            <li>
+              <a
+                href="about.html"
+                data-i18n="aboutMe"
+              >
+                About Me
+              </a>
+            </li>
+
+
+            <li>
+              <a
+                href="cv.html"
+                data-i18n="cv"
+              >
+                CV
+              </a>
+            </li>
+
+
+            <li>
+              <a
+                href="contact.html"
+                class="nav-cta"
+                data-i18n="letsConnect"
+              >
+                Let’s Connect
+              </a>
+            </li>
+
+          </ul>
+
+
+          <!-- ACCESSIBILITY TOOLS -->
+
+          <div class="nav-tools">
+
+
+            <!-- LANGUAGE -->
+
+            <div
+              class="language-switcher"
+              role="group"
+              aria-label="Choose language"
+              data-i18n-aria-label="chooseLanguage"
+            >
+
+              <button
+                type="button"
+                id="languageEN"
+                class="language-button active"
+                aria-pressed="true"
+                aria-label="Switch to English"
+              >
+                EN
+              </button>
+
+
+              <button
+                type="button"
+                id="languageDE"
+                class="language-button"
+                aria-pressed="false"
+                aria-label="Auf Deutsch wechseln"
+              >
+                DE
+              </button>
+
+            </div>
+
+
+            <!-- ACCESSIBILITY BUTTON -->
+
+            <button
+              type="button"
+              id="accessibilityButton"
+              class="accessibility-button"
+              aria-expanded="false"
+              aria-controls="accessibilityPanel"
+            >
+              <span aria-hidden="true">
+                Aa
+              </span>
+
+              <span data-i18n="accessibility">
+                Accessibility
+              </span>
+            </button>
+
+          </div>
+
+        </div>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <!-- =====================================
+       ACCESSIBILITY PANEL
+  ====================================== -->
+
+  <aside
+    id="accessibilityPanel"
+    class="accessibility-panel"
+    aria-labelledby="accessibilityPanelTitle"
+    hidden
+    data-no-read
+  >
+
+
+    <div class="a11y-panel-header">
+
+      <div>
+
+        <h2
+          id="accessibilityPanelTitle"
+          data-i18n="accessibility"
         >
-          Let’s Connect
-        </a>
+          Accessibility
+        </h2>
+
+        <p data-i18n="accessibilityDescription">
+          Adjust the page to suit your needs.
+        </p>
 
       </div>
 
-    </nav>
+
+      <button
+        type="button"
+        id="closeAccessibility"
+        class="panel-close"
+        aria-label="Close accessibility settings"
+        data-i18n-aria-label="closeAccessibility"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <!-- TEXT SIZE -->
+
+    <div class="a11y-group">
+
+      <span
+        class="a11y-label"
+        data-i18n="textSize"
+      >
+        Text size
+      </span>
+
+
+      <div
+        class="text-size-controls"
+        role="group"
+        aria-label="Text size"
+        data-i18n-aria-label="textSize"
+      >
+
+        <button
+          type="button"
+          class="text-size-button"
+          data-size="small"
+          aria-label="Decrease text size"
+          data-i18n-aria-label="decreaseText"
+        >
+          A−
+        </button>
+
+
+        <button
+          type="button"
+          class="text-size-button active"
+          data-size="default"
+          aria-label="Default text size"
+          data-i18n-aria-label="defaultText"
+        >
+          A
+        </button>
+
+
+        <button
+          type="button"
+          class="text-size-button"
+          data-size="large"
+          aria-label="Increase text size"
+          data-i18n-aria-label="increaseText"
+        >
+          A+
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- HIGH CONTRAST -->
+
+    <div class="a11y-group">
+
+      <div class="toggle-row">
+
+        <div class="toggle-copy">
+
+          <strong data-i18n="highContrast">
+            High contrast
+          </strong>
+
+          <span data-i18n="highContrastDescription">
+            Increase visual contrast.
+          </span>
+
+        </div>
+
+
+        <label class="switch">
+
+          <input
+            id="contrastToggle"
+            type="checkbox"
+            aria-label="High contrast"
+            data-i18n-aria-label="highContrast"
+          />
+
+          <span
+            class="switch-track"
+            aria-hidden="true"
+          ></span>
+
+        </label>
+
+      </div>
+
+    </div>
+
+
+    <!-- REDUCED MOTION -->
+
+    <div class="a11y-group">
+
+      <div class="toggle-row">
+
+        <div class="toggle-copy">
+
+          <strong data-i18n="reduceMotion">
+            Reduce motion
+          </strong>
+
+          <span data-i18n="reduceMotionDescription">
+            Minimise animation and movement.
+          </span>
+
+        </div>
+
+
+        <label class="switch">
+
+          <input
+            id="motionToggle"
+            type="checkbox"
+            aria-label="Reduce motion"
+            data-i18n-aria-label="reduceMotion"
+          />
+
+          <span
+            class="switch-track"
+            aria-hidden="true"
+          ></span>
+
+        </label>
+
+      </div>
+
+    </div>
+
+
+    <!-- READ ALOUD -->
+
+    <div class="a11y-group">
+
+      <span
+        class="a11y-label"
+        data-i18n="readPage"
+      >
+        Read page aloud
+      </span>
+
+
+      <div class="read-controls">
+
+        <button
+          type="button"
+          id="readPlay"
+          class="read-button primary-read"
+          data-i18n="play"
+        >
+          Play
+        </button>
+
+
+        <button
+          type="button"
+          id="readPause"
+          class="read-button"
+          data-i18n="pause"
+        >
+          Pause
+        </button>
+
+
+        <button
+          type="button"
+          id="readStop"
+          class="read-button"
+          data-i18n="stop"
+        >
+          Stop
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- RESET -->
+
+    <div class="a11y-group">
+
+      <button
+        type="button"
+        id="resetAccessibility"
+        class="reset-button"
+        data-i18n="resetSettings"
+      >
+        Reset accessibility settings
+      </button>
+
+    </div>
+
+  </aside>
+
+
+  <!-- =====================================
+       MAIN CONTENT
+  ====================================== -->
+
+  <main
+    id="main-content"
+    class="site-shell"
+    tabindex="-1"
+  >
 
 
     <!-- =====================================
          HERO
     ====================================== -->
 
-    <section class="hero">
+    <section
+      class="hero readable-content"
+      aria-labelledby="hero-heading"
+    >
 
 
-      <div class="hero-copy">
+      <div>
 
-        <div class="hero-eyebrow">
-          Hi, I’m Linda Laryea
+        <div class="eyebrow">
+
+          <span
+            class="eyebrow-line"
+            aria-hidden="true"
+          ></span>
+
+          <span data-i18n="heroEyebrow">
+            UX Research · Interaction Design
+          </span>
+
         </div>
 
 
-        <h1>
-          I research where users struggle,
-          then design simpler ways forward.
+        <h1 id="hero-heading">
+
+          <span data-i18n="heroLineOne">
+            I research where users struggle,
+          </span>
+
+          <br />
+
+          <span data-i18n="heroLineTwo">
+            then design simpler ways forward.
+          </span>
+
         </h1>
 
 
-        <p class="hero-description">
-          UX Researcher and Interaction Designer focused on turning
-          user insights into clear, accessible digital experiences.
+        <p
+          class="hero-description"
+          data-i18n="heroDescription"
+        >
+          UX Researcher and Interaction Designer focused on
+          turning user insights into clear, accessible digital
+          experiences.
         </p>
 
 
-        <div class="hero-actions">
+        <div class="hero-actions" data-no-read>
 
           <a
             href="case-studies.html"
             class="primary-button"
+            data-i18n="viewCaseStudies"
           >
-            View Case Studies →
+            View Case Studies
           </a>
+
 
           <a
             href="about.html"
             class="secondary-button"
+            data-i18n="aboutMe"
           >
             About Me
           </a>
@@ -863,59 +2218,76 @@
       </div>
 
 
-      <div class="hero-side">
+      <!-- HERO VISUAL -->
+
+      <div
+        class="hero-visual"
+        aria-label="Design principles overview"
+        data-i18n-aria-label="designPrinciplesOverview"
+      >
+
+        <article class="hero-message-card">
+
+          <small data-i18n="designApproach">
+            My design approach
+          </small>
 
 
-        <article class="hero-side-card">
+          <h2 data-i18n="understandBeforeDesign">
+            Understand before designing.
+          </h2>
 
-          <div class="hero-side-number">
-            01
-          </div>
 
-          <strong>
-            User struggle
-          </strong>
-
-          <p>
-            Understand where people feel confused,
-            delayed or overwhelmed in real workflows.
+          <p data-i18n="approachDescription">
+            I look beyond the interface to understand behaviour,
+            context and the real reason a problem exists.
           </p>
 
-        </article>
+
+          <div class="mini-insights">
+
+            <div class="mini-insight">
+
+              <span
+                class="insight-dot"
+                aria-hidden="true"
+              ></span>
+
+              <span data-i18n="insightResearch">
+                Research the real problem
+              </span>
+
+            </div>
 
 
-        <article class="hero-side-card">
+            <div class="mini-insight">
 
-          <div class="hero-side-number">
-            02
+              <span
+                class="insight-dot"
+                aria-hidden="true"
+              ></span>
+
+              <span data-i18n="insightCognitive">
+                Reduce cognitive load
+              </span>
+
+            </div>
+
+
+            <div class="mini-insight">
+
+              <span
+                class="insight-dot"
+                aria-hidden="true"
+              ></span>
+
+              <span data-i18n="insightAccessibility">
+                Design accessibly from the start
+              </span>
+
+            </div>
+
           </div>
-
-          <strong>
-            Research insight
-          </strong>
-
-          <p>
-            Turn interviews, observations and usability findings
-            into clear design direction.
-          </p>
-
-        </article>
-
-
-        <article class="hero-side-card">
-
-          <div class="hero-side-number">
-            03
-          </div>
-
-          <strong>
-            Simpler way forward
-          </strong>
-
-          <p>
-            Design accessible experiences that reduce friction
-            and help users move with confidence.
-          </p>
 
         </article>
 
@@ -929,237 +2301,314 @@
     ====================================== -->
 
     <section
-      class="foundation"
+      class="foundation-strip readable-content"
       aria-label="Professional foundation"
+      data-i18n-aria-label="professionalFoundation"
     >
 
-
-      <article class="foundation-item">
-
-        <strong>
-          Psychology
-        </strong>
-
-        <p>
-          Human behaviour and decision-making foundation
-        </p>
-
-      </article>
+      <div
+        class="foundation-item"
+        data-i18n="psychology"
+      >
+        Psychology
+      </div>
 
 
-      <article class="foundation-item">
-
-        <strong>
-          Cognitive Science
-        </strong>
-
-        <p>
-          Understanding attention, memory and mental load
-        </p>
-
-      </article>
+      <div
+        class="foundation-item"
+        data-i18n="cognitiveScience"
+      >
+        Cognitive Science
+      </div>
 
 
-      <article class="foundation-item">
-
-        <strong>
-          UX Research
-        </strong>
-
-        <p>
-          Interviews, usability studies and insight synthesis
-        </p>
-
-      </article>
+      <div
+        class="foundation-item"
+        data-i18n="uxResearch"
+      >
+        UX Research
+      </div>
 
 
-      <article class="foundation-item">
-
-        <strong>
-          Accessibility
-        </strong>
-
-        <p>
-          Designing clearer experiences for different user needs
-        </p>
-
-      </article>
+      <div
+        class="foundation-item"
+        data-i18n="accessibility"
+      >
+        Accessibility
+      </div>
 
     </section>
 
 
     <!-- =====================================
-         FEATURED CASE STUDY
+         SELECTED WORK
     ====================================== -->
 
-    <section class="featured-case-study">
+    <section
+      class="readable-content"
+      aria-labelledby="featured-heading"
+    >
 
+      <div class="section-intro">
 
-      <div class="featured-copy">
+        <div class="eyebrow">
 
-        <div class="gold-line"></div>
+          <span
+            class="eyebrow-line"
+            aria-hidden="true"
+          ></span>
 
-        <div class="section-label">
-          Featured Case Study
+          <span data-i18n="selectedWork">
+            Selected Work
+          </span>
+
         </div>
 
 
-        <h2>
-          Elysian Fields
-          Attendance Kiosk
+        <h2
+          id="featured-heading"
+          data-i18n="featuredHeading"
+        >
+          Research-led design grounded in real behaviour.
         </h2>
 
 
-        <p class="featured-description">
-          An inclusive RFID and manual sign-in kiosk designed
-          to make staff attendance recording faster, simpler,
-          and more reassuring.
+        <p data-i18n="featuredIntro">
+          A closer look at how research findings can reshape
+          the direction of a product when the original assumption
+          turns out to be wrong.
         </p>
 
+      </div>
 
-        <div class="featured-benefits">
+
+      <!-- FEATURED PROJECT -->
+
+      <article class="featured-project">
 
 
-          <div class="benefit">
+        <!-- COPY -->
 
-            <span class="benefit-icon">
-              ✓
-            </span>
+        <div>
 
-            <span>
-              Improved check-in flow and reduced wait time
-            </span>
+          <div
+            class="project-label"
+            data-i18n="featuredCaseStudy"
+          >
+            Featured Case Study
+          </div>
+
+
+          <h3>
+            Elysian Fields Attendance Kiosk
+          </h3>
+
+
+          <p data-i18n="elysianDescription">
+            I researched an existing staff attendance process and
+            discovered that the central problem was not resistance
+            to the system, but delayed, memory-based logging.
+            The resulting solution moved away from a mobile concept
+            toward an RFID-enabled shared kiosk placed in the natural
+            arrival path.
+          </p>
+
+
+          <div class="project-benefits">
+
+
+            <div class="benefit">
+
+              <span
+                class="benefit-icon"
+                aria-hidden="true"
+              >
+                ✓
+              </span>
+
+              <span data-i18n="elysianBenefitOne">
+                Research changed the original product direction.
+              </span>
+
+            </div>
+
+
+            <div class="benefit">
+
+              <span
+                class="benefit-icon"
+                aria-hidden="true"
+              >
+                ✓
+              </span>
+
+              <span data-i18n="elysianBenefitTwo">
+                RFID identification reduced interaction effort.
+              </span>
+
+            </div>
+
+
+            <div class="benefit">
+
+              <span
+                class="benefit-icon"
+                aria-hidden="true"
+              >
+                ✓
+              </span>
+
+              <span data-i18n="elysianBenefitThree">
+                Accessibility was considered in the physical and
+                digital experience.
+              </span>
+
+            </div>
 
           </div>
 
 
-          <div class="benefit">
-
-            <span class="benefit-icon">
-              ✓
-            </span>
-
-            <span>
-              Inclusive RFID and manual sign-in options
-            </span>
-
-          </div>
-
-
-          <div class="benefit">
-
-            <span class="benefit-icon">
-              ✓
-            </span>
-
-            <span>
-              Clear success feedback and automatic reset
-            </span>
-
-          </div>
+          <a
+            href="elysian-fields.html"
+            class="case-button"
+            data-i18n="viewCaseStudy"
+            data-no-read
+          >
+            View Case Study
+          </a>
 
         </div>
 
 
-        <a
-          href="elysian-fields.html"
-          class="case-study-button"
-        >
-          View Case Study →
-        </a>
+        <!-- REAL ELYSIAN VISUAL -->
 
-      </div>
+        <div class="project-image">
 
+          <img
+            src="attendance_kiosk_interface_states.png"
+            alt="Elysian Fields attendance kiosk interface showing RFID identification, attendance confirmation and reset states"
+            data-i18n-alt="elysianImageAlt"
+            loading="lazy"
+          />
 
-      <!--
-        IMPORTANT:
-        This is the ACTUAL final Elysian interface artwork.
-        No HTML recreation of the screens.
-      -->
+        </div>
 
-      <div class="featured-visual">
-
-        <img
-          src="attendance_kiosk_interface_states.png"
-          alt="Final Elysian Fields attendance kiosk interface showing RFID identification, attendance confirmation and manual sign-in states"
-        />
-
-      </div>
+      </article>
 
     </section>
 
 
     <!-- =====================================
-         MY PROCESS / WHAT I DO / ABOUT
+         OVERVIEW CARDS
     ====================================== -->
 
-    <section class="about-strip">
+    <section
+      class="overview-grid readable-content"
+      aria-label="Portfolio overview"
+      data-i18n-aria-label="portfolioOverview"
+    >
 
 
-      <article class="about-card">
+      <!-- PROCESS -->
 
-        <div class="about-icon">
-          ↗
+      <article class="overview-card">
+
+        <div
+          class="card-number"
+          aria-hidden="true"
+        >
+          01
         </div>
 
-        <h3>
+
+        <h3 data-i18n="myProcess">
           My Process
         </h3>
 
-        <p>
-          I follow a user-centred process from research and
-          ideation to prototyping and testing, ensuring each
-          solution is useful as well as usable.
+
+        <p data-i18n="processDescription">
+          I begin by understanding context and behaviour,
+          define the real problem, explore possible solutions,
+          and test whether the design actually works.
         </p>
 
-        <a href="about.html">
-          Learn more →
+
+        <a
+          href="case-studies.html"
+          data-i18n="exploreWork"
+          data-no-read
+        >
+          Explore my work →
         </a>
 
       </article>
 
 
-      <article class="about-card">
+      <!-- WHAT I DO -->
 
-        <div class="about-icon">
-          ✦
+      <article class="overview-card">
+
+        <div
+          class="card-number"
+          aria-hidden="true"
+        >
+          02
         </div>
 
-        <h3>
+
+        <h3 data-i18n="whatIDo">
           What I Do
         </h3>
 
-        <p>
-          I combine UX research, interaction design,
-          prototyping and accessibility to turn complex
-          user problems into clearer digital experiences.
+
+        <p data-i18n="whatIDoDescription">
+          UX research, user interviews, usability testing,
+          journey mapping, interaction design, prototyping
+          and accessibility-focused product thinking.
         </p>
 
-        <a href="case-studies.html">
-          See my work →
+
+        <a
+          href="case-studies.html"
+          data-i18n="seeCaseStudies"
+          data-no-read
+        >
+          See case studies →
         </a>
 
       </article>
 
 
-      <article class="about-card">
+      <!-- ABOUT -->
 
-        <div class="about-icon">
-          ●
+      <article class="overview-card">
+
+        <div
+          class="card-number"
+          aria-hidden="true"
+        >
+          03
         </div>
 
-        <h3>
+
+        <h3 data-i18n="aboutMe">
           About Me
         </h3>
 
-        <p>
-          With a background in Cognitive Science and Psychology,
-          I’m interested in understanding user behaviour and
-          translating research into clear, accessible design.
+
+        <p data-i18n="aboutDescription">
+          My background in Psychology and Cognitive Science
+          helps me connect behavioural understanding with
+          practical interaction design.
         </p>
 
-        <a href="about.html">
-          More about me →
+
+        <a
+          href="about.html"
+          data-i18n="readMyStory"
+          data-no-read
+        >
+          Read my story →
         </a>
 
       </article>
@@ -1171,17 +2620,25 @@
          CTA
     ====================================== -->
 
-    <section class="cta">
+    <section
+      class="cta readable-content"
+      aria-labelledby="cta-heading"
+    >
 
       <div>
 
-        <h2>
-          Let’s build something meaningful together.
+        <h2
+          id="cta-heading"
+          data-i18n="ctaHeading"
+        >
+          Let’s create something meaningful.
         </h2>
 
-        <p>
-          I’m open to new opportunities, collaborations,
-          and meaningful digital product work.
+
+        <p data-i18n="ctaDescription">
+          I’m interested in UX research, interaction design
+          and thoughtful digital products where accessibility
+          and user understanding matter.
         </p>
 
       </div>
@@ -1189,55 +2646,1461 @@
 
       <a
         href="contact.html"
-        class="cta-button"
+        data-i18n="letsConnect"
+        data-no-read
       >
-        Get in Touch ↗
+        Let’s Connect
       </a>
 
     </section>
 
-
-    <!-- =====================================
-         FOOTER
-    ====================================== -->
-
-    <footer>
-
-
-      <div>
-
-        <div class="footer-brand">
-          Linda Laryea
-        </div>
-
-        <div>
-          © 2026 Linda Laryea. All rights reserved.
-        </div>
-
-      </div>
-
-
-      <div class="footer-right">
-
-        <a
-          href="https://www.linkedin.com/in/linda-laryea-7bb2366b/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          LinkedIn ↗
-        </a>
-
-        <a href="mailto:linlaryea2@gmail.com">
-          Email
-        </a>
-
-      </div>
-
-
-    </footer>
-
-
   </main>
+
+
+  <!-- =====================================
+       FOOTER
+  ====================================== -->
+
+  <footer
+    class="site-shell"
+    data-no-read
+  >
+
+    <div>
+
+      <div class="footer-brand">
+        Linda Laryea
+      </div>
+
+
+      <div
+        class="footer-copy"
+        data-i18n="footerCopy"
+      >
+        Designed with research, empathy and accessibility in mind.
+      </div>
+
+    </div>
+
+
+    <div class="footer-links">
+
+      <a
+        href="mailto:linlaryea2@gmail.com"
+        data-i18n="email"
+      >
+        Email
+      </a>
+
+
+      <a
+        href="https://www.linkedin.com/in/linda-laryea-7bb2366b/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LinkedIn
+        <span class="sr-only">
+          opens in a new tab
+        </span>
+      </a>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =====================================
+       BACK TO TOP
+  ====================================== -->
+
+  <button
+    type="button"
+    id="backToTop"
+    class="back-to-top"
+    aria-label="Back to top"
+    data-i18n-aria-label="backToTop"
+    data-no-read
+  >
+    ↑
+  </button>
+
+
+  <!-- =====================================
+       JAVASCRIPT
+  ====================================== -->
+
+  <script>
+
+    /* =====================================
+       TRANSLATIONS
+    ====================================== */
+
+    const translations = {
+
+      en: {
+
+        skip:
+          "Skip to main content",
+
+        mainNavigation:
+          "Main navigation",
+
+        chooseLanguage:
+          "Choose language",
+
+        home:
+          "Home",
+
+        caseStudies:
+          "Case Studies",
+
+        aboutMe:
+          "About Me",
+
+        cv:
+          "CV",
+
+        letsConnect:
+          "Let’s Connect",
+
+        accessibility:
+          "Accessibility",
+
+        accessibilityDescription:
+          "Adjust the page to suit your needs.",
+
+        closeAccessibility:
+          "Close accessibility settings",
+
+        textSize:
+          "Text size",
+
+        decreaseText:
+          "Decrease text size",
+
+        defaultText:
+          "Default text size",
+
+        increaseText:
+          "Increase text size",
+
+        highContrast:
+          "High contrast",
+
+        highContrastDescription:
+          "Increase visual contrast.",
+
+        reduceMotion:
+          "Reduce motion",
+
+        reduceMotionDescription:
+          "Minimise animation and movement.",
+
+        readPage:
+          "Read page aloud",
+
+        play:
+          "Play",
+
+        pause:
+          "Pause",
+
+        stop:
+          "Stop",
+
+        resetSettings:
+          "Reset accessibility settings",
+
+        heroEyebrow:
+          "UX Research · Interaction Design",
+
+        heroLineOne:
+          "I research where users struggle,",
+
+        heroLineTwo:
+          "then design simpler ways forward.",
+
+        heroDescription:
+          "UX Researcher and Interaction Designer focused on turning user insights into clear, accessible digital experiences.",
+
+        viewCaseStudies:
+          "View Case Studies",
+
+        designPrinciplesOverview:
+          "Design principles overview",
+
+        designApproach:
+          "My design approach",
+
+        understandBeforeDesign:
+          "Understand before designing.",
+
+        approachDescription:
+          "I look beyond the interface to understand behaviour, context and the real reason a problem exists.",
+
+        insightResearch:
+          "Research the real problem",
+
+        insightCognitive:
+          "Reduce cognitive load",
+
+        insightAccessibility:
+          "Design accessibly from the start",
+
+        professionalFoundation:
+          "Professional foundation",
+
+        psychology:
+          "Psychology",
+
+        cognitiveScience:
+          "Cognitive Science",
+
+        uxResearch:
+          "UX Research",
+
+        selectedWork:
+          "Selected Work",
+
+        featuredHeading:
+          "Research-led design grounded in real behaviour.",
+
+        featuredIntro:
+          "A closer look at how research findings can reshape the direction of a product when the original assumption turns out to be wrong.",
+
+        featuredCaseStudy:
+          "Featured Case Study",
+
+        elysianDescription:
+          "I researched an existing staff attendance process and discovered that the central problem was not resistance to the system, but delayed, memory-based logging. The resulting solution moved away from a mobile concept toward an RFID-enabled shared kiosk placed in the natural arrival path.",
+
+        elysianBenefitOne:
+          "Research changed the original product direction.",
+
+        elysianBenefitTwo:
+          "RFID identification reduced interaction effort.",
+
+        elysianBenefitThree:
+          "Accessibility was considered in the physical and digital experience.",
+
+        viewCaseStudy:
+          "View Case Study",
+
+        elysianImageAlt:
+          "Elysian Fields attendance kiosk interface showing RFID identification, attendance confirmation and reset states",
+
+        portfolioOverview:
+          "Portfolio overview",
+
+        myProcess:
+          "My Process",
+
+        processDescription:
+          "I begin by understanding context and behaviour, define the real problem, explore possible solutions, and test whether the design actually works.",
+
+        exploreWork:
+          "Explore my work →",
+
+        whatIDo:
+          "What I Do",
+
+        whatIDoDescription:
+          "UX research, user interviews, usability testing, journey mapping, interaction design, prototyping and accessibility-focused product thinking.",
+
+        seeCaseStudies:
+          "See case studies →",
+
+        aboutDescription:
+          "My background in Psychology and Cognitive Science helps me connect behavioural understanding with practical interaction design.",
+
+        readMyStory:
+          "Read my story →",
+
+        ctaHeading:
+          "Let’s create something meaningful.",
+
+        ctaDescription:
+          "I’m interested in UX research, interaction design and thoughtful digital products where accessibility and user understanding matter.",
+
+        footerCopy:
+          "Designed with research, empathy and accessibility in mind.",
+
+        email:
+          "Email",
+
+        backToTop:
+          "Back to top",
+
+        languageChanged:
+          "Language changed to English.",
+
+        settingsReset:
+          "Accessibility settings reset.",
+
+        contrastEnabled:
+          "High contrast enabled.",
+
+        contrastDisabled:
+          "High contrast disabled.",
+
+        motionEnabled:
+          "Reduced motion enabled.",
+
+        motionDisabled:
+          "Reduced motion disabled.",
+
+        readingStarted:
+          "Reading started.",
+
+        readingPaused:
+          "Reading paused.",
+
+        readingResumed:
+          "Reading resumed.",
+
+        readingStopped:
+          "Reading stopped.",
+
+        readUnsupported:
+          "Read aloud is not supported by this browser."
+      },
+
+
+      de: {
+
+        skip:
+          "Zum Hauptinhalt springen",
+
+        mainNavigation:
+          "Hauptnavigation",
+
+        chooseLanguage:
+          "Sprache auswählen",
+
+        home:
+          "Startseite",
+
+        caseStudies:
+          "Fallstudien",
+
+        aboutMe:
+          "Über mich",
+
+        cv:
+          "Lebenslauf",
+
+        letsConnect:
+          "Kontakt aufnehmen",
+
+        accessibility:
+          "Barrierefreiheit",
+
+        accessibilityDescription:
+          "Passe die Seite an deine Bedürfnisse an.",
+
+        closeAccessibility:
+          "Einstellungen zur Barrierefreiheit schließen",
+
+        textSize:
+          "Textgröße",
+
+        decreaseText:
+          "Text verkleinern",
+
+        defaultText:
+          "Standardtextgröße",
+
+        increaseText:
+          "Text vergrößern",
+
+        highContrast:
+          "Hoher Kontrast",
+
+        highContrastDescription:
+          "Erhöht den visuellen Kontrast.",
+
+        reduceMotion:
+          "Bewegung reduzieren",
+
+        reduceMotionDescription:
+          "Animationen und Bewegungen minimieren.",
+
+        readPage:
+          "Seite vorlesen",
+
+        play:
+          "Start",
+
+        pause:
+          "Pause",
+
+        stop:
+          "Stopp",
+
+        resetSettings:
+          "Barrierefreiheit zurücksetzen",
+
+        heroEyebrow:
+          "UX Research · Interaction Design",
+
+        heroLineOne:
+          "Ich erforsche, wo Nutzer:innen auf Hürden stoßen,",
+
+        heroLineTwo:
+          "und gestalte daraus einfachere Wege.",
+
+        heroDescription:
+          "UX Researcherin und Interaction Designerin mit dem Fokus darauf, Erkenntnisse über Nutzer:innen in klare und barrierefreie digitale Erlebnisse zu übersetzen.",
+
+        viewCaseStudies:
+          "Fallstudien ansehen",
+
+        designPrinciplesOverview:
+          "Überblick über meine Designprinzipien",
+
+        designApproach:
+          "Mein Designansatz",
+
+        understandBeforeDesign:
+          "Verstehen, bevor ich gestalte.",
+
+        approachDescription:
+          "Ich betrachte nicht nur die Benutzeroberfläche, sondern versuche Verhalten, Kontext und die tatsächliche Ursache eines Problems zu verstehen.",
+
+        insightResearch:
+          "Das eigentliche Problem erforschen",
+
+        insightCognitive:
+          "Kognitive Belastung reduzieren",
+
+        insightAccessibility:
+          "Barrierefreiheit von Anfang an mitdenken",
+
+        professionalFoundation:
+          "Professionelle Grundlagen",
+
+        psychology:
+          "Psychologie",
+
+        cognitiveScience:
+          "Kognitionswissenschaft",
+
+        uxResearch:
+          "UX Research",
+
+        selectedWork:
+          "Ausgewählte Arbeiten",
+
+        featuredHeading:
+          "Research-basiertes Design, das sich am realen Verhalten orientiert.",
+
+        featuredIntro:
+          "Ein Beispiel dafür, wie Forschung die Richtung eines Produkts verändern kann, wenn sich die ursprüngliche Annahme als falsch herausstellt.",
+
+        featuredCaseStudy:
+          "Ausgewählte Fallstudie",
+
+        elysianDescription:
+          "Ich untersuchte einen bestehenden Prozess zur Anwesenheitserfassung von Mitarbeitenden und stellte fest, dass nicht die Ablehnung des Systems das zentrale Problem war, sondern die verzögerte, erinnerungsbasierte Dokumentation. Dadurch entwickelte sich die Lösung von einem mobilen Konzept zu einem gemeinsam genutzten RFID-Kiosk im natürlichen Ankunftsweg.",
+
+        elysianBenefitOne:
+          "Die Forschung veränderte die ursprüngliche Produktrichtung.",
+
+        elysianBenefitTwo:
+          "RFID-Identifikation reduzierte den Interaktionsaufwand.",
+
+        elysianBenefitThree:
+          "Barrierefreiheit wurde sowohl im physischen als auch im digitalen Nutzungserlebnis berücksichtigt.",
+
+        viewCaseStudy:
+          "Fallstudie ansehen",
+
+        elysianImageAlt:
+          "Benutzeroberfläche des Elysian Fields Anwesenheitskiosks mit RFID-Identifikation, Anwesenheitsbestätigung und automatischem Zurücksetzen",
+
+        portfolioOverview:
+          "Portfolio-Überblick",
+
+        myProcess:
+          "Mein Prozess",
+
+        processDescription:
+          "Ich beginne damit, Kontext und Verhalten zu verstehen, definiere das eigentliche Problem, untersuche mögliche Lösungen und teste anschließend, ob das Design tatsächlich funktioniert.",
+
+        exploreWork:
+          "Meine Arbeiten ansehen →",
+
+        whatIDo:
+          "Was ich mache",
+
+        whatIDoDescription:
+          "UX Research, Nutzerinterviews, Usability-Tests, Journey Mapping, Interaction Design, Prototyping und barrierefreies Produktdenken.",
+
+        seeCaseStudies:
+          "Fallstudien ansehen →",
+
+        aboutDescription:
+          "Mein Hintergrund in Psychologie und Kognitionswissenschaft hilft mir, menschliches Verhalten mit praktischem Interaction Design zu verbinden.",
+
+        readMyStory:
+          "Mehr über mich →",
+
+        ctaHeading:
+          "Lass uns etwas Sinnvolles gestalten.",
+
+        ctaDescription:
+          "Ich interessiere mich für UX Research, Interaction Design und durchdachte digitale Produkte, bei denen Barrierefreiheit und echtes Nutzerverständnis eine wichtige Rolle spielen.",
+
+        footerCopy:
+          "Mit Research, Empathie und Barrierefreiheit im Mittelpunkt gestaltet.",
+
+        email:
+          "E-Mail",
+
+        backToTop:
+          "Nach oben",
+
+        languageChanged:
+          "Sprache auf Deutsch geändert.",
+
+        settingsReset:
+          "Einstellungen zur Barrierefreiheit wurden zurückgesetzt.",
+
+        contrastEnabled:
+          "Hoher Kontrast aktiviert.",
+
+        contrastDisabled:
+          "Hoher Kontrast deaktiviert.",
+
+        motionEnabled:
+          "Reduzierte Bewegung aktiviert.",
+
+        motionDisabled:
+          "Reduzierte Bewegung deaktiviert.",
+
+        readingStarted:
+          "Vorlesen gestartet.",
+
+        readingPaused:
+          "Vorlesen pausiert.",
+
+        readingResumed:
+          "Vorlesen fortgesetzt.",
+
+        readingStopped:
+          "Vorlesen gestoppt.",
+
+        readUnsupported:
+          "Die Vorlesefunktion wird von diesem Browser nicht unterstützt."
+      }
+
+    };
+
+
+    /* =====================================
+       ELEMENTS
+    ====================================== */
+
+    const languageEN =
+      document.getElementById("languageEN");
+
+    const languageDE =
+      document.getElementById("languageDE");
+
+
+    const accessibilityButton =
+      document.getElementById("accessibilityButton");
+
+    const accessibilityPanel =
+      document.getElementById("accessibilityPanel");
+
+    const closeAccessibility =
+      document.getElementById("closeAccessibility");
+
+
+    const contrastToggle =
+      document.getElementById("contrastToggle");
+
+    const motionToggle =
+      document.getElementById("motionToggle");
+
+
+    const textSizeButtons =
+      document.querySelectorAll(".text-size-button");
+
+
+    const readPlay =
+      document.getElementById("readPlay");
+
+    const readPause =
+      document.getElementById("readPause");
+
+    const readStop =
+      document.getElementById("readStop");
+
+
+    const resetAccessibility =
+      document.getElementById("resetAccessibility");
+
+
+    const backToTop =
+      document.getElementById("backToTop");
+
+
+    const a11yStatus =
+      document.getElementById("a11yStatus");
+
+
+    let currentLanguage =
+      localStorage.getItem("portfolioLanguage") || "en";
+
+
+    let speechUtterance = null;
+
+    let isPaused = false;
+
+
+    /* =====================================
+       SCREEN READER STATUS
+    ====================================== */
+
+    function announce(message) {
+
+      a11yStatus.textContent = "";
+
+      window.setTimeout(() => {
+
+        a11yStatus.textContent = message;
+
+      }, 40);
+
+    }
+
+
+    /* =====================================
+       LANGUAGE
+    ====================================== */
+
+    function applyLanguage(language, announceChange = false) {
+
+      currentLanguage = language;
+
+
+      document.documentElement.lang =
+        language;
+
+
+      localStorage.setItem(
+        "portfolioLanguage",
+        language
+      );
+
+
+      document
+        .querySelectorAll("[data-i18n]")
+        .forEach(element => {
+
+          const key =
+            element.getAttribute("data-i18n");
+
+
+          if (
+            translations[language] &&
+            translations[language][key]
+          ) {
+
+            element.textContent =
+              translations[language][key];
+
+          }
+
+        });
+
+
+      document
+        .querySelectorAll("[data-i18n-aria-label]")
+        .forEach(element => {
+
+          const key =
+            element.getAttribute(
+              "data-i18n-aria-label"
+            );
+
+
+          if (
+            translations[language] &&
+            translations[language][key]
+          ) {
+
+            element.setAttribute(
+              "aria-label",
+              translations[language][key]
+            );
+
+          }
+
+        });
+
+
+      document
+        .querySelectorAll("[data-i18n-alt]")
+        .forEach(element => {
+
+          const key =
+            element.getAttribute(
+              "data-i18n-alt"
+            );
+
+
+          if (
+            translations[language] &&
+            translations[language][key]
+          ) {
+
+            element.alt =
+              translations[language][key];
+
+          }
+
+        });
+
+
+      const englishSelected =
+        language === "en";
+
+
+      languageEN.classList.toggle(
+        "active",
+        englishSelected
+      );
+
+
+      languageDE.classList.toggle(
+        "active",
+        !englishSelected
+      );
+
+
+      languageEN.setAttribute(
+        "aria-pressed",
+        englishSelected
+          ? "true"
+          : "false"
+      );
+
+
+      languageDE.setAttribute(
+        "aria-pressed",
+        !englishSelected
+          ? "true"
+          : "false"
+      );
+
+
+      if (announceChange) {
+
+        announce(
+          translations[language].languageChanged
+        );
+
+      }
+
+
+      stopReading(false);
+
+    }
+
+
+    languageEN.addEventListener(
+      "click",
+      () => applyLanguage("en", true)
+    );
+
+
+    languageDE.addEventListener(
+      "click",
+      () => applyLanguage("de", true)
+    );
+
+
+    /* =====================================
+       ACCESSIBILITY PANEL
+    ====================================== */
+
+    function openAccessibilityPanel() {
+
+      accessibilityPanel.hidden = false;
+
+      accessibilityButton.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
+
+      closeAccessibility.focus();
+
+    }
+
+
+    function closeAccessibilityPanel() {
+
+      accessibilityPanel.hidden = true;
+
+      accessibilityButton.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+
+      accessibilityButton.focus();
+
+    }
+
+
+    accessibilityButton.addEventListener(
+      "click",
+      () => {
+
+        if (accessibilityPanel.hidden) {
+
+          openAccessibilityPanel();
+
+        } else {
+
+          closeAccessibilityPanel();
+
+        }
+
+      }
+    );
+
+
+    closeAccessibility.addEventListener(
+      "click",
+      closeAccessibilityPanel
+    );
+
+
+    document.addEventListener(
+      "keydown",
+      event => {
+
+        if (
+          event.key === "Escape" &&
+          !accessibilityPanel.hidden
+        ) {
+
+          closeAccessibilityPanel();
+
+        }
+
+      }
+    );
+
+
+    document.addEventListener(
+      "click",
+      event => {
+
+        if (accessibilityPanel.hidden) {
+          return;
+        }
+
+
+        const clickedInsidePanel =
+          accessibilityPanel.contains(
+            event.target
+          );
+
+
+        const clickedButton =
+          accessibilityButton.contains(
+            event.target
+          );
+
+
+        if (
+          !clickedInsidePanel &&
+          !clickedButton
+        ) {
+
+          accessibilityPanel.hidden = true;
+
+          accessibilityButton.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =====================================
+       TEXT SIZE
+    ====================================== */
+
+    function applyTextSize(size) {
+
+      let scale = 1;
+
+
+      if (size === "small") {
+
+        scale = 0.92;
+
+      }
+
+
+      if (size === "large") {
+
+        scale = 1.15;
+
+      }
+
+
+      document.documentElement.style.setProperty(
+        "--text-scale",
+        scale
+      );
+
+
+      localStorage.setItem(
+        "portfolioTextSize",
+        size
+      );
+
+
+      textSizeButtons.forEach(button => {
+
+        button.classList.toggle(
+          "active",
+          button.dataset.size === size
+        );
+
+      });
+
+    }
+
+
+    textSizeButtons.forEach(button => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          applyTextSize(
+            button.dataset.size
+          );
+
+        }
+      );
+
+    });
+
+
+    /* =====================================
+       HIGH CONTRAST
+    ====================================== */
+
+    function applyContrast(enabled, announceChange = false) {
+
+      document.body.classList.toggle(
+        "high-contrast",
+        enabled
+      );
+
+
+      contrastToggle.checked =
+        enabled;
+
+
+      localStorage.setItem(
+        "portfolioContrast",
+        enabled
+          ? "true"
+          : "false"
+      );
+
+
+      if (announceChange) {
+
+        announce(
+          enabled
+            ? translations[currentLanguage]
+                .contrastEnabled
+            : translations[currentLanguage]
+                .contrastDisabled
+        );
+
+      }
+
+    }
+
+
+    contrastToggle.addEventListener(
+      "change",
+      () => {
+
+        applyContrast(
+          contrastToggle.checked,
+          true
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       REDUCED MOTION
+    ====================================== */
+
+    function applyMotionPreference(
+      enabled,
+      announceChange = false
+    ) {
+
+      document.body.classList.toggle(
+        "reduce-motion",
+        enabled
+      );
+
+
+      motionToggle.checked =
+        enabled;
+
+
+      localStorage.setItem(
+        "portfolioReducedMotion",
+        enabled
+          ? "true"
+          : "false"
+      );
+
+
+      if (announceChange) {
+
+        announce(
+          enabled
+            ? translations[currentLanguage]
+                .motionEnabled
+            : translations[currentLanguage]
+                .motionDisabled
+        );
+
+      }
+
+    }
+
+
+    motionToggle.addEventListener(
+      "change",
+      () => {
+
+        applyMotionPreference(
+          motionToggle.checked,
+          true
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       READ ALOUD
+    ====================================== */
+
+    const speechSupported =
+      "speechSynthesis" in window &&
+      "SpeechSynthesisUtterance" in window;
+
+
+    if (!speechSupported) {
+
+      readPlay.disabled = true;
+      readPause.disabled = true;
+      readStop.disabled = true;
+
+    }
+
+
+    function getReadablePageText() {
+
+      const readableSections =
+        document.querySelectorAll(
+          ".readable-content"
+        );
+
+
+      const textParts = [];
+
+
+      readableSections.forEach(section => {
+
+        const clone =
+          section.cloneNode(true);
+
+
+        clone
+          .querySelectorAll(
+            "[data-no-read], img, button"
+          )
+          .forEach(element => {
+
+            element.remove();
+
+          });
+
+
+        const sectionText =
+          clone.innerText
+            .replace(/\s+/g, " ")
+            .trim();
+
+
+        if (sectionText) {
+
+          textParts.push(sectionText);
+
+        }
+
+      });
+
+
+      return textParts.join(". ");
+
+    }
+
+
+    function startReading() {
+
+      if (!speechSupported) {
+
+        announce(
+          translations[currentLanguage]
+            .readUnsupported
+        );
+
+        return;
+
+      }
+
+
+      if (
+        window.speechSynthesis.speaking &&
+        isPaused
+      ) {
+
+        window.speechSynthesis.resume();
+
+        isPaused = false;
+
+
+        announce(
+          translations[currentLanguage]
+            .readingResumed
+        );
+
+        return;
+
+      }
+
+
+      window.speechSynthesis.cancel();
+
+
+      const text =
+        getReadablePageText();
+
+
+      speechUtterance =
+        new SpeechSynthesisUtterance(text);
+
+
+      speechUtterance.lang =
+        currentLanguage === "de"
+          ? "de-DE"
+          : "en-US";
+
+
+      speechUtterance.rate =
+        0.95;
+
+
+      speechUtterance.pitch =
+        1;
+
+
+      speechUtterance.onend =
+        () => {
+
+          isPaused = false;
+
+        };
+
+
+      window.speechSynthesis.speak(
+        speechUtterance
+      );
+
+
+      isPaused = false;
+
+
+      announce(
+        translations[currentLanguage]
+          .readingStarted
+      );
+
+    }
+
+
+    function pauseReading() {
+
+      if (
+        speechSupported &&
+        window.speechSynthesis.speaking &&
+        !isPaused
+      ) {
+
+        window.speechSynthesis.pause();
+
+        isPaused = true;
+
+
+        announce(
+          translations[currentLanguage]
+            .readingPaused
+        );
+
+      }
+
+    }
+
+
+    function stopReading(announceStop = true) {
+
+      if (!speechSupported) {
+        return;
+      }
+
+
+      window.speechSynthesis.cancel();
+
+      isPaused = false;
+
+
+      if (announceStop) {
+
+        announce(
+          translations[currentLanguage]
+            .readingStopped
+        );
+
+      }
+
+    }
+
+
+    readPlay.addEventListener(
+      "click",
+      startReading
+    );
+
+
+    readPause.addEventListener(
+      "click",
+      pauseReading
+    );
+
+
+    readStop.addEventListener(
+      "click",
+      () => stopReading(true)
+    );
+
+
+    /* =====================================
+       RESET ACCESSIBILITY
+    ====================================== */
+
+    resetAccessibility.addEventListener(
+      "click",
+      () => {
+
+        applyTextSize("default");
+
+        applyContrast(false);
+
+        applyMotionPreference(false);
+
+        stopReading(false);
+
+
+        localStorage.removeItem(
+          "portfolioTextSize"
+        );
+
+        localStorage.removeItem(
+          "portfolioContrast"
+        );
+
+        localStorage.removeItem(
+          "portfolioReducedMotion"
+        );
+
+
+        announce(
+          translations[currentLanguage]
+            .settingsReset
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       BACK TO TOP
+    ====================================== */
+
+    window.addEventListener(
+      "scroll",
+      () => {
+
+        backToTop.classList.toggle(
+          "visible",
+          window.scrollY > 500
+        );
+
+      },
+      {
+        passive: true
+      }
+    );
+
+
+    backToTop.addEventListener(
+      "click",
+      () => {
+
+        const reducedMotion =
+          document.body.classList.contains(
+            "reduce-motion"
+          ) ||
+          window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches;
+
+
+        window.scrollTo({
+
+          top: 0,
+
+          behavior:
+            reducedMotion
+              ? "auto"
+              : "smooth"
+
+        });
+
+      }
+    );
+
+
+    /* =====================================
+       LOAD SAVED PREFERENCES
+    ====================================== */
+
+    function loadPreferences() {
+
+      /* LANGUAGE */
+
+      applyLanguage(
+        currentLanguage,
+        false
+      );
+
+
+      /* TEXT SIZE */
+
+      const savedTextSize =
+        localStorage.getItem(
+          "portfolioTextSize"
+        ) || "default";
+
+
+      applyTextSize(
+        savedTextSize
+      );
+
+
+      /* CONTRAST */
+
+      const savedContrast =
+        localStorage.getItem(
+          "portfolioContrast"
+        ) === "true";
+
+
+      applyContrast(
+        savedContrast,
+        false
+      );
+
+
+      /* REDUCED MOTION */
+
+      const savedMotion =
+        localStorage.getItem(
+          "portfolioReducedMotion"
+        );
+
+
+      if (savedMotion !== null) {
+
+        applyMotionPreference(
+          savedMotion === "true",
+          false
+        );
+
+      } else {
+
+        const systemPrefersReducedMotion =
+          window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches;
+
+
+        motionToggle.checked =
+          systemPrefersReducedMotion;
+
+      }
+
+    }
+
+
+    loadPreferences();
+
+
+    /* =====================================
+       STOP SPEECH WHEN LEAVING PAGE
+    ====================================== */
+
+    window.addEventListener(
+      "beforeunload",
+      () => {
+
+        if (speechSupported) {
+
+          window.speechSynthesis.cancel();
+
+        }
+
+      }
+    );
+
+  </script>
 
 </body>
 
