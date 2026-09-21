@@ -1,16 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="/favicon.png" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    id="metaDescription"
+    name="description"
+    content="Tasky — an accessible smart family noticeboard UX case study by Linda Laryea."
+  />
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="/favicon.png"
+  />
 
   <title>Tasky — Smart Family Noticeboard | Linda Laryea</title>
 
+
   <style>
+
+    /* =====================================
+       DESIGN TOKENS
+    ====================================== */
+
     :root {
       --bg: #F9F7FE;
       --white: #FFFFFF;
+      --surface: #FFFFFF;
 
       --purple: #6D5DF6;
       --purple-dark: #211E53;
@@ -26,6 +50,8 @@
       --pink: #FFF0F7;
 
       --magenta: #A80B63;
+      --magenta-dark: #83074C;
+
       --gold: #F3C24F;
 
       --dark: #15152D;
@@ -34,8 +60,18 @@
 
       --border: #E7E2F2;
 
-      --shadow: 0 18px 45px rgba(54, 45, 100, 0.05);
+      --focus: #111827;
+
+      --shadow:
+        0 18px 45px rgba(54, 45, 100, 0.05);
+
+      --text-scale: 1;
     }
+
+
+    /* =====================================
+       RESET
+    ====================================== */
 
     * {
       box-sizing: border-box;
@@ -43,1370 +79,3126 @@
       padding: 0;
     }
 
+
     html {
       scroll-behavior: smooth;
+
+      font-size:
+        calc(16px * var(--text-scale));
     }
 
+
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--dark);
-      line-height: 1.6;
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      background:
+        var(--bg);
+
+      color:
+        var(--dark);
+
+      line-height:
+        1.6;
+
+      transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
     }
+
 
     a {
       color: inherit;
       text-decoration: none;
     }
 
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+
     img {
       display: block;
       max-width: 100%;
     }
 
-    .page {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 22px 0 70px;
+
+    /* =====================================
+       SCREEN READER ONLY
+    ====================================== */
+
+    .sr-only {
+      position: absolute;
+
+      width: 1px;
+      height: 1px;
+
+      padding: 0;
+      margin: -1px;
+
+      overflow: hidden;
+
+      clip: rect(0, 0, 0, 0);
+
+      white-space: nowrap;
+
+      border: 0;
     }
 
-    /* =========================
+
+    /* =====================================
+       FOCUS
+    ====================================== */
+
+    :focus-visible {
+      outline:
+        3px solid var(--focus);
+
+      outline-offset:
+        4px;
+    }
+
+
+    .nav-button:focus-visible {
+      outline-color:
+        var(--gold);
+    }
+
+
+    /* =====================================
+       SKIP LINK
+    ====================================== */
+
+    .skip-link {
+      position: fixed;
+
+      top: 12px;
+      left: 12px;
+
+      z-index: 99999;
+
+      padding:
+        12px 18px;
+
+      background:
+        var(--dark);
+
+      color:
+        #FFFFFF;
+
+      border-radius:
+        10px;
+
+      font-size:
+        0.875rem;
+
+      font-weight:
+        800;
+
+      transform:
+        translateY(-180%);
+
+      transition:
+        transform 0.2s ease;
+    }
+
+
+    .skip-link:focus {
+      transform:
+        translateY(0);
+    }
+
+
+    /* =====================================
+       PAGE
+    ====================================== */
+
+    .page {
+      width:
+        min(1180px, calc(100% - 32px));
+
+      margin:
+        0 auto;
+
+      padding:
+        22px 0 70px;
+    }
+
+
+    /* =====================================
        NAVIGATION
-    ========================== */
+    ====================================== */
 
     .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
+      display:
+        flex;
 
-      padding-bottom: 20px;
-      border-bottom: 1px solid var(--border);
+      justify-content:
+        space-between;
+
+      align-items:
+        center;
+
+      gap:
+        24px;
+
+      padding-bottom:
+        20px;
+
+      border-bottom:
+        1px solid var(--border);
     }
+
 
     .brand-name {
-      color: var(--magenta);
-      font-size: 27px;
-      font-weight: 800;
+      color:
+        var(--magenta);
+
+      font-size:
+        1.6875rem;
+
+      font-weight:
+        800;
+
+      white-space:
+        nowrap;
     }
+
+
+    .nav-right {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        20px;
+    }
+
 
     .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 31px;
+      display:
+        flex;
 
-      font-size: 14px;
-      font-weight: 700;
+      align-items:
+        center;
+
+      gap:
+        31px;
+
+      font-size:
+        0.875rem;
+
+      font-weight:
+        700;
     }
+
+
+    .nav-links a {
+      min-height:
+        44px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+    }
+
 
     .nav-links a:hover,
     .nav-links .active {
-      color: var(--magenta);
+      color:
+        var(--magenta);
     }
+
 
     .nav-links .active {
-      padding-bottom: 9px;
-      border-bottom: 3px solid var(--magenta);
+      padding-bottom:
+        9px;
+
+      border-bottom:
+        3px solid var(--magenta);
     }
+
 
     .nav-button {
-      background: var(--magenta);
-      color: #FFFFFF !important;
+      min-height:
+        44px;
 
-      padding: 13px 22px;
-      border-radius: 12px;
+      padding:
+        0 22px;
 
-      border-bottom: none !important;
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF !important;
+
+      border-radius:
+        12px;
+
+      border-bottom:
+        none !important;
     }
+
+
+    .nav-button:hover {
+      background:
+        var(--magenta-dark);
+    }
+
+
+    /* =====================================
+       ACCESSIBILITY NAV TOOLS
+    ====================================== */
+
+    .nav-tools {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        8px;
+    }
+
+
+    .language-switcher {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      padding:
+        3px;
+
+      background:
+        var(--surface);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        10px;
+    }
+
+
+    .language-button {
+      min-width:
+        44px;
+
+      min-height:
+        40px;
+
+      padding:
+        0 9px;
+
+      background:
+        transparent;
+
+      color:
+        var(--body);
+
+      border:
+        0;
+
+      border-radius:
+        7px;
+
+      font-size:
+        0.75rem;
+
+      font-weight:
+        800;
+    }
+
+
+    .language-button.active {
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
+    }
+
+
+    .accessibility-button {
+      min-width:
+        44px;
+
+      min-height:
+        44px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      gap:
+        7px;
+
+      padding:
+        0 12px;
+
+      background:
+        var(--surface);
+
+      color:
+        var(--dark);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        10px;
+
+      font-size:
+        0.8rem;
+
+      font-weight:
+        800;
+    }
+
+
+    .accessibility-button:hover {
+      background:
+        var(--purple-soft);
+    }
+
+
+    /* =====================================
+       ACCESSIBILITY PANEL
+    ====================================== */
+
+    .accessibility-panel {
+      position:
+        fixed;
+
+      top:
+        92px;
+
+      right:
+        24px;
+
+      z-index:
+        10000;
+
+      width:
+        min(340px, calc(100vw - 32px));
+
+      padding:
+        22px;
+
+      background:
+        var(--surface);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        18px;
+
+      box-shadow:
+        0 24px 70px rgba(17, 24, 39, 0.16);
+    }
+
+
+    .accessibility-panel[hidden] {
+      display:
+        none;
+    }
+
+
+    .a11y-panel-header {
+      display:
+        flex;
+
+      align-items:
+        flex-start;
+
+      justify-content:
+        space-between;
+
+      gap:
+        18px;
+
+      margin-bottom:
+        20px;
+    }
+
+
+    .a11y-panel-header h2 {
+      margin:
+        0 0 3px;
+
+      font-size:
+        1.1rem;
+    }
+
+
+    .a11y-panel-header p {
+      margin:
+        0;
+
+      color:
+        var(--muted);
+
+      font-size:
+        0.76rem;
+    }
+
+
+    .panel-close {
+      min-width:
+        44px;
+
+      min-height:
+        44px;
+
+      background:
+        var(--purple-soft);
+
+      color:
+        var(--dark);
+
+      border:
+        0;
+
+      border-radius:
+        10px;
+
+      font-size:
+        1.25rem;
+    }
+
+
+    .a11y-group {
+      padding:
+        16px 0;
+
+      border-top:
+        1px solid var(--border);
+    }
+
+
+    .a11y-group:first-of-type {
+      padding-top:
+        0;
+
+      border-top:
+        0;
+    }
+
+
+    .a11y-label {
+      display:
+        block;
+
+      margin-bottom:
+        10px;
+
+      color:
+        var(--dark);
+
+      font-size:
+        0.8rem;
+
+      font-weight:
+        800;
+    }
+
+
+    /* =====================================
+       TEXT SIZE
+    ====================================== */
+
+    .text-size-controls {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap:
+        8px;
+    }
+
+
+    .text-size-button {
+      min-height:
+        44px;
+
+      background:
+        var(--surface);
+
+      color:
+        var(--dark);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        9px;
+
+      font-weight:
+        800;
+    }
+
+
+    .text-size-button.active {
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
+
+      border-color:
+        var(--magenta);
+    }
+
+
+    /* =====================================
+       TOGGLES
+    ====================================== */
+
+    .toggle-row {
+      min-height:
+        48px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        20px;
+    }
+
+
+    .toggle-copy strong {
+      display:
+        block;
+
+      font-size:
+        0.82rem;
+    }
+
+
+    .toggle-copy span {
+      display:
+        block;
+
+      margin-top:
+        2px;
+
+      color:
+        var(--muted);
+
+      font-size:
+        0.7rem;
+    }
+
+
+    .switch {
+      position:
+        relative;
+
+      width:
+        50px;
+
+      height:
+        28px;
+
+      flex:
+        0 0 auto;
+    }
+
+
+    .switch input {
+      position:
+        absolute;
+
+      opacity:
+        0;
+
+      width:
+        1px;
+
+      height:
+        1px;
+    }
+
+
+    .switch-track {
+      position:
+        absolute;
+
+      inset:
+        0;
+
+      background:
+        #D1D5DB;
+
+      border-radius:
+        999px;
+
+      transition:
+        background 0.2s ease;
+    }
+
+
+    .switch-track::after {
+      content:
+        "";
+
+      position:
+        absolute;
+
+      width:
+        20px;
+
+      height:
+        20px;
+
+      left:
+        4px;
+
+      top:
+        4px;
+
+      background:
+        #FFFFFF;
+
+      border-radius:
+        50%;
+
+      box-shadow:
+        0 2px 7px rgba(0, 0, 0, 0.18);
+
+      transition:
+        transform 0.2s ease;
+    }
+
+
+    .switch input:checked +
+    .switch-track {
+      background:
+        var(--magenta);
+    }
+
+
+    .switch input:checked +
+    .switch-track::after {
+      transform:
+        translateX(22px);
+    }
+
+
+    .switch input:focus-visible +
+    .switch-track {
+      outline:
+        3px solid var(--focus);
+
+      outline-offset:
+        3px;
+    }
+
+
+    /* =====================================
+       READ ALOUD
+    ====================================== */
+
+    .read-controls {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap:
+        8px;
+    }
+
+
+    .read-button {
+      min-height:
+        44px;
+
+      background:
+        var(--surface);
+
+      color:
+        var(--dark);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        9px;
+
+      font-size:
+        0.75rem;
+
+      font-weight:
+        800;
+    }
+
+
+    .read-button:hover {
+      background:
+        var(--purple-soft);
+    }
+
+
+    .read-button.primary-read {
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
+
+      border-color:
+        var(--magenta);
+    }
+
+
+    .read-button:disabled {
+      opacity:
+        0.45;
+
+      cursor:
+        not-allowed;
+    }
+
+
+    .reset-button {
+      width:
+        100%;
+
+      min-height:
+        44px;
+
+      background:
+        var(--surface);
+
+      color:
+        var(--magenta);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        9px;
+
+      font-size:
+        0.75rem;
+
+      font-weight:
+        800;
+    }
+
+
+    /* =====================================
+       BACK LINK
+    ====================================== */
 
     .back-link {
-      display: inline-flex;
+      min-height:
+        44px;
 
-      margin: 28px 0 18px;
+      display:
+        inline-flex;
 
-      color: var(--purple);
-      font-size: 14px;
-      font-weight: 800;
+      align-items:
+        center;
+
+      margin:
+        28px 0 18px;
+
+      color:
+        var(--purple);
+
+      font-size:
+        0.875rem;
+
+      font-weight:
+        800;
     }
 
-    /* =========================
+
+    /* =====================================
        SHARED
-    ========================== */
+    ====================================== */
 
     .section {
-      margin-top: 26px;
-      padding: 42px;
+      margin-top:
+        26px;
 
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 24px;
+      padding:
+        42px;
 
-      box-shadow: var(--shadow);
+      background:
+        var(--white);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        24px;
+
+      box-shadow:
+        var(--shadow);
     }
+
 
     .section.plain {
-      background: transparent;
-      border: none;
-      box-shadow: none;
-      padding-left: 0;
-      padding-right: 0;
+      padding-left:
+        0;
+
+      padding-right:
+        0;
+
+      background:
+        transparent;
+
+      border:
+        none;
+
+      box-shadow:
+        none;
     }
+
 
     .tiny-label {
-      color: var(--purple);
+      margin-bottom:
+        10px;
 
-      font-size: 11px;
-      font-weight: 900;
+      color:
+        var(--purple);
 
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
+      font-size:
+        0.6875rem;
 
-      margin-bottom: 10px;
+      font-weight:
+        900;
+
+      letter-spacing:
+        1.2px;
+
+      text-transform:
+        uppercase;
     }
+
 
     .section h2 {
-      font-size: clamp(30px, 4vw, 44px);
-      line-height: 1.08;
+      margin-bottom:
+        15px;
 
-      letter-spacing: -1px;
+      font-size:
+        clamp(1.875rem, 4vw, 2.75rem);
 
-      margin-bottom: 15px;
+      line-height:
+        1.08;
+
+      letter-spacing:
+        -1px;
     }
+
 
     .section-intro {
-      color: var(--body);
+      max-width:
+        780px;
 
-      font-size: 15px;
-      line-height: 1.75;
+      color:
+        var(--body);
 
-      max-width: 780px;
+      font-size:
+        0.9375rem;
+
+      line-height:
+        1.75;
     }
 
-    .gold-line {
-      width: 44px;
-      height: 3px;
-
-      background: var(--gold);
-      border-radius: 999px;
-
-      margin-bottom: 13px;
-    }
 
     .note-bar {
-      margin-top: 22px;
+      margin-top:
+        22px;
 
-      background: var(--purple-pale);
-      border-radius: 12px;
+      padding:
+        12px 16px;
 
-      padding: 12px 16px;
+      background:
+        var(--purple-pale);
 
-      color: var(--body);
+      color:
+        var(--body);
 
-      font-size: 13px;
-      line-height: 1.6;
+      border-radius:
+        12px;
+
+      font-size:
+        0.8125rem;
+
+      line-height:
+        1.6;
     }
 
-    /* =========================
+
+    /* =====================================
        HERO
-    ========================== */
+    ====================================== */
 
     .hero {
-      margin-top: 18px;
+      margin-top:
+        18px;
 
-      display: grid;
-      grid-template-columns: 0.86fr 1.14fr;
+      padding:
+        34px 0 28px;
 
-      gap: 38px;
-      align-items: stretch;
+      display:
+        grid;
 
-      padding: 34px 0 28px;
+      grid-template-columns:
+        0.86fr 1.14fr;
+
+      gap:
+        38px;
+
+      align-items:
+        stretch;
     }
+
 
     .hero-copy {
-      padding: 8px 0;
+      padding:
+        8px 0;
     }
+
 
     .hero-label {
-      color: var(--purple);
+      margin-bottom:
+        12px;
 
-      font-size: 11px;
-      font-weight: 900;
+      color:
+        var(--purple);
 
-      letter-spacing: 1.1px;
-      text-transform: uppercase;
+      font-size:
+        0.6875rem;
 
-      margin-bottom: 12px;
+      font-weight:
+        900;
+
+      letter-spacing:
+        1.1px;
+
+      text-transform:
+        uppercase;
     }
+
 
     .hero h1 {
-      font-size: clamp(52px, 6vw, 72px);
-      line-height: 0.98;
+      margin-bottom:
+        17px;
 
-      margin-bottom: 17px;
+      font-size:
+        clamp(3.25rem, 6vw, 4.5rem);
+
+      line-height:
+        0.98;
     }
+
 
     .hero-subtitle {
-      font-size: 24px;
-      line-height: 1.2;
+      max-width:
+        440px;
 
-      max-width: 440px;
+      margin-bottom:
+        22px;
 
-      margin-bottom: 22px;
+      font-size:
+        1.5rem;
+
+      line-height:
+        1.2;
     }
+
 
     .hero-description {
-      color: var(--body);
+      max-width:
+        480px;
 
-      font-size: 15px;
-      line-height: 1.7;
+      color:
+        var(--body);
 
-      max-width: 480px;
+      font-size:
+        0.9375rem;
+
+      line-height:
+        1.7;
     }
+
 
     .hero-details {
-      display: grid;
-      grid-template-columns: 1fr 1.5fr;
+      display:
+        grid;
 
-      gap: 20px;
+      grid-template-columns:
+        1fr 1.5fr;
 
-      margin-top: 25px;
+      gap:
+        20px;
+
+      margin-top:
+        25px;
     }
+
 
     .hero-detail strong {
-      display: block;
+      display:
+        block;
 
-      font-size: 11px;
-      text-transform: uppercase;
+      margin-bottom:
+        4px;
 
-      margin-bottom: 4px;
+      font-size:
+        0.6875rem;
+
+      text-transform:
+        uppercase;
     }
+
 
     .hero-detail span {
-      color: var(--body);
+      color:
+        var(--body);
 
-      font-size: 12px;
-      line-height: 1.5;
+      font-size:
+        0.75rem;
+
+      line-height:
+        1.5;
     }
+
 
     .hero-insight {
-      margin-top: 24px;
+      margin-top:
+        24px;
 
-      padding: 14px 17px;
+      padding:
+        14px 17px;
 
-      background: var(--purple-soft);
-      border-radius: 14px;
+      background:
+        var(--purple-soft);
 
-      color: var(--body);
-      font-size: 13px;
+      color:
+        var(--body);
+
+      border-radius:
+        14px;
+
+      font-size:
+        0.8125rem;
     }
 
-    /* HERO PRODUCT CARD */
+
+    /* =====================================
+       HERO PRODUCT
+    ====================================== */
 
     .hero-product {
-      background: var(--purple-soft);
+      padding:
+        24px;
 
-      border: 1px solid #DDD6FF;
-      border-radius: 28px;
+      display:
+        grid;
 
-      padding: 24px;
+      grid-template-columns:
+        0.75fr 1.25fr;
 
-      display: grid;
-      grid-template-columns: 0.75fr 1.25fr;
+      gap:
+        20px;
 
-      gap: 20px;
-      align-items: center;
+      align-items:
+        center;
+
+      background:
+        var(--purple-soft);
+
+      border:
+        1px solid #DDD6FF;
+
+      border-radius:
+        28px;
     }
+
 
     .product-summary {
-      background: #FFFFFF;
+      padding:
+        19px;
 
-      border-radius: 19px;
+      background:
+        #FFFFFF;
 
-      padding: 19px;
+      border-radius:
+        19px;
     }
+
 
     .tasky-mark {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      display:
+        flex;
 
-      color: var(--purple-dark);
-      font-weight: 900;
+      align-items:
+        center;
 
-      margin-bottom: 16px;
+      gap:
+        10px;
+
+      margin-bottom:
+        16px;
+
+      color:
+        var(--purple-dark);
+
+      font-weight:
+        900;
     }
+
 
     .tasky-logo {
-      width: 33px;
-      height: 33px;
+      width:
+        33px;
 
-      display: grid;
-      place-items: center;
+      height:
+        33px;
 
-      color: #FFFFFF;
-      background: var(--purple);
+      display:
+        grid;
 
-      border-radius: 10px;
+      place-items:
+        center;
+
+      background:
+        var(--purple);
+
+      color:
+        #FFFFFF;
+
+      border-radius:
+        10px;
     }
+
 
     .product-summary h3 {
-      font-size: 23px;
-      line-height: 1.08;
+      margin-bottom:
+        9px;
 
-      margin-bottom: 9px;
+      font-size:
+        1.4375rem;
+
+      line-height:
+        1.08;
     }
+
 
     .product-summary p {
-      color: var(--body);
+      color:
+        var(--body);
 
-      font-size: 12px;
-      line-height: 1.6;
+      font-size:
+        0.75rem;
+
+      line-height:
+        1.6;
     }
+
 
     .product-image {
-      background: #FFFFFF;
+      padding:
+        10px;
 
-      border-radius: 18px;
+      background:
+        #FFFFFF;
 
-      padding: 10px;
+      border-radius:
+        18px;
 
-      box-shadow: var(--shadow);
+      box-shadow:
+        var(--shadow);
     }
+
 
     .product-image img {
-      width: 100%;
-      height: 260px;
+      width:
+        100%;
 
-      object-fit: contain;
-      object-position: center;
+      height:
+        260px;
 
-      border-radius: 12px;
+      object-fit:
+        contain;
+
+      object-position:
+        center;
+
+      border-radius:
+        12px;
     }
 
-    /* =========================
+
+    /* =====================================
        PROBLEM
-    ========================== */
+    ====================================== */
 
     .problem-layout {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
+      display:
+        grid;
 
-      gap: 34px;
+      grid-template-columns:
+        1.05fr 0.95fr;
 
-      margin-top: 26px;
+      gap:
+        34px;
+
+      margin-top:
+        26px;
     }
+
 
     .problem-copy h2 {
-      max-width: 640px;
+      max-width:
+        640px;
     }
+
 
     .problem-cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display:
+        grid;
 
-      gap: 14px;
+      grid-template-columns:
+        1fr 1fr;
+
+      gap:
+        14px;
     }
+
 
     .mini-card {
-      border-radius: 17px;
-      padding: 18px;
+      min-height:
+        112px;
 
-      min-height: 112px;
+      padding:
+        18px;
+
+      border-radius:
+        17px;
     }
+
 
     .mini-card.purple {
-      background: var(--purple-soft);
+      background:
+        var(--purple-soft);
     }
+
 
     .mini-card.peach {
-      background: var(--peach);
+      background:
+        var(--peach);
     }
+
 
     .mini-card.blue {
-      background: #EEF5FF;
+      background:
+        #EEF5FF;
     }
+
 
     .mini-card.mint {
-      background: var(--mint);
+      background:
+        var(--mint);
     }
+
 
     .mini-card strong {
-      display: block;
+      display:
+        block;
 
-      font-size: 14px;
+      margin-bottom:
+        5px;
 
-      margin-bottom: 5px;
+      font-size:
+        0.875rem;
     }
+
 
     .mini-card p {
-      color: var(--body);
+      color:
+        var(--body);
 
-      font-size: 11px;
-      line-height: 1.55;
+      font-size:
+        0.6875rem;
+
+      line-height:
+        1.55;
     }
 
-    /* =========================
+
+    /* =====================================
        RESEARCH SHIFT
-    ========================== */
+    ====================================== */
 
     .shift-grid {
-      display: grid;
-      grid-template-columns: 1fr 60px 1fr;
+      display:
+        grid;
 
-      gap: 15px;
-      align-items: center;
+      grid-template-columns:
+        1fr 60px 1fr;
 
-      margin-top: 30px;
+      gap:
+        15px;
+
+      align-items:
+        center;
+
+      margin-top:
+        30px;
     }
+
 
     .shift-card {
-      border: 1px solid var(--border);
-      border-radius: 18px;
+      padding:
+        23px;
 
-      padding: 23px;
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        18px;
     }
+
 
     .shift-card:first-child {
-      background: #FFFFFF;
+      background:
+        #FFFFFF;
     }
+
 
     .shift-card:last-child {
-      background: var(--purple-soft);
+      background:
+        var(--purple-soft);
     }
+
 
     .shift-label {
-      color: var(--purple);
+      margin-bottom:
+        8px;
 
-      font-size: 10px;
-      text-transform: uppercase;
-      font-weight: 900;
+      color:
+        var(--purple);
 
-      margin-bottom: 8px;
+      font-size:
+        0.625rem;
+
+      font-weight:
+        900;
+
+      text-transform:
+        uppercase;
     }
+
 
     .shift-card h3 {
-      font-size: 18px;
-      line-height: 1.3;
+      font-size:
+        1.125rem;
+
+      line-height:
+        1.3;
     }
+
 
     .arrow-circle {
-      width: 44px;
-      height: 44px;
+      width:
+        44px;
 
-      border: 1px solid var(--border);
-      border-radius: 50%;
+      height:
+        44px;
 
-      display: grid;
-      place-items: center;
+      display:
+        grid;
 
-      color: var(--purple);
-      background: #FFFFFF;
+      place-items:
+        center;
 
-      font-size: 22px;
+      background:
+        #FFFFFF;
+
+      color:
+        var(--purple);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        50%;
+
+      font-size:
+        1.375rem;
     }
 
-    /* =========================
+
+    /* =====================================
        AUDIENCE
-    ========================== */
+    ====================================== */
 
     .audience-top {
-      display: grid;
-      grid-template-columns: 1fr 0.95fr;
+      display:
+        grid;
 
-      gap: 38px;
+      grid-template-columns:
+        1fr 0.95fr;
 
-      margin-bottom: 23px;
+      gap:
+        38px;
+
+      margin-bottom:
+        23px;
     }
+
 
     .persona-card {
-      background: #FFFFFF;
+      padding:
+        20px;
 
-      border: 1px solid var(--border);
-      border-radius: 19px;
+      display:
+        grid;
 
-      padding: 20px;
+      grid-template-columns:
+        50px 1fr;
 
-      display: grid;
-      grid-template-columns: 50px 1fr;
+      gap:
+        15px;
 
-      gap: 15px;
-      align-items: start;
+      align-items:
+        start;
+
+      background:
+        #FFFFFF;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        19px;
     }
+
 
     .persona-avatar {
-      width: 45px;
-      height: 45px;
+      width:
+        45px;
 
-      border-radius: 50%;
+      height:
+        45px;
 
-      display: grid;
-      place-items: center;
+      display:
+        grid;
 
-      background: var(--purple-soft);
-      color: var(--purple);
+      place-items:
+        center;
 
-      font-weight: 900;
+      background:
+        var(--purple-soft);
+
+      color:
+        var(--purple);
+
+      border-radius:
+        50%;
+
+      font-weight:
+        900;
     }
+
 
     .persona-card strong {
-      display: block;
-      font-size: 14px;
+      display:
+        block;
+
+      font-size:
+        0.875rem;
     }
+
 
     .persona-card p {
-      color: var(--body);
+      color:
+        var(--body);
 
-      font-size: 11px;
-      line-height: 1.6;
+      font-size:
+        0.6875rem;
+
+      line-height:
+        1.6;
     }
+
 
     .audience-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display:
+        grid;
 
-      gap: 17px;
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap:
+        17px;
     }
+
 
     .audience-card {
-      border-radius: 17px;
-      padding: 20px;
+      min-height:
+        150px;
 
-      min-height: 150px;
+      padding:
+        20px;
+
+      border-radius:
+        17px;
     }
+
 
     .audience-card:nth-child(1) {
-      background: var(--purple-soft);
+      background:
+        var(--purple-soft);
     }
+
 
     .audience-card:nth-child(2) {
-      background: var(--mint);
+      background:
+        var(--mint);
     }
+
 
     .audience-card:nth-child(3) {
-      background: var(--peach);
+      background:
+        var(--peach);
     }
+
 
     .audience-card h3 {
-      font-size: 16px;
+      margin-bottom:
+        8px;
 
-      margin-bottom: 8px;
+      font-size:
+        1rem;
     }
+
 
     .audience-card p {
-      color: var(--body);
+      color:
+        var(--body);
 
-      font-size: 12px;
-      line-height: 1.65;
+      font-size:
+        0.75rem;
+
+      line-height:
+        1.65;
     }
 
-    /* =========================
-       SOLUTION REFRAME
-    ========================== */
+
+    /* =====================================
+       SOLUTION
+    ====================================== */
 
     .solution-grid {
-      display: grid;
-      grid-template-columns: 1fr 70px 1fr;
+      display:
+        grid;
 
-      gap: 18px;
-      align-items: center;
+      grid-template-columns:
+        1fr 70px 1fr;
 
-      margin-top: 29px;
+      gap:
+        18px;
+
+      align-items:
+        center;
+
+      margin-top:
+        29px;
     }
+
 
     .solution-card {
-      min-height: 175px;
+      min-height:
+        175px;
 
-      border-radius: 19px;
-      border: 1px solid var(--border);
+      padding:
+        23px;
 
-      padding: 23px;
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        19px;
     }
+
 
     .solution-card.old {
-      background: #FFFFFF;
+      background:
+        #FFFFFF;
     }
+
 
     .solution-card.new {
-      background: var(--purple-soft);
+      background:
+        var(--purple-soft);
     }
+
 
     .solution-card h3 {
-      font-size: 18px;
-      margin-bottom: 9px;
+      margin-bottom:
+        9px;
+
+      font-size:
+        1.125rem;
     }
+
 
     .solution-card p {
-      color: var(--body);
+      color:
+        var(--body);
 
-      font-size: 12px;
-      line-height: 1.65;
+      font-size:
+        0.75rem;
+
+      line-height:
+        1.65;
     }
 
-    /* =========================
+
+    /* =====================================
        CONCEPT EXPLORATION
-    ========================== */
-/* =========================
-   CONCEPT EXPLORATION
-========================== */
+    ====================================== */
 
-.concept-section {
-  padding-top: 48px;
-  padding-bottom: 48px;
-}
+    .concept-section {
+      padding-top:
+        48px;
 
-.concept-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+      padding-bottom:
+        48px;
+    }
 
-  gap: 20px;
 
-  margin-top: 30px;
-}
+    .concept-grid {
+      display:
+        grid;
 
-.concept-card {
-  position: relative;
+      grid-template-columns:
+        repeat(3, 1fr);
 
-  background: #FFFFFF;
+      gap:
+        20px;
 
-  border: 1px solid var(--border);
-  border-radius: 20px;
+      margin-top:
+        30px;
+    }
 
-  padding: 14px 14px 22px;
 
-  box-shadow: 0 12px 30px rgba(54, 45, 100, 0.035);
-}
+    .concept-card {
+      position:
+        relative;
 
-.featured-concept {
-  border-color: #CEC4FF;
+      padding:
+        14px 14px 22px;
 
-  box-shadow:
-    0 16px 35px rgba(109, 93, 246, 0.09);
-}
+      background:
+        #FFFFFF;
 
-.concept-screen {
-  width: 100%;
-  height: 230px;
+      border:
+        1px solid var(--border);
 
-  border-radius: 16px;
+      border-radius:
+        20px;
 
-  padding: 18px;
+      box-shadow:
+        0 12px 30px rgba(54, 45, 100, 0.035);
+    }
 
-  margin-bottom: 20px;
 
-  overflow: hidden;
-}
+    .featured-concept {
+      border-color:
+        #CEC4FF;
 
-.concept-card:nth-child(1) .concept-screen {
-  background: #F3F1F8;
-}
+      box-shadow:
+        0 16px 35px rgba(109, 93, 246, 0.09);
+    }
 
-.concept-card:nth-child(2) .concept-screen {
-  background: #F1EDFF;
-}
 
-.concept-card:nth-child(3) .concept-screen {
-  background: #EAF8F1;
-}
+    .concept-screen {
+      width:
+        100%;
 
+      height:
+        230px;
 
-/* COMMON MINI UI */
+      margin-bottom:
+        20px;
 
-.concept-line {
-  display: block;
+      padding:
+        18px;
 
-  height: 8px;
+      overflow:
+        hidden;
 
-  background: rgba(91, 83, 153, 0.16);
+      border-radius:
+        16px;
+    }
 
-  border-radius: 999px;
 
-  margin-bottom: 7px;
-}
+    .concept-card:nth-child(1)
+    .concept-screen {
+      background:
+        #F3F1F8;
+    }
 
-.line-long {
-  width: 72%;
-}
 
-.line-medium {
-  width: 58%;
-}
+    .concept-card:nth-child(2)
+    .concept-screen {
+      background:
+        #F1EDFF;
+    }
 
-.line-short {
-  width: 34%;
-}
 
-.concept-dot {
-  width: 18px;
-  height: 18px;
+    .concept-card:nth-child(3)
+    .concept-screen {
+      background:
+        #EAF8F1;
+    }
 
-  border-radius: 6px;
 
-  background: var(--purple);
+    .concept-line {
+      display:
+        block;
 
-  flex-shrink: 0;
-}
+      height:
+        8px;
 
-.purple-block {
-  background: #DDD5FF !important;
-}
+      margin-bottom:
+        7px;
 
-.peach-block {
-  background: #FFE9CC !important;
-}
+      background:
+        rgba(91, 83, 153, 0.16);
 
-.mint-block {
-  background: #DDF4E8 !important;
-}
+      border-radius:
+        999px;
+    }
 
 
-/* CONCEPT 1 — EVERYTHING */
+    .line-long {
+      width:
+        72%;
+    }
 
-.concept-topbar {
-  display: flex;
-  align-items: center;
 
-  gap: 10px;
+    .line-medium {
+      width:
+        58%;
+    }
 
-  margin-bottom: 17px;
-}
 
-.calendar-grid {
-  height: 155px;
+    .line-short {
+      width:
+        34%;
+    }
 
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
 
-  gap: 7px;
-}
+    .concept-dot {
+      width:
+        18px;
 
-.calendar-column {
-  background: rgba(255,255,255,0.75);
+      height:
+        18px;
 
-  border-radius: 9px;
+      flex-shrink:
+        0;
 
-  padding: 8px 6px;
+      background:
+        var(--purple);
 
-  display: flex;
-  flex-direction: column;
+      border-radius:
+        6px;
+    }
 
-  gap: 7px;
-}
 
-.calendar-column > span {
-  width: 55%;
-  height: 6px;
+    .purple-block {
+      background:
+        #DDD5FF !important;
+    }
 
-  margin: 0 auto 3px;
 
-  background: rgba(91, 83, 153, 0.15);
+    .peach-block {
+      background:
+        #FFE9CC !important;
+    }
 
-  border-radius: 999px;
-}
 
-.event-block {
-  min-height: 35px;
+    .mint-block {
+      background:
+        #DDF4E8 !important;
+    }
 
-  border-radius: 7px;
-}
 
+    .concept-topbar {
+      display:
+        flex;
 
-/* CONCEPT 2 — NOTICEBOARD */
+      align-items:
+        center;
 
-.noticeboard-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+      gap:
+        10px;
 
-  margin-bottom: 13px;
-}
+      margin-bottom:
+        17px;
+    }
 
-.small-time-block {
-  width: 58px;
-  height: 34px;
 
-  border-radius: 8px;
+    .calendar-grid {
+      height:
+        155px;
 
-  background: rgba(255,255,255,0.8);
-}
+      display:
+        grid;
 
-.noticeboard-main {
-  display: grid;
-  grid-template-columns: 1.5fr 0.75fr;
+      grid-template-columns:
+        repeat(4, 1fr);
 
-  gap: 9px;
-}
+      gap:
+        7px;
+    }
 
-.notice-primary {
-  min-height: 112px;
 
-  background: rgba(255,255,255,0.78);
+    .calendar-column {
+      padding:
+        8px 6px;
 
-  border-radius: 12px;
+      display:
+        flex;
 
-  padding: 13px;
-}
+      flex-direction:
+        column;
 
-.mini-label {
-  display: block;
+      gap:
+        7px;
 
-  width: 72px;
-  height: 7px;
+      background:
+        rgba(255, 255, 255, 0.75);
 
-  background: #DDD5FF;
+      border-radius:
+        9px;
+    }
 
-  border-radius: 999px;
 
-  margin-bottom: 11px;
-}
+    .calendar-column > span {
+      width:
+        55%;
 
-.notice-icon {
-  width: 38px;
-  height: 38px;
+      height:
+        6px;
 
-  border-radius: 50%;
+      margin:
+        0 auto 3px;
 
-  background: #DDD5FF;
+      background:
+        rgba(91, 83, 153, 0.15);
 
-  margin-bottom: 10px;
-}
+      border-radius:
+        999px;
+    }
 
-.notice-side {
-  display: grid;
-  gap: 8px;
-}
 
-.notice-small {
-  border-radius: 10px;
+    .event-block {
+      min-height:
+        35px;
 
-  min-height: 52px;
-}
+      border-radius:
+        7px;
+    }
 
-.notice-bottom {
-  background: rgba(255,255,255,0.72);
 
-  border-radius: 10px;
+    .noticeboard-header {
+      display:
+        flex;
 
-  padding: 8px 10px;
+      justify-content:
+        space-between;
 
-  margin-top: 9px;
-}
+      align-items:
+        flex-start;
 
-.notice-row {
-  height: 7px;
+      margin-bottom:
+        13px;
+    }
 
-  background: rgba(91, 83, 153, 0.13);
 
-  border-radius: 999px;
+    .small-time-block {
+      width:
+        58px;
 
-  margin: 5px 0;
-}
+      height:
+        34px;
 
+      background:
+        rgba(255, 255, 255, 0.8);
 
-/* CONCEPT 3 — FOCUS */
+      border-radius:
+        8px;
+    }
 
-.concept-focus {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
-.focus-label {
-  color: var(--purple);
+    .noticeboard-main {
+      display:
+        grid;
 
-  background: #FFFFFF;
+      grid-template-columns:
+        1.5fr 0.75fr;
 
-  border-radius: 999px;
+      gap:
+        9px;
+    }
 
-  padding: 5px 12px;
 
-  font-size: 8px;
-  font-weight: 900;
+    .notice-primary {
+      min-height:
+        112px;
 
-  letter-spacing: 0.4px;
+      padding:
+        13px;
 
-  margin-bottom: 11px;
-}
+      background:
+        rgba(255, 255, 255, 0.78);
 
-.focus-icon {
-  width: 58px;
-  height: 58px;
+      border-radius:
+        12px;
+    }
 
-  border-radius: 50%;
 
-  background: #D7CFFF;
+    .mini-label {
+      display:
+        block;
 
-  margin-bottom: 12px;
-}
+      width:
+        72px;
 
-.focus-title {
-  width: 58%;
-  height: 14px;
+      height:
+        7px;
 
-  background: rgba(91, 83, 153, 0.23);
+      margin-bottom:
+        11px;
 
-  border-radius: 999px;
+      background:
+        #DDD5FF;
 
-  margin-bottom: 9px;
-}
+      border-radius:
+        999px;
+    }
 
-.focus-time {
-  width: 32%;
-  height: 11px;
 
-  background: #C5B9FF;
+    .notice-icon {
+      width:
+        38px;
 
-  border-radius: 999px;
+      height:
+        38px;
 
-  margin-bottom: 14px;
-}
+      margin-bottom:
+        10px;
 
-.focus-button {
-  width: 72%;
-  height: 25px;
+      background:
+        #DDD5FF;
 
-  border-radius: 999px;
+      border-radius:
+        50%;
+    }
 
-  background: var(--purple);
 
-  margin-bottom: 12px;
-}
+    .notice-side {
+      display:
+        grid;
 
-.focus-secondary {
-  width: 100%;
+      gap:
+        8px;
+    }
 
-  display: grid;
-  grid-template-columns: 1fr 1fr;
 
-  gap: 7px;
-}
+    .notice-small {
+      min-height:
+        52px;
 
-.focus-small-card {
-  height: 34px;
+      border-radius:
+        10px;
+    }
 
-  border-radius: 8px;
-}
 
+    .notice-bottom {
+      margin-top:
+        9px;
 
-/* CARD CONTENT */
+      padding:
+        8px 10px;
 
-.concept-number {
-  width: 34px;
-  height: 34px;
+      background:
+        rgba(255, 255, 255, 0.72);
 
-  border-radius: 50%;
+      border-radius:
+        10px;
+    }
 
-  display: grid;
-  place-items: center;
 
-  background: var(--purple-soft);
-  color: var(--purple);
+    .notice-row {
+      height:
+        7px;
 
-  font-size: 13px;
-  font-weight: 900;
+      margin:
+        5px 0;
 
-  margin-bottom: 12px;
-}
+      background:
+        rgba(91, 83, 153, 0.13);
 
-.featured-concept .concept-number {
-  background: #FFF0D7;
-  color: #A66930;
-}
+      border-radius:
+        999px;
+    }
 
-.concept-card:nth-child(3) .concept-number {
-  background: var(--mint);
-  color: var(--mint-dark);
-}
 
-.concept-card h3 {
-  font-size: 17px;
+    .concept-focus {
+      display:
+        flex;
 
-  margin-bottom: 7px;
-}
+      flex-direction:
+        column;
 
-.concept-card p {
-  color: var(--body);
+      align-items:
+        center;
+    }
 
-  font-size: 12px;
-  line-height: 1.65;
-}
 
-.concept-decision {
-  margin-top: 24px;
+    .focus-label {
+      margin-bottom:
+        11px;
 
-  padding: 14px 17px;
-}
+      padding:
+        5px 12px;
 
-.concept-decision strong {
-  color: var(--purple-dark);
-}
+      background:
+        #FFFFFF;
 
+      color:
+        var(--purple);
 
-/* RESPONSIVE */
+      border-radius:
+        999px;
 
-@media (max-width: 1000px) {
+      font-size:
+        0.5rem;
 
-  .concept-grid {
-    grid-template-columns: 1fr;
-  }
+      font-weight:
+        900;
 
-  .concept-screen {
-    height: 260px;
-  }
+      letter-spacing:
+        0.4px;
+    }
 
-}
 
-    /* =========================
+    .focus-icon {
+      width:
+        58px;
+
+      height:
+        58px;
+
+      margin-bottom:
+        12px;
+
+      background:
+        #D7CFFF;
+
+      border-radius:
+        50%;
+    }
+
+
+    .focus-title {
+      width:
+        58%;
+
+      height:
+        14px;
+
+      margin-bottom:
+        9px;
+
+      background:
+        rgba(91, 83, 153, 0.23);
+
+      border-radius:
+        999px;
+    }
+
+
+    .focus-time {
+      width:
+        32%;
+
+      height:
+        11px;
+
+      margin-bottom:
+        14px;
+
+      background:
+        #C5B9FF;
+
+      border-radius:
+        999px;
+    }
+
+
+    .focus-button {
+      width:
+        72%;
+
+      height:
+        25px;
+
+      margin-bottom:
+        12px;
+
+      background:
+        var(--purple);
+
+      border-radius:
+        999px;
+    }
+
+
+    .focus-secondary {
+      width:
+        100%;
+
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap:
+        7px;
+    }
+
+
+    .focus-small-card {
+      height:
+        34px;
+
+      border-radius:
+        8px;
+    }
+
+
+    .concept-number {
+      width:
+        34px;
+
+      height:
+        34px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      margin-bottom:
+        12px;
+
+      background:
+        var(--purple-soft);
+
+      color:
+        var(--purple);
+
+      border-radius:
+        50%;
+
+      font-size:
+        0.8125rem;
+
+      font-weight:
+        900;
+    }
+
+
+    .featured-concept
+    .concept-number {
+      background:
+        #FFF0D7;
+
+      color:
+        #A66930;
+    }
+
+
+    .concept-card:nth-child(3)
+    .concept-number {
+      background:
+        var(--mint);
+
+      color:
+        var(--mint-dark);
+    }
+
+
+    .concept-card h3 {
+      margin-bottom:
+        7px;
+
+      font-size:
+        1.0625rem;
+    }
+
+
+    .concept-card p {
+      color:
+        var(--body);
+
+      font-size:
+        0.75rem;
+
+      line-height:
+        1.65;
+    }
+
+
+    .concept-decision {
+      margin-top:
+        24px;
+
+      padding:
+        14px 17px;
+    }
+
+
+    .concept-decision strong {
+      color:
+        var(--purple-dark);
+    }
+
+
+    /* =====================================
        PRODUCT STRATEGY
-    ========================== */
+    ====================================== */
 
     .strategy-top {
-      display: grid;
-      grid-template-columns: 1fr 0.85fr;
+      display:
+        grid;
 
-      gap: 28px;
+      grid-template-columns:
+        1fr 0.85fr;
 
-      margin-bottom: 23px;
+      gap:
+        28px;
+
+      margin-bottom:
+        23px;
     }
+
 
     .strategy-goal {
-      background: #FFFFFF;
+      padding:
+        22px;
 
-      border: 1px solid var(--border);
-      border-radius: 20px;
+      background:
+        #FFFFFF;
 
-      padding: 22px;
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        20px;
     }
+
 
     .strategy-goal small {
-      color: var(--purple);
+      display:
+        block;
 
-      font-weight: 900;
-      text-transform: uppercase;
+      margin-bottom:
+        7px;
 
-      display: block;
+      color:
+        var(--purple);
 
-      margin-bottom: 7px;
+      font-weight:
+        900;
+
+      text-transform:
+        uppercase;
     }
+
 
     .strategy-goal h3 {
-      font-size: 20px;
-      line-height: 1.3;
+      font-size:
+        1.25rem;
+
+      line-height:
+        1.3;
     }
+
 
     .strategy-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display:
+        grid;
 
-      gap: 17px;
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap:
+        17px;
     }
+
 
     .strategy-card {
-      border-radius: 17px;
-      padding: 20px;
+      min-height:
+        140px;
 
-      min-height: 140px;
+      padding:
+        20px;
+
+      border-radius:
+        17px;
     }
+
 
     .strategy-card:nth-child(1) {
-      background: var(--purple-soft);
+      background:
+        var(--purple-soft);
     }
+
 
     .strategy-card:nth-child(2) {
-      background: var(--mint);
+      background:
+        var(--mint);
     }
+
 
     .strategy-card:nth-child(3) {
-      background: var(--peach);
+      background:
+        var(--peach);
     }
+
 
     .strategy-card h3 {
-      font-size: 15px;
-      margin-bottom: 7px;
+      margin-bottom:
+        7px;
+
+      font-size:
+        0.9375rem;
     }
+
 
     .strategy-card p {
-      color: var(--body);
+      color:
+        var(--body);
 
-      font-size: 11px;
-      line-height: 1.6;
+      font-size:
+        0.6875rem;
+
+      line-height:
+        1.6;
     }
 
-    /* =========================
+
+    /* =====================================
        CORE FLOW
-    ========================== */
+    ====================================== */
 
     .flow-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display:
+        grid;
 
-      gap: 18px;
+      grid-template-columns:
+        repeat(3, 1fr);
 
-      margin-top: 26px;
+      gap:
+        18px;
+
+      margin-top:
+        26px;
     }
+
 
     .flow-card {
-      border-radius: 18px;
-      padding: 22px;
+      min-height:
+        165px;
 
-      min-height: 165px;
+      padding:
+        22px;
+
+      border-radius:
+        18px;
     }
+
 
     .flow-card:nth-child(1) {
-      background: var(--purple-soft);
+      background:
+        var(--purple-soft);
     }
+
 
     .flow-card:nth-child(2) {
-      background: var(--mint);
+      background:
+        var(--mint);
     }
+
 
     .flow-card:nth-child(3) {
-      background: var(--peach);
+      background:
+        var(--peach);
     }
+
 
     .flow-step {
-      color: var(--purple);
+      margin-bottom:
+        10px;
 
-      font-size: 10px;
-      font-weight: 900;
+      color:
+        var(--purple);
 
-      text-transform: uppercase;
+      font-size:
+        0.625rem;
 
-      margin-bottom: 10px;
+      font-weight:
+        900;
+
+      text-transform:
+        uppercase;
     }
+
 
     .flow-card h3 {
-      font-size: 17px;
+      margin-bottom:
+        8px;
 
-      margin-bottom: 8px;
+      font-size:
+        1.0625rem;
     }
+
 
     .flow-card p {
-      color: var(--body);
+      color:
+        var(--body);
 
-      font-size: 12px;
-      line-height: 1.6;
+      font-size:
+        0.75rem;
+
+      line-height:
+        1.6;
     }
 
-    /* =========================
+
+    /* =====================================
        VOICE
-    ========================== */
+    ====================================== */
 
     .voice-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      display:
+        grid;
 
-      gap: 15px;
+      grid-template-columns:
+        repeat(4, 1fr);
 
-      margin-top: 27px;
+      gap:
+        15px;
+
+      margin-top:
+        27px;
     }
+
 
     .voice-card {
-      background: #FFFFFF;
+      min-height:
+        170px;
 
-      border: 1px solid var(--border);
-      border-radius: 18px;
+      padding:
+        18px;
 
-      padding: 18px;
+      background:
+        #FFFFFF;
 
-      text-align: center;
+      border:
+        1px solid var(--border);
 
-      min-height: 170px;
+      border-radius:
+        18px;
+
+      text-align:
+        center;
     }
+
 
     .voice-icon {
-      width: 48px;
-      height: 48px;
+      width:
+        48px;
 
-      margin: 0 auto 15px;
+      height:
+        48px;
 
-      display: grid;
-      place-items: center;
+      margin:
+        0 auto 15px;
 
-      border-radius: 50%;
+      display:
+        grid;
 
-      background: var(--purple-soft);
-      color: var(--purple);
+      place-items:
+        center;
 
-      font-size: 20px;
+      background:
+        var(--purple-soft);
+
+      color:
+        var(--purple);
+
+      border-radius:
+        50%;
+
+      font-size:
+        1.25rem;
     }
 
-    .voice-card:nth-child(3) .voice-icon {
-      background: var(--mint);
-      color: var(--mint-dark);
+
+    .voice-card:nth-child(3)
+    .voice-icon {
+      background:
+        var(--mint);
+
+      color:
+        var(--mint-dark);
     }
+
 
     .voice-card h3 {
-      font-size: 14px;
+      margin-bottom:
+        6px;
 
-      margin-bottom: 6px;
+      font-size:
+        0.875rem;
     }
+
 
     .voice-card p {
-      color: var(--body);
+      color:
+        var(--body);
 
-      font-size: 10px;
-      line-height: 1.55;
+      font-size:
+        0.625rem;
+
+      line-height:
+        1.55;
     }
 
-    /* =========================
+
+    /* =====================================
        FINAL SOLUTION
-    ========================== */
+    ====================================== */
 
     .final-display {
-      margin-top: 27px;
+      margin-top:
+        27px;
 
-      background: var(--purple-soft);
+      padding:
+        28px;
 
-      border-radius: 24px;
+      display:
+        grid;
 
-      padding: 28px;
+      grid-template-columns:
+        1.35fr 0.65fr;
 
-      display: grid;
-      grid-template-columns: 1.35fr 0.65fr;
+      gap:
+        25px;
 
-      gap: 25px;
-      align-items: center;
+      align-items:
+        center;
+
+      background:
+        var(--purple-soft);
+
+      border-radius:
+        24px;
     }
+
 
     .final-display img {
-      width: 100%;
+      width:
+        100%;
 
-      background: #FFFFFF;
+      padding:
+        8px;
 
-      border-radius: 17px;
+      background:
+        #FFFFFF;
 
-      padding: 8px;
+      border-radius:
+        17px;
 
-      box-shadow: var(--shadow);
+      box-shadow:
+        var(--shadow);
     }
+
 
     .final-points {
-      display: grid;
-      gap: 13px;
+      display:
+        grid;
+
+      gap:
+        13px;
     }
+
 
     .final-point {
-      background: #FFFFFF;
+      padding:
+        15px;
 
-      border-radius: 14px;
+      background:
+        #FFFFFF;
 
-      padding: 15px;
+      color:
+        var(--body);
 
-      color: var(--body);
+      border-radius:
+        14px;
 
-      font-size: 12px;
+      font-size:
+        0.75rem;
     }
 
-    /* =========================
+
+    /* =====================================
        REFLECTION
-    ========================== */
+    ====================================== */
 
     .reflection-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display:
+        grid;
 
-      gap: 17px;
+      grid-template-columns:
+        repeat(3, 1fr);
 
-      margin-top: 26px;
+      gap:
+        17px;
+
+      margin-top:
+        26px;
     }
+
 
     .reflection-card {
-      border-radius: 17px;
+      min-height:
+        170px;
 
-      padding: 21px;
+      padding:
+        21px;
 
-      min-height: 170px;
+      border-radius:
+        17px;
     }
+
 
     .reflection-card:nth-child(1) {
-      background: var(--purple-soft);
+      background:
+        var(--purple-soft);
     }
+
 
     .reflection-card:nth-child(2) {
-      background: var(--mint);
+      background:
+        var(--mint);
     }
+
 
     .reflection-card:nth-child(3) {
-      background: var(--peach);
+      background:
+        var(--peach);
     }
+
 
     .reflection-label {
-      color: var(--purple);
+      margin-bottom:
+        9px;
 
-      font-size: 10px;
-      font-weight: 900;
+      color:
+        var(--purple);
 
-      text-transform: uppercase;
+      font-size:
+        0.625rem;
 
-      margin-bottom: 9px;
+      font-weight:
+        900;
+
+      text-transform:
+        uppercase;
     }
+
 
     .reflection-card h3 {
-      font-size: 16px;
-      margin-bottom: 8px;
+      margin-bottom:
+        8px;
+
+      font-size:
+        1rem;
     }
+
 
     .reflection-card p {
-      color: var(--body);
+      color:
+        var(--body);
 
-      font-size: 11px;
-      line-height: 1.6;
+      font-size:
+        0.6875rem;
+
+      line-height:
+        1.6;
     }
+
 
     .closing-insight {
-      text-align: center;
+      margin-top:
+        26px;
 
-      margin-top: 26px;
+      color:
+        var(--dark);
 
-      color: var(--dark);
+      font-size:
+        0.875rem;
 
-      font-size: 14px;
-      font-weight: 800;
+      font-weight:
+        800;
+
+      text-align:
+        center;
     }
 
-    /* =========================
+
+    /* =====================================
        FOOTER
-    ========================== */
+    ====================================== */
 
     footer {
-      margin-top: 55px;
+      margin-top:
+        55px;
 
-      border-top: 1px solid var(--border);
+      padding-top:
+        32px;
 
-      padding-top: 32px;
+      display:
+        flex;
 
-      display: flex;
-      justify-content: space-between;
+      justify-content:
+        space-between;
 
-      gap: 20px;
+      gap:
+        20px;
 
-      color: var(--muted);
+      border-top:
+        1px solid var(--border);
 
-      font-size: 12px;
+      color:
+        var(--muted);
+
+      font-size:
+        0.75rem;
     }
+
 
     .footer-brand {
-      color: var(--magenta);
+      color:
+        var(--magenta);
 
-      font-size: 22px;
-      font-weight: 800;
+      font-size:
+        1.375rem;
+
+      font-weight:
+        800;
     }
 
-    /* =========================
-       RESPONSIVE
-    ========================== */
 
-    @media (max-width: 1000px) {
+    /* =====================================
+       BACK TO TOP
+    ====================================== */
+
+    .back-to-top {
+      position:
+        fixed;
+
+      right:
+        24px;
+
+      bottom:
+        24px;
+
+      z-index:
+        9000;
+
+      width:
+        50px;
+
+      height:
+        50px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
+
+      border:
+        0;
+
+      border-radius:
+        50%;
+
+      box-shadow:
+        0 10px 30px rgba(168, 11, 99, 0.25);
+
+      font-size:
+        1.25rem;
+
+      font-weight:
+        900;
+
+      opacity:
+        0;
+
+      visibility:
+        hidden;
+
+      transform:
+        translateY(12px);
+
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0.2s ease;
+    }
+
+
+    .back-to-top.visible {
+      opacity:
+        1;
+
+      visibility:
+        visible;
+
+      transform:
+        translateY(0);
+    }
+
+
+    /* =====================================
+       HIGH CONTRAST
+    ====================================== */
+
+    body.high-contrast {
+      --bg: #FFFFFF;
+      --white: #FFFFFF;
+      --surface: #FFFFFF;
+
+      --purple: #3B2DB5;
+      --purple-dark: #000000;
+      --purple-soft: #F4F2FF;
+      --purple-pale: #FFFFFF;
+
+      --mint: #F2FFF7;
+      --mint-dark: #005C40;
+
+      --peach: #FFF7EE;
+      --peach-dark: #704000;
+
+      --pink: #FFF2F8;
+
+      --magenta: #7B0048;
+      --magenta-dark: #580033;
+
+      --gold: #A56600;
+
+      --dark: #000000;
+      --body: #111111;
+      --muted: #303030;
+
+      --border: #555555;
+
+      --focus: #000000;
+
+      --shadow: none;
+    }
+
+
+    body.high-contrast
+    .section,
+
+    body.high-contrast
+    .hero-product,
+
+    body.high-contrast
+    .concept-card,
+
+    body.high-contrast
+    .persona-card,
+
+    body.high-contrast
+    .strategy-goal,
+
+    body.high-contrast
+    .voice-card,
+
+    body.high-contrast
+    .accessibility-panel {
+      border-width:
+        2px;
+    }
+
+
+    body.high-contrast
+    .nav-button,
+
+    body.high-contrast
+    .back-to-top {
+      border:
+        2px solid #000000;
+    }
+
+
+    /* =====================================
+       REDUCED MOTION
+    ====================================== */
+
+    body.reduce-motion *,
+    body.reduce-motion *::before,
+    body.reduce-motion *::after {
+      animation-duration:
+        0.01ms !important;
+
+      animation-iteration-count:
+        1 !important;
+
+      transition-duration:
+        0.01ms !important;
+
+      scroll-behavior:
+        auto !important;
+    }
+
+
+    @media
+    (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior:
+          auto;
+      }
+
+
+      *,
+      *::before,
+      *::after {
+        animation-duration:
+          0.01ms !important;
+
+        animation-iteration-count:
+          1 !important;
+
+        transition-duration:
+          0.01ms !important;
+
+        scroll-behavior:
+          auto !important;
+      }
+
+    }
+
+
+    /* =====================================
+       RESPONSIVE
+    ====================================== */
+
+    @media
+    (max-width: 1180px) {
 
       .navbar {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction:
+          column;
+
+        align-items:
+          flex-start;
+
+        padding:
+          18px 0 20px;
       }
 
-      .nav-links {
-        flex-wrap: wrap;
-        gap: 18px;
+
+      .nav-right {
+        width:
+          100%;
+
+        justify-content:
+          space-between;
+
+        flex-wrap:
+          wrap;
       }
+
+
+      .nav-links {
+        flex-wrap:
+          wrap;
+      }
+
+    }
+
+
+    @media
+    (max-width: 1000px) {
 
       .hero,
       .hero-product,
@@ -1414,1144 +3206,3985 @@
       .audience-top,
       .strategy-top,
       .final-display {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
       }
+
 
       .shift-grid,
       .solution-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
       }
 
+
       .arrow-circle {
-        transform: rotate(90deg);
-        justify-self: center;
+        transform:
+          rotate(90deg);
+
+        justify-self:
+          center;
       }
+
 
       .concept-grid,
       .strategy-grid,
       .flow-grid,
       .reflection-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
       }
+
 
       .voice-grid,
       .audience-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:
+          1fr 1fr;
       }
+
+
+      .concept-screen {
+        height:
+          260px;
+      }
+
 
       footer {
-        flex-direction: column;
+        flex-direction:
+          column;
       }
+
     }
 
-    @media (max-width: 620px) {
+
+    @media
+    (max-width: 760px) {
 
       .page {
-        width: min(100% - 20px, 1180px);
+        width:
+          min(100% - 22px, 1180px);
       }
 
-      .section {
-        padding: 25px;
+
+      .nav-right {
+        display:
+          grid;
+
+        gap:
+          16px;
       }
+
+
+      .nav-links {
+        gap:
+          10px 18px;
+      }
+
+
+      .nav-tools {
+        width:
+          100%;
+
+        justify-content:
+          space-between;
+      }
+
+
+      .accessibility-panel {
+        top:
+          16px;
+
+        right:
+          16px;
+      }
+
+    }
+
+
+    @media
+    (max-width: 620px) {
+
+      .section {
+        padding:
+          25px;
+      }
+
+
+      .section.plain {
+        padding-left:
+          0;
+
+        padding-right:
+          0;
+      }
+
 
       .voice-grid,
       .audience-grid,
       .problem-cards {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
       }
 
+
       .hero h1 {
-        font-size: 46px;
+        font-size:
+          2.875rem;
       }
+
+
+      .hero-details {
+        grid-template-columns:
+          1fr;
+      }
+
+
+      .back-to-top {
+        right:
+          16px;
+
+        bottom:
+          16px;
+      }
+
     }
+
   </style>
+
 </head>
+
 
 <body>
 
-  <main class="page">
 
-    <!-- NAVIGATION -->
+  <!-- =====================================
+       SKIP LINK
+  ====================================== -->
 
-    <nav class="navbar">
+  <a
+    class="skip-link"
+    href="#main-content"
+    data-i18n="skip"
+  >
+    Skip to main content
+  </a>
 
-      <a href="index.html">
-        <div class="brand-name">
-          Linda Laryea
+
+  <div
+    id="a11yStatus"
+    class="sr-only"
+    role="status"
+    aria-live="polite"
+  ></div>
+
+
+  <div class="page">
+
+
+    <!-- =====================================
+         NAVIGATION
+    ====================================== -->
+
+    <header data-no-read>
+
+      <nav
+        class="navbar"
+        aria-label="Main navigation"
+        data-i18n-aria-label="mainNavigation"
+      >
+
+        <a
+          href="index.html"
+          aria-label="Linda Laryea portfolio home"
+        >
+          <div class="brand-name">
+            Linda Laryea
+          </div>
+        </a>
+
+
+        <div class="nav-right">
+
+
+          <div class="nav-links">
+
+            <a
+              href="index.html"
+              data-i18n="home"
+            >
+              Home
+            </a>
+
+
+            <a
+              href="case-studies.html"
+              class="active"
+              aria-current="page"
+              data-i18n="caseStudies"
+            >
+              Case Studies
+            </a>
+
+
+            <a
+              href="about.html"
+              data-i18n="aboutMe"
+            >
+              About Me
+            </a>
+
+
+            <a
+              href="cv.html"
+              data-i18n="cv"
+            >
+              CV
+            </a>
+
+
+            <a
+              href="contact.html"
+              class="nav-button"
+              data-i18n="letsConnect"
+            >
+              Let’s Connect
+            </a>
+
+          </div>
+
+
+          <div class="nav-tools">
+
+
+            <div
+              class="language-switcher"
+              role="group"
+              aria-label="Choose language"
+              data-i18n-aria-label="chooseLanguage"
+            >
+
+              <button
+                type="button"
+                id="languageEN"
+                class="language-button active"
+                aria-pressed="true"
+                aria-label="Switch to English"
+                data-i18n-aria-label="switchEnglish"
+              >
+                EN
+              </button>
+
+
+              <button
+                type="button"
+                id="languageDE"
+                class="language-button"
+                aria-pressed="false"
+                aria-label="Switch to German"
+                data-i18n-aria-label="switchGerman"
+              >
+                DE
+              </button>
+
+            </div>
+
+
+            <button
+              type="button"
+              id="accessibilityButton"
+              class="accessibility-button"
+              aria-expanded="false"
+              aria-controls="accessibilityPanel"
+            >
+
+              <span aria-hidden="true">
+                Aa
+              </span>
+
+              <span data-i18n="accessibility">
+                Accessibility
+              </span>
+
+            </button>
+
+          </div>
+
         </div>
-      </a>
 
-      <div class="nav-links">
+      </nav>
 
-        <a href="index.html">
-          Home
-        </a>
+    </header>
 
-        <a
-          href="case-studies.html"
-          class="active"
+
+    <!-- =====================================
+         ACCESSIBILITY PANEL
+    ====================================== -->
+
+    <aside
+      id="accessibilityPanel"
+      class="accessibility-panel"
+      aria-labelledby="accessibilityPanelTitle"
+      hidden
+      data-no-read
+    >
+
+      <div class="a11y-panel-header">
+
+        <div>
+
+          <h2
+            id="accessibilityPanelTitle"
+            data-i18n="accessibility"
+          >
+            Accessibility
+          </h2>
+
+
+          <p data-i18n="accessibilityDescription">
+            Adjust the page to suit your needs.
+          </p>
+
+        </div>
+
+
+        <button
+          type="button"
+          id="closeAccessibility"
+          class="panel-close"
+          aria-label="Close accessibility settings"
+          data-i18n-aria-label="closeAccessibility"
         >
-          Case Studies
-        </a>
-
-        <a href="about.html">
-          About Me
-        </a>
-
-        <a href="cv.html">
-          CV
-        </a>
-
-        <a
-          href="contact.html"
-          class="nav-button"
-        >
-          Let’s Connect
-        </a>
+          ×
+        </button>
 
       </div>
 
-    </nav>
+
+      <div class="a11y-group">
+
+        <span
+          class="a11y-label"
+          data-i18n="textSize"
+        >
+          Text size
+        </span>
 
 
-    <a
-      class="back-link"
-      href="case-studies.html"
+        <div
+          class="text-size-controls"
+          role="group"
+          aria-label="Text size"
+          data-i18n-aria-label="textSize"
+        >
+
+          <button
+            type="button"
+            class="text-size-button"
+            data-size="small"
+            data-i18n-aria-label="decreaseText"
+            aria-label="Decrease text size"
+          >
+            A−
+          </button>
+
+
+          <button
+            type="button"
+            class="text-size-button active"
+            data-size="default"
+            data-i18n-aria-label="defaultText"
+            aria-label="Default text size"
+          >
+            A
+          </button>
+
+
+          <button
+            type="button"
+            class="text-size-button"
+            data-size="large"
+            data-i18n-aria-label="increaseText"
+            aria-label="Increase text size"
+          >
+            A+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="a11y-group">
+
+        <div class="toggle-row">
+
+          <div class="toggle-copy">
+
+            <strong data-i18n="highContrast">
+              High contrast
+            </strong>
+
+            <span data-i18n="highContrastDescription">
+              Increase visual contrast.
+            </span>
+
+          </div>
+
+
+          <label class="switch">
+
+            <input
+              id="contrastToggle"
+              type="checkbox"
+              aria-label="High contrast"
+              data-i18n-aria-label="highContrast"
+            />
+
+            <span
+              class="switch-track"
+              aria-hidden="true"
+            ></span>
+
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <div class="a11y-group">
+
+        <div class="toggle-row">
+
+          <div class="toggle-copy">
+
+            <strong data-i18n="reduceMotion">
+              Reduce motion
+            </strong>
+
+            <span data-i18n="reduceMotionDescription">
+              Minimise animation and movement.
+            </span>
+
+          </div>
+
+
+          <label class="switch">
+
+            <input
+              id="motionToggle"
+              type="checkbox"
+              aria-label="Reduce motion"
+              data-i18n-aria-label="reduceMotion"
+            />
+
+            <span
+              class="switch-track"
+              aria-hidden="true"
+            ></span>
+
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <div class="a11y-group">
+
+        <span
+          class="a11y-label"
+          data-i18n="readPage"
+        >
+          Read page aloud
+        </span>
+
+
+        <div class="read-controls">
+
+          <button
+            type="button"
+            id="readPlay"
+            class="read-button primary-read"
+            data-i18n="play"
+          >
+            Play
+          </button>
+
+
+          <button
+            type="button"
+            id="readPause"
+            class="read-button"
+            data-i18n="pause"
+          >
+            Pause
+          </button>
+
+
+          <button
+            type="button"
+            id="readStop"
+            class="read-button"
+            data-i18n="stop"
+          >
+            Stop
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="a11y-group">
+
+        <button
+          type="button"
+          id="resetAccessibility"
+          class="reset-button"
+          data-i18n="resetSettings"
+        >
+          Reset accessibility settings
+        </button>
+
+      </div>
+
+    </aside>
+
+
+    <!-- =====================================
+         MAIN CONTENT
+    ====================================== -->
+
+    <main
+      id="main-content"
+      tabindex="-1"
     >
-      ← Back to Case Studies
-    </a>
 
 
-    <!-- HERO -->
+      <a
+        class="back-link"
+        href="case-studies.html"
+        data-i18n="backCaseStudies"
+        data-no-read
+      >
+        ← Back to Case Studies
+      </a>
 
-    <section class="hero">
 
-      <div class="hero-copy">
+      <!-- =================================
+           HERO
+      ================================== -->
 
-        <div class="hero-label">
-          Product Design Case Study
+      <section
+        class="hero readable-content"
+        aria-labelledby="tasky-heading"
+      >
+
+        <div class="hero-copy">
+
+          <div
+            class="hero-label"
+            data-i18n="caseStudyLabel"
+          >
+            Product Design Case Study
+          </div>
+
+
+          <h1 id="tasky-heading">
+            Tasky
+          </h1>
+
+
+          <div
+            class="hero-subtitle"
+            data-i18n="heroSubtitle"
+          >
+            An accessible family noticeboard for everyday coordination.
+          </div>
+
+
+          <p
+            class="hero-description"
+            data-i18n="heroDescription"
+          >
+            A shared home display that keeps what matters now visible,
+            makes changing plans easier to manage, and keeps gentle
+            reminders where attention is needed.
+          </p>
+
+
+          <div class="hero-details">
+
+            <div class="hero-detail">
+
+              <strong data-i18n="roleLabel">
+                Role
+              </strong>
+
+              <span data-i18n="roleValue">
+                UX Researcher & Interaction Designer
+              </span>
+
+            </div>
+
+
+            <div class="hero-detail">
+
+              <strong data-i18n="responsibilitiesLabel">
+                Responsibilities
+              </strong>
+
+              <span data-i18n="responsibilitiesValue">
+                Research • Product Strategy • Information Architecture •
+                Interaction Design
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div
+            class="hero-insight"
+            data-i18n="heroInsight"
+          >
+            Personal insight: Families don’t need another calendar.
+            They need a shared noticeboard.
+          </div>
+
         </div>
 
-        <h1>
-          Tasky
-        </h1>
 
-        <div class="hero-subtitle">
-          An accessible family noticeboard for everyday coordination.
+        <div class="hero-product">
+
+          <div class="product-summary">
+
+            <div class="tasky-mark">
+
+              <span
+                class="tasky-logo"
+                aria-hidden="true"
+              >
+                ♥
+              </span>
+
+              Tasky
+
+            </div>
+
+
+            <h3 data-i18n="productTitle">
+              A calm family hub for everyday life.
+            </h3>
+
+
+            <p data-i18n="productCopy">
+              Tasky keeps the family’s most important plans,
+              routines and changes visible in one shared place.
+            </p>
+
+          </div>
+
+
+          <div class="product-image">
+
+            <img
+              src="tasky-final-dashboard.png"
+              alt="Tasky family noticeboard dashboard"
+              data-i18n-alt="dashboardAlt"
+            />
+
+          </div>
+
         </div>
 
-        <p class="hero-description">
-          A shared home display that keeps what matters now visible,
-          makes changing plans easier to manage, and keeps gentle
-          reminders where attention is needed.
+      </section>
+
+
+      <!-- =================================
+           PROBLEM
+      ================================== -->
+
+      <section class="section plain readable-content">
+
+        <div
+          class="tiny-label"
+          data-i18n="problemLabel"
+        >
+          01 · The Problem
+        </div>
+
+
+        <div class="problem-layout">
+
+          <div class="problem-copy">
+
+            <h2 data-i18n="problemTitle">
+              Family organisation wasn’t failing because families lacked calendars.
+            </h2>
+
+
+            <p
+              class="section-intro"
+              data-i18n="problemIntro"
+            >
+              Plans were scattered across calendars, messages and memory.
+              When life changed, responsibilities became easy to miss.
+            </p>
+
+          </div>
+
+
+          <div class="problem-cards">
+
+
+            <article class="mini-card purple">
+
+              <strong data-i18n="mentalOverload">
+                Mental overload
+              </strong>
+
+              <p data-i18n="mentalOverloadText">
+                Too much depended on someone remembering.
+              </p>
+
+            </article>
+
+
+            <article class="mini-card peach">
+
+              <strong data-i18n="plansChange">
+                Plans change quickly
+              </strong>
+
+              <p data-i18n="plansChangeText">
+                Everyday routines shift without warning.
+              </p>
+
+            </article>
+
+
+            <article class="mini-card blue">
+
+              <strong data-i18n="everythingOverlaps">
+                Everything overlaps
+              </strong>
+
+              <p data-i18n="everythingOverlapsText">
+                Family responsibilities compete for attention.
+              </p>
+
+            </article>
+
+
+            <article class="mini-card mint">
+
+              <strong data-i18n="homeWork">
+                Home and work collide
+              </strong>
+
+              <p data-i18n="homeWorkText">
+                Work, school and home information compete.
+              </p>
+
+            </article>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="note-bar"
+          data-i18n="problemNote"
+        >
+          The challenge wasn’t simply scheduling more efficiently —
+          it was reducing the mental effort of keeping family life together.
+        </div>
+
+      </section>
+
+
+      <!-- =================================
+           RESEARCH
+      ================================== -->
+
+      <section class="section readable-content">
+
+        <div
+          class="tiny-label"
+          data-i18n="researchLabel"
+        >
+          02 · Research
+        </div>
+
+
+        <h2 data-i18n="researchTitle">
+          The research challenged my first assumption.
+        </h2>
+
+
+        <p
+          class="section-intro"
+          data-i18n="researchIntro"
+        >
+          I started by thinking families needed one better calendar.
+          The interviews pointed to a different problem.
         </p>
 
 
-        <div class="hero-details">
+        <div class="shift-grid">
 
-          <div class="hero-detail">
-            <strong>
-              Role
-            </strong>
 
-            <span>
-              UX Researcher & Interaction Designer
-            </span>
+          <article class="shift-card">
+
+            <div
+              class="shift-label"
+              data-i18n="initialIdea"
+            >
+              Initial idea
+            </div>
+
+
+            <h3 data-i18n="initialIdeaText">
+              Families need one calendar that combines everything.
+            </h3>
+
+          </article>
+
+
+          <div
+            class="arrow-circle"
+            aria-hidden="true"
+          >
+            →
           </div>
 
 
-          <div class="hero-detail">
-            <strong>
-              Responsibilities
-            </strong>
+          <article class="shift-card">
 
-            <span>
-              Research • Product Strategy • Information Architecture •
-              Interaction Design
-            </span>
+            <div
+              class="shift-label"
+              data-i18n="researchInsight"
+            >
+              Research insight
+            </div>
+
+
+            <h3 data-i18n="researchInsightText">
+              Mental load and unexpected changes caused more stress.
+            </h3>
+
+          </article>
+
+        </div>
+
+
+        <div
+          class="note-bar"
+          data-i18n="researchNote"
+        >
+          A better calendar would still ask families to remember to
+          check it. The real opportunity was visibility.
+        </div>
+
+      </section>
+
+
+      <!-- =================================
+           AUDIENCE
+      ================================== -->
+
+      <section class="section plain readable-content">
+
+        <div
+          class="tiny-label"
+          data-i18n="audienceLabel"
+        >
+          03 · System & Audience
+        </div>
+
+
+        <div class="audience-top">
+
+
+          <div>
+
+            <h2 data-i18n="audienceTitle">
+              A family system has more than one user.
+            </h2>
+
+
+            <p
+              class="section-intro"
+              data-i18n="audienceIntro"
+            >
+              Tasky needed to support parents managing routines,
+              children following plans, and family members with
+              different levels of attention and access.
+            </p>
+
+          </div>
+
+
+          <div class="persona-card">
+
+            <div
+              class="persona-avatar"
+              aria-hidden="true"
+            >
+              N
+            </div>
+
+
+            <div>
+
+              <strong>
+                Neelam
+              </strong>
+
+
+              <p data-i18n="neelamText">
+                Parent balancing work, school routines and household
+                coordination. Needs important changes to remain visible
+                without carrying everything in memory.
+              </p>
+
+            </div>
+
           </div>
 
         </div>
 
 
-        <div class="hero-insight">
-          Personal insight: Families don’t need another calendar.
-          They need a shared noticeboard.
+        <div class="audience-grid">
+
+
+          <article class="audience-card">
+
+            <h3 data-i18n="parentsTitle">
+              Parents & guardians
+            </h3>
+
+
+            <p data-i18n="parentsText">
+              Need a quick overview of what requires attention
+              without mentally carrying the entire household plan.
+            </p>
+
+          </article>
+
+
+          <article class="audience-card">
+
+            <h3 data-i18n="childrenTitle">
+              Children & family members
+            </h3>
+
+
+            <p data-i18n="childrenText">
+              Need clear information about routines and responsibilities
+              without navigating complex planning tools.
+            </p>
+
+          </article>
+
+
+          <article class="audience-card">
+
+            <h3 data-i18n="accessNeedsTitle">
+              Different access needs
+            </h3>
+
+
+            <p data-i18n="accessNeedsText">
+              The experience needed to work across different levels
+              of attention, confidence and interaction preference.
+            </p>
+
+          </article>
+
         </div>
 
-      </div>
+      </section>
 
 
-      <div class="hero-product">
+      <!-- =================================
+           SOLUTION
+      ================================== -->
 
-        <div class="product-summary">
+      <section class="section readable-content">
 
-          <div class="tasky-mark">
+        <div
+          class="tiny-label"
+          data-i18n="conceptLabel"
+        >
+          04 · From Insight to Concept
+        </div>
 
-            <span class="tasky-logo">
-              ♥
-            </span>
 
-            Tasky
+        <h2 data-i18n="conceptTitle">
+          The solution didn’t need to become a better calendar.
+        </h2>
+
+
+        <p
+          class="section-intro"
+          data-i18n="conceptIntro"
+        >
+          I needed a way to keep family responsibilities visible
+          without asking people to constantly open another app.
+        </p>
+
+
+        <div class="solution-grid">
+
+
+          <article class="solution-card old">
+
+            <h3 data-i18n="calendarEverything">
+              One calendar for everything
+            </h3>
+
+
+            <p data-i18n="calendarEverythingText">
+              Collect every event and responsibility into one
+              scheduling tool.
+            </p>
+
+          </article>
+
+
+          <div
+            class="arrow-circle"
+            aria-hidden="true"
+          >
+            →
+          </div>
+
+
+          <article class="solution-card new">
+
+            <h3 data-i18n="sharedNoticeboard">
+              A shared family noticeboard
+            </h3>
+
+
+            <p data-i18n="sharedNoticeboardText">
+              Keep what matters now visible in a persistent,
+              home-centred coordination space.
+            </p>
+
+          </article>
+
+        </div>
+
+
+        <div
+          class="note-bar"
+          data-i18n="seeingNote"
+        >
+          A little bit less searching. A little bit more seeing.
+        </div>
+
+      </section>
+
+
+      <!-- =================================
+           CONCEPT EXPLORATION
+      ================================== -->
+
+      <section class="section plain concept-section readable-content">
+
+        <div
+          class="tiny-label"
+          data-i18n="exploreLabel"
+        >
+          05 · Exploring the Concept
+        </div>
+
+
+        <h2 data-i18n="exploreTitle">
+          Exploring how family information should appear at home.
+        </h2>
+
+
+        <p
+          class="section-intro"
+          data-i18n="exploreIntro"
+        >
+          I explored different ways of balancing shared visibility with a calm,
+          low-effort experience. Each direction tested a different level of
+          information density and focus.
+        </p>
+
+
+        <div class="concept-grid">
+
+
+          <!-- CONCEPT 1 -->
+
+          <article class="concept-card">
+
+
+            <div
+              class="concept-screen concept-overview"
+              aria-hidden="true"
+              data-no-read
+            >
+
+              <div class="concept-topbar">
+                <span class="concept-dot"></span>
+                <span class="concept-line line-long"></span>
+                <span class="concept-line line-short"></span>
+              </div>
+
+
+              <div class="calendar-grid">
+
+                <div class="calendar-column">
+                  <span></span>
+                  <div class="event-block purple-block"></div>
+                  <div class="event-block peach-block"></div>
+                </div>
+
+                <div class="calendar-column">
+                  <span></span>
+                  <div class="event-block mint-block"></div>
+                </div>
+
+                <div class="calendar-column">
+                  <span></span>
+                  <div class="event-block purple-block"></div>
+                  <div class="event-block mint-block"></div>
+                </div>
+
+                <div class="calendar-column">
+                  <span></span>
+                  <div class="event-block peach-block"></div>
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div
+              class="concept-number"
+              aria-hidden="true"
+            >
+              01
+            </div>
+
+
+            <h3 data-i18n="conceptOneTitle">
+              Everything in one view
+            </h3>
+
+
+            <p data-i18n="conceptOneText">
+              A calendar-style overview that exposes as much family information
+              as possible at once.
+            </p>
+
+          </article>
+
+
+          <!-- CONCEPT 2 -->
+
+          <article class="concept-card featured-concept">
+
+
+            <div
+              class="concept-screen concept-noticeboard"
+              aria-hidden="true"
+              data-no-read
+            >
+
+              <div class="noticeboard-header">
+
+                <div>
+                  <span class="concept-line line-medium"></span>
+                  <span class="concept-line line-short"></span>
+                </div>
+
+                <div class="small-time-block"></div>
+
+              </div>
+
+
+              <div class="noticeboard-main">
+
+                <div class="notice-primary">
+
+                  <span class="mini-label"></span>
+
+                  <div class="notice-icon"></div>
+
+                  <span class="concept-line line-medium"></span>
+                  <span class="concept-line line-short"></span>
+
+                </div>
+
+
+                <div class="notice-side">
+
+                  <div class="notice-small peach-block"></div>
+                  <div class="notice-small mint-block"></div>
+
+                </div>
+
+              </div>
+
+
+              <div class="notice-bottom">
+
+                <div class="notice-row"></div>
+                <div class="notice-row"></div>
+
+              </div>
+
+            </div>
+
+
+            <div
+              class="concept-number"
+              aria-hidden="true"
+            >
+              02
+            </div>
+
+
+            <h3 data-i18n="conceptTwoTitle">
+              Shared noticeboard
+            </h3>
+
+
+            <p data-i18n="conceptTwoText">
+              A balanced family hub that keeps shared plans visible while creating
+              a clear hierarchy around what matters most.
+            </p>
+
+          </article>
+
+
+          <!-- CONCEPT 3 -->
+
+          <article class="concept-card">
+
+
+            <div
+              class="concept-screen concept-focus"
+              aria-hidden="true"
+              data-no-read
+            >
+
+              <div class="focus-label">
+                HAPPENING NOW
+              </div>
+
+              <div class="focus-icon"></div>
+
+              <div class="focus-title"></div>
+              <div class="focus-time"></div>
+
+              <div class="focus-button"></div>
+
+              <div class="focus-secondary">
+
+                <div class="focus-small-card peach-block"></div>
+                <div class="focus-small-card mint-block"></div>
+
+              </div>
+
+            </div>
+
+
+            <div
+              class="concept-number"
+              aria-hidden="true"
+            >
+              03
+            </div>
+
+
+            <h3 data-i18n="conceptThreeTitle">
+              One task at a time
+            </h3>
+
+
+            <p data-i18n="conceptThreeText">
+              A focused direction that gives the current activity most of the
+              attention and keeps everything else secondary.
+            </p>
+
+          </article>
+
+        </div>
+
+
+        <div class="note-bar concept-decision">
+
+          <strong data-i18n="designDirection">
+            Design direction:
+          </strong>
+
+          <span data-i18n="designDirectionText">
+            The shared noticeboard offered the strongest balance — enough visibility
+            for the whole family, while still allowing the current priority to become
+            the strongest visual element.
+          </span>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================
+           PRODUCT STRATEGY
+      ================================== -->
+
+      <section class="section readable-content">
+
+        <div
+          class="tiny-label"
+          data-i18n="strategyLabel"
+        >
+          06 · Product Strategy
+        </div>
+
+
+        <div class="strategy-top">
+
+
+          <div>
+
+            <h2 data-i18n="strategyTitle">
+              Turning the concept into a focused product.
+            </h2>
+
+
+            <p
+              class="section-intro"
+              data-i18n="strategyIntro"
+            >
+              I refined the concept around a small set of priorities
+              that could reduce coordination effort rather than add
+              another planning burden.
+            </p>
 
           </div>
 
-          <h3>
-            A calm family hub for everyday life.
-          </h3>
 
-          <p>
-            Tasky keeps the family’s most important plans,
-            routines and changes visible in one shared place.
-          </p>
+          <aside class="strategy-goal">
+
+            <small data-i18n="productGoal">
+              Product goal
+            </small>
+
+
+            <h3 data-i18n="productGoalText">
+              Make everyday family coordination easier to see,
+              understand and change.
+            </h3>
+
+          </aside>
 
         </div>
 
 
-        <div class="product-image">
+        <div class="strategy-grid">
+
+
+          <article class="strategy-card">
+
+            <h3 data-i18n="whatMattersNow">
+              What matters now
+            </h3>
+
+            <p data-i18n="whatMattersNowText">
+              Prioritise the most relevant current activity.
+            </p>
+
+          </article>
+
+
+          <article class="strategy-card">
+
+            <h3 data-i18n="everydayCoordination">
+              Everyday coordination
+            </h3>
+
+            <p data-i18n="everydayCoordinationText">
+              Support routines, reminders, meals and changing plans.
+            </p>
+
+          </article>
+
+
+          <article class="strategy-card">
+
+            <h3 data-i18n="helpingQuestion">
+              Is Tasky helping?
+            </h3>
+
+            <p data-i18n="helpingQuestionText">
+              Reduce searching, remembering and repeated coordination.
+            </p>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================
+           CORE USER FLOW
+      ================================== -->
+
+      <section class="section plain readable-content">
+
+        <div
+          class="tiny-label"
+          data-i18n="flowLabel"
+        >
+          07 · Core User Flow
+        </div>
+
+
+        <h2 data-i18n="flowTitle">
+          Designing around everyday moments.
+        </h2>
+
+
+        <p
+          class="section-intro"
+          data-i18n="flowIntro"
+        >
+          Instead of requiring deep navigation, I focused on three
+          moments that represent the core Tasky experience.
+        </p>
+
+
+        <div class="flow-grid">
+
+
+          <article class="flow-card">
+
+            <div
+              class="flow-step"
+              data-i18n="flowOneLabel"
+            >
+              01 · See
+            </div>
+
+
+            <h3 data-i18n="flowOneTitle">
+              What matters right now?
+            </h3>
+
+
+            <p data-i18n="flowOneText">
+              The current activity receives the strongest hierarchy.
+            </p>
+
+          </article>
+
+
+          <article class="flow-card">
+
+            <div
+              class="flow-step"
+              data-i18n="flowTwoLabel"
+            >
+              02 · Ask
+            </div>
+
+
+            <h3 data-i18n="flowTwoTitle">
+              “What’s happening tomorrow?”
+            </h3>
+
+
+            <p data-i18n="flowTwoText">
+              Family information can be accessed without navigating.
+            </p>
+
+          </article>
+
+
+          <article class="flow-card">
+
+            <div
+              class="flow-step"
+              data-i18n="flowThreeLabel"
+            >
+              03 · Change
+            </div>
+
+
+            <h3 data-i18n="flowThreeTitle">
+              Plans changed. Now what?
+            </h3>
+
+
+            <p data-i18n="flowThreeText">
+              Updates remain visible and easy to understand.
+            </p>
+
+          </article>
+
+        </div>
+
+
+        <div
+          class="note-bar"
+          data-i18n="flowNote"
+        >
+          Each state answers one clear family question instead of
+          asking users to interpret an entire planning system.
+        </div>
+
+      </section>
+
+
+      <!-- =================================
+           VOICE
+      ================================== -->
+
+      <section class="section readable-content">
+
+        <div
+          class="tiny-label"
+          data-i18n="voiceLabel"
+        >
+          08 · Voice Interaction
+        </div>
+
+
+        <h2 data-i18n="voiceTitle">
+          Making voice feel like part of the home.
+        </h2>
+
+
+        <p
+          class="section-intro"
+          data-i18n="voiceIntro"
+        >
+          Voice offers a faster route to information when someone
+          is cooking, carrying something, getting children ready,
+          or simply does not want to stop and touch the screen.
+        </p>
+
+
+        <div class="voice-grid">
+
+
+          <article class="voice-card">
+
+            <div
+              class="voice-icon"
+              aria-hidden="true"
+            >
+              ◉
+            </div>
+
+
+            <h3 data-i18n="ask">
+              Ask
+            </h3>
+
+
+            <p data-i18n="askText">
+              “What’s happening tomorrow?”
+            </p>
+
+          </article>
+
+
+          <article class="voice-card">
+
+            <div
+              class="voice-icon"
+              aria-hidden="true"
+            >
+              ●
+            </div>
+
+
+            <h3 data-i18n="listening">
+              Listening
+            </h3>
+
+
+            <p data-i18n="listeningText">
+              Tasky acknowledges that it is listening.
+            </p>
+
+          </article>
+
+
+          <article class="voice-card">
+
+            <div
+              class="voice-icon"
+              aria-hidden="true"
+            >
+              ✦
+            </div>
+
+
+            <h3 data-i18n="understanding">
+              Understanding
+            </h3>
+
+
+            <p data-i18n="understandingText">
+              The system finds the relevant family information.
+            </p>
+
+          </article>
+
+
+          <article class="voice-card">
+
+            <div
+              class="voice-icon"
+              aria-hidden="true"
+            >
+              ✓
+            </div>
+
+
+            <h3 data-i18n="answer">
+              Answer
+            </h3>
+
+
+            <p data-i18n="answerText">
+              A concise spoken and visual response closes the loop.
+            </p>
+
+          </article>
+
+        </div>
+
+
+        <div
+          class="note-bar"
+          data-i18n="voiceNote"
+        >
+          Voice is an additional path — not the only path.
+          The same information remains visible on screen.
+        </div>
+
+      </section>
+
+
+      <!-- =================================
+           FINAL SOLUTION
+      ================================== -->
+
+      <section class="section plain readable-content">
+
+        <div
+          class="tiny-label"
+          data-i18n="finalLabel"
+        >
+          09 · Final Solution
+        </div>
+
+
+        <h2 data-i18n="finalTitle">
+          A shared family noticeboard built around what matters now.
+        </h2>
+
+
+        <p
+          class="section-intro"
+          data-i18n="finalIntro"
+        >
+          Tasks, family schedules, responsibilities and changing plans
+          live together in one calm home experience — without requiring
+          families to constantly check another app.
+        </p>
+
+
+        <div class="final-display">
+
 
           <img
             src="tasky-final-dashboard.png"
-            alt="Tasky family noticeboard dashboard"
+            alt="Tasky final smart family noticeboard dashboard"
+            data-i18n-alt="finalDashboardAlt"
           />
 
+
+          <div class="final-points">
+
+
+            <div class="final-point">
+
+              <strong data-i18n="finalPointOne">
+                What matters now
+              </strong>
+
+              <br />
+
+              <span data-i18n="finalPointOneText">
+                Current priorities stay visible.
+              </span>
+
+            </div>
+
+
+            <div class="final-point">
+
+              <strong data-i18n="finalPointTwo">
+                Plans stay flexible
+              </strong>
+
+              <br />
+
+              <span data-i18n="finalPointTwoText">
+                Changes remain easy to understand.
+              </span>
+
+            </div>
+
+
+            <div class="final-point">
+
+              <strong data-i18n="finalPointThree">
+                Multiple ways to access
+              </strong>
+
+              <br />
+
+              <span data-i18n="finalPointThreeText">
+                Display, voice, phone and watch can work together.
+              </span>
+
+            </div>
+
+          </div>
+
         </div>
 
-      </div>
-
-    </section>
+      </section>
 
 
-    <!-- THE PROBLEM -->
+      <!-- =================================
+           REFLECTION
+      ================================== -->
 
-    <section class="section plain">
+      <section class="section readable-content">
 
-      <div class="tiny-label">
-        01 · The Problem
-      </div>
-
-
-      <div class="problem-layout">
-
-        <div class="problem-copy">
-
-          <h2>
-            Family organisation wasn’t failing because families lacked calendars.
-          </h2>
-
-          <p class="section-intro">
-            Plans were scattered across calendars, messages and memory.
-            When life changed, responsibilities became easy to miss.
-          </p>
-
+        <div
+          class="tiny-label"
+          data-i18n="reflectionLabel"
+        >
+          10 · Reflection
         </div>
 
 
-        <div class="problem-cards">
+        <h2 data-i18n="reflectionTitle">
+          Designing for coordination meant designing for attention.
+        </h2>
 
-          <article class="mini-card purple">
 
-            <strong>
-              Mental overload
-            </strong>
+        <p
+          class="section-intro"
+          data-i18n="reflectionIntro"
+        >
+          The biggest shift was moving from a planning tool to an
+          information environment that respects limited attention.
+        </p>
 
-            <p>
-              Too much depended on someone remembering.
+
+        <div class="reflection-grid">
+
+
+          <article class="reflection-card">
+
+            <div
+              class="reflection-label"
+              data-i18n="whatChanged"
+            >
+              What changed
+            </div>
+
+
+            <h3 data-i18n="whatChangedTitle">
+              Calendar → shared family system
+            </h3>
+
+
+            <p data-i18n="whatChangedText">
+              The research moved the concept beyond scheduling and
+              toward everyday household coordination.
             </p>
 
           </article>
 
 
-          <article class="mini-card peach">
+          <article class="reflection-card">
 
-            <strong>
-              Plans change quickly
-            </strong>
+            <div
+              class="reflection-label"
+              data-i18n="accessibilityLabel"
+            >
+              Accessibility
+            </div>
 
-            <p>
-              Everyday routines shift without warning.
+
+            <h3 data-i18n="moreThanOnePath">
+              More than one path
+            </h3>
+
+
+            <p data-i18n="moreThanOnePathText">
+              Important information remains visible while voice,
+              touch and connected devices provide alternative routes.
             </p>
 
           </article>
 
 
-          <article class="mini-card blue">
+          <article class="reflection-card">
 
-            <strong>
-              Everything overlaps
-            </strong>
+            <div
+              class="reflection-label"
+              data-i18n="nextLabel"
+            >
+              Next
+            </div>
 
-            <p>
-              Family responsibilities compete for attention.
+
+            <h3 data-i18n="testHomes">
+              Test it in real homes
+            </h3>
+
+
+            <p data-i18n="testHomesText">
+              Validate readability at distance, voice use,
+              changing plans, shared access and real household routines.
             </p>
 
           </article>
 
-
-          <article class="mini-card mint">
-
-            <strong>
-              Home and work collide
-            </strong>
-
-            <p>
-              Work, school and home information compete.
-            </p>
-
-          </article>
-
-        </div>
-
-      </div>
-
-
-      <div class="note-bar">
-        The challenge wasn’t simply scheduling more efficiently —
-        it was reducing the mental effort of keeping family life together.
-      </div>
-
-    </section>
-
-
-    <!-- RESEARCH -->
-
-    <section class="section">
-
-      <div class="tiny-label">
-        02 · Research
-      </div>
-
-      <h2>
-        The research challenged my first assumption.
-      </h2>
-
-      <p class="section-intro">
-        I started by thinking families needed one better calendar.
-        The interviews pointed to a different problem.
-      </p>
-
-
-      <div class="shift-grid">
-
-        <article class="shift-card">
-
-          <div class="shift-label">
-            Initial idea
-          </div>
-
-          <h3>
-            Families need one calendar that combines everything.
-          </h3>
-
-        </article>
-
-
-        <div class="arrow-circle">
-          →
         </div>
 
 
-        <article class="shift-card">
-
-          <div class="shift-label">
-            Research insight
-          </div>
-
-          <h3>
-            Mental load and unexpected changes caused more stress.
-          </h3>
-
-        </article>
-
-      </div>
-
-
-      <div class="note-bar">
-        A better calendar would still ask families to remember to
-        check it. The real opportunity was visibility.
-      </div>
-
-    </section>
-
-
-    <!-- AUDIENCE -->
-
-    <section class="section plain">
-
-      <div class="tiny-label">
-        03 · System & Audience
-      </div>
-
-
-      <div class="audience-top">
-
-        <div>
-
-          <h2>
-            A family system has more than one user.
-          </h2>
-
-          <p class="section-intro">
-            Tasky needed to support parents managing routines,
-            children following plans, and family members with
-            different levels of attention and access.
-          </p>
-
+        <div
+          class="closing-insight"
+          data-i18n="closingInsight"
+        >
+          Tasky taught me that reducing cognitive load is not about
+          removing information — it is about giving information the
+          right priority, at the right moment.
         </div>
 
+      </section>
 
-        <div class="persona-card">
+    </main>
 
-          <div class="persona-avatar">
-            N
-          </div>
 
-          <div>
+    <!-- =====================================
+         FOOTER
+    ====================================== -->
 
-            <strong>
-              Neelam
-            </strong>
-
-            <p>
-              Parent balancing work, school routines and household
-              coordination. Needs important changes to remain visible
-              without carrying everything in memory.
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="audience-grid">
-
-        <article class="audience-card">
-
-          <h3>
-            Parents & guardians
-          </h3>
-
-          <p>
-            Need a quick overview of what requires attention
-            without mentally carrying the entire household plan.
-          </p>
-
-        </article>
-
-
-        <article class="audience-card">
-
-          <h3>
-            Children & family members
-          </h3>
-
-          <p>
-            Need clear information about routines and responsibilities
-            without navigating complex planning tools.
-          </p>
-
-        </article>
-
-
-        <article class="audience-card">
-
-          <h3>
-            Different access needs
-          </h3>
-
-          <p>
-            The experience needed to work across different levels
-            of attention, confidence and interaction preference.
-          </p>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- SOLUTION -->
-
-    <section class="section">
-
-      <div class="tiny-label">
-        04 · From Insight to Concept
-      </div>
-
-      <h2>
-        The solution didn’t need to become a better calendar.
-      </h2>
-
-      <p class="section-intro">
-        I needed a way to keep family responsibilities visible
-        without asking people to constantly open another app.
-      </p>
-
-
-      <div class="solution-grid">
-
-        <article class="solution-card old">
-
-          <h3>
-            One calendar for everything
-          </h3>
-
-          <p>
-            Collect every event and responsibility into one
-            scheduling tool.
-          </p>
-
-        </article>
-
-
-        <div class="arrow-circle">
-          →
-        </div>
-
-
-        <article class="solution-card new">
-
-          <h3>
-            A shared family noticeboard
-          </h3>
-
-          <p>
-            Keep what matters now visible in a persistent,
-            home-centred coordination space.
-          </p>
-
-        </article>
-
-      </div>
-
-
-      <div class="note-bar">
-        A little bit less searching. A little bit more seeing.
-      </div>
-
-    </section>
-
-
-    <!-- CONCEPT EXPLORATION -->
-
-  <section class="section plain concept-section">
-
-  <div class="tiny-label">
-    05 · Exploring the Concept
-  </div>
-
-  <h2>
-    Exploring how family information should appear at home.
-  </h2>
-
-  <p class="section-intro">
-    I explored different ways of balancing shared visibility with a calm,
-    low-effort experience. Each direction tested a different level of
-    information density and focus.
-  </p>
-
-
-  <div class="concept-grid">
-
-    <!-- CONCEPT 1 -->
-    <article class="concept-card">
-
-      <div class="concept-screen concept-overview">
-
-        <div class="concept-topbar">
-          <span class="concept-dot"></span>
-          <span class="concept-line line-long"></span>
-          <span class="concept-line line-short"></span>
-        </div>
-
-        <div class="calendar-grid">
-
-          <div class="calendar-column">
-            <span></span>
-            <div class="event-block purple-block"></div>
-            <div class="event-block peach-block"></div>
-          </div>
-
-          <div class="calendar-column">
-            <span></span>
-            <div class="event-block mint-block"></div>
-          </div>
-
-          <div class="calendar-column">
-            <span></span>
-            <div class="event-block purple-block"></div>
-            <div class="event-block mint-block"></div>
-          </div>
-
-          <div class="calendar-column">
-            <span></span>
-            <div class="event-block peach-block"></div>
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="concept-number">01</div>
-
-      <h3>
-        Everything in one view
-      </h3>
-
-      <p>
-        A calendar-style overview that exposes as much family information
-        as possible at once.
-      </p>
-
-    </article>
-
-
-    <!-- CONCEPT 2 -->
-    <article class="concept-card featured-concept">
-
-      <div class="concept-screen concept-noticeboard">
-
-        <div class="noticeboard-header">
-
-          <div>
-            <span class="concept-line line-medium"></span>
-            <span class="concept-line line-short"></span>
-          </div>
-
-          <div class="small-time-block"></div>
-
-        </div>
-
-        <div class="noticeboard-main">
-
-          <div class="notice-primary">
-
-            <span class="mini-label"></span>
-
-            <div class="notice-icon"></div>
-
-            <span class="concept-line line-medium"></span>
-            <span class="concept-line line-short"></span>
-
-          </div>
-
-
-          <div class="notice-side">
-
-            <div class="notice-small peach-block"></div>
-            <div class="notice-small mint-block"></div>
-
-          </div>
-
-        </div>
-
-        <div class="notice-bottom">
-
-          <div class="notice-row"></div>
-          <div class="notice-row"></div>
-
-        </div>
-
-      </div>
-
-      <div class="concept-number">02</div>
-
-      <h3>
-        Shared noticeboard
-      </h3>
-
-      <p>
-        A balanced family hub that keeps shared plans visible while creating
-        a clear hierarchy around what matters most.
-      </p>
-
-    </article>
-
-
-    <!-- CONCEPT 3 -->
-    <article class="concept-card">
-
-      <div class="concept-screen concept-focus">
-
-        <div class="focus-label">
-          HAPPENING NOW
-        </div>
-
-        <div class="focus-icon"></div>
-
-        <div class="focus-title"></div>
-        <div class="focus-time"></div>
-
-        <div class="focus-button"></div>
-
-        <div class="focus-secondary">
-
-          <div class="focus-small-card peach-block"></div>
-          <div class="focus-small-card mint-block"></div>
-
-        </div>
-
-      </div>
-
-      <div class="concept-number">03</div>
-
-      <h3>
-        One task at a time
-      </h3>
-
-      <p>
-        A focused direction that gives the current activity most of the
-        attention and keeps everything else secondary.
-      </p>
-
-    </article>
-
-  </div>
-
-
-  <div class="note-bar concept-decision">
-
-    <strong>Design direction:</strong>
-
-    The shared noticeboard offered the strongest balance — enough visibility
-    for the whole family, while still allowing the current priority to become
-    the strongest visual element.
-
-  </div>
-
-</section>
-
-    <!-- PRODUCT STRATEGY -->
-
-    <section class="section">
-
-      <div class="tiny-label">
-        06 · Product Strategy
-      </div>
-
-
-      <div class="strategy-top">
-
-        <div>
-
-          <h2>
-            Turning the concept into a focused product.
-          </h2>
-
-          <p class="section-intro">
-            I refined the concept around a small set of priorities
-            that could reduce coordination effort rather than add
-            another planning burden.
-          </p>
-
-        </div>
-
-
-        <aside class="strategy-goal">
-
-          <small>
-            Product goal
-          </small>
-
-          <h3>
-            Make everyday family coordination easier to see,
-            understand and change.
-          </h3>
-
-        </aside>
-
-      </div>
-
-
-      <div class="strategy-grid">
-
-        <article class="strategy-card">
-
-          <h3>
-            What matters now
-          </h3>
-
-          <p>
-            Prioritise the most relevant current activity.
-          </p>
-
-        </article>
-
-
-        <article class="strategy-card">
-
-          <h3>
-            Everyday coordination
-          </h3>
-
-          <p>
-            Support routines, reminders, meals and changing plans.
-          </p>
-
-        </article>
-
-
-        <article class="strategy-card">
-
-          <h3>
-            Is Tasky helping?
-          </h3>
-
-          <p>
-            Reduce searching, remembering and repeated coordination.
-          </p>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- CORE FLOW -->
-
-    <section class="section plain">
-
-      <div class="tiny-label">
-        07 · Core User Flow
-      </div>
-
-      <h2>
-        Designing around everyday moments.
-      </h2>
-
-      <p class="section-intro">
-        Instead of requiring deep navigation, I focused on three
-        moments that represent the core Tasky experience.
-      </p>
-
-
-      <div class="flow-grid">
-
-        <article class="flow-card">
-
-          <div class="flow-step">
-            01 · See
-          </div>
-
-          <h3>
-            What matters right now?
-          </h3>
-
-          <p>
-            The current activity receives the strongest hierarchy.
-          </p>
-
-        </article>
-
-
-        <article class="flow-card">
-
-          <div class="flow-step">
-            02 · Ask
-          </div>
-
-          <h3>
-            “What’s happening tomorrow?”
-          </h3>
-
-          <p>
-            Family information can be accessed without navigating.
-          </p>
-
-        </article>
-
-
-        <article class="flow-card">
-
-          <div class="flow-step">
-            03 · Change
-          </div>
-
-          <h3>
-            Plans changed. Now what?
-          </h3>
-
-          <p>
-            Updates remain visible and easy to understand.
-          </p>
-
-        </article>
-
-      </div>
-
-
-      <div class="note-bar">
-        Each state answers one clear family question instead of
-        asking users to interpret an entire planning system.
-      </div>
-
-    </section>
-
-
-    <!-- VOICE -->
-
-    <section class="section">
-
-      <div class="tiny-label">
-        08 · Voice Interaction
-      </div>
-
-      <h2>
-        Making voice feel like part of the home.
-      </h2>
-
-      <p class="section-intro">
-        Voice offers a faster route to information when someone
-        is cooking, carrying something, getting children ready,
-        or simply does not want to stop and touch the screen.
-      </p>
-
-
-      <div class="voice-grid">
-
-        <article class="voice-card">
-
-          <div class="voice-icon">
-            ◉
-          </div>
-
-          <h3>
-            Ask
-          </h3>
-
-          <p>
-            “What’s happening tomorrow?”
-          </p>
-
-        </article>
-
-
-        <article class="voice-card">
-
-          <div class="voice-icon">
-            ●
-          </div>
-
-          <h3>
-            Listening
-          </h3>
-
-          <p>
-            Tasky acknowledges that it is listening.
-          </p>
-
-        </article>
-
-
-        <article class="voice-card">
-
-          <div class="voice-icon">
-            ✦
-          </div>
-
-          <h3>
-            Understanding
-          </h3>
-
-          <p>
-            The system finds the relevant family information.
-          </p>
-
-        </article>
-
-
-        <article class="voice-card">
-
-          <div class="voice-icon">
-            ✓
-          </div>
-
-          <h3>
-            Answer
-          </h3>
-
-          <p>
-            A concise spoken and visual response closes the loop.
-          </p>
-
-        </article>
-
-      </div>
-
-
-      <div class="note-bar">
-        Voice is an additional path — not the only path.
-        The same information remains visible on screen.
-      </div>
-
-    </section>
-
-
-    <!-- FINAL SOLUTION -->
-
-    <section class="section plain">
-
-      <div class="tiny-label">
-        09 · Final Solution
-      </div>
-
-      <h2>
-        A shared family noticeboard built around what matters now.
-      </h2>
-
-      <p class="section-intro">
-        Tasks, family schedules, responsibilities and changing plans
-        live together in one calm home experience — without requiring
-        families to constantly check another app.
-      </p>
-
-
-      <div class="final-display">
-
-        <img
-          src="tasky-final-dashboard.png"
-          alt="Tasky final smart family noticeboard dashboard"
-        />
-
-
-        <div class="final-points">
-
-          <div class="final-point">
-            <strong>
-              What matters now
-            </strong>
-            <br />
-            Current priorities stay visible.
-          </div>
-
-          <div class="final-point">
-            <strong>
-              Plans stay flexible
-            </strong>
-            <br />
-            Changes remain easy to understand.
-          </div>
-
-          <div class="final-point">
-            <strong>
-              Multiple ways to access
-            </strong>
-            <br />
-            Display, voice, phone and watch can work together.
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- REFLECTION -->
-
-    <section class="section">
-
-      <div class="tiny-label">
-        10 · Reflection
-      </div>
-
-      <h2>
-        Designing for coordination meant designing for attention.
-      </h2>
-
-      <p class="section-intro">
-        The biggest shift was moving from a planning tool to an
-        information environment that respects limited attention.
-      </p>
-
-
-      <div class="reflection-grid">
-
-        <article class="reflection-card">
-
-          <div class="reflection-label">
-            What changed
-          </div>
-
-          <h3>
-            Calendar → shared family system
-          </h3>
-
-          <p>
-            The research moved the concept beyond scheduling and
-            toward everyday household coordination.
-          </p>
-
-        </article>
-
-
-        <article class="reflection-card">
-
-          <div class="reflection-label">
-            Accessibility
-          </div>
-
-          <h3>
-            More than one path
-          </h3>
-
-          <p>
-            Important information remains visible while voice,
-            touch and connected devices provide alternative routes.
-          </p>
-
-        </article>
-
-
-        <article class="reflection-card">
-
-          <div class="reflection-label">
-            Next
-          </div>
-
-          <h3>
-            Test it in real homes
-          </h3>
-
-          <p>
-            Validate readability at distance, voice use,
-            changing plans, shared access and real household routines.
-          </p>
-
-        </article>
-
-      </div>
-
-
-      <div class="closing-insight">
-        Tasky taught me that reducing cognitive load is not about
-        removing information — it is about giving information the
-        right priority, at the right moment.
-      </div>
-
-    </section>
-
-
-    <!-- FOOTER -->
-
-    <footer>
+    <footer data-no-read>
 
       <div class="footer-brand">
         Linda Laryea
       </div>
 
-      <div>
+
+      <div data-i18n="footerCopy">
         © 2026 Linda Laryea. Designed with research,
         empathy and accessibility in mind.
       </div>
 
     </footer>
 
-  </main>
+  </div>
+
+
+  <!-- =====================================
+       BACK TO TOP
+  ====================================== -->
+
+  <button
+    type="button"
+    id="backToTop"
+    class="back-to-top"
+    aria-label="Back to top"
+    data-i18n-aria-label="backToTop"
+    data-no-read
+  >
+    ↑
+  </button>
+
+
+  <!-- =====================================
+       JAVASCRIPT
+  ====================================== -->
+
+  <script>
+
+    const translations = {
+
+      en: {
+
+        pageTitle:
+          "Tasky — Smart Family Noticeboard | Linda Laryea",
+
+        metaDescription:
+          "Tasky — an accessible smart family noticeboard UX case study by Linda Laryea.",
+
+        skip:
+          "Skip to main content",
+
+        mainNavigation:
+          "Main navigation",
+
+        chooseLanguage:
+          "Choose language",
+
+        switchEnglish:
+          "Switch to English",
+
+        switchGerman:
+          "Switch to German",
+
+        home:
+          "Home",
+
+        caseStudies:
+          "Case Studies",
+
+        aboutMe:
+          "About Me",
+
+        cv:
+          "CV",
+
+        letsConnect:
+          "Let’s Connect",
+
+        accessibility:
+          "Accessibility",
+
+        accessibilityDescription:
+          "Adjust the page to suit your needs.",
+
+        closeAccessibility:
+          "Close accessibility settings",
+
+        textSize:
+          "Text size",
+
+        decreaseText:
+          "Decrease text size",
+
+        defaultText:
+          "Default text size",
+
+        increaseText:
+          "Increase text size",
+
+        highContrast:
+          "High contrast",
+
+        highContrastDescription:
+          "Increase visual contrast.",
+
+        reduceMotion:
+          "Reduce motion",
+
+        reduceMotionDescription:
+          "Minimise animation and movement.",
+
+        readPage:
+          "Read page aloud",
+
+        play:
+          "Play",
+
+        pause:
+          "Pause",
+
+        stop:
+          "Stop",
+
+        resetSettings:
+          "Reset accessibility settings",
+
+        backCaseStudies:
+          "← Back to Case Studies",
+
+        caseStudyLabel:
+          "Product Design Case Study",
+
+        heroSubtitle:
+          "An accessible family noticeboard for everyday coordination.",
+
+        heroDescription:
+          "A shared home display that keeps what matters now visible, makes changing plans easier to manage, and keeps gentle reminders where attention is needed.",
+
+        roleLabel:
+          "Role",
+
+        roleValue:
+          "UX Researcher & Interaction Designer",
+
+        responsibilitiesLabel:
+          "Responsibilities",
+
+        responsibilitiesValue:
+          "Research • Product Strategy • Information Architecture • Interaction Design",
+
+        heroInsight:
+          "Personal insight: Families don’t need another calendar. They need a shared noticeboard.",
+
+        productTitle:
+          "A calm family hub for everyday life.",
+
+        productCopy:
+          "Tasky keeps the family’s most important plans, routines and changes visible in one shared place.",
+
+        dashboardAlt:
+          "Tasky family noticeboard dashboard",
+
+        problemLabel:
+          "01 · The Problem",
+
+        problemTitle:
+          "Family organisation wasn’t failing because families lacked calendars.",
+
+        problemIntro:
+          "Plans were scattered across calendars, messages and memory. When life changed, responsibilities became easy to miss.",
+
+        mentalOverload:
+          "Mental overload",
+
+        mentalOverloadText:
+          "Too much depended on someone remembering.",
+
+        plansChange:
+          "Plans change quickly",
+
+        plansChangeText:
+          "Everyday routines shift without warning.",
+
+        everythingOverlaps:
+          "Everything overlaps",
+
+        everythingOverlapsText:
+          "Family responsibilities compete for attention.",
+
+        homeWork:
+          "Home and work collide",
+
+        homeWorkText:
+          "Work, school and home information compete.",
+
+        problemNote:
+          "The challenge wasn’t simply scheduling more efficiently — it was reducing the mental effort of keeping family life together.",
+
+        researchLabel:
+          "02 · Research",
+
+        researchTitle:
+          "The research challenged my first assumption.",
+
+        researchIntro:
+          "I started by thinking families needed one better calendar. The interviews pointed to a different problem.",
+
+        initialIdea:
+          "Initial idea",
+
+        initialIdeaText:
+          "Families need one calendar that combines everything.",
+
+        researchInsight:
+          "Research insight",
+
+        researchInsightText:
+          "Mental load and unexpected changes caused more stress.",
+
+        researchNote:
+          "A better calendar would still ask families to remember to check it. The real opportunity was visibility.",
+
+        audienceLabel:
+          "03 · System & Audience",
+
+        audienceTitle:
+          "A family system has more than one user.",
+
+        audienceIntro:
+          "Tasky needed to support parents managing routines, children following plans, and family members with different levels of attention and access.",
+
+        neelamText:
+          "Parent balancing work, school routines and household coordination. Needs important changes to remain visible without carrying everything in memory.",
+
+        parentsTitle:
+          "Parents & guardians",
+
+        parentsText:
+          "Need a quick overview of what requires attention without mentally carrying the entire household plan.",
+
+        childrenTitle:
+          "Children & family members",
+
+        childrenText:
+          "Need clear information about routines and responsibilities without navigating complex planning tools.",
+
+        accessNeedsTitle:
+          "Different access needs",
+
+        accessNeedsText:
+          "The experience needed to work across different levels of attention, confidence and interaction preference.",
+
+        conceptLabel:
+          "04 · From Insight to Concept",
+
+        conceptTitle:
+          "The solution didn’t need to become a better calendar.",
+
+        conceptIntro:
+          "I needed a way to keep family responsibilities visible without asking people to constantly open another app.",
+
+        calendarEverything:
+          "One calendar for everything",
+
+        calendarEverythingText:
+          "Collect every event and responsibility into one scheduling tool.",
+
+        sharedNoticeboard:
+          "A shared family noticeboard",
+
+        sharedNoticeboardText:
+          "Keep what matters now visible in a persistent, home-centred coordination space.",
+
+        seeingNote:
+          "A little bit less searching. A little bit more seeing.",
+
+        exploreLabel:
+          "05 · Exploring the Concept",
+
+        exploreTitle:
+          "Exploring how family information should appear at home.",
+
+        exploreIntro:
+          "I explored different ways of balancing shared visibility with a calm, low-effort experience. Each direction tested a different level of information density and focus.",
+
+        conceptOneTitle:
+          "Everything in one view",
+
+        conceptOneText:
+          "A calendar-style overview that exposes as much family information as possible at once.",
+
+        conceptTwoTitle:
+          "Shared noticeboard",
+
+        conceptTwoText:
+          "A balanced family hub that keeps shared plans visible while creating a clear hierarchy around what matters most.",
+
+        conceptThreeTitle:
+          "One task at a time",
+
+        conceptThreeText:
+          "A focused direction that gives the current activity most of the attention and keeps everything else secondary.",
+
+        designDirection:
+          "Design direction:",
+
+        designDirectionText:
+          "The shared noticeboard offered the strongest balance — enough visibility for the whole family, while still allowing the current priority to become the strongest visual element.",
+
+        strategyLabel:
+          "06 · Product Strategy",
+
+        strategyTitle:
+          "Turning the concept into a focused product.",
+
+        strategyIntro:
+          "I refined the concept around a small set of priorities that could reduce coordination effort rather than add another planning burden.",
+
+        productGoal:
+          "Product goal",
+
+        productGoalText:
+          "Make everyday family coordination easier to see, understand and change.",
+
+        whatMattersNow:
+          "What matters now",
+
+        whatMattersNowText:
+          "Prioritise the most relevant current activity.",
+
+        everydayCoordination:
+          "Everyday coordination",
+
+        everydayCoordinationText:
+          "Support routines, reminders, meals and changing plans.",
+
+        helpingQuestion:
+          "Is Tasky helping?",
+
+        helpingQuestionText:
+          "Reduce searching, remembering and repeated coordination.",
+
+        flowLabel:
+          "07 · Core User Flow",
+
+        flowTitle:
+          "Designing around everyday moments.",
+
+        flowIntro:
+          "Instead of requiring deep navigation, I focused on three moments that represent the core Tasky experience.",
+
+        flowOneLabel:
+          "01 · See",
+
+        flowOneTitle:
+          "What matters right now?",
+
+        flowOneText:
+          "The current activity receives the strongest hierarchy.",
+
+        flowTwoLabel:
+          "02 · Ask",
+
+        flowTwoTitle:
+          "“What’s happening tomorrow?”",
+
+        flowTwoText:
+          "Family information can be accessed without navigating.",
+
+        flowThreeLabel:
+          "03 · Change",
+
+        flowThreeTitle:
+          "Plans changed. Now what?",
+
+        flowThreeText:
+          "Updates remain visible and easy to understand.",
+
+        flowNote:
+          "Each state answers one clear family question instead of asking users to interpret an entire planning system.",
+
+        voiceLabel:
+          "08 · Voice Interaction",
+
+        voiceTitle:
+          "Making voice feel like part of the home.",
+
+        voiceIntro:
+          "Voice offers a faster route to information when someone is cooking, carrying something, getting children ready, or simply does not want to stop and touch the screen.",
+
+        ask:
+          "Ask",
+
+        askText:
+          "“What’s happening tomorrow?”",
+
+        listening:
+          "Listening",
+
+        listeningText:
+          "Tasky acknowledges that it is listening.",
+
+        understanding:
+          "Understanding",
+
+        understandingText:
+          "The system finds the relevant family information.",
+
+        answer:
+          "Answer",
+
+        answerText:
+          "A concise spoken and visual response closes the loop.",
+
+        voiceNote:
+          "Voice is an additional path — not the only path. The same information remains visible on screen.",
+
+        finalLabel:
+          "09 · Final Solution",
+
+        finalTitle:
+          "A shared family noticeboard built around what matters now.",
+
+        finalIntro:
+          "Tasks, family schedules, responsibilities and changing plans live together in one calm home experience — without requiring families to constantly check another app.",
+
+        finalDashboardAlt:
+          "Tasky final smart family noticeboard dashboard",
+
+        finalPointOne:
+          "What matters now",
+
+        finalPointOneText:
+          "Current priorities stay visible.",
+
+        finalPointTwo:
+          "Plans stay flexible",
+
+        finalPointTwoText:
+          "Changes remain easy to understand.",
+
+        finalPointThree:
+          "Multiple ways to access",
+
+        finalPointThreeText:
+          "Display, voice, phone and watch can work together.",
+
+        reflectionLabel:
+          "10 · Reflection",
+
+        reflectionTitle:
+          "Designing for coordination meant designing for attention.",
+
+        reflectionIntro:
+          "The biggest shift was moving from a planning tool to an information environment that respects limited attention.",
+
+        whatChanged:
+          "What changed",
+
+        whatChangedTitle:
+          "Calendar → shared family system",
+
+        whatChangedText:
+          "The research moved the concept beyond scheduling and toward everyday household coordination.",
+
+        accessibilityLabel:
+          "Accessibility",
+
+        moreThanOnePath:
+          "More than one path",
+
+        moreThanOnePathText:
+          "Important information remains visible while voice, touch and connected devices provide alternative routes.",
+
+        nextLabel:
+          "Next",
+
+        testHomes:
+          "Test it in real homes",
+
+        testHomesText:
+          "Validate readability at distance, voice use, changing plans, shared access and real household routines.",
+
+        closingInsight:
+          "Tasky taught me that reducing cognitive load is not about removing information — it is about giving information the right priority, at the right moment.",
+
+        footerCopy:
+          "© 2026 Linda Laryea. Designed with research, empathy and accessibility in mind.",
+
+        backToTop:
+          "Back to top",
+
+        languageChanged:
+          "Language changed to English.",
+
+        settingsReset:
+          "Accessibility settings reset.",
+
+        contrastEnabled:
+          "High contrast enabled.",
+
+        contrastDisabled:
+          "High contrast disabled.",
+
+        motionEnabled:
+          "Reduced motion enabled.",
+
+        motionDisabled:
+          "Reduced motion disabled.",
+
+        readingStarted:
+          "Reading started.",
+
+        readingPaused:
+          "Reading paused.",
+
+        readingResumed:
+          "Reading resumed.",
+
+        readingStopped:
+          "Reading stopped.",
+
+        readUnsupported:
+          "Read aloud is not supported by this browser."
+      },
+
+
+      de: {
+
+        pageTitle:
+          "Tasky — Smartes Familien-Noticeboard | Linda Laryea",
+
+        metaDescription:
+          "Tasky — eine UX-Fallstudie von Linda Laryea zu einem barrierefreien digitalen Familien-Noticeboard.",
+
+        skip:
+          "Zum Hauptinhalt springen",
+
+        mainNavigation:
+          "Hauptnavigation",
+
+        chooseLanguage:
+          "Sprache auswählen",
+
+        switchEnglish:
+          "Auf Englisch wechseln",
+
+        switchGerman:
+          "Auf Deutsch wechseln",
+
+        home:
+          "Startseite",
+
+        caseStudies:
+          "Fallstudien",
+
+        aboutMe:
+          "Über mich",
+
+        cv:
+          "Lebenslauf",
+
+        letsConnect:
+          "Kontakt aufnehmen",
+
+        accessibility:
+          "Barrierefreiheit",
+
+        accessibilityDescription:
+          "Passe die Seite an deine Bedürfnisse an.",
+
+        closeAccessibility:
+          "Einstellungen zur Barrierefreiheit schließen",
+
+        textSize:
+          "Textgröße",
+
+        decreaseText:
+          "Text verkleinern",
+
+        defaultText:
+          "Standardtextgröße",
+
+        increaseText:
+          "Text vergrößern",
+
+        highContrast:
+          "Hoher Kontrast",
+
+        highContrastDescription:
+          "Erhöht den visuellen Kontrast.",
+
+        reduceMotion:
+          "Bewegung reduzieren",
+
+        reduceMotionDescription:
+          "Animationen und Bewegungen minimieren.",
+
+        readPage:
+          "Seite vorlesen",
+
+        play:
+          "Start",
+
+        pause:
+          "Pause",
+
+        stop:
+          "Stopp",
+
+        resetSettings:
+          "Barrierefreiheit zurücksetzen",
+
+        backCaseStudies:
+          "← Zurück zu den Fallstudien",
+
+        caseStudyLabel:
+          "Produktdesign-Fallstudie",
+
+        heroSubtitle:
+          "Ein barrierefreies Familien-Noticeboard für die tägliche Koordination.",
+
+        heroDescription:
+          "Ein gemeinsames Display für zu Hause, das wichtige Informationen sichtbar hält, Änderungen leichter verständlich macht und Erinnerungen genau dort zeigt, wo Aufmerksamkeit gebraucht wird.",
+
+        roleLabel:
+          "Rolle",
+
+        roleValue:
+          "UX Researcherin & Interaction Designerin",
+
+        responsibilitiesLabel:
+          "Verantwortlichkeiten",
+
+        responsibilitiesValue:
+          "Research • Produktstrategie • Informationsarchitektur • Interaction Design",
+
+        heroInsight:
+          "Persönliche Erkenntnis: Familien brauchen keinen weiteren Kalender. Sie brauchen ein gemeinsames Noticeboard.",
+
+        productTitle:
+          "Ein ruhiger Familien-Hub für den Alltag.",
+
+        productCopy:
+          "Tasky hält die wichtigsten Pläne, Routinen und Veränderungen einer Familie an einem gemeinsamen Ort sichtbar.",
+
+        dashboardAlt:
+          "Tasky Familien-Noticeboard Dashboard",
+
+        problemLabel:
+          "01 · Das Problem",
+
+        problemTitle:
+          "Familienorganisation scheiterte nicht daran, dass Familien keine Kalender hatten.",
+
+        problemIntro:
+          "Pläne waren über Kalender, Nachrichten und Erinnerungen verteilt. Wenn sich der Alltag änderte, konnten Verantwortlichkeiten leicht übersehen werden.",
+
+        mentalOverload:
+          "Mentale Überlastung",
+
+        mentalOverloadText:
+          "Zu viel hing davon ab, dass sich jemand daran erinnerte.",
+
+        plansChange:
+          "Pläne ändern sich schnell",
+
+        plansChangeText:
+          "Alltägliche Routinen ändern sich oft unerwartet.",
+
+        everythingOverlaps:
+          "Alles überschneidet sich",
+
+        everythingOverlapsText:
+          "Familienaufgaben konkurrieren um Aufmerksamkeit.",
+
+        homeWork:
+          "Arbeit und Zuhause überschneiden sich",
+
+        homeWorkText:
+          "Informationen aus Arbeit, Schule und Zuhause konkurrieren miteinander.",
+
+        problemNote:
+          "Die Herausforderung bestand nicht nur darin, Termine effizienter zu planen, sondern den mentalen Aufwand der Familienorganisation zu reduzieren.",
+
+        researchLabel:
+          "02 · Research",
+
+        researchTitle:
+          "Die Forschung stellte meine erste Annahme infrage.",
+
+        researchIntro:
+          "Zu Beginn dachte ich, Familien bräuchten einfach einen besseren gemeinsamen Kalender. Die Interviews zeigten jedoch ein anderes Problem.",
+
+        initialIdea:
+          "Erste Idee",
+
+        initialIdeaText:
+          "Familien brauchen einen Kalender, der alles zusammenführt.",
+
+        researchInsight:
+          "Research-Erkenntnis",
+
+        researchInsightText:
+          "Mentale Belastung und unerwartete Änderungen verursachten mehr Stress.",
+
+        researchNote:
+          "Auch ein besserer Kalender würde verlangen, dass Familien daran denken, ihn zu überprüfen. Die eigentliche Chance lag in der Sichtbarkeit.",
+
+        audienceLabel:
+          "03 · System & Zielgruppe",
+
+        audienceTitle:
+          "Ein Familiensystem hat mehr als eine Nutzergruppe.",
+
+        audienceIntro:
+          "Tasky musste Eltern bei der Organisation von Routinen, Kinder beim Folgen von Plänen und Familienmitglieder mit unterschiedlichen Aufmerksamkeits- und Zugangsbedürfnissen unterstützen.",
+
+        neelamText:
+          "Eine Mutter, die Arbeit, Schulroutinen und Haushaltsorganisation miteinander verbindet. Wichtige Änderungen müssen sichtbar bleiben, ohne dass sie alles im Kopf behalten muss.",
+
+        parentsTitle:
+          "Eltern & Erziehungsberechtigte",
+
+        parentsText:
+          "Brauchen einen schnellen Überblick darüber, was Aufmerksamkeit erfordert, ohne den gesamten Haushaltsplan mental tragen zu müssen.",
+
+        childrenTitle:
+          "Kinder & Familienmitglieder",
+
+        childrenText:
+          "Brauchen klare Informationen über Routinen und Verantwortlichkeiten, ohne komplexe Planungstools bedienen zu müssen.",
+
+        accessNeedsTitle:
+          "Unterschiedliche Zugangsbedürfnisse",
+
+        accessNeedsText:
+          "Die Erfahrung musste für unterschiedliche Aufmerksamkeitsniveaus, Nutzungssicherheit und Interaktionspräferenzen funktionieren.",
+
+        conceptLabel:
+          "04 · Von der Erkenntnis zum Konzept",
+
+        conceptTitle:
+          "Die Lösung musste kein besserer Kalender werden.",
+
+        conceptIntro:
+          "Ich brauchte eine Möglichkeit, familiäre Verantwortlichkeiten sichtbar zu halten, ohne dass ständig eine weitere App geöffnet werden musste.",
+
+        calendarEverything:
+          "Ein Kalender für alles",
+
+        calendarEverythingText:
+          "Alle Termine und Verantwortlichkeiten in einem einzigen Planungstool sammeln.",
+
+        sharedNoticeboard:
+          "Ein gemeinsames Familien-Noticeboard",
+
+        sharedNoticeboardText:
+          "Das aktuell Wichtige bleibt in einem dauerhaft sichtbaren, wohnungszentrierten Koordinationsraum präsent.",
+
+        seeingNote:
+          "Etwas weniger suchen. Etwas mehr sehen.",
+
+        exploreLabel:
+          "05 · Konzept erkunden",
+
+        exploreTitle:
+          "Wie sollten Familieninformationen zu Hause sichtbar sein?",
+
+        exploreIntro:
+          "Ich untersuchte verschiedene Möglichkeiten, gemeinsame Sichtbarkeit mit einer ruhigen, leicht verständlichen Nutzung zu verbinden. Jede Richtung testete eine andere Informationsdichte und einen anderen Fokus.",
+
+        conceptOneTitle:
+          "Alles auf einen Blick",
+
+        conceptOneText:
+          "Eine kalenderähnliche Übersicht, die möglichst viele Familieninformationen gleichzeitig zeigt.",
+
+        conceptTwoTitle:
+          "Gemeinsames Noticeboard",
+
+        conceptTwoText:
+          "Ein ausgewogener Familien-Hub, der gemeinsame Pläne sichtbar hält und gleichzeitig eine klare Hierarchie für das Wichtigste schafft.",
+
+        conceptThreeTitle:
+          "Eine Aufgabe nach der anderen",
+
+        conceptThreeText:
+          "Eine fokussierte Richtung, bei der die aktuelle Aktivität die meiste Aufmerksamkeit erhält und alles andere sekundär bleibt.",
+
+        designDirection:
+          "Designrichtung:",
+
+        designDirectionText:
+          "Das gemeinsame Noticeboard bot die beste Balance: genug Sichtbarkeit für die ganze Familie und gleichzeitig die Möglichkeit, die aktuelle Priorität visuell hervorzuheben.",
+
+        strategyLabel:
+          "06 · Produktstrategie",
+
+        strategyTitle:
+          "Vom Konzept zu einem fokussierten Produkt.",
+
+        strategyIntro:
+          "Ich verfeinerte das Konzept anhand weniger klarer Prioritäten, die den Koordinationsaufwand reduzieren sollten, anstatt eine weitere Planungsbelastung zu schaffen.",
+
+        productGoal:
+          "Produktziel",
+
+        productGoalText:
+          "Die tägliche Familienkoordination leichter sichtbar, verständlich und veränderbar machen.",
+
+        whatMattersNow:
+          "Was jetzt wichtig ist",
+
+        whatMattersNowText:
+          "Die relevanteste aktuelle Aktivität erhält Priorität.",
+
+        everydayCoordination:
+          "Alltägliche Koordination",
+
+        everydayCoordinationText:
+          "Routinen, Erinnerungen, Mahlzeiten und sich ändernde Pläne unterstützen.",
+
+        helpingQuestion:
+          "Hilft Tasky wirklich?",
+
+        helpingQuestionText:
+          "Suchen, Erinnern und wiederholte Abstimmung reduzieren.",
+
+        flowLabel:
+          "07 · Zentraler User Flow",
+
+        flowTitle:
+          "Design für alltägliche Momente.",
+
+        flowIntro:
+          "Anstatt tiefe Navigation zu verlangen, konzentrierte ich mich auf drei Momente, die die zentrale Tasky-Erfahrung darstellen.",
+
+        flowOneLabel:
+          "01 · Sehen",
+
+        flowOneTitle:
+          "Was ist gerade wichtig?",
+
+        flowOneText:
+          "Die aktuelle Aktivität erhält die stärkste visuelle Hierarchie.",
+
+        flowTwoLabel:
+          "02 · Fragen",
+
+        flowTwoTitle:
+          "„Was passiert morgen?“",
+
+        flowTwoText:
+          "Familieninformationen können ohne Navigation abgerufen werden.",
+
+        flowThreeLabel:
+          "03 · Ändern",
+
+        flowThreeTitle:
+          "Die Pläne haben sich geändert. Was nun?",
+
+        flowThreeText:
+          "Änderungen bleiben sichtbar und leicht verständlich.",
+
+        flowNote:
+          "Jeder Zustand beantwortet eine klare Familienfrage, anstatt Nutzer:innen ein gesamtes Planungssystem interpretieren zu lassen.",
+
+        voiceLabel:
+          "08 · Sprachinteraktion",
+
+        voiceTitle:
+          "Sprache als natürlicher Teil des Zuhauses.",
+
+        voiceIntro:
+          "Sprache bietet einen schnelleren Zugang zu Informationen, wenn jemand kocht, etwas trägt, Kinder fertig macht oder den Bildschirm einfach nicht berühren möchte.",
+
+        ask:
+          "Fragen",
+
+        askText:
+          "„Was passiert morgen?“",
+
+        listening:
+          "Zuhören",
+
+        listeningText:
+          "Tasky zeigt, dass das System zuhört.",
+
+        understanding:
+          "Verstehen",
+
+        understandingText:
+          "Das System findet die relevanten Familieninformationen.",
+
+        answer:
+          "Antwort",
+
+        answerText:
+          "Eine kurze gesprochene und visuelle Antwort schließt die Interaktion ab.",
+
+        voiceNote:
+          "Sprache ist ein zusätzlicher Weg und nicht der einzige. Dieselben Informationen bleiben weiterhin auf dem Bildschirm sichtbar.",
+
+        finalLabel:
+          "09 · Finale Lösung",
+
+        finalTitle:
+          "Ein gemeinsames Familien-Noticeboard rund um das, was gerade wichtig ist.",
+
+        finalIntro:
+          "Aufgaben, Familienpläne, Verantwortlichkeiten und Änderungen leben gemeinsam in einer ruhigen Erfahrung für zu Hause – ohne dass Familien ständig eine weitere App überprüfen müssen.",
+
+        finalDashboardAlt:
+          "Finales Tasky Smart-Family-Noticeboard Dashboard",
+
+        finalPointOne:
+          "Was jetzt wichtig ist",
+
+        finalPointOneText:
+          "Aktuelle Prioritäten bleiben sichtbar.",
+
+        finalPointTwo:
+          "Pläne bleiben flexibel",
+
+        finalPointTwoText:
+          "Änderungen bleiben leicht verständlich.",
+
+        finalPointThree:
+          "Mehrere Zugangswege",
+
+        finalPointThreeText:
+          "Display, Sprache, Smartphone und Smartwatch können zusammenarbeiten.",
+
+        reflectionLabel:
+          "10 · Reflexion",
+
+        reflectionTitle:
+          "Koordination zu gestalten bedeutete, Aufmerksamkeit zu gestalten.",
+
+        reflectionIntro:
+          "Die größte Veränderung bestand darin, von einem Planungstool zu einer Informationsumgebung überzugehen, die begrenzte Aufmerksamkeit respektiert.",
+
+        whatChanged:
+          "Was sich verändert hat",
+
+        whatChangedTitle:
+          "Kalender → gemeinsames Familiensystem",
+
+        whatChangedText:
+          "Die Forschung führte das Konzept über reine Terminplanung hinaus hin zur alltäglichen Haushaltskoordination.",
+
+        accessibilityLabel:
+          "Barrierefreiheit",
+
+        moreThanOnePath:
+          "Mehr als ein Zugangsweg",
+
+        moreThanOnePathText:
+          "Wichtige Informationen bleiben sichtbar, während Sprache, Touch und verbundene Geräte alternative Wege bieten.",
+
+        nextLabel:
+          "Als Nächstes",
+
+        testHomes:
+          "In echten Haushalten testen",
+
+        testHomesText:
+          "Lesbarkeit aus Entfernung, Sprachnutzung, sich ändernde Pläne, gemeinsamen Zugriff und echte Haushaltsroutinen validieren.",
+
+        closingInsight:
+          "Tasky hat mir gezeigt, dass kognitive Belastung nicht dadurch reduziert wird, dass Informationen entfernt werden – sondern dadurch, dass Informationen im richtigen Moment die richtige Priorität erhalten.",
+
+        footerCopy:
+          "© 2026 Linda Laryea. Mit Research, Empathie und Barrierefreiheit im Mittelpunkt gestaltet.",
+
+        backToTop:
+          "Nach oben",
+
+        languageChanged:
+          "Sprache auf Deutsch geändert.",
+
+        settingsReset:
+          "Einstellungen zur Barrierefreiheit wurden zurückgesetzt.",
+
+        contrastEnabled:
+          "Hoher Kontrast aktiviert.",
+
+        contrastDisabled:
+          "Hoher Kontrast deaktiviert.",
+
+        motionEnabled:
+          "Reduzierte Bewegung aktiviert.",
+
+        motionDisabled:
+          "Reduzierte Bewegung deaktiviert.",
+
+        readingStarted:
+          "Vorlesen gestartet.",
+
+        readingPaused:
+          "Vorlesen pausiert.",
+
+        readingResumed:
+          "Vorlesen fortgesetzt.",
+
+        readingStopped:
+          "Vorlesen gestoppt.",
+
+        readUnsupported:
+          "Die Vorlesefunktion wird von diesem Browser nicht unterstützt."
+      }
+
+    };
+
+
+    /* =====================================
+       ELEMENTS
+    ====================================== */
+
+    const languageEN =
+      document.getElementById(
+        "languageEN"
+      );
+
+
+    const languageDE =
+      document.getElementById(
+        "languageDE"
+      );
+
+
+    const accessibilityButton =
+      document.getElementById(
+        "accessibilityButton"
+      );
+
+
+    const accessibilityPanel =
+      document.getElementById(
+        "accessibilityPanel"
+      );
+
+
+    const closeAccessibility =
+      document.getElementById(
+        "closeAccessibility"
+      );
+
+
+    const contrastToggle =
+      document.getElementById(
+        "contrastToggle"
+      );
+
+
+    const motionToggle =
+      document.getElementById(
+        "motionToggle"
+      );
+
+
+    const textSizeButtons =
+      document.querySelectorAll(
+        ".text-size-button"
+      );
+
+
+    const readPlay =
+      document.getElementById(
+        "readPlay"
+      );
+
+
+    const readPause =
+      document.getElementById(
+        "readPause"
+      );
+
+
+    const readStop =
+      document.getElementById(
+        "readStop"
+      );
+
+
+    const resetAccessibility =
+      document.getElementById(
+        "resetAccessibility"
+      );
+
+
+    const backToTop =
+      document.getElementById(
+        "backToTop"
+      );
+
+
+    const a11yStatus =
+      document.getElementById(
+        "a11yStatus"
+      );
+
+
+    const metaDescription =
+      document.getElementById(
+        "metaDescription"
+      );
+
+
+    let currentLanguage =
+      localStorage.getItem(
+        "portfolioLanguage"
+      ) || "en";
+
+
+    let speechUtterance =
+      null;
+
+
+    let isPaused =
+      false;
+
+
+    /* =====================================
+       ANNOUNCEMENTS
+    ====================================== */
+
+    function announce(message) {
+
+      a11yStatus.textContent =
+        "";
+
+
+      window.setTimeout(
+        () => {
+
+          a11yStatus.textContent =
+            message;
+
+        },
+        40
+      );
+
+    }
+
+
+    /* =====================================
+       LANGUAGE
+    ====================================== */
+
+    function applyLanguage(
+      language,
+      announceChange = false
+    ) {
+
+      currentLanguage =
+        language;
+
+
+      document.documentElement.lang =
+        language;
+
+
+      localStorage.setItem(
+        "portfolioLanguage",
+        language
+      );
+
+
+      document.title =
+        translations[language]
+          .pageTitle;
+
+
+      metaDescription.setAttribute(
+        "content",
+        translations[language]
+          .metaDescription
+      );
+
+
+      document
+        .querySelectorAll(
+          "[data-i18n]"
+        )
+        .forEach(
+          element => {
+
+            const key =
+              element.getAttribute(
+                "data-i18n"
+              );
+
+
+            if (
+              translations[language] &&
+              translations[language][key]
+            ) {
+
+              element.textContent =
+                translations[language][key];
+
+            }
+
+          }
+        );
+
+
+      document
+        .querySelectorAll(
+          "[data-i18n-aria-label]"
+        )
+        .forEach(
+          element => {
+
+            const key =
+              element.getAttribute(
+                "data-i18n-aria-label"
+              );
+
+
+            if (
+              translations[language] &&
+              translations[language][key]
+            ) {
+
+              element.setAttribute(
+                "aria-label",
+                translations[language][key]
+              );
+
+            }
+
+          }
+        );
+
+
+      document
+        .querySelectorAll(
+          "[data-i18n-alt]"
+        )
+        .forEach(
+          element => {
+
+            const key =
+              element.getAttribute(
+                "data-i18n-alt"
+              );
+
+
+            if (
+              translations[language] &&
+              translations[language][key]
+            ) {
+
+              element.alt =
+                translations[language][key];
+
+            }
+
+          }
+        );
+
+
+      const englishSelected =
+        language === "en";
+
+
+      languageEN.classList.toggle(
+        "active",
+        englishSelected
+      );
+
+
+      languageDE.classList.toggle(
+        "active",
+        !englishSelected
+      );
+
+
+      languageEN.setAttribute(
+        "aria-pressed",
+        englishSelected
+          ? "true"
+          : "false"
+      );
+
+
+      languageDE.setAttribute(
+        "aria-pressed",
+        !englishSelected
+          ? "true"
+          : "false"
+      );
+
+
+      if (announceChange) {
+
+        announce(
+          translations[language]
+            .languageChanged
+        );
+
+      }
+
+
+      stopReading(false);
+
+    }
+
+
+    languageEN.addEventListener(
+      "click",
+      () => {
+
+        applyLanguage(
+          "en",
+          true
+        );
+
+      }
+    );
+
+
+    languageDE.addEventListener(
+      "click",
+      () => {
+
+        applyLanguage(
+          "de",
+          true
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       ACCESSIBILITY PANEL
+    ====================================== */
+
+    function openAccessibilityPanel() {
+
+      accessibilityPanel.hidden =
+        false;
+
+
+      accessibilityButton.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
+
+      closeAccessibility.focus();
+
+    }
+
+
+    function closeAccessibilityPanel() {
+
+      accessibilityPanel.hidden =
+        true;
+
+
+      accessibilityButton.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+
+      accessibilityButton.focus();
+
+    }
+
+
+    accessibilityButton.addEventListener(
+      "click",
+      () => {
+
+        if (
+          accessibilityPanel.hidden
+        ) {
+
+          openAccessibilityPanel();
+
+        } else {
+
+          closeAccessibilityPanel();
+
+        }
+
+      }
+    );
+
+
+    closeAccessibility.addEventListener(
+      "click",
+      closeAccessibilityPanel
+    );
+
+
+    document.addEventListener(
+      "keydown",
+      event => {
+
+        if (
+          event.key === "Escape" &&
+          !accessibilityPanel.hidden
+        ) {
+
+          closeAccessibilityPanel();
+
+        }
+
+      }
+    );
+
+
+    document.addEventListener(
+      "click",
+      event => {
+
+        if (
+          accessibilityPanel.hidden
+        ) {
+
+          return;
+
+        }
+
+
+        const inside =
+          accessibilityPanel.contains(
+            event.target
+          );
+
+
+        const trigger =
+          accessibilityButton.contains(
+            event.target
+          );
+
+
+        if (
+          !inside &&
+          !trigger
+        ) {
+
+          accessibilityPanel.hidden =
+            true;
+
+
+          accessibilityButton.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =====================================
+       TEXT SIZE
+    ====================================== */
+
+    function applyTextSize(size) {
+
+      let scale =
+        1;
+
+
+      if (
+        size === "small"
+      ) {
+
+        scale =
+          0.92;
+
+      }
+
+
+      if (
+        size === "large"
+      ) {
+
+        scale =
+          1.15;
+
+      }
+
+
+      document.documentElement
+        .style
+        .setProperty(
+          "--text-scale",
+          scale
+        );
+
+
+      localStorage.setItem(
+        "portfolioTextSize",
+        size
+      );
+
+
+      textSizeButtons.forEach(
+        button => {
+
+          button.classList.toggle(
+            "active",
+            button.dataset.size === size
+          );
+
+        }
+      );
+
+    }
+
+
+    textSizeButtons.forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            applyTextSize(
+              button.dataset.size
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       HIGH CONTRAST
+    ====================================== */
+
+    function applyContrast(
+      enabled,
+      announceChange = false
+    ) {
+
+      document.body.classList.toggle(
+        "high-contrast",
+        enabled
+      );
+
+
+      contrastToggle.checked =
+        enabled;
+
+
+      localStorage.setItem(
+        "portfolioContrast",
+        enabled
+          ? "true"
+          : "false"
+      );
+
+
+      if (announceChange) {
+
+        announce(
+          enabled
+            ? translations[currentLanguage]
+                .contrastEnabled
+            : translations[currentLanguage]
+                .contrastDisabled
+        );
+
+      }
+
+    }
+
+
+    contrastToggle.addEventListener(
+      "change",
+      () => {
+
+        applyContrast(
+          contrastToggle.checked,
+          true
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       REDUCED MOTION
+    ====================================== */
+
+    function applyMotionPreference(
+      enabled,
+      announceChange = false
+    ) {
+
+      document.body.classList.toggle(
+        "reduce-motion",
+        enabled
+      );
+
+
+      motionToggle.checked =
+        enabled;
+
+
+      localStorage.setItem(
+        "portfolioReducedMotion",
+        enabled
+          ? "true"
+          : "false"
+      );
+
+
+      if (announceChange) {
+
+        announce(
+          enabled
+            ? translations[currentLanguage]
+                .motionEnabled
+            : translations[currentLanguage]
+                .motionDisabled
+        );
+
+      }
+
+    }
+
+
+    motionToggle.addEventListener(
+      "change",
+      () => {
+
+        applyMotionPreference(
+          motionToggle.checked,
+          true
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       READ ALOUD
+    ====================================== */
+
+    const speechSupported =
+      "speechSynthesis" in window &&
+      "SpeechSynthesisUtterance" in window;
+
+
+    if (!speechSupported) {
+
+      readPlay.disabled =
+        true;
+
+      readPause.disabled =
+        true;
+
+      readStop.disabled =
+        true;
+
+    }
+
+
+    function getReadablePageText() {
+
+      const readableSections =
+        document.querySelectorAll(
+          ".readable-content"
+        );
+
+
+      const textParts =
+        [];
+
+
+      readableSections.forEach(
+        section => {
+
+          const clone =
+            section.cloneNode(true);
+
+
+          clone
+            .querySelectorAll(
+              "[data-no-read], img, button, [aria-hidden='true']"
+            )
+            .forEach(
+              element => {
+
+                element.remove();
+
+              }
+            );
+
+
+          const sectionText =
+            clone.innerText
+              .replace(
+                /\s+/g,
+                " "
+              )
+              .trim();
+
+
+          if (sectionText) {
+
+            textParts.push(
+              sectionText
+            );
+
+          }
+
+        }
+      );
+
+
+      return textParts.join(
+        ". "
+      );
+
+    }
+
+
+    function startReading() {
+
+      if (!speechSupported) {
+
+        announce(
+          translations[currentLanguage]
+            .readUnsupported
+        );
+
+        return;
+
+      }
+
+
+      if (
+        window.speechSynthesis.speaking &&
+        isPaused
+      ) {
+
+        window.speechSynthesis.resume();
+
+
+        isPaused =
+          false;
+
+
+        announce(
+          translations[currentLanguage]
+            .readingResumed
+        );
+
+
+        return;
+
+      }
+
+
+      window.speechSynthesis.cancel();
+
+
+      const text =
+        getReadablePageText();
+
+
+      speechUtterance =
+        new SpeechSynthesisUtterance(
+          text
+        );
+
+
+      speechUtterance.lang =
+        currentLanguage === "de"
+          ? "de-DE"
+          : "en-US";
+
+
+      speechUtterance.rate =
+        0.95;
+
+
+      speechUtterance.pitch =
+        1;
+
+
+      speechUtterance.onend =
+        () => {
+
+          isPaused =
+            false;
+
+        };
+
+
+      window.speechSynthesis.speak(
+        speechUtterance
+      );
+
+
+      isPaused =
+        false;
+
+
+      announce(
+        translations[currentLanguage]
+          .readingStarted
+      );
+
+    }
+
+
+    function pauseReading() {
+
+      if (
+        speechSupported &&
+        window.speechSynthesis.speaking &&
+        !isPaused
+      ) {
+
+        window.speechSynthesis.pause();
+
+
+        isPaused =
+          true;
+
+
+        announce(
+          translations[currentLanguage]
+            .readingPaused
+        );
+
+      }
+
+    }
+
+
+    function stopReading(
+      announceStop = true
+    ) {
+
+      if (!speechSupported) {
+
+        return;
+
+      }
+
+
+      window.speechSynthesis.cancel();
+
+
+      isPaused =
+        false;
+
+
+      if (announceStop) {
+
+        announce(
+          translations[currentLanguage]
+            .readingStopped
+        );
+
+      }
+
+    }
+
+
+    readPlay.addEventListener(
+      "click",
+      startReading
+    );
+
+
+    readPause.addEventListener(
+      "click",
+      pauseReading
+    );
+
+
+    readStop.addEventListener(
+      "click",
+      () => {
+
+        stopReading(true);
+
+      }
+    );
+
+
+    /* =====================================
+       RESET
+    ====================================== */
+
+    resetAccessibility.addEventListener(
+      "click",
+      () => {
+
+        applyTextSize(
+          "default"
+        );
+
+
+        applyContrast(
+          false
+        );
+
+
+        applyMotionPreference(
+          false
+        );
+
+
+        stopReading(
+          false
+        );
+
+
+        localStorage.removeItem(
+          "portfolioTextSize"
+        );
+
+
+        localStorage.removeItem(
+          "portfolioContrast"
+        );
+
+
+        localStorage.removeItem(
+          "portfolioReducedMotion"
+        );
+
+
+        announce(
+          translations[currentLanguage]
+            .settingsReset
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       BACK TO TOP
+    ====================================== */
+
+    window.addEventListener(
+      "scroll",
+      () => {
+
+        backToTop.classList.toggle(
+          "visible",
+          window.scrollY > 500
+        );
+
+      },
+      {
+        passive: true
+      }
+    );
+
+
+    backToTop.addEventListener(
+      "click",
+      () => {
+
+        const reducedMotion =
+          document.body
+            .classList
+            .contains(
+              "reduce-motion"
+            ) ||
+
+          window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches;
+
+
+        window.scrollTo({
+
+          top:
+            0,
+
+          behavior:
+            reducedMotion
+              ? "auto"
+              : "smooth"
+
+        });
+
+      }
+    );
+
+
+    /* =====================================
+       LOAD SAVED SETTINGS
+    ====================================== */
+
+    function loadPreferences() {
+
+      applyLanguage(
+        currentLanguage,
+        false
+      );
+
+
+      const savedTextSize =
+        localStorage.getItem(
+          "portfolioTextSize"
+        ) || "default";
+
+
+      applyTextSize(
+        savedTextSize
+      );
+
+
+      const savedContrast =
+        localStorage.getItem(
+          "portfolioContrast"
+        ) === "true";
+
+
+      applyContrast(
+        savedContrast,
+        false
+      );
+
+
+      const savedMotion =
+        localStorage.getItem(
+          "portfolioReducedMotion"
+        );
+
+
+      if (
+        savedMotion !== null
+      ) {
+
+        applyMotionPreference(
+          savedMotion === "true",
+          false
+        );
+
+      } else {
+
+        motionToggle.checked =
+          window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches;
+
+      }
+
+    }
+
+
+    loadPreferences();
+
+
+    /* =====================================
+       STOP SPEECH WHEN LEAVING
+    ====================================== */
+
+    window.addEventListener(
+      "beforeunload",
+      () => {
+
+        if (speechSupported) {
+
+          window.speechSynthesis.cancel();
+
+        }
+
+      }
+    );
+
+  </script>
 
 </body>
+
 </html>
