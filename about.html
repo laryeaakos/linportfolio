@@ -1,28 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="/favicon.png" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    id="metaDescription"
+    name="description"
+    content="About Linda Laryea, UX Researcher and Interaction Designer with a background in Cognitive Science and Psychology."
+  />
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="/favicon.png"
+  />
 
   <title>About Me | Linda Laryea</title>
 
+
   <style>
+
+    /* =====================================
+       DESIGN TOKENS
+    ====================================== */
+
     :root {
       --bg: #FFF9FC;
       --card: #FFFFFF;
+      --surface: #FFFFFF;
+
       --soft: #FFF7FB;
       --soft-pink: #FDE7F1;
       --soft-purple: #F4EEFA;
+
       --magenta: #A80B63;
+      --magenta-dark: #83074C;
+
       --gold: #F3C24F;
+
       --dark: #111827;
       --body: #4B5563;
       --muted: #6B7280;
+
       --border: #F2D8E7;
+
       --green-soft: #ECFDF3;
-      --shadow: 0 20px 55px rgba(24, 39, 75, 0.07);
+
+      --focus: #111827;
+
+      --shadow:
+        0 20px 55px rgba(24, 39, 75, 0.07);
+
+      --text-scale: 1;
     }
+
+
+    /* =====================================
+       RESET
+    ====================================== */
 
     * {
       box-sizing: border-box;
@@ -30,952 +72,5107 @@
       padding: 0;
     }
 
+
     html {
       scroll-behavior: smooth;
+
+      font-size:
+        calc(16px * var(--text-scale));
     }
 
+
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--dark);
-      line-height: 1.6;
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      background:
+        var(--bg);
+
+      color:
+        var(--dark);
+
+      line-height:
+        1.6;
+
+      transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
     }
+
 
     a {
       color: inherit;
       text-decoration: none;
     }
 
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+
     img {
       display: block;
       max-width: 100%;
     }
 
-    .page {
-      width: min(1280px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 24px 0 56px;
+
+    /* =====================================
+       SCREEN READER ONLY
+    ====================================== */
+
+    .sr-only {
+      position: absolute;
+
+      width: 1px;
+      height: 1px;
+
+      padding: 0;
+      margin: -1px;
+
+      overflow: hidden;
+
+      clip: rect(0, 0, 0, 0);
+
+      white-space: nowrap;
+
+      border: 0;
     }
 
-    /* NAVIGATION */
+
+    /* =====================================
+       FOCUS
+    ====================================== */
+
+    :focus-visible {
+      outline:
+        3px solid var(--focus);
+
+      outline-offset:
+        4px;
+    }
+
+
+    .nav-button:focus-visible,
+    .btn-primary:focus-visible {
+      outline-color:
+        var(--gold);
+    }
+
+
+    /* =====================================
+       SKIP LINK
+    ====================================== */
+
+    .skip-link {
+      position: fixed;
+
+      top: 12px;
+      left: 12px;
+
+      z-index: 99999;
+
+      padding:
+        12px 18px;
+
+      background:
+        var(--dark);
+
+      color:
+        #FFFFFF;
+
+      border-radius:
+        10px;
+
+      font-size:
+        0.875rem;
+
+      font-weight:
+        800;
+
+      transform:
+        translateY(-180%);
+
+      transition:
+        transform 0.2s ease;
+    }
+
+
+    .skip-link:focus {
+      transform:
+        translateY(0);
+    }
+
+
+    /* =====================================
+       PAGE
+    ====================================== */
+
+    .page {
+      width:
+        min(1280px, calc(100% - 32px));
+
+      margin:
+        0 auto;
+
+      padding:
+        24px 0 56px;
+    }
+
+
+    /* =====================================
+       NAVIGATION
+    ====================================== */
 
     .navbar {
-      border-bottom: 1px solid var(--border);
-      padding: 0 0 22px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
+      padding:
+        0 0 22px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        24px;
+
+      border-bottom:
+        1px solid var(--border);
     }
+
 
     .brand-name {
-      font-size: 28px;
-      font-weight: 800;
-      color: var(--magenta);
-      letter-spacing: -0.4px;
+      color:
+        var(--magenta);
+
+      font-size:
+        1.75rem;
+
+      font-weight:
+        800;
+
+      letter-spacing:
+        -0.4px;
+
+      white-space:
+        nowrap;
     }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 34px;
-      font-size: 14px;
-      font-weight: 700;
+
+    .nav-right {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        20px;
     }
+
+
+    .nav-links {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        34px;
+
+      font-size:
+        0.875rem;
+
+      font-weight:
+        700;
+    }
+
+
+    .nav-links a {
+      min-height:
+        44px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+    }
+
 
     .nav-links a:hover,
     .nav-links .active {
-      color: var(--magenta);
+      color:
+        var(--magenta);
     }
+
 
     .nav-links .active {
-      border-bottom: 3px solid var(--magenta);
-      padding-bottom: 10px;
+      padding-bottom:
+        10px;
+
+      border-bottom:
+        3px solid var(--magenta);
     }
+
 
     .nav-button {
-      background: var(--magenta);
-      color: #FFFFFF;
-      padding: 13px 22px;
-      border-radius: 12px;
-      font-weight: 800;
-      border-bottom: none !important;
+      min-height:
+        44px;
+
+      padding:
+        0 22px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF !important;
+
+      border-radius:
+        12px;
+
+      font-weight:
+        800;
+
+      border-bottom:
+        none !important;
     }
 
-    /* SHARED */
+
+    .nav-button:hover {
+      background:
+        var(--magenta-dark);
+
+      color:
+        #FFFFFF !important;
+    }
+
+
+    /* =====================================
+       ACCESSIBILITY TOOLS
+    ====================================== */
+
+    .nav-tools {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        8px;
+    }
+
+
+    .language-switcher {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      padding:
+        3px;
+
+      background:
+        var(--surface);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        10px;
+    }
+
+
+    .language-button {
+      min-width:
+        44px;
+
+      min-height:
+        40px;
+
+      padding:
+        0 9px;
+
+      background:
+        transparent;
+
+      color:
+        var(--body);
+
+      border:
+        0;
+
+      border-radius:
+        7px;
+
+      font-size:
+        0.75rem;
+
+      font-weight:
+        800;
+    }
+
+
+    .language-button.active {
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
+    }
+
+
+    .accessibility-button {
+      min-width:
+        44px;
+
+      min-height:
+        44px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      gap:
+        7px;
+
+      padding:
+        0 12px;
+
+      background:
+        var(--surface);
+
+      color:
+        var(--dark);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        10px;
+
+      font-size:
+        0.8rem;
+
+      font-weight:
+        800;
+    }
+
+
+    .accessibility-button:hover {
+      background:
+        var(--soft-purple);
+    }
+
+
+    /* =====================================
+       ACCESSIBILITY PANEL
+    ====================================== */
+
+    .accessibility-panel {
+      position:
+        fixed;
+
+      top:
+        92px;
+
+      right:
+        24px;
+
+      z-index:
+        10000;
+
+      width:
+        min(340px, calc(100vw - 32px));
+
+      padding:
+        22px;
+
+      background:
+        var(--surface);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        18px;
+
+      box-shadow:
+        0 24px 70px
+        rgba(17, 24, 39, 0.16);
+    }
+
+
+    .accessibility-panel[hidden] {
+      display: none;
+    }
+
+
+    .a11y-panel-header {
+      display:
+        flex;
+
+      align-items:
+        flex-start;
+
+      justify-content:
+        space-between;
+
+      gap:
+        18px;
+
+      margin-bottom:
+        20px;
+    }
+
+
+    .a11y-panel-header h2 {
+      margin:
+        0 0 3px;
+
+      font-size:
+        1.1rem;
+    }
+
+
+    .a11y-panel-header p {
+      margin:
+        0;
+
+      color:
+        var(--muted);
+
+      font-size:
+        0.76rem;
+    }
+
+
+    .panel-close {
+      min-width:
+        44px;
+
+      min-height:
+        44px;
+
+      background:
+        var(--soft-purple);
+
+      color:
+        var(--dark);
+
+      border:
+        0;
+
+      border-radius:
+        10px;
+
+      font-size:
+        1.25rem;
+    }
+
+
+    .a11y-group {
+      padding:
+        16px 0;
+
+      border-top:
+        1px solid var(--border);
+    }
+
+
+    .a11y-group:first-of-type {
+      padding-top:
+        0;
+
+      border-top:
+        0;
+    }
+
+
+    .a11y-label {
+      display:
+        block;
+
+      margin-bottom:
+        10px;
+
+      color:
+        var(--dark);
+
+      font-size:
+        0.8rem;
+
+      font-weight:
+        800;
+    }
+
+
+    /* TEXT SIZE */
+
+    .text-size-controls {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap:
+        8px;
+    }
+
+
+    .text-size-button {
+      min-height:
+        44px;
+
+      background:
+        var(--surface);
+
+      color:
+        var(--dark);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        9px;
+
+      font-weight:
+        800;
+    }
+
+
+    .text-size-button.active {
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
+
+      border-color:
+        var(--magenta);
+    }
+
+
+    /* TOGGLES */
+
+    .toggle-row {
+      min-height:
+        48px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        20px;
+    }
+
+
+    .toggle-copy strong {
+      display:
+        block;
+
+      font-size:
+        0.82rem;
+    }
+
+
+    .toggle-copy span {
+      display:
+        block;
+
+      margin-top:
+        2px;
+
+      color:
+        var(--muted);
+
+      font-size:
+        0.7rem;
+    }
+
+
+    .switch {
+      position:
+        relative;
+
+      width:
+        50px;
+
+      height:
+        28px;
+
+      flex:
+        0 0 auto;
+    }
+
+
+    .switch input {
+      position:
+        absolute;
+
+      opacity:
+        0;
+
+      width:
+        1px;
+
+      height:
+        1px;
+    }
+
+
+    .switch-track {
+      position:
+        absolute;
+
+      inset:
+        0;
+
+      background:
+        #D1D5DB;
+
+      border-radius:
+        999px;
+
+      transition:
+        background 0.2s ease;
+    }
+
+
+    .switch-track::after {
+      content:
+        "";
+
+      position:
+        absolute;
+
+      width:
+        20px;
+
+      height:
+        20px;
+
+      left:
+        4px;
+
+      top:
+        4px;
+
+      background:
+        #FFFFFF;
+
+      border-radius:
+        50%;
+
+      box-shadow:
+        0 2px 7px
+        rgba(0, 0, 0, 0.18);
+
+      transition:
+        transform 0.2s ease;
+    }
+
+
+    .switch input:checked +
+    .switch-track {
+      background:
+        var(--magenta);
+    }
+
+
+    .switch input:checked +
+    .switch-track::after {
+      transform:
+        translateX(22px);
+    }
+
+
+    .switch input:focus-visible +
+    .switch-track {
+      outline:
+        3px solid var(--focus);
+
+      outline-offset:
+        3px;
+    }
+
+
+    /* READ ALOUD */
+
+    .read-controls {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap:
+        8px;
+    }
+
+
+    .read-button {
+      min-height:
+        44px;
+
+      background:
+        var(--surface);
+
+      color:
+        var(--dark);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        9px;
+
+      font-size:
+        0.75rem;
+
+      font-weight:
+        800;
+    }
+
+
+    .read-button:hover {
+      background:
+        var(--soft-purple);
+    }
+
+
+    .read-button.primary-read {
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
+
+      border-color:
+        var(--magenta);
+    }
+
+
+    .read-button:disabled {
+      opacity:
+        0.45;
+
+      cursor:
+        not-allowed;
+    }
+
+
+    .reset-button {
+      width:
+        100%;
+
+      min-height:
+        44px;
+
+      background:
+        var(--surface);
+
+      color:
+        var(--magenta);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        9px;
+
+      font-size:
+        0.75rem;
+
+      font-weight:
+        800;
+    }
+
+
+    /* =====================================
+       SHARED ORIGINAL DESIGN
+    ====================================== */
 
     .gold-line {
-      width: 52px;
-      height: 4px;
-      background: var(--gold);
-      border-radius: 999px;
-      flex-shrink: 0;
+      width:
+        52px;
+
+      height:
+        4px;
+
+      background:
+        var(--gold);
+
+      border-radius:
+        999px;
+
+      flex-shrink:
+        0;
     }
+
 
     .eyebrow-row {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 26px;
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        14px;
+
+      margin-bottom:
+        26px;
     }
+
 
     .eyebrow {
-      color: var(--magenta);
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+      color:
+        var(--magenta);
+
+      font-size:
+        0.8125rem;
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        1px;
+
+      text-transform:
+        uppercase;
     }
 
+
     .accent {
-      color: var(--magenta);
+      color:
+        var(--magenta);
     }
+
 
     .btn-primary,
     .btn-secondary {
-      min-height: 52px;
-      padding: 14px 24px;
-      border-radius: 12px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      font-weight: 900;
-      transition: transform 180ms ease, box-shadow 180ms ease;
+      min-height:
+        52px;
+
+      padding:
+        14px 24px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      border-radius:
+        12px;
+
+      font-size:
+        0.875rem;
+
+      font-weight:
+        900;
+
+      transition:
+        transform 180ms ease,
+        box-shadow 180ms ease;
     }
+
 
     .btn-primary:hover,
     .btn-secondary:hover {
-      transform: translateY(-2px);
+      transform:
+        translateY(-2px);
     }
+
 
     .btn-primary {
-      background: var(--magenta);
-      color: #FFFFFF;
-      border: 2px solid var(--magenta);
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
+
+      border:
+        2px solid var(--magenta);
     }
+
 
     .btn-secondary {
-      background: transparent;
-      color: #FFFFFF;
-      border: 2px solid rgba(255, 255, 255, 0.55);
+      background:
+        transparent;
+
+      color:
+        #FFFFFF;
+
+      border:
+        2px solid
+        rgba(255, 255, 255, 0.55);
     }
 
-    /* HERO */
+
+    /* =====================================
+       HERO
+    ====================================== */
 
     .hero {
-      margin-top: 54px;
-      background: #FFFFFF;
-      border: 1px solid var(--border);
-      border-radius: 32px;
-      padding: 60px;
-      display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
-      gap: 64px;
-      align-items: center;
-      box-shadow: var(--shadow);
+      margin-top:
+        54px;
+
+      padding:
+        60px;
+
+      display:
+        grid;
+
+      grid-template-columns:
+        1.25fr 0.75fr;
+
+      gap:
+        64px;
+
+      align-items:
+        center;
+
+      background:
+        #FFFFFF;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        32px;
+
+      box-shadow:
+        var(--shadow);
     }
+
 
     .hero h1 {
-      font-size: clamp(44px, 5vw, 62px);
-      line-height: 1.08;
-      letter-spacing: -1.8px;
-      max-width: 720px;
-      margin-bottom: 28px;
+      max-width:
+        720px;
+
+      margin-bottom:
+        28px;
+
+      font-size:
+        clamp(2.75rem, 5vw, 3.875rem);
+
+      line-height:
+        1.08;
+
+      letter-spacing:
+        -1.8px;
     }
+
 
     .hero-copy {
-      color: var(--body);
-      font-size: 18px;
-      line-height: 1.8;
-      max-width: 700px;
-      margin-bottom: 28px;
+      max-width:
+        700px;
+
+      margin-bottom:
+        28px;
+
+      color:
+        var(--body);
+
+      font-size:
+        1.125rem;
+
+      line-height:
+        1.8;
     }
+
 
     .highlight-note {
-      max-width: 650px;
-      background: var(--soft);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 18px 20px;
-      display: grid;
-      grid-template-columns: 38px 1fr;
-      gap: 14px;
-      align-items: center;
-      color: #3B0A2A;
-      font-size: 15px;
-      font-weight: 700;
+      max-width:
+        650px;
+
+      padding:
+        18px 20px;
+
+      display:
+        grid;
+
+      grid-template-columns:
+        38px 1fr;
+
+      gap:
+        14px;
+
+      align-items:
+        center;
+
+      background:
+        var(--soft);
+
+      color:
+        #3B0A2A;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        18px;
+
+      font-size:
+        0.9375rem;
+
+      font-weight:
+        700;
     }
+
 
     .highlight-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--soft-pink);
-      color: var(--magenta);
-      display: grid;
-      place-items: center;
-      font-weight: 900;
+      width:
+        36px;
+
+      height:
+        36px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      background:
+        var(--soft-pink);
+
+      color:
+        var(--magenta);
+
+      border-radius:
+        50%;
+
+      font-weight:
+        900;
     }
 
-    /* PROFILE CARD */
+
+    /* =====================================
+       PROFILE CARD
+    ====================================== */
 
     .profile-card {
-      background: var(--soft);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 34px;
-      text-align: center;
-      box-shadow: 0 16px 40px rgba(24, 39, 75, 0.05);
+      padding:
+        34px;
+
+      background:
+        var(--soft);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        28px;
+
+      text-align:
+        center;
+
+      box-shadow:
+        0 16px 40px
+        rgba(24, 39, 75, 0.05);
     }
+
 
     .portrait-wrap {
-      width: 180px;
-      height: 180px;
-      margin: 0 auto 22px;
-      border-radius: 28px;
-      overflow: hidden;
-      border: 1px solid #F2D8E7;
-      box-shadow: 0 14px 34px rgba(24, 39, 75, 0.09);
-      position: relative;
+      position:
+        relative;
+
+      width:
+        180px;
+
+      height:
+        180px;
+
+      margin:
+        0 auto 22px;
+
+      overflow:
+        hidden;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        28px;
+
+      box-shadow:
+        0 14px 34px
+        rgba(24, 39, 75, 0.09);
     }
+
 
     .portrait-wrap::before {
-      content: "";
-      position: absolute;
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      background: #F8DCE9;
-      top: -16px;
-      left: 15px;
-      z-index: 0;
+      content:
+        "";
+
+      position:
+        absolute;
+
+      width:
+        150px;
+
+      height:
+        150px;
+
+      top:
+        -16px;
+
+      left:
+        15px;
+
+      z-index:
+        0;
+
+      background:
+        #F8DCE9;
+
+      border-radius:
+        50%;
     }
+
 
     .portrait-photo {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: relative;
-      z-index: 1;
+      position:
+        relative;
+
+      z-index:
+        1;
+
+      width:
+        100%;
+
+      height:
+        100%;
+
+      object-fit:
+        cover;
     }
+
 
     .profile-card h2 {
-      font-size: 30px;
-      line-height: 1.1;
-      margin-bottom: 6px;
+      margin-bottom:
+        6px;
+
+      font-size:
+        1.875rem;
+
+      line-height:
+        1.1;
     }
+
 
     .profile-role {
-      color: var(--magenta);
-      font-size: 15px;
-      font-weight: 900;
-      margin-bottom: 12px;
+      margin-bottom:
+        12px;
+
+      color:
+        var(--magenta);
+
+      font-size:
+        0.9375rem;
+
+      font-weight:
+        900;
     }
+
 
     .profile-tags {
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 700;
+      color:
+        var(--muted);
+
+      font-size:
+        0.875rem;
+
+      font-weight:
+        700;
     }
 
-    /* THREE ABOUT CARDS */
+
+    /* =====================================
+       STORY GRID
+    ====================================== */
 
     .story-grid {
-      margin-top: 58px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      margin-top:
+        58px;
+
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap:
+        24px;
     }
+
 
     .story-card {
-      background: #FFFFFF;
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 28px;
-      box-shadow: 0 16px 42px rgba(24, 39, 75, 0.05);
-      min-height: 390px;
+      min-height:
+        390px;
+
+      padding:
+        28px;
+
+      background:
+        #FFFFFF;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        24px;
+
+      box-shadow:
+        0 16px 42px
+        rgba(24, 39, 75, 0.05);
     }
+
 
     .story-heading {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 26px;
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        14px;
+
+      margin-bottom:
+        26px;
     }
+
 
     .story-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      background: var(--soft-pink);
-      color: var(--magenta);
-      display: grid;
-      place-items: center;
-      font-size: 22px;
-      font-weight: 900;
-      flex-shrink: 0;
+      width:
+        48px;
+
+      height:
+        48px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      flex-shrink:
+        0;
+
+      background:
+        var(--soft-pink);
+
+      color:
+        var(--magenta);
+
+      border-radius:
+        14px;
+
+      font-size:
+        1.375rem;
+
+      font-weight:
+        900;
     }
+
 
     .story-card h2 {
-      color: var(--magenta);
-      font-size: 24px;
+      color:
+        var(--magenta);
+
+      font-size:
+        1.5rem;
     }
+
 
     .story-card p {
-      color: var(--body);
-      font-size: 15px;
-      line-height: 1.75;
-      margin-bottom: 14px;
+      margin-bottom:
+        14px;
+
+      color:
+        var(--body);
+
+      font-size:
+        0.9375rem;
+
+      line-height:
+        1.75;
     }
+
 
     .story-divider {
-      width: 42px;
-      height: 4px;
-      background: var(--magenta);
-      border-radius: 999px;
-      margin: 20px 0;
+      width:
+        42px;
+
+      height:
+        4px;
+
+      margin:
+        20px 0;
+
+      background:
+        var(--magenta);
+
+      border-radius:
+        999px;
     }
+
 
     .story-closing {
-      color: var(--dark) !important;
-      font-weight: 900;
+      color:
+        var(--dark) !important;
+
+      font-weight:
+        900;
     }
 
-    /* VALUES */
+
+    /* =====================================
+       VALUES
+    ====================================== */
 
     .value-list {
-      display: grid;
-      gap: 18px;
+      display:
+        grid;
+
+      gap:
+        18px;
     }
+
 
     .value-item {
-      display: grid;
-      grid-template-columns: 38px 1fr;
-      gap: 12px;
-      align-items: start;
+      display:
+        grid;
+
+      grid-template-columns:
+        38px 1fr;
+
+      gap:
+        12px;
+
+      align-items:
+        start;
     }
+
 
     .value-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: var(--soft-pink);
-      color: var(--magenta);
-      display: grid;
-      place-items: center;
-      font-size: 13px;
-      font-weight: 900;
+      width:
+        34px;
+
+      height:
+        34px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      background:
+        var(--soft-pink);
+
+      color:
+        var(--magenta);
+
+      border-radius:
+        50%;
+
+      font-size:
+        0.8125rem;
+
+      font-weight:
+        900;
     }
+
 
     .value-item strong {
-      display: block;
-      font-size: 14px;
-      margin-bottom: 2px;
+      display:
+        block;
+
+      margin-bottom:
+        2px;
+
+      font-size:
+        0.875rem;
     }
+
 
     .value-item span {
-      color: var(--body);
-      font-size: 12px;
-      line-height: 1.55;
+      color:
+        var(--body);
+
+      font-size:
+        0.75rem;
+
+      line-height:
+        1.55;
     }
 
-    /* SKILLS */
+
+    /* =====================================
+       SKILLS
+    ====================================== */
 
     .skill-group {
-      margin-bottom: 20px;
+      margin-bottom:
+        20px;
     }
+
 
     .skill-group strong {
-      display: block;
-      font-size: 14px;
-      margin-bottom: 10px;
+      display:
+        block;
+
+      margin-bottom:
+        10px;
+
+      font-size:
+        0.875rem;
     }
+
 
     .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+      display:
+        flex;
+
+      flex-wrap:
+        wrap;
+
+      gap:
+        8px;
     }
+
 
     .skill-tag {
-      border: 1px solid var(--border);
-      background: var(--soft);
-      color: var(--magenta);
-      border-radius: 999px;
-      padding: 7px 12px;
-      font-size: 11px;
-      font-weight: 800;
+      padding:
+        7px 12px;
+
+      background:
+        var(--soft);
+
+      color:
+        var(--magenta);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        999px;
+
+      font-size:
+        0.6875rem;
+
+      font-weight:
+        800;
     }
+
 
     .skill-note {
-      color: var(--muted) !important;
-      font-size: 12px !important;
-      line-height: 1.55 !important;
-      margin-top: 14px;
+      margin-top:
+        14px;
+
+      color:
+        var(--muted) !important;
+
+      font-size:
+        0.75rem !important;
+
+      line-height:
+        1.55 !important;
     }
 
-    /* DESIGN APPROACH */
+
+    /* =====================================
+       APPROACH
+    ====================================== */
 
     .approach {
-      margin-top: 58px;
-      background: #FFFFFF;
-      border: 1px solid var(--border);
-      border-radius: 32px;
-      padding: 52px 42px;
-      box-shadow: 0 18px 48px rgba(24, 39, 75, 0.05);
-      position: relative;
-      overflow: hidden;
+      position:
+        relative;
+
+      margin-top:
+        58px;
+
+      padding:
+        52px 42px;
+
+      overflow:
+        hidden;
+
+      background:
+        #FFFFFF;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        32px;
+
+      box-shadow:
+        0 18px 48px
+        rgba(24, 39, 75, 0.05);
     }
+
 
     .approach::before {
-      content: "";
-      position: absolute;
-      width: 170px;
-      height: 170px;
-      border-radius: 50%;
-      background: #F8EAF2;
-      right: 70px;
-      top: 36px;
+      content:
+        "";
+
+      position:
+        absolute;
+
+      width:
+        170px;
+
+      height:
+        170px;
+
+      right:
+        70px;
+
+      top:
+        36px;
+
+      background:
+        #F8EAF2;
+
+      border-radius:
+        50%;
     }
+
 
     .approach::after {
-      content: "";
-      position: absolute;
-      width: 62px;
-      height: 62px;
-      border-radius: 50%;
-      background: #F9E7B8;
-      right: 34px;
-      top: 116px;
+      content:
+        "";
+
+      position:
+        absolute;
+
+      width:
+        62px;
+
+      height:
+        62px;
+
+      right:
+        34px;
+
+      top:
+        116px;
+
+      background:
+        #F9E7B8;
+
+      border-radius:
+        50%;
     }
+
 
     .approach-copy {
-      position: relative;
-      z-index: 1;
-      max-width: 760px;
+      position:
+        relative;
+
+      z-index:
+        1;
+
+      max-width:
+        760px;
     }
+
 
     .approach h2 {
-      font-size: clamp(34px, 4vw, 46px);
-      line-height: 1.12;
-      letter-spacing: -1px;
-      margin-bottom: 12px;
+      margin-bottom:
+        12px;
+
+      font-size:
+        clamp(2.125rem, 4vw, 2.875rem);
+
+      line-height:
+        1.12;
+
+      letter-spacing:
+        -1px;
     }
+
 
     .approach-intro {
-      color: var(--body);
-      font-size: 16px;
-      line-height: 1.7;
-      max-width: 720px;
+      max-width:
+        720px;
+
+      color:
+        var(--body);
+
+      font-size:
+        1rem;
+
+      line-height:
+        1.7;
     }
+
 
     .process-grid {
-      position: relative;
-      z-index: 1;
-      margin-top: 34px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      position:
+        relative;
+
+      z-index:
+        1;
+
+      margin-top:
+        34px;
+
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap:
+        20px;
     }
+
 
     .process-card {
-      background: var(--soft);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 22px;
-      min-height: 185px;
+      min-height:
+        185px;
+
+      padding:
+        22px;
+
+      background:
+        var(--soft);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        18px;
     }
+
 
     .process-number {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: var(--magenta);
-      color: #FFFFFF;
-      display: grid;
-      place-items: center;
-      font-size: 12px;
-      font-weight: 900;
-      margin-bottom: 14px;
+      width:
+        38px;
+
+      height:
+        38px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      margin-bottom:
+        14px;
+
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
+
+      border-radius:
+        50%;
+
+      font-size:
+        0.75rem;
+
+      font-weight:
+        900;
     }
+
 
     .process-card h3 {
-      font-size: 19px;
-      margin-bottom: 10px;
+      margin-bottom:
+        10px;
+
+      font-size:
+        1.1875rem;
     }
+
 
     .process-card p {
-      color: var(--body);
-      font-size: 13px;
-      line-height: 1.65;
+      color:
+        var(--body);
+
+      font-size:
+        0.8125rem;
+
+      line-height:
+        1.65;
     }
 
-    /* CTA */
+
+    /* =====================================
+       CTA
+    ====================================== */
 
     .cta {
-      margin-top: 58px;
-      background: var(--magenta);
-      border-radius: 30px;
-      padding: 42px 48px;
-      color: #FFFFFF;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 42px;
-      align-items: center;
-      overflow: hidden;
-      position: relative;
+      position:
+        relative;
+
+      margin-top:
+        58px;
+
+      padding:
+        42px 48px;
+
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr auto;
+
+      gap:
+        42px;
+
+      align-items:
+        center;
+
+      overflow:
+        hidden;
+
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
+
+      border-radius:
+        30px;
     }
+
 
     .cta::before {
-      content: "";
-      position: absolute;
-      width: 210px;
-      height: 210px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      right: -10px;
-      top: -60px;
+      content:
+        "";
+
+      position:
+        absolute;
+
+      width:
+        210px;
+
+      height:
+        210px;
+
+      right:
+        -10px;
+
+      top:
+        -60px;
+
+      background:
+        rgba(255, 255, 255, 0.08);
+
+      border-radius:
+        50%;
     }
+
 
     .cta::after {
-      content: "";
-      position: absolute;
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      background: rgba(243, 194, 79, 0.2);
-      right: 36px;
-      bottom: -58px;
+      content:
+        "";
+
+      position:
+        absolute;
+
+      width:
+        130px;
+
+      height:
+        130px;
+
+      right:
+        36px;
+
+      bottom:
+        -58px;
+
+      background:
+        rgba(243, 194, 79, 0.2);
+
+      border-radius:
+        50%;
     }
+
 
     .cta-copy {
-      position: relative;
-      z-index: 1;
+      position:
+        relative;
+
+      z-index:
+        1;
     }
+
 
     .cta-label {
-      color: var(--gold);
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      margin-bottom: 10px;
+      margin-bottom:
+        10px;
+
+      color:
+        var(--gold);
+
+      font-size:
+        0.75rem;
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        0.8px;
+
+      text-transform:
+        uppercase;
     }
+
 
     .cta h2 {
-      font-size: clamp(30px, 4vw, 42px);
-      line-height: 1.15;
-      max-width: 700px;
-      margin-bottom: 6px;
+      max-width:
+        700px;
+
+      margin-bottom:
+        6px;
+
+      font-size:
+        clamp(1.875rem, 4vw, 2.625rem);
+
+      line-height:
+        1.15;
     }
+
 
     .cta p {
-      font-size: 15px;
-      line-height: 1.65;
-      max-width: 720px;
-      color: #FCE7F3;
+      max-width:
+        720px;
+
+      color:
+        #FCE7F3;
+
+      font-size:
+        0.9375rem;
+
+      line-height:
+        1.65;
     }
+
 
     .cta-actions {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 12px;
-      min-width: 180px;
+      position:
+        relative;
+
+      z-index:
+        1;
+
+      min-width:
+        180px;
+
+      display:
+        grid;
+
+      gap:
+        12px;
     }
+
 
     .cta .btn-primary {
-      background: #FFFFFF;
-      color: var(--magenta);
-      border-color: #FFFFFF;
+      background:
+        #FFFFFF;
+
+      color:
+        var(--magenta);
+
+      border-color:
+        #FFFFFF;
     }
 
-    /* FOOTER */
+
+    /* =====================================
+       FOOTER
+    ====================================== */
 
     footer {
-      margin-top: 62px;
-      border-top: 1px solid var(--border);
-      padding: 34px 10px 0;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      gap: 24px;
-      align-items: center;
-      color: var(--muted);
-      font-size: 13px;
+      margin-top:
+        62px;
+
+      padding:
+        34px 10px 0;
+
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr auto 1fr;
+
+      gap:
+        24px;
+
+      align-items:
+        center;
+
+      color:
+        var(--muted);
+
+      border-top:
+        1px solid var(--border);
+
+      font-size:
+        0.8125rem;
     }
+
 
     .footer-brand {
-      color: var(--magenta);
-      font-size: 24px;
-      font-weight: 800;
+      color:
+        var(--magenta);
+
+      font-size:
+        1.5rem;
+
+      font-weight:
+        800;
     }
+
 
     .footer-links {
-      display: flex;
-      justify-content: flex-end;
-      gap: 24px;
-      font-weight: 700;
+      display:
+        flex;
+
+      justify-content:
+        flex-end;
+
+      gap:
+        24px;
+
+      font-weight:
+        700;
     }
+
+
+    .footer-links a {
+      min-height:
+        44px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+    }
+
 
     .footer-links .active {
-      color: var(--magenta);
-      font-weight: 900;
+      color:
+        var(--magenta);
+
+      font-weight:
+        900;
     }
 
-    /* RESPONSIVE */
 
-    @media (max-width: 1000px) {
-      .navbar,
-      footer {
-        flex-direction: column;
-        align-items: flex-start;
+    /* =====================================
+       BACK TO TOP
+    ====================================== */
+
+    .back-to-top {
+      position:
+        fixed;
+
+      right:
+        24px;
+
+      bottom:
+        24px;
+
+      z-index:
+        9000;
+
+      width:
+        50px;
+
+      height:
+        50px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
+
+      border:
+        0;
+
+      border-radius:
+        50%;
+
+      box-shadow:
+        0 10px 30px
+        rgba(168, 11, 99, 0.25);
+
+      font-size:
+        1.25rem;
+
+      font-weight:
+        900;
+
+      opacity:
+        0;
+
+      visibility:
+        hidden;
+
+      transform:
+        translateY(12px);
+
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0.2s ease;
+    }
+
+
+    .back-to-top.visible {
+      opacity:
+        1;
+
+      visibility:
+        visible;
+
+      transform:
+        translateY(0);
+    }
+
+
+    /* =====================================
+       HIGH CONTRAST
+    ====================================== */
+
+    body.high-contrast {
+      --bg: #FFFFFF;
+      --card: #FFFFFF;
+      --surface: #FFFFFF;
+
+      --soft: #FFFFFF;
+      --soft-pink: #FFF1F7;
+      --soft-purple: #F4F2FF;
+
+      --magenta: #7B0048;
+      --magenta-dark: #580033;
+
+      --gold: #A56600;
+
+      --dark: #000000;
+      --body: #111111;
+      --muted: #303030;
+
+      --border: #555555;
+
+      --focus: #000000;
+
+      --shadow: none;
+    }
+
+
+    body.high-contrast
+    .hero,
+
+    body.high-contrast
+    .profile-card,
+
+    body.high-contrast
+    .story-card,
+
+    body.high-contrast
+    .approach,
+
+    body.high-contrast
+    .process-card,
+
+    body.high-contrast
+    .accessibility-panel {
+      border-width:
+        2px;
+    }
+
+
+    body.high-contrast
+    .highlight-note {
+      color:
+        #000000;
+    }
+
+
+    body.high-contrast
+    .nav-button,
+
+    body.high-contrast
+    .btn-primary,
+
+    body.high-contrast
+    .back-to-top {
+      border:
+        2px solid #000000;
+    }
+
+
+    /* =====================================
+       REDUCED MOTION
+    ====================================== */
+
+    body.reduce-motion *,
+    body.reduce-motion *::before,
+    body.reduce-motion *::after {
+      animation-duration:
+        0.01ms !important;
+
+      animation-iteration-count:
+        1 !important;
+
+      transition-duration:
+        0.01ms !important;
+
+      scroll-behavior:
+        auto !important;
+    }
+
+
+    body.reduce-motion
+    .btn-primary:hover,
+
+    body.reduce-motion
+    .btn-secondary:hover {
+      transform:
+        none;
+    }
+
+
+    @media
+    (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior:
+          auto;
       }
 
-      .nav-links,
-      .footer-links {
-        flex-wrap: wrap;
-        gap: 18px;
+
+      *,
+      *::before,
+      *::after {
+        animation-duration:
+          0.01ms !important;
+
+        animation-iteration-count:
+          1 !important;
+
+        transition-duration:
+          0.01ms !important;
+
+        scroll-behavior:
+          auto !important;
       }
+
+
+      .btn-primary:hover,
+      .btn-secondary:hover {
+        transform:
+          none;
+      }
+
+    }
+
+
+    /* =====================================
+       RESPONSIVE
+    ====================================== */
+
+    @media
+    (max-width: 1180px) {
+
+      .navbar {
+        flex-direction:
+          column;
+
+        align-items:
+          flex-start;
+
+        padding:
+          18px 0 22px;
+      }
+
+
+      .nav-right {
+        width:
+          100%;
+
+        justify-content:
+          space-between;
+
+        flex-wrap:
+          wrap;
+      }
+
+
+      .nav-links {
+        flex-wrap:
+          wrap;
+      }
+
+    }
+
+
+    @media
+    (max-width: 1000px) {
 
       .hero,
       .story-grid,
       .process-grid,
       .cta {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
       }
+
 
       .hero {
-        padding: 36px 26px;
+        padding:
+          36px 26px;
       }
 
+
       .profile-card {
-        max-width: 480px;
-        width: 100%;
+        width:
+          100%;
+
+        max-width:
+          480px;
       }
+
 
       .approach::before,
       .approach::after {
-        opacity: 0.45;
+        opacity:
+          0.45;
       }
+
 
       .cta-actions {
-        display: flex;
-        flex-wrap: wrap;
+        display:
+          flex;
+
+        flex-wrap:
+          wrap;
       }
+
 
       footer {
-        display: flex;
-        gap: 18px;
+        display:
+          flex;
+
+        flex-direction:
+          column;
+
+        align-items:
+          flex-start;
+
+        gap:
+          18px;
       }
+
+
+      .footer-links {
+        justify-content:
+          flex-start;
+
+        flex-wrap:
+          wrap;
+
+        gap:
+          12px 18px;
+      }
+
     }
 
-    @media (max-width: 640px) {
+
+    @media
+    (max-width: 760px) {
+
       .page {
-        width: min(100% - 22px, 1280px);
+        width:
+          min(100% - 22px, 1280px);
       }
 
-      .hero h1 {
-        font-size: 40px;
+
+      .nav-right {
+        display:
+          grid;
+
+        gap:
+          16px;
       }
+
+
+      .nav-links {
+        flex-wrap:
+          wrap;
+
+        gap:
+          10px 18px;
+      }
+
+
+      .nav-tools {
+        width:
+          100%;
+
+        justify-content:
+          space-between;
+      }
+
+
+      .accessibility-panel {
+        top:
+          16px;
+
+        right:
+          16px;
+      }
+
+    }
+
+
+    @media
+    (max-width: 640px) {
+
+      .hero h1 {
+        font-size:
+          2.5rem;
+      }
+
 
       .approach,
       .story-card {
-        padding: 24px;
+        padding:
+          24px;
       }
+
 
       .cta {
-        padding: 32px 24px;
+        padding:
+          32px 24px;
       }
+
+
+      .back-to-top {
+        right:
+          16px;
+
+        bottom:
+          16px;
+      }
+
     }
+
   </style>
+
 </head>
 
+
 <body>
-  <main class="page">
 
-    <!-- NAVBAR -->
-    <nav class="navbar" aria-label="Main navigation">
-      <a href="index.html" aria-label="Linda Laryea portfolio home">
-        <div class="brand-name">Linda Laryea</div>
-      </a>
 
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="case-studies.html">Case Studies</a>
-        <a class="active" href="about.html">About Me</a>
-        <a href="cv.html">CV</a>
-        <a class="nav-button" href="contact.html">Let’s Connect</a>
-      </div>
-    </nav>
+  <!-- =====================================
+       SKIP LINK
+  ====================================== -->
 
-    <!-- HERO -->
-    <section class="hero">
-      <div>
-        <div class="eyebrow-row">
-          <span class="gold-line"></span>
-          <span class="eyebrow">About Me</span>
-        </div>
+  <a
+    class="skip-link"
+    href="#main-content"
+    data-i18n="skip"
+  >
+    Skip to main content
+  </a>
 
-        <h1>
-          Designing with empathy, research, and
-          <span class="accent">accessibility</span>
-          at the centre.
-        </h1>
 
-        <p class="hero-copy">
-          I’m a UX Researcher and Interaction Designer with a Master’s degree
-          in Cognitive Science and a Bachelor’s degree in Psychology. My work
-          is shaped by a deep interest in how people think, behave, and
-          interact with digital systems.
-        </p>
+  <div
+    id="a11yStatus"
+    class="sr-only"
+    role="status"
+    aria-live="polite"
+  ></div>
 
-        <div class="highlight-note">
-          <div class="highlight-icon">♡</div>
-          <div>
-            My goal is to create digital experiences that feel clear,
-            inclusive, and easy to use for real people in real contexts.
-          </div>
-        </div>
-      </div>
 
-      <aside class="profile-card">
-        <div class="portrait-wrap">
-          <img
-            src="linda-profile.png"
-            alt="Portrait of Linda Laryea"
-            class="portrait-photo"
-          />
-        </div>
+  <div class="page">
 
-        <h2>Linda Laryea</h2>
 
-        <div class="profile-role">
-          UX Researcher & Interaction Designer
-        </div>
+    <!-- =====================================
+         NAVIGATION
+    ====================================== -->
 
-        <div class="profile-tags">
-          Cognitive Science • Psychology • Accessibility
-        </div>
-      </aside>
-    </section>
+    <header data-no-read>
 
-    <!-- STORY / VALUES / SKILLS -->
-    <section class="story-grid">
+      <nav
+        class="navbar"
+        aria-label="Main navigation"
+        data-i18n-aria-label="mainNavigation"
+      >
 
-      <article class="story-card">
-        <div class="story-heading">
-          <div class="story-icon">▣</div>
-          <h2>My Story</h2>
-        </div>
+        <a
+          href="index.html"
+          aria-label="Linda Laryea portfolio home"
+        >
 
-        <p>
-          My academic journey in Cognitive Science and Psychology gave me a
-          strong foundation in how people perceive, think, learn, and make
-          decisions.
-        </p>
-
-        <p>
-          This understanding fuels my passion for creating user-centred
-          designs that are intuitive, accessible, and meaningful.
-        </p>
-
-        <div class="story-divider"></div>
-
-        <p class="story-closing">
-          I believe great design starts with deep empathy and ends with
-          meaningful impact.
-        </p>
-      </article>
-
-      <article class="story-card">
-        <div class="story-heading">
-          <div class="story-icon">♡</div>
-          <h2>My Design Values</h2>
-        </div>
-
-        <div class="value-list">
-          <div class="value-item">
-            <div class="value-icon">♡</div>
-            <div>
-              <strong>Human-Centred</strong>
-              <span>I design for real human needs, not just business goals.</span>
-            </div>
+          <div class="brand-name">
+            Linda Laryea
           </div>
 
-          <div class="value-item">
-            <div class="value-icon">✣</div>
-            <div>
-              <strong>Accessible by Design</strong>
-              <span>I believe everyone deserves equal access to digital tools.</span>
-            </div>
-          </div>
-
-          <div class="value-item">
-            <div class="value-icon">↗</div>
-            <div>
-              <strong>Evidence-Based</strong>
-              <span>I use research and data to inform better design decisions.</span>
-            </div>
-          </div>
-
-          <div class="value-item">
-            <div class="value-icon">✦</div>
-            <div>
-              <strong>Clarity & Simplicity</strong>
-              <span>I create experiences that are easy to understand and use.</span>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="story-card">
-        <div class="story-heading">
-          <div class="story-icon">✦</div>
-          <h2>Skills & Tools</h2>
-        </div>
-
-        <div class="skill-group">
-          <strong>UX Research</strong>
-          <div class="skill-tags">
-            <span class="skill-tag">Interviews</span>
-            <span class="skill-tag">Personas</span>
-            <span class="skill-tag">Testing</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <strong>Interaction Design</strong>
-          <div class="skill-tags">
-            <span class="skill-tag">Wireframes</span>
-            <span class="skill-tag">Prototypes</span>
-            <span class="skill-tag">Flows</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <strong>Tools</strong>
-          <div class="skill-tags">
-            <span class="skill-tag">Figma</span>
-            <span class="skill-tag">Miro</span>
-            <span class="skill-tag">Maze</span>
-            <span class="skill-tag">FigJam</span>
-          </div>
-        </div>
-
-        <p class="skill-note">
-          Combining research, psychology, and visual design to create thoughtful
-          digital experiences.
-        </p>
-      </article>
-
-    </section>
-
-    <!-- APPROACH -->
-    <section class="approach">
-      <div class="approach-copy">
-        <div class="eyebrow-row">
-          <span class="gold-line"></span>
-          <span class="eyebrow">My Approach</span>
-        </div>
-
-        <h2>
-          How I turn research into
-          <span class="accent">meaningful design</span>
-        </h2>
-
-        <p class="approach-intro">
-          My process begins with understanding real people, then translating
-          insights into clear, accessible, and usable digital experiences.
-        </p>
-      </div>
-
-      <div class="process-grid">
-        <article class="process-card">
-          <div class="process-number">01</div>
-          <h3>Understand</h3>
-          <p>
-            I begin by learning about users, their goals, frustrations,
-            behaviours, and real-life context.
-          </p>
-        </article>
-
-        <article class="process-card">
-          <div class="process-number">02</div>
-          <h3>Define</h3>
-          <p>
-            I identify the core problem, key user needs, and design
-            opportunities before jumping into solutions.
-          </p>
-        </article>
-
-        <article class="process-card">
-          <div class="process-number">03</div>
-          <h3>Design</h3>
-          <p>
-            I create flows, wireframes, and interfaces that reduce friction and
-            make tasks easier to complete.
-          </p>
-        </article>
-
-        <article class="process-card">
-          <div class="process-number">04</div>
-          <h3>Test</h3>
-          <p>
-            I test ideas with users, refine interactions, and improve clarity,
-            accessibility, and usability.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta">
-      <div class="cta-copy">
-        <div class="cta-label">Let’s Work Together</div>
-
-        <h2>
-          Interested in thoughtful, accessible design?
-        </h2>
-
-        <p>
-          I’m open to UX research, interaction design, product design
-          opportunities, and meaningful collaborations where human behaviour,
-          clarity, and accessibility matter.
-        </p>
-      </div>
-
-      <div class="cta-actions">
-        <a class="btn-primary" href="contact.html">
-          Let’s Connect
         </a>
 
-        <a class="btn-secondary" href="case-studies.html">
-          View Case Studies
-        </a>
-      </div>
-    </section>
 
-    <!-- FOOTER -->
-    <footer>
-      <div>
-        <div class="footer-brand">Linda Laryea</div>
+        <div class="nav-right">
+
+
+          <div class="nav-links">
+
+            <a
+              href="index.html"
+              data-i18n="home"
+            >
+              Home
+            </a>
+
+
+            <a
+              href="case-studies.html"
+              data-i18n="caseStudies"
+            >
+              Case Studies
+            </a>
+
+
+            <a
+              class="active"
+              href="about.html"
+              aria-current="page"
+              data-i18n="aboutMe"
+            >
+              About Me
+            </a>
+
+
+            <a
+              href="cv.html"
+              data-i18n="cv"
+            >
+              CV
+            </a>
+
+
+            <a
+              class="nav-button"
+              href="contact.html"
+              data-i18n="letsConnect"
+            >
+              Let’s Connect
+            </a>
+
+          </div>
+
+
+          <!-- LANGUAGE + ACCESSIBILITY -->
+
+          <div class="nav-tools">
+
+
+            <div
+              class="language-switcher"
+              role="group"
+              aria-label="Choose language"
+              data-i18n-aria-label="chooseLanguage"
+            >
+
+              <button
+                type="button"
+                id="languageEN"
+                class="language-button active"
+                aria-pressed="true"
+                aria-label="Switch to English"
+                data-i18n-aria-label="switchEnglish"
+              >
+                EN
+              </button>
+
+
+              <button
+                type="button"
+                id="languageDE"
+                class="language-button"
+                aria-pressed="false"
+                aria-label="Switch to German"
+                data-i18n-aria-label="switchGerman"
+              >
+                DE
+              </button>
+
+            </div>
+
+
+            <button
+              type="button"
+              id="accessibilityButton"
+              class="accessibility-button"
+              aria-expanded="false"
+              aria-controls="accessibilityPanel"
+            >
+
+              <span aria-hidden="true">
+                Aa
+              </span>
+
+              <span data-i18n="accessibility">
+                Accessibility
+              </span>
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </nav>
+
+    </header>
+
+
+    <!-- =====================================
+         ACCESSIBILITY PANEL
+    ====================================== -->
+
+    <aside
+      id="accessibilityPanel"
+      class="accessibility-panel"
+      aria-labelledby="accessibilityPanelTitle"
+      hidden
+      data-no-read
+    >
+
+
+      <div class="a11y-panel-header">
+
         <div>
-          © 2026 Linda Laryea. Designed with research, empathy, and accessibility in mind.
+
+          <h2
+            id="accessibilityPanelTitle"
+            data-i18n="accessibility"
+          >
+            Accessibility
+          </h2>
+
+
+          <p data-i18n="accessibilityDescription">
+            Adjust the page to suit your needs.
+          </p>
+
         </div>
+
+
+        <button
+          type="button"
+          id="closeAccessibility"
+          class="panel-close"
+          aria-label="Close accessibility settings"
+          data-i18n-aria-label="closeAccessibility"
+        >
+          ×
+        </button>
+
       </div>
+
+
+      <!-- TEXT SIZE -->
+
+      <div class="a11y-group">
+
+        <span
+          class="a11y-label"
+          data-i18n="textSize"
+        >
+          Text size
+        </span>
+
+
+        <div
+          class="text-size-controls"
+          role="group"
+          aria-label="Text size"
+          data-i18n-aria-label="textSize"
+        >
+
+          <button
+            type="button"
+            class="text-size-button"
+            data-size="small"
+            aria-label="Decrease text size"
+            data-i18n-aria-label="decreaseText"
+          >
+            A−
+          </button>
+
+
+          <button
+            type="button"
+            class="text-size-button active"
+            data-size="default"
+            aria-label="Default text size"
+            data-i18n-aria-label="defaultText"
+          >
+            A
+          </button>
+
+
+          <button
+            type="button"
+            class="text-size-button"
+            data-size="large"
+            aria-label="Increase text size"
+            data-i18n-aria-label="increaseText"
+          >
+            A+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- CONTRAST -->
+
+      <div class="a11y-group">
+
+        <div class="toggle-row">
+
+          <div class="toggle-copy">
+
+            <strong data-i18n="highContrast">
+              High contrast
+            </strong>
+
+
+            <span data-i18n="highContrastDescription">
+              Increase visual contrast.
+            </span>
+
+          </div>
+
+
+          <label class="switch">
+
+            <input
+              id="contrastToggle"
+              type="checkbox"
+              aria-label="High contrast"
+              data-i18n-aria-label="highContrast"
+            />
+
+            <span
+              class="switch-track"
+              aria-hidden="true"
+            ></span>
+
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <!-- MOTION -->
+
+      <div class="a11y-group">
+
+        <div class="toggle-row">
+
+          <div class="toggle-copy">
+
+            <strong data-i18n="reduceMotion">
+              Reduce motion
+            </strong>
+
+
+            <span data-i18n="reduceMotionDescription">
+              Minimise animation and movement.
+            </span>
+
+          </div>
+
+
+          <label class="switch">
+
+            <input
+              id="motionToggle"
+              type="checkbox"
+              aria-label="Reduce motion"
+              data-i18n-aria-label="reduceMotion"
+            />
+
+            <span
+              class="switch-track"
+              aria-hidden="true"
+            ></span>
+
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <!-- READ ALOUD -->
+
+      <div class="a11y-group">
+
+        <span
+          class="a11y-label"
+          data-i18n="readPage"
+        >
+          Read page aloud
+        </span>
+
+
+        <div class="read-controls">
+
+          <button
+            type="button"
+            id="readPlay"
+            class="read-button primary-read"
+            data-i18n="play"
+          >
+            Play
+          </button>
+
+
+          <button
+            type="button"
+            id="readPause"
+            class="read-button"
+            data-i18n="pause"
+          >
+            Pause
+          </button>
+
+
+          <button
+            type="button"
+            id="readStop"
+            class="read-button"
+            data-i18n="stop"
+          >
+            Stop
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- RESET -->
+
+      <div class="a11y-group">
+
+        <button
+          type="button"
+          id="resetAccessibility"
+          class="reset-button"
+          data-i18n="resetSettings"
+        >
+          Reset accessibility settings
+        </button>
+
+      </div>
+
+    </aside>
+
+
+    <!-- =====================================
+         MAIN
+    ====================================== -->
+
+    <main
+      id="main-content"
+      tabindex="-1"
+    >
+
+
+      <!-- =================================
+           HERO
+      ================================== -->
+
+      <section
+        class="hero readable-content"
+        aria-labelledby="about-heading"
+      >
+
+        <div>
+
+          <div class="eyebrow-row">
+
+            <span
+              class="gold-line"
+              aria-hidden="true"
+            ></span>
+
+            <span
+              class="eyebrow"
+              data-i18n="aboutMe"
+            >
+              About Me
+            </span>
+
+          </div>
+
+
+          <h1 id="about-heading">
+
+            <span data-i18n="heroTitleOne">
+              Designing with empathy, research, and
+            </span>
+
+            <span
+              class="accent"
+              data-i18n="heroHighlight"
+            >
+              accessibility
+            </span>
+
+            <span data-i18n="heroTitleTwo">
+              at the centre.
+            </span>
+
+          </h1>
+
+
+          <p
+            class="hero-copy"
+            data-i18n="heroCopy"
+          >
+            I’m a UX Researcher and Interaction Designer with a
+            Master’s degree in Cognitive Science and a Bachelor’s
+            degree in Psychology. My work is shaped by a deep interest
+            in how people think, behave, and interact with digital systems.
+          </p>
+
+
+          <div class="highlight-note">
+
+            <div
+              class="highlight-icon"
+              aria-hidden="true"
+            >
+              ♡
+            </div>
+
+
+            <div data-i18n="heroNote">
+              My goal is to create digital experiences that feel clear,
+              inclusive, and easy to use for real people in real contexts.
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- PROFILE -->
+
+        <aside class="profile-card">
+
+          <div class="portrait-wrap">
+
+            <img
+              src="linda-profile.png"
+              alt="Portrait of Linda Laryea"
+              data-i18n-alt="portraitAlt"
+              class="portrait-photo"
+            />
+
+          </div>
+
+
+          <h2>
+            Linda Laryea
+          </h2>
+
+
+          <div
+            class="profile-role"
+            data-i18n="profileRole"
+          >
+            UX Researcher & Interaction Designer
+          </div>
+
+
+          <div
+            class="profile-tags"
+            data-i18n="profileTags"
+          >
+            Cognitive Science • Psychology • Accessibility
+          </div>
+
+        </aside>
+
+      </section>
+
+
+      <!-- =================================
+           STORY / VALUES / SKILLS
+      ================================== -->
+
+      <section
+        class="story-grid readable-content"
+        aria-label="About Linda Laryea"
+        data-i18n-aria-label="aboutSection"
+      >
+
+
+        <!-- STORY -->
+
+        <article class="story-card">
+
+          <div class="story-heading">
+
+            <div
+              class="story-icon"
+              aria-hidden="true"
+            >
+              ▣
+            </div>
+
+
+            <h2 data-i18n="myStory">
+              My Story
+            </h2>
+
+          </div>
+
+
+          <p data-i18n="storyOne">
+            My academic journey in Cognitive Science and Psychology
+            gave me a strong foundation in how people perceive,
+            think, learn, and make decisions.
+          </p>
+
+
+          <p data-i18n="storyTwo">
+            This understanding fuels my passion for creating
+            user-centred designs that are intuitive,
+            accessible, and meaningful.
+          </p>
+
+
+          <div
+            class="story-divider"
+            aria-hidden="true"
+          ></div>
+
+
+          <p
+            class="story-closing"
+            data-i18n="storyClosing"
+          >
+            I believe great design starts with deep empathy
+            and ends with meaningful impact.
+          </p>
+
+        </article>
+
+
+        <!-- VALUES -->
+
+        <article class="story-card">
+
+          <div class="story-heading">
+
+            <div
+              class="story-icon"
+              aria-hidden="true"
+            >
+              ♡
+            </div>
+
+
+            <h2 data-i18n="designValues">
+              My Design Values
+            </h2>
+
+          </div>
+
+
+          <div class="value-list">
+
+
+            <div class="value-item">
+
+              <div
+                class="value-icon"
+                aria-hidden="true"
+              >
+                ♡
+              </div>
+
+              <div>
+
+                <strong data-i18n="humanCentred">
+                  Human-Centred
+                </strong>
+
+                <span data-i18n="humanCentredText">
+                  I design for real human needs,
+                  not just business goals.
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="value-item">
+
+              <div
+                class="value-icon"
+                aria-hidden="true"
+              >
+                ✣
+              </div>
+
+              <div>
+
+                <strong data-i18n="accessibleByDesign">
+                  Accessible by Design
+                </strong>
+
+                <span data-i18n="accessibleByDesignText">
+                  I believe everyone deserves equal
+                  access to digital tools.
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="value-item">
+
+              <div
+                class="value-icon"
+                aria-hidden="true"
+              >
+                ↗
+              </div>
+
+              <div>
+
+                <strong data-i18n="evidenceBased">
+                  Evidence-Based
+                </strong>
+
+                <span data-i18n="evidenceBasedText">
+                  I use research and data to inform
+                  better design decisions.
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="value-item">
+
+              <div
+                class="value-icon"
+                aria-hidden="true"
+              >
+                ✦
+              </div>
+
+              <div>
+
+                <strong data-i18n="clarity">
+                  Clarity & Simplicity
+                </strong>
+
+                <span data-i18n="clarityText">
+                  I create experiences that are
+                  easy to understand and use.
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- SKILLS -->
+
+        <article class="story-card">
+
+          <div class="story-heading">
+
+            <div
+              class="story-icon"
+              aria-hidden="true"
+            >
+              ✦
+            </div>
+
+
+            <h2 data-i18n="skillsTools">
+              Skills & Tools
+            </h2>
+
+          </div>
+
+
+          <div class="skill-group">
+
+            <strong>
+              UX Research
+            </strong>
+
+
+            <div class="skill-tags">
+
+              <span
+                class="skill-tag"
+                data-i18n="interviews"
+              >
+                Interviews
+              </span>
+
+              <span
+                class="skill-tag"
+                data-i18n="personas"
+              >
+                Personas
+              </span>
+
+              <span
+                class="skill-tag"
+                data-i18n="testing"
+              >
+                Testing
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="skill-group">
+
+            <strong>
+              Interaction Design
+            </strong>
+
+
+            <div class="skill-tags">
+
+              <span
+                class="skill-tag"
+                data-i18n="wireframes"
+              >
+                Wireframes
+              </span>
+
+              <span
+                class="skill-tag"
+                data-i18n="prototypes"
+              >
+                Prototypes
+              </span>
+
+              <span
+                class="skill-tag"
+                data-i18n="flows"
+              >
+                Flows
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="skill-group">
+
+            <strong data-i18n="tools">
+              Tools
+            </strong>
+
+
+            <div class="skill-tags">
+
+              <span class="skill-tag">
+                Figma
+              </span>
+
+              <span class="skill-tag">
+                Miro
+              </span>
+
+              <span class="skill-tag">
+                Maze
+              </span>
+
+              <span class="skill-tag">
+                FigJam
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <p
+            class="skill-note"
+            data-i18n="skillsNote"
+          >
+            Combining research, psychology, and visual design
+            to create thoughtful digital experiences.
+          </p>
+
+        </article>
+
+      </section>
+
+
+      <!-- =================================
+           APPROACH
+      ================================== -->
+
+      <section
+        class="approach readable-content"
+        aria-labelledby="approach-heading"
+      >
+
+        <div class="approach-copy">
+
+
+          <div class="eyebrow-row">
+
+            <span
+              class="gold-line"
+              aria-hidden="true"
+            ></span>
+
+            <span
+              class="eyebrow"
+              data-i18n="myApproach"
+            >
+              My Approach
+            </span>
+
+          </div>
+
+
+          <h2 id="approach-heading">
+
+            <span data-i18n="approachTitleOne">
+              How I turn research into
+            </span>
+
+            <span
+              class="accent"
+              data-i18n="approachHighlight"
+            >
+              meaningful design
+            </span>
+
+          </h2>
+
+
+          <p
+            class="approach-intro"
+            data-i18n="approachIntro"
+          >
+            My process begins with understanding real people,
+            then translating insights into clear, accessible,
+            and usable digital experiences.
+          </p>
+
+        </div>
+
+
+        <div class="process-grid">
+
+
+          <article class="process-card">
+
+            <div
+              class="process-number"
+              aria-hidden="true"
+            >
+              01
+            </div>
+
+
+            <h3 data-i18n="understand">
+              Understand
+            </h3>
+
+
+            <p data-i18n="understandText">
+              I begin by learning about users, their goals,
+              frustrations, behaviours, and real-life context.
+            </p>
+
+          </article>
+
+
+          <article class="process-card">
+
+            <div
+              class="process-number"
+              aria-hidden="true"
+            >
+              02
+            </div>
+
+
+            <h3 data-i18n="define">
+              Define
+            </h3>
+
+
+            <p data-i18n="defineText">
+              I identify the core problem, key user needs,
+              and design opportunities before jumping into solutions.
+            </p>
+
+          </article>
+
+
+          <article class="process-card">
+
+            <div
+              class="process-number"
+              aria-hidden="true"
+            >
+              03
+            </div>
+
+
+            <h3 data-i18n="design">
+              Design
+            </h3>
+
+
+            <p data-i18n="designText">
+              I create flows, wireframes, and interfaces that
+              reduce friction and make tasks easier to complete.
+            </p>
+
+          </article>
+
+
+          <article class="process-card">
+
+            <div
+              class="process-number"
+              aria-hidden="true"
+            >
+              04
+            </div>
+
+
+            <h3 data-i18n="test">
+              Test
+            </h3>
+
+
+            <p data-i18n="testText">
+              I test ideas with users, refine interactions,
+              and improve clarity, accessibility, and usability.
+            </p>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================
+           CTA
+      ================================== -->
+
+      <section
+        class="cta readable-content"
+        aria-labelledby="cta-heading"
+      >
+
+        <div class="cta-copy">
+
+
+          <div
+            class="cta-label"
+            data-i18n="workTogether"
+          >
+            Let’s Work Together
+          </div>
+
+
+          <h2
+            id="cta-heading"
+            data-i18n="ctaHeading"
+          >
+            Interested in thoughtful,
+            accessible design?
+          </h2>
+
+
+          <p data-i18n="ctaCopy">
+            I’m open to UX research, interaction design,
+            product design opportunities, and meaningful
+            collaborations where human behaviour, clarity,
+            and accessibility matter.
+          </p>
+
+        </div>
+
+
+        <div
+          class="cta-actions"
+          data-no-read
+        >
+
+          <a
+            class="btn-primary"
+            href="contact.html"
+            data-i18n="letsConnect"
+          >
+            Let’s Connect
+          </a>
+
+
+          <a
+            class="btn-secondary"
+            href="case-studies.html"
+            data-i18n="viewCaseStudies"
+          >
+            View Case Studies
+          </a>
+
+        </div>
+
+      </section>
+
+    </main>
+
+
+    <!-- =====================================
+         FOOTER
+    ====================================== -->
+
+    <footer data-no-read>
+
+      <div>
+
+        <div class="footer-brand">
+          Linda Laryea
+        </div>
+
+
+        <div data-i18n="footerCopy">
+          © 2026 Linda Laryea. Designed with research,
+          empathy, and accessibility in mind.
+        </div>
+
+      </div>
+
 
       <div></div>
 
+
       <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="case-studies.html">Case Studies</a>
-        <a class="active" href="about.html">About Me</a>
-        <a href="cv.html">CV</a>
-        <a href="contact.html">Contact</a>
+
+        <a
+          href="index.html"
+          data-i18n="home"
+        >
+          Home
+        </a>
+
+
+        <a
+          href="case-studies.html"
+          data-i18n="caseStudies"
+        >
+          Case Studies
+        </a>
+
+
+        <a
+          class="active"
+          href="about.html"
+          data-i18n="aboutMe"
+        >
+          About Me
+        </a>
+
+
+        <a
+          href="cv.html"
+          data-i18n="cv"
+        >
+          CV
+        </a>
+
+
+        <a
+          href="contact.html"
+          data-i18n="contact"
+        >
+          Contact
+        </a>
+
       </div>
+
     </footer>
 
-  </main>
+  </div>
+
+
+  <!-- =====================================
+       BACK TO TOP
+  ====================================== -->
+
+  <button
+    type="button"
+    id="backToTop"
+    class="back-to-top"
+    aria-label="Back to top"
+    data-i18n-aria-label="backToTop"
+    data-no-read
+  >
+    ↑
+  </button>
+
+
+  <!-- =====================================
+       JAVASCRIPT
+  ====================================== -->
+
+  <script>
+
+    /* =====================================
+       TRANSLATIONS
+    ====================================== */
+
+    const translations = {
+
+      en: {
+
+        pageTitle:
+          "About Me | Linda Laryea",
+
+        metaDescription:
+          "About Linda Laryea, UX Researcher and Interaction Designer with a background in Cognitive Science and Psychology.",
+
+        skip:
+          "Skip to main content",
+
+        mainNavigation:
+          "Main navigation",
+
+        chooseLanguage:
+          "Choose language",
+
+        switchEnglish:
+          "Switch to English",
+
+        switchGerman:
+          "Switch to German",
+
+        home:
+          "Home",
+
+        caseStudies:
+          "Case Studies",
+
+        aboutMe:
+          "About Me",
+
+        cv:
+          "CV",
+
+        letsConnect:
+          "Let’s Connect",
+
+        contact:
+          "Contact",
+
+        accessibility:
+          "Accessibility",
+
+        accessibilityDescription:
+          "Adjust the page to suit your needs.",
+
+        closeAccessibility:
+          "Close accessibility settings",
+
+        textSize:
+          "Text size",
+
+        decreaseText:
+          "Decrease text size",
+
+        defaultText:
+          "Default text size",
+
+        increaseText:
+          "Increase text size",
+
+        highContrast:
+          "High contrast",
+
+        highContrastDescription:
+          "Increase visual contrast.",
+
+        reduceMotion:
+          "Reduce motion",
+
+        reduceMotionDescription:
+          "Minimise animation and movement.",
+
+        readPage:
+          "Read page aloud",
+
+        play:
+          "Play",
+
+        pause:
+          "Pause",
+
+        stop:
+          "Stop",
+
+        resetSettings:
+          "Reset accessibility settings",
+
+        heroTitleOne:
+          "Designing with empathy, research, and",
+
+        heroHighlight:
+          "accessibility",
+
+        heroTitleTwo:
+          "at the centre.",
+
+        heroCopy:
+          "I’m a UX Researcher and Interaction Designer with a Master’s degree in Cognitive Science and a Bachelor’s degree in Psychology. My work is shaped by a deep interest in how people think, behave, and interact with digital systems.",
+
+        heroNote:
+          "My goal is to create digital experiences that feel clear, inclusive, and easy to use for real people in real contexts.",
+
+        portraitAlt:
+          "Portrait of Linda Laryea",
+
+        profileRole:
+          "UX Researcher & Interaction Designer",
+
+        profileTags:
+          "Cognitive Science • Psychology • Accessibility",
+
+        aboutSection:
+          "About Linda Laryea",
+
+        myStory:
+          "My Story",
+
+        storyOne:
+          "My academic journey in Cognitive Science and Psychology gave me a strong foundation in how people perceive, think, learn, and make decisions.",
+
+        storyTwo:
+          "This understanding fuels my passion for creating user-centred designs that are intuitive, accessible, and meaningful.",
+
+        storyClosing:
+          "I believe great design starts with deep empathy and ends with meaningful impact.",
+
+        designValues:
+          "My Design Values",
+
+        humanCentred:
+          "Human-Centred",
+
+        humanCentredText:
+          "I design for real human needs, not just business goals.",
+
+        accessibleByDesign:
+          "Accessible by Design",
+
+        accessibleByDesignText:
+          "I believe everyone deserves equal access to digital tools.",
+
+        evidenceBased:
+          "Evidence-Based",
+
+        evidenceBasedText:
+          "I use research and data to inform better design decisions.",
+
+        clarity:
+          "Clarity & Simplicity",
+
+        clarityText:
+          "I create experiences that are easy to understand and use.",
+
+        skillsTools:
+          "Skills & Tools",
+
+        interviews:
+          "Interviews",
+
+        personas:
+          "Personas",
+
+        testing:
+          "Testing",
+
+        wireframes:
+          "Wireframes",
+
+        prototypes:
+          "Prototypes",
+
+        flows:
+          "Flows",
+
+        tools:
+          "Tools",
+
+        skillsNote:
+          "Combining research, psychology, and visual design to create thoughtful digital experiences.",
+
+        myApproach:
+          "My Approach",
+
+        approachTitleOne:
+          "How I turn research into",
+
+        approachHighlight:
+          "meaningful design",
+
+        approachIntro:
+          "My process begins with understanding real people, then translating insights into clear, accessible, and usable digital experiences.",
+
+        understand:
+          "Understand",
+
+        understandText:
+          "I begin by learning about users, their goals, frustrations, behaviours, and real-life context.",
+
+        define:
+          "Define",
+
+        defineText:
+          "I identify the core problem, key user needs, and design opportunities before jumping into solutions.",
+
+        design:
+          "Design",
+
+        designText:
+          "I create flows, wireframes, and interfaces that reduce friction and make tasks easier to complete.",
+
+        test:
+          "Test",
+
+        testText:
+          "I test ideas with users, refine interactions, and improve clarity, accessibility, and usability.",
+
+        workTogether:
+          "Let’s Work Together",
+
+        ctaHeading:
+          "Interested in thoughtful, accessible design?",
+
+        ctaCopy:
+          "I’m open to UX research, interaction design, product design opportunities, and meaningful collaborations where human behaviour, clarity, and accessibility matter.",
+
+        viewCaseStudies:
+          "View Case Studies",
+
+        footerCopy:
+          "© 2026 Linda Laryea. Designed with research, empathy, and accessibility in mind.",
+
+        backToTop:
+          "Back to top",
+
+        languageChanged:
+          "Language changed to English.",
+
+        settingsReset:
+          "Accessibility settings reset.",
+
+        contrastEnabled:
+          "High contrast enabled.",
+
+        contrastDisabled:
+          "High contrast disabled.",
+
+        motionEnabled:
+          "Reduced motion enabled.",
+
+        motionDisabled:
+          "Reduced motion disabled.",
+
+        readingStarted:
+          "Reading started.",
+
+        readingPaused:
+          "Reading paused.",
+
+        readingResumed:
+          "Reading resumed.",
+
+        readingStopped:
+          "Reading stopped.",
+
+        readUnsupported:
+          "Read aloud is not supported by this browser."
+      },
+
+
+      de: {
+
+        pageTitle:
+          "Über mich | Linda Laryea",
+
+        metaDescription:
+          "Über Linda Laryea, UX Researcherin und Interaction Designerin mit Hintergrund in Kognitionswissenschaft und Psychologie.",
+
+        skip:
+          "Zum Hauptinhalt springen",
+
+        mainNavigation:
+          "Hauptnavigation",
+
+        chooseLanguage:
+          "Sprache auswählen",
+
+        switchEnglish:
+          "Auf Englisch wechseln",
+
+        switchGerman:
+          "Auf Deutsch wechseln",
+
+        home:
+          "Startseite",
+
+        caseStudies:
+          "Fallstudien",
+
+        aboutMe:
+          "Über mich",
+
+        cv:
+          "Lebenslauf",
+
+        letsConnect:
+          "Kontakt aufnehmen",
+
+        contact:
+          "Kontakt",
+
+        accessibility:
+          "Barrierefreiheit",
+
+        accessibilityDescription:
+          "Passe die Seite an deine Bedürfnisse an.",
+
+        closeAccessibility:
+          "Einstellungen zur Barrierefreiheit schließen",
+
+        textSize:
+          "Textgröße",
+
+        decreaseText:
+          "Text verkleinern",
+
+        defaultText:
+          "Standardtextgröße",
+
+        increaseText:
+          "Text vergrößern",
+
+        highContrast:
+          "Hoher Kontrast",
+
+        highContrastDescription:
+          "Erhöht den visuellen Kontrast.",
+
+        reduceMotion:
+          "Bewegung reduzieren",
+
+        reduceMotionDescription:
+          "Animationen und Bewegungen minimieren.",
+
+        readPage:
+          "Seite vorlesen",
+
+        play:
+          "Start",
+
+        pause:
+          "Pause",
+
+        stop:
+          "Stopp",
+
+        resetSettings:
+          "Barrierefreiheit zurücksetzen",
+
+        heroTitleOne:
+          "Design mit Empathie, Research und",
+
+        heroHighlight:
+          "Barrierefreiheit",
+
+        heroTitleTwo:
+          "im Mittelpunkt.",
+
+        heroCopy:
+          "Ich bin UX Researcherin und Interaction Designerin mit einem Masterabschluss in Kognitionswissenschaft und einem Bachelorabschluss in Psychologie. Meine Arbeit ist geprägt von einem tiefen Interesse daran, wie Menschen denken, sich verhalten und mit digitalen Systemen interagieren.",
+
+        heroNote:
+          "Mein Ziel ist es, digitale Erlebnisse zu gestalten, die klar, inklusiv und für echte Menschen in realen Nutzungskontexten einfach zu bedienen sind.",
+
+        portraitAlt:
+          "Porträt von Linda Laryea",
+
+        profileRole:
+          "UX Researcherin & Interaction Designerin",
+
+        profileTags:
+          "Kognitionswissenschaft • Psychologie • Barrierefreiheit",
+
+        aboutSection:
+          "Über Linda Laryea",
+
+        myStory:
+          "Meine Geschichte",
+
+        storyOne:
+          "Mein akademischer Weg in Kognitionswissenschaft und Psychologie hat mir eine starke Grundlage dafür gegeben, wie Menschen wahrnehmen, denken, lernen und Entscheidungen treffen.",
+
+        storyTwo:
+          "Dieses Verständnis prägt meine Leidenschaft für nutzerzentriertes Design, das intuitiv, barrierefrei und sinnvoll ist.",
+
+        storyClosing:
+          "Ich glaube, dass gutes Design mit tiefer Empathie beginnt und mit einer sinnvollen Wirkung endet.",
+
+        designValues:
+          "Meine Designwerte",
+
+        humanCentred:
+          "Menschenzentriert",
+
+        humanCentredText:
+          "Ich gestalte für echte menschliche Bedürfnisse und nicht nur für Unternehmensziele.",
+
+        accessibleByDesign:
+          "Barrierefreiheit von Anfang an",
+
+        accessibleByDesignText:
+          "Ich glaube, dass alle Menschen gleichberechtigten Zugang zu digitalen Werkzeugen verdienen.",
+
+        evidenceBased:
+          "Evidenzbasiert",
+
+        evidenceBasedText:
+          "Ich nutze Research und Daten, um bessere Designentscheidungen zu treffen.",
+
+        clarity:
+          "Klarheit & Einfachheit",
+
+        clarityText:
+          "Ich gestalte Erlebnisse, die leicht verständlich und einfach zu nutzen sind.",
+
+        skillsTools:
+          "Kompetenzen & Tools",
+
+        interviews:
+          "Interviews",
+
+        personas:
+          "Personas",
+
+        testing:
+          "Usability-Tests",
+
+        wireframes:
+          "Wireframes",
+
+        prototypes:
+          "Prototypen",
+
+        flows:
+          "User Flows",
+
+        tools:
+          "Tools",
+
+        skillsNote:
+          "Ich verbinde Research, Psychologie und visuelles Design, um durchdachte digitale Erlebnisse zu gestalten.",
+
+        myApproach:
+          "Mein Ansatz",
+
+        approachTitleOne:
+          "Wie ich Research in",
+
+        approachHighlight:
+          "sinnvolles Design verwandle",
+
+        approachIntro:
+          "Mein Prozess beginnt damit, echte Menschen zu verstehen und Erkenntnisse anschließend in klare, barrierefreie und nutzbare digitale Erlebnisse zu übersetzen.",
+
+        understand:
+          "Verstehen",
+
+        understandText:
+          "Ich beginne damit, Nutzer:innen, ihre Ziele, Frustrationen, Verhaltensweisen und ihren realen Nutzungskontext kennenzulernen.",
+
+        define:
+          "Definieren",
+
+        defineText:
+          "Ich identifiziere das Kernproblem, wichtige Nutzerbedürfnisse und Designmöglichkeiten, bevor ich Lösungen entwickle.",
+
+        design:
+          "Gestalten",
+
+        designText:
+          "Ich entwickle Abläufe, Wireframes und Benutzeroberflächen, die Reibung reduzieren und Aufgaben leichter machen.",
+
+        test:
+          "Testen",
+
+        testText:
+          "Ich teste Ideen mit Nutzer:innen, verfeinere Interaktionen und verbessere Klarheit, Barrierefreiheit und Usability.",
+
+        workTogether:
+          "Lass uns zusammenarbeiten",
+
+        ctaHeading:
+          "Interessiert an durchdachtem, barrierefreiem Design?",
+
+        ctaCopy:
+          "Ich bin offen für Möglichkeiten in UX Research, Interaction Design und Produktdesign sowie für sinnvolle Kooperationen, bei denen menschliches Verhalten, Klarheit und Barrierefreiheit eine wichtige Rolle spielen.",
+
+        viewCaseStudies:
+          "Fallstudien ansehen",
+
+        footerCopy:
+          "© 2026 Linda Laryea. Mit Research, Empathie und Barrierefreiheit im Mittelpunkt gestaltet.",
+
+        backToTop:
+          "Nach oben",
+
+        languageChanged:
+          "Sprache auf Deutsch geändert.",
+
+        settingsReset:
+          "Einstellungen zur Barrierefreiheit wurden zurückgesetzt.",
+
+        contrastEnabled:
+          "Hoher Kontrast aktiviert.",
+
+        contrastDisabled:
+          "Hoher Kontrast deaktiviert.",
+
+        motionEnabled:
+          "Reduzierte Bewegung aktiviert.",
+
+        motionDisabled:
+          "Reduzierte Bewegung deaktiviert.",
+
+        readingStarted:
+          "Vorlesen gestartet.",
+
+        readingPaused:
+          "Vorlesen pausiert.",
+
+        readingResumed:
+          "Vorlesen fortgesetzt.",
+
+        readingStopped:
+          "Vorlesen gestoppt.",
+
+        readUnsupported:
+          "Die Vorlesefunktion wird von diesem Browser nicht unterstützt."
+      }
+
+    };
+
+
+    /* =====================================
+       ELEMENTS
+    ====================================== */
+
+    const languageEN =
+      document.getElementById("languageEN");
+
+    const languageDE =
+      document.getElementById("languageDE");
+
+    const accessibilityButton =
+      document.getElementById("accessibilityButton");
+
+    const accessibilityPanel =
+      document.getElementById("accessibilityPanel");
+
+    const closeAccessibility =
+      document.getElementById("closeAccessibility");
+
+    const contrastToggle =
+      document.getElementById("contrastToggle");
+
+    const motionToggle =
+      document.getElementById("motionToggle");
+
+    const textSizeButtons =
+      document.querySelectorAll(".text-size-button");
+
+    const readPlay =
+      document.getElementById("readPlay");
+
+    const readPause =
+      document.getElementById("readPause");
+
+    const readStop =
+      document.getElementById("readStop");
+
+    const resetAccessibility =
+      document.getElementById("resetAccessibility");
+
+    const backToTop =
+      document.getElementById("backToTop");
+
+    const a11yStatus =
+      document.getElementById("a11yStatus");
+
+    const metaDescription =
+      document.getElementById("metaDescription");
+
+
+    let currentLanguage =
+      localStorage.getItem("portfolioLanguage") || "en";
+
+    let speechUtterance =
+      null;
+
+    let isPaused =
+      false;
+
+
+    /* =====================================
+       ANNOUNCE
+    ====================================== */
+
+    function announce(message) {
+
+      a11yStatus.textContent = "";
+
+      window.setTimeout(
+        () => {
+          a11yStatus.textContent = message;
+        },
+        40
+      );
+
+    }
+
+
+    /* =====================================
+       LANGUAGE
+    ====================================== */
+
+    function applyLanguage(
+      language,
+      announceChange = false
+    ) {
+
+      currentLanguage =
+        language;
+
+
+      document.documentElement.lang =
+        language;
+
+
+      localStorage.setItem(
+        "portfolioLanguage",
+        language
+      );
+
+
+      document.title =
+        translations[language].pageTitle;
+
+
+      metaDescription.setAttribute(
+        "content",
+        translations[language].metaDescription
+      );
+
+
+      document
+        .querySelectorAll("[data-i18n]")
+        .forEach(element => {
+
+          const key =
+            element.getAttribute("data-i18n");
+
+
+          if (
+            translations[language] &&
+            translations[language][key]
+          ) {
+
+            element.textContent =
+              translations[language][key];
+
+          }
+
+        });
+
+
+      document
+        .querySelectorAll("[data-i18n-aria-label]")
+        .forEach(element => {
+
+          const key =
+            element.getAttribute(
+              "data-i18n-aria-label"
+            );
+
+
+          if (
+            translations[language] &&
+            translations[language][key]
+          ) {
+
+            element.setAttribute(
+              "aria-label",
+              translations[language][key]
+            );
+
+          }
+
+        });
+
+
+      document
+        .querySelectorAll("[data-i18n-alt]")
+        .forEach(element => {
+
+          const key =
+            element.getAttribute("data-i18n-alt");
+
+
+          if (
+            translations[language] &&
+            translations[language][key]
+          ) {
+
+            element.alt =
+              translations[language][key];
+
+          }
+
+        });
+
+
+      const englishSelected =
+        language === "en";
+
+
+      languageEN.classList.toggle(
+        "active",
+        englishSelected
+      );
+
+
+      languageDE.classList.toggle(
+        "active",
+        !englishSelected
+      );
+
+
+      languageEN.setAttribute(
+        "aria-pressed",
+        englishSelected
+          ? "true"
+          : "false"
+      );
+
+
+      languageDE.setAttribute(
+        "aria-pressed",
+        !englishSelected
+          ? "true"
+          : "false"
+      );
+
+
+      if (announceChange) {
+
+        announce(
+          translations[language].languageChanged
+        );
+
+      }
+
+
+      stopReading(false);
+
+    }
+
+
+    languageEN.addEventListener(
+      "click",
+      () => applyLanguage("en", true)
+    );
+
+
+    languageDE.addEventListener(
+      "click",
+      () => applyLanguage("de", true)
+    );
+
+
+    /* =====================================
+       ACCESSIBILITY PANEL
+    ====================================== */
+
+    function openAccessibilityPanel() {
+
+      accessibilityPanel.hidden =
+        false;
+
+
+      accessibilityButton.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
+
+      closeAccessibility.focus();
+
+    }
+
+
+    function closeAccessibilityPanel() {
+
+      accessibilityPanel.hidden =
+        true;
+
+
+      accessibilityButton.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+
+      accessibilityButton.focus();
+
+    }
+
+
+    accessibilityButton.addEventListener(
+      "click",
+      () => {
+
+        if (accessibilityPanel.hidden) {
+
+          openAccessibilityPanel();
+
+        } else {
+
+          closeAccessibilityPanel();
+
+        }
+
+      }
+    );
+
+
+    closeAccessibility.addEventListener(
+      "click",
+      closeAccessibilityPanel
+    );
+
+
+    document.addEventListener(
+      "keydown",
+      event => {
+
+        if (
+          event.key === "Escape" &&
+          !accessibilityPanel.hidden
+        ) {
+
+          closeAccessibilityPanel();
+
+        }
+
+      }
+    );
+
+
+    document.addEventListener(
+      "click",
+      event => {
+
+        if (accessibilityPanel.hidden) {
+          return;
+        }
+
+
+        const clickedInsidePanel =
+          accessibilityPanel.contains(event.target);
+
+
+        const clickedButton =
+          accessibilityButton.contains(event.target);
+
+
+        if (
+          !clickedInsidePanel &&
+          !clickedButton
+        ) {
+
+          accessibilityPanel.hidden =
+            true;
+
+
+          accessibilityButton.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =====================================
+       TEXT SIZE
+    ====================================== */
+
+    function applyTextSize(size) {
+
+      let scale =
+        1;
+
+
+      if (size === "small") {
+        scale = 0.92;
+      }
+
+
+      if (size === "large") {
+        scale = 1.15;
+      }
+
+
+      document.documentElement
+        .style
+        .setProperty(
+          "--text-scale",
+          scale
+        );
+
+
+      localStorage.setItem(
+        "portfolioTextSize",
+        size
+      );
+
+
+      textSizeButtons.forEach(button => {
+
+        button.classList.toggle(
+          "active",
+          button.dataset.size === size
+        );
+
+      });
+
+    }
+
+
+    textSizeButtons.forEach(button => {
+
+      button.addEventListener(
+        "click",
+        () => {
+          applyTextSize(button.dataset.size);
+        }
+      );
+
+    });
+
+
+    /* =====================================
+       HIGH CONTRAST
+    ====================================== */
+
+    function applyContrast(
+      enabled,
+      announceChange = false
+    ) {
+
+      document.body.classList.toggle(
+        "high-contrast",
+        enabled
+      );
+
+
+      contrastToggle.checked =
+        enabled;
+
+
+      localStorage.setItem(
+        "portfolioContrast",
+        enabled ? "true" : "false"
+      );
+
+
+      if (announceChange) {
+
+        announce(
+          enabled
+            ? translations[currentLanguage].contrastEnabled
+            : translations[currentLanguage].contrastDisabled
+        );
+
+      }
+
+    }
+
+
+    contrastToggle.addEventListener(
+      "change",
+      () => {
+
+        applyContrast(
+          contrastToggle.checked,
+          true
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       REDUCED MOTION
+    ====================================== */
+
+    function applyMotionPreference(
+      enabled,
+      announceChange = false
+    ) {
+
+      document.body.classList.toggle(
+        "reduce-motion",
+        enabled
+      );
+
+
+      motionToggle.checked =
+        enabled;
+
+
+      localStorage.setItem(
+        "portfolioReducedMotion",
+        enabled ? "true" : "false"
+      );
+
+
+      if (announceChange) {
+
+        announce(
+          enabled
+            ? translations[currentLanguage].motionEnabled
+            : translations[currentLanguage].motionDisabled
+        );
+
+      }
+
+    }
+
+
+    motionToggle.addEventListener(
+      "change",
+      () => {
+
+        applyMotionPreference(
+          motionToggle.checked,
+          true
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       READ ALOUD
+    ====================================== */
+
+    const speechSupported =
+      "speechSynthesis" in window &&
+      "SpeechSynthesisUtterance" in window;
+
+
+    if (!speechSupported) {
+
+      readPlay.disabled =
+        true;
+
+      readPause.disabled =
+        true;
+
+      readStop.disabled =
+        true;
+
+    }
+
+
+    function getReadablePageText() {
+
+      const readableSections =
+        document.querySelectorAll(
+          ".readable-content"
+        );
+
+
+      const textParts =
+        [];
+
+
+      readableSections.forEach(section => {
+
+        const clone =
+          section.cloneNode(true);
+
+
+        clone
+          .querySelectorAll(
+            "[data-no-read], img, button, [aria-hidden='true']"
+          )
+          .forEach(element => {
+
+            element.remove();
+
+          });
+
+
+        const sectionText =
+          clone.innerText
+            .replace(/\s+/g, " ")
+            .trim();
+
+
+        if (sectionText) {
+
+          textParts.push(sectionText);
+
+        }
+
+      });
+
+
+      return textParts.join(". ");
+
+    }
+
+
+    function startReading() {
+
+      if (!speechSupported) {
+
+        announce(
+          translations[currentLanguage].readUnsupported
+        );
+
+        return;
+
+      }
+
+
+      if (
+        window.speechSynthesis.speaking &&
+        isPaused
+      ) {
+
+        window.speechSynthesis.resume();
+
+        isPaused =
+          false;
+
+
+        announce(
+          translations[currentLanguage].readingResumed
+        );
+
+        return;
+
+      }
+
+
+      window.speechSynthesis.cancel();
+
+
+      const text =
+        getReadablePageText();
+
+
+      speechUtterance =
+        new SpeechSynthesisUtterance(text);
+
+
+      speechUtterance.lang =
+        currentLanguage === "de"
+          ? "de-DE"
+          : "en-US";
+
+
+      speechUtterance.rate =
+        0.95;
+
+
+      speechUtterance.pitch =
+        1;
+
+
+      speechUtterance.onend =
+        () => {
+
+          isPaused =
+            false;
+
+        };
+
+
+      window.speechSynthesis.speak(
+        speechUtterance
+      );
+
+
+      isPaused =
+        false;
+
+
+      announce(
+        translations[currentLanguage].readingStarted
+      );
+
+    }
+
+
+    function pauseReading() {
+
+      if (
+        speechSupported &&
+        window.speechSynthesis.speaking &&
+        !isPaused
+      ) {
+
+        window.speechSynthesis.pause();
+
+        isPaused =
+          true;
+
+
+        announce(
+          translations[currentLanguage].readingPaused
+        );
+
+      }
+
+    }
+
+
+    function stopReading(
+      announceStop = true
+    ) {
+
+      if (!speechSupported) {
+        return;
+      }
+
+
+      window.speechSynthesis.cancel();
+
+      isPaused =
+        false;
+
+
+      if (announceStop) {
+
+        announce(
+          translations[currentLanguage].readingStopped
+        );
+
+      }
+
+    }
+
+
+    readPlay.addEventListener(
+      "click",
+      startReading
+    );
+
+
+    readPause.addEventListener(
+      "click",
+      pauseReading
+    );
+
+
+    readStop.addEventListener(
+      "click",
+      () => stopReading(true)
+    );
+
+
+    /* =====================================
+       RESET
+    ====================================== */
+
+    resetAccessibility.addEventListener(
+      "click",
+      () => {
+
+        applyTextSize("default");
+
+        applyContrast(false);
+
+        applyMotionPreference(false);
+
+        stopReading(false);
+
+
+        localStorage.removeItem(
+          "portfolioTextSize"
+        );
+
+
+        localStorage.removeItem(
+          "portfolioContrast"
+        );
+
+
+        localStorage.removeItem(
+          "portfolioReducedMotion"
+        );
+
+
+        announce(
+          translations[currentLanguage].settingsReset
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       BACK TO TOP
+    ====================================== */
+
+    window.addEventListener(
+      "scroll",
+      () => {
+
+        backToTop.classList.toggle(
+          "visible",
+          window.scrollY > 500
+        );
+
+      },
+      {
+        passive: true
+      }
+    );
+
+
+    backToTop.addEventListener(
+      "click",
+      () => {
+
+        const reducedMotion =
+          document.body.classList.contains(
+            "reduce-motion"
+          ) ||
+
+          window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches;
+
+
+        window.scrollTo({
+
+          top: 0,
+
+          behavior:
+            reducedMotion
+              ? "auto"
+              : "smooth"
+
+        });
+
+      }
+    );
+
+
+    /* =====================================
+       LOAD SAVED SETTINGS
+    ====================================== */
+
+    function loadPreferences() {
+
+      /*
+        These are the same storage keys
+        used on index.html and
+        case-studies.html.
+      */
+
+      applyLanguage(
+        currentLanguage,
+        false
+      );
+
+
+      const savedTextSize =
+        localStorage.getItem(
+          "portfolioTextSize"
+        ) || "default";
+
+
+      applyTextSize(
+        savedTextSize
+      );
+
+
+      const savedContrast =
+        localStorage.getItem(
+          "portfolioContrast"
+        ) === "true";
+
+
+      applyContrast(
+        savedContrast,
+        false
+      );
+
+
+      const savedMotion =
+        localStorage.getItem(
+          "portfolioReducedMotion"
+        );
+
+
+      if (savedMotion !== null) {
+
+        applyMotionPreference(
+          savedMotion === "true",
+          false
+        );
+
+      } else {
+
+        motionToggle.checked =
+          window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches;
+
+      }
+
+    }
+
+
+    loadPreferences();
+
+
+    /* =====================================
+       STOP SPEECH WHEN LEAVING
+    ====================================== */
+
+    window.addEventListener(
+      "beforeunload",
+      () => {
+
+        if (speechSupported) {
+
+          window.speechSynthesis.cancel();
+
+        }
+
+      }
+    );
+
+  </script>
+
 </body>
+
 </html>
