@@ -1,26 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="/favicon.png" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    id="metaDescription"
+    name="description"
+    content="Contact Linda Laryea for UX research, interaction design, product design and collaboration opportunities."
+  />
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="/favicon.png"
+  />
 
   <title>Contact | Linda Laryea</title>
 
+
   <style>
+
+    /* =====================================
+       DESIGN TOKENS
+    ====================================== */
+
     :root {
       --bg: #FFF9FC;
       --card: #FFFFFF;
+      --surface: #FFFFFF;
+
       --soft: #FFF7FB;
       --soft-pink: #FDE7F1;
+      --soft-purple: #F3EEFA;
+
       --magenta: #A80B63;
+      --magenta-dark: #83074C;
+
       --gold: #F3C24F;
+
       --dark: #111827;
       --body: #4B5563;
       --muted: #6B7280;
+
       --border: #F2D8E7;
-      --shadow: 0 20px 50px rgba(24, 39, 75, 0.06);
+
+      --focus: #111827;
+
+      --shadow:
+        0 20px 50px rgba(24, 39, 75, 0.06);
+
+      --text-scale: 1;
     }
+
+
+    /* =====================================
+       RESET
+    ====================================== */
 
     * {
       box-sizing: border-box;
@@ -28,493 +70,4326 @@
       padding: 0;
     }
 
+
     html {
       scroll-behavior: smooth;
+
+      font-size:
+        calc(16px * var(--text-scale));
     }
 
+
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--dark);
-      line-height: 1.6;
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      background:
+        var(--bg);
+
+      color:
+        var(--dark);
+
+      line-height:
+        1.6;
+
+      transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
     }
+
 
     a {
       color: inherit;
       text-decoration: none;
     }
 
-    .page {
-      width: min(1280px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 24px 0 56px;
+
+    button {
+      font: inherit;
+      cursor: pointer;
     }
+
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+
+    /* =====================================
+       SCREEN READER ONLY
+    ====================================== */
+
+    .sr-only {
+      position: absolute;
+
+      width: 1px;
+      height: 1px;
+
+      padding: 0;
+      margin: -1px;
+
+      overflow: hidden;
+
+      clip: rect(0, 0, 0, 0);
+
+      white-space: nowrap;
+
+      border: 0;
+    }
+
+
+    /* =====================================
+       KEYBOARD FOCUS
+    ====================================== */
+
+    :focus-visible {
+      outline:
+        3px solid var(--focus);
+
+      outline-offset:
+        4px;
+    }
+
+
+    .nav-button:focus-visible {
+      outline-color:
+        var(--gold);
+    }
+
+
+    /* =====================================
+       SKIP LINK
+    ====================================== */
+
+    .skip-link {
+      position: fixed;
+
+      top: 12px;
+      left: 12px;
+
+      z-index: 99999;
+
+      padding:
+        12px 18px;
+
+      background:
+        var(--dark);
+
+      color:
+        #FFFFFF;
+
+      border-radius:
+        10px;
+
+      font-size:
+        0.875rem;
+
+      font-weight:
+        800;
+
+      transform:
+        translateY(-180%);
+
+      transition:
+        transform 0.2s ease;
+    }
+
+
+    .skip-link:focus {
+      transform:
+        translateY(0);
+    }
+
+
+    /* =====================================
+       PAGE
+    ====================================== */
+
+    .page {
+      width:
+        min(1180px, calc(100% - 32px));
+
+      margin:
+        0 auto;
+
+      padding:
+        24px 0 56px;
+    }
+
+
+    /* =====================================
+       NAVIGATION
+    ====================================== */
 
     .navbar {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 18px 28px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      box-shadow: 0 12px 35px rgba(24, 39, 75, 0.05);
-    }
-.brand-name {
-  color: #A80B63;
-  font-size: 28px;
-  font-weight: 800;
-  letter-spacing: -0.4px;
-}
+      display:
+        flex;
 
-    .brand-subtitle {
-      margin-top: 4px;
-      font-size: 10px;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-weight: 700;
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        24px;
+
+      padding-bottom:
+        22px;
+
+      border-bottom:
+        1px solid var(--border);
     }
+
+
+    .brand-name {
+      color:
+        var(--magenta);
+
+      font-size:
+        1.75rem;
+
+      font-weight:
+        800;
+
+      letter-spacing:
+        -0.4px;
+
+      white-space:
+        nowrap;
+    }
+
+
+    .nav-right {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        20px;
+    }
+
 
     .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-      font-size: 14px;
-      font-weight: 700;
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        32px;
+
+      font-size:
+        0.875rem;
+
+      font-weight:
+        700;
     }
 
-    .nav-links a:hover,
-    .nav-links .active {
-      color: var(--magenta);
+
+    .nav-links a {
+      min-height:
+        44px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
     }
+
+
+    .nav-links a:hover {
+      color:
+        var(--magenta);
+    }
+
 
     .nav-button {
-      background: var(--magenta);
-      color: #FFFFFF;
-      padding: 12px 18px;
-      border-radius: 12px;
-      font-weight: 800;
+      min-height:
+        44px;
+
+      padding:
+        0 22px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF !important;
+
+      border-radius:
+        12px;
+
+      font-weight:
+        800;
     }
+
+
+    .nav-button:hover {
+      background:
+        var(--magenta-dark);
+    }
+
+
+    /* =====================================
+       LANGUAGE + ACCESSIBILITY
+    ====================================== */
+
+    .nav-tools {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        8px;
+    }
+
+
+    .language-switcher {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      padding:
+        3px;
+
+      background:
+        var(--surface);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        10px;
+    }
+
+
+    .language-button {
+      min-width:
+        44px;
+
+      min-height:
+        40px;
+
+      padding:
+        0 9px;
+
+      background:
+        transparent;
+
+      color:
+        var(--body);
+
+      border:
+        0;
+
+      border-radius:
+        7px;
+
+      font-size:
+        0.75rem;
+
+      font-weight:
+        800;
+    }
+
+
+    .language-button.active {
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
+    }
+
+
+    .accessibility-button {
+      min-width:
+        44px;
+
+      min-height:
+        44px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      gap:
+        7px;
+
+      padding:
+        0 12px;
+
+      background:
+        var(--surface);
+
+      color:
+        var(--dark);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        10px;
+
+      font-size:
+        0.8rem;
+
+      font-weight:
+        800;
+    }
+
+
+    .accessibility-button:hover {
+      background:
+        var(--soft-purple);
+    }
+
+
+    /* =====================================
+       ACCESSIBILITY PANEL
+    ====================================== */
+
+    .accessibility-panel {
+      position:
+        fixed;
+
+      top:
+        92px;
+
+      right:
+        24px;
+
+      z-index:
+        10000;
+
+      width:
+        min(340px, calc(100vw - 32px));
+
+      padding:
+        22px;
+
+      background:
+        var(--surface);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        18px;
+
+      box-shadow:
+        0 24px 70px
+        rgba(17, 24, 39, 0.16);
+    }
+
+
+    .accessibility-panel[hidden] {
+      display: none;
+    }
+
+
+    .a11y-panel-header {
+      display:
+        flex;
+
+      align-items:
+        flex-start;
+
+      justify-content:
+        space-between;
+
+      gap:
+        18px;
+
+      margin-bottom:
+        20px;
+    }
+
+
+    .a11y-panel-header h2 {
+      margin:
+        0 0 3px;
+
+      font-size:
+        1.1rem;
+    }
+
+
+    .a11y-panel-header p {
+      margin: 0;
+
+      color:
+        var(--muted);
+
+      font-size:
+        0.76rem;
+    }
+
+
+    .panel-close {
+      min-width:
+        44px;
+
+      min-height:
+        44px;
+
+      background:
+        var(--soft-purple);
+
+      color:
+        var(--dark);
+
+      border:
+        0;
+
+      border-radius:
+        10px;
+
+      font-size:
+        1.25rem;
+    }
+
+
+    .a11y-group {
+      padding:
+        16px 0;
+
+      border-top:
+        1px solid var(--border);
+    }
+
+
+    .a11y-group:first-of-type {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+
+    .a11y-label {
+      display: block;
+
+      margin-bottom:
+        10px;
+
+      color:
+        var(--dark);
+
+      font-size:
+        0.8rem;
+
+      font-weight:
+        800;
+    }
+
+
+    /* =====================================
+       TEXT SIZE
+    ====================================== */
+
+    .text-size-controls {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap:
+        8px;
+    }
+
+
+    .text-size-button {
+      min-height:
+        44px;
+
+      background:
+        var(--surface);
+
+      color:
+        var(--dark);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        9px;
+
+      font-weight:
+        800;
+    }
+
+
+    .text-size-button.active {
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
+
+      border-color:
+        var(--magenta);
+    }
+
+
+    /* =====================================
+       TOGGLES
+    ====================================== */
+
+    .toggle-row {
+      min-height:
+        48px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        20px;
+    }
+
+
+    .toggle-copy strong {
+      display: block;
+
+      font-size:
+        0.82rem;
+    }
+
+
+    .toggle-copy span {
+      display: block;
+
+      margin-top:
+        2px;
+
+      color:
+        var(--muted);
+
+      font-size:
+        0.7rem;
+    }
+
+
+    .switch {
+      position:
+        relative;
+
+      width:
+        50px;
+
+      height:
+        28px;
+
+      flex:
+        0 0 auto;
+    }
+
+
+    .switch input {
+      position:
+        absolute;
+
+      opacity:
+        0;
+
+      width:
+        1px;
+
+      height:
+        1px;
+    }
+
+
+    .switch-track {
+      position:
+        absolute;
+
+      inset:
+        0;
+
+      background:
+        #D1D5DB;
+
+      border-radius:
+        999px;
+
+      transition:
+        background 0.2s ease;
+    }
+
+
+    .switch-track::after {
+      content:
+        "";
+
+      position:
+        absolute;
+
+      width:
+        20px;
+
+      height:
+        20px;
+
+      left:
+        4px;
+
+      top:
+        4px;
+
+      background:
+        #FFFFFF;
+
+      border-radius:
+        50%;
+
+      box-shadow:
+        0 2px 7px
+        rgba(0, 0, 0, 0.18);
+
+      transition:
+        transform 0.2s ease;
+    }
+
+
+    .switch input:checked +
+    .switch-track {
+      background:
+        var(--magenta);
+    }
+
+
+    .switch input:checked +
+    .switch-track::after {
+      transform:
+        translateX(22px);
+    }
+
+
+    .switch input:focus-visible +
+    .switch-track {
+      outline:
+        3px solid var(--focus);
+
+      outline-offset:
+        3px;
+    }
+
+
+    /* =====================================
+       READ ALOUD
+    ====================================== */
+
+    .read-controls {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap:
+        8px;
+    }
+
+
+    .read-button {
+      min-height:
+        44px;
+
+      background:
+        var(--surface);
+
+      color:
+        var(--dark);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        9px;
+
+      font-size:
+        0.75rem;
+
+      font-weight:
+        800;
+    }
+
+
+    .read-button:hover {
+      background:
+        var(--soft-purple);
+    }
+
+
+    .read-button.primary-read {
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
+
+      border-color:
+        var(--magenta);
+    }
+
+
+    .read-button:disabled {
+      opacity:
+        0.45;
+
+      cursor:
+        not-allowed;
+    }
+
+
+    .reset-button {
+      width:
+        100%;
+
+      min-height:
+        44px;
+
+      background:
+        var(--surface);
+
+      color:
+        var(--magenta);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        9px;
+
+      font-size:
+        0.75rem;
+
+      font-weight:
+        800;
+    }
+
+
+    /* =====================================
+       HERO
+    ====================================== */
 
     .hero {
-      margin-top: 48px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 32px;
-      padding: 64px;
-      display: grid;
-      grid-template-columns: 1.25fr 0.95fr;
-      gap: 64px;
-      align-items: center;
-      box-shadow: var(--shadow);
+      margin-top:
+        54px;
+
+      display:
+        grid;
+
+      grid-template-columns:
+        minmax(0, 1.08fr)
+        minmax(340px, 0.92fr);
+
+      gap:
+        56px;
+
+      align-items:
+        center;
     }
+
+
+    .hero-copy-panel {
+      padding:
+        20px 0;
+    }
+
+
+    .eyebrow-row {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        14px;
+
+      margin-bottom:
+        22px;
+    }
+
 
     .gold-line {
-      width: 52px;
-      height: 5px;
-      background: var(--gold);
-      border-radius: 999px;
-      margin-bottom: 18px;
+      width:
+        50px;
+
+      height:
+        4px;
+
+      background:
+        var(--gold);
+
+      border-radius:
+        999px;
     }
+
 
     .eyebrow {
-      color: var(--magenta);
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 1.3px;
-      text-transform: uppercase;
-      margin-bottom: 18px;
+      color:
+        var(--magenta);
+
+      font-size:
+        0.8rem;
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        1.1px;
+
+      text-transform:
+        uppercase;
     }
 
-    h1 {
-      font-size: clamp(42px, 5vw, 58px);
-      line-height: 1.18;
-      letter-spacing: -1.6px;
-      margin-bottom: 30px;
-      max-width: 720px;
+
+    .hero h1 {
+      max-width:
+        720px;
+
+      margin-bottom:
+        24px;
+
+      font-size:
+        clamp(3rem, 5.2vw, 4.25rem);
+
+      line-height:
+        1.08;
+
+      letter-spacing:
+        -2px;
     }
 
-    h2 {
-      font-size: 34px;
-      line-height: 1.15;
-      margin-bottom: 14px;
-    }
-
-    h3 {
-      font-size: 22px;
-      margin-bottom: 8px;
-    }
 
     .accent {
-      color: var(--magenta);
+      color:
+        var(--magenta);
     }
+
 
     .hero-text {
-      color: var(--body);
-      font-size: 18px;
-      max-width: 690px;
-      margin-bottom: 34px;
-      font-weight: 700;
+      max-width:
+        680px;
+
+      margin-bottom:
+        28px;
+
+      color:
+        var(--body);
+
+      font-size:
+        1.08rem;
+
+      line-height:
+        1.8;
     }
+
 
     .highlight-note {
-      background: var(--soft);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 18px 22px;
-      display: flex;
-      gap: 16px;
-      align-items: center;
-      color: #3B0A2A;
-      max-width: 620px;
-      font-weight: 700;
+      max-width:
+        620px;
+
+      padding:
+        18px 20px;
+
+      display:
+        grid;
+
+      grid-template-columns:
+        38px 1fr;
+
+      gap:
+        14px;
+
+      align-items:
+        center;
+
+      background:
+        var(--soft);
+
+      color:
+        #3B0A2A;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        18px;
+
+      font-size:
+        0.9rem;
+
+      font-weight:
+        700;
     }
+
 
     .note-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: var(--soft-pink);
-      color: var(--magenta);
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-      font-weight: 900;
+      width:
+        36px;
+
+      height:
+        36px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      background:
+        var(--soft-pink);
+
+      color:
+        var(--magenta);
+
+      border-radius:
+        50%;
+
+      font-weight:
+        900;
     }
+
+
+    /* =====================================
+       CONTACT CARD
+    ====================================== */
 
     .contact-card {
-      background: var(--soft);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 36px;
-      box-shadow: 0 22px 55px rgba(24, 39, 75, 0.08);
+      padding:
+        32px;
+
+      background:
+        var(--surface);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        28px;
+
+      box-shadow:
+        var(--shadow);
     }
+
 
     .contact-card h2 {
-      font-size: 32px;
-      margin-bottom: 10px;
+      margin-bottom:
+        8px;
+
+      font-size:
+        1.85rem;
+
+      line-height:
+        1.2;
     }
 
-    .contact-card > p {
-      color: var(--muted);
-      font-size: 16px;
-      margin-bottom: 28px;
+
+    .contact-card-intro {
+      margin-bottom:
+        24px;
+
+      color:
+        var(--muted);
+
+      font-size:
+        0.95rem;
+
+      line-height:
+        1.7;
     }
+
 
     .contact-options {
-      display: grid;
-      gap: 16px;
+      display:
+        grid;
+
+      gap:
+        12px;
     }
+
 
     .contact-option {
-      background: #FFFFFF;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 18px;
-      display: grid;
-      grid-template-columns: 48px 1fr 24px;
-      gap: 16px;
-      align-items: center;
-      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+      min-height:
+        86px;
+
+      padding:
+        16px;
+
+      display:
+        grid;
+
+      grid-template-columns:
+        46px 1fr 24px;
+
+      gap:
+        14px;
+
+      align-items:
+        center;
+
+      background:
+        var(--soft);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        17px;
+
+      transition:
+        transform 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease;
     }
 
-    .contact-option:hover {
-      transform: translateY(-2px);
-      border-color: #E9B8D1;
-      box-shadow: 0 14px 35px rgba(24, 39, 75, 0.07);
+
+    .contact-option:hover,
+    .contact-option:focus-visible {
+      transform:
+        translateY(-2px);
+
+      border-color:
+        #E2A8C7;
+
+      box-shadow:
+        0 12px 32px
+        rgba(24, 39, 75, 0.07);
     }
+
 
     .option-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: var(--soft-pink);
-      color: var(--magenta);
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      font-size: 18px;
+      width:
+        44px;
+
+      height:
+        44px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      background:
+        var(--soft-pink);
+
+      color:
+        var(--magenta);
+
+      border-radius:
+        12px;
+
+      font-size:
+        1rem;
+
+      font-weight:
+        900;
     }
+
 
     .option-text strong {
       display: block;
-      font-size: 16px;
-      margin-bottom: 2px;
-      color: var(--dark);
+
+      margin-bottom:
+        2px;
+
+      color:
+        var(--dark);
+
+      font-size:
+        0.95rem;
     }
+
 
     .option-text span {
       display: block;
-      color: var(--muted);
-      font-size: 14px;
+
+      color:
+        var(--muted);
+
+      font-size:
+        0.78rem;
+
+      line-height:
+        1.5;
     }
+
 
     .arrow {
-      color: var(--magenta);
-      font-weight: 900;
-      font-size: 18px;
+      color:
+        var(--magenta);
+
+      font-size:
+        1.15rem;
+
+      font-weight:
+        900;
+
+      text-align:
+        right;
     }
+
+
+    /* =====================================
+       OPEN TO
+    ====================================== */
 
     .open-to {
-      margin-top: 64px;
+      margin-top:
+        76px;
     }
+
 
     .open-to-header {
-      margin-bottom: 32px;
+      max-width:
+        720px;
+
+      margin-bottom:
+        30px;
     }
+
 
     .open-to h2 {
-      font-size: 36px;
+      margin-top:
+        8px;
+
+      font-size:
+        clamp(2rem, 4vw, 2.8rem);
+
+      line-height:
+        1.15;
+
+      letter-spacing:
+        -1px;
     }
+
+
+    .open-to-intro {
+      margin-top:
+        12px;
+
+      color:
+        var(--body);
+
+      max-width:
+        650px;
+    }
+
 
     .open-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap:
+        20px;
     }
+
 
     .open-card {
-      background: #FFFFFF;
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 28px;
-      display: grid;
-      grid-template-columns: 54px 1fr;
-      gap: 18px;
-      align-items: start;
-      box-shadow: 0 16px 40px rgba(24, 39, 75, 0.05);
+      min-height:
+        220px;
+
+      padding:
+        26px;
+
+      background:
+        var(--surface);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        22px;
+
+      box-shadow:
+        0 14px 38px
+        rgba(24, 39, 75, 0.045);
     }
+
+
+    .open-icon {
+      width:
+        46px;
+
+      height:
+        46px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      margin-bottom:
+        20px;
+
+      background:
+        var(--soft-pink);
+
+      color:
+        var(--magenta);
+
+      border-radius:
+        13px;
+
+      font-weight:
+        900;
+    }
+
+
+    .open-card h3 {
+      margin-bottom:
+        9px;
+
+      font-size:
+        1.2rem;
+    }
+
 
     .open-card p {
-      color: var(--body);
-      font-size: 15px;
+      color:
+        var(--body);
+
+      font-size:
+        0.9rem;
+
+      line-height:
+        1.7;
     }
+
+
+    /* =====================================
+       SMALL CTA
+    ====================================== */
+
+    .closing-cta {
+      margin-top:
+        70px;
+
+      padding:
+        38px 42px;
+
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr auto;
+
+      gap:
+        28px;
+
+      align-items:
+        center;
+
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
+
+      border-radius:
+        26px;
+
+      position:
+        relative;
+
+      overflow:
+        hidden;
+    }
+
+
+    .closing-cta::after {
+      content:
+        "";
+
+      position:
+        absolute;
+
+      width:
+        170px;
+
+      height:
+        170px;
+
+      right:
+        -40px;
+
+      top:
+        -65px;
+
+      background:
+        rgba(243, 194, 79, 0.18);
+
+      border-radius:
+        50%;
+    }
+
+
+    .closing-cta-copy {
+      position:
+        relative;
+
+      z-index:
+        1;
+    }
+
+
+    .closing-cta h2 {
+      margin-bottom:
+        7px;
+
+      font-size:
+        1.9rem;
+
+      line-height:
+        1.2;
+    }
+
+
+    .closing-cta p {
+      max-width:
+        670px;
+
+      color:
+        #FBE8F2;
+
+      font-size:
+        0.92rem;
+    }
+
+
+    .closing-email {
+      position:
+        relative;
+
+      z-index:
+        1;
+
+      min-height:
+        48px;
+
+      padding:
+        0 20px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      background:
+        #FFFFFF;
+
+      color:
+        var(--magenta);
+
+      border-radius:
+        11px;
+
+      font-size:
+        0.85rem;
+
+      font-weight:
+        900;
+
+      white-space:
+        nowrap;
+    }
+
+
+    /* =====================================
+       FOOTER
+    ====================================== */
 
     footer {
-      margin-top: 80px;
-      background: #FFFFFF;
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 26px 32px;
-      display: flex;
-      justify-content: space-between;
-      gap: 24px;
-      align-items: center;
-      color: var(--muted);
-      font-size: 13px;
-      box-shadow: 0 12px 35px rgba(24, 39, 75, 0.04);
+      margin-top:
+        62px;
+
+      padding:
+        32px 0 0;
+
+      display:
+        flex;
+
+      justify-content:
+        space-between;
+
+      align-items:
+        flex-start;
+
+      gap:
+        28px;
+
+      border-top:
+        1px solid var(--border);
+
+      color:
+        var(--muted);
+
+      font-size:
+        0.76rem;
     }
+
 
     .footer-brand {
-      color: var(--magenta);
-      font-size: 26px;
-      font-weight: 900;
-      line-height: 1;
+      color:
+        var(--magenta);
+
+      font-size:
+        1.45rem;
+
+      font-weight:
+        800;
     }
 
-    .footer-subtitle {
-      margin-top: 4px;
-      font-size: 10px;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-weight: 700;
+
+    .footer-copy {
+      margin-top:
+        5px;
     }
+
 
     .footer-links {
-      display: flex;
-      gap: 26px;
-      font-weight: 700;
+      display:
+        flex;
+
+      flex-wrap:
+        wrap;
+
+      gap:
+        18px;
     }
 
-    .footer-links .active {
-      color: var(--magenta);
-      font-weight: 900;
+
+    .footer-links a {
+      min-height:
+        44px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      font-weight:
+        700;
     }
 
-    @media (max-width: 950px) {
-      .navbar,
-      footer {
-        flex-direction: column;
-        align-items: flex-start;
+
+    .footer-links a:hover {
+      color:
+        var(--magenta);
+    }
+
+
+    /* =====================================
+       BACK TO TOP
+    ====================================== */
+
+    .back-to-top {
+      position:
+        fixed;
+
+      right:
+        24px;
+
+      bottom:
+        24px;
+
+      z-index:
+        9000;
+
+      width:
+        50px;
+
+      height:
+        50px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
+
+      border:
+        0;
+
+      border-radius:
+        50%;
+
+      box-shadow:
+        0 10px 30px
+        rgba(168, 11, 99, 0.25);
+
+      font-size:
+        1.25rem;
+
+      font-weight:
+        900;
+
+      opacity:
+        0;
+
+      visibility:
+        hidden;
+
+      transform:
+        translateY(12px);
+
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0.2s ease;
+    }
+
+
+    .back-to-top.visible {
+      opacity:
+        1;
+
+      visibility:
+        visible;
+
+      transform:
+        translateY(0);
+    }
+
+
+    /* =====================================
+       HIGH CONTRAST
+    ====================================== */
+
+    body.high-contrast {
+      --bg: #FFFFFF;
+      --card: #FFFFFF;
+      --surface: #FFFFFF;
+
+      --soft: #FFFFFF;
+      --soft-pink: #FFF2F8;
+      --soft-purple: #F4F2FF;
+
+      --magenta: #7B0048;
+      --magenta-dark: #580033;
+
+      --gold: #A56600;
+
+      --dark: #000000;
+      --body: #111111;
+      --muted: #303030;
+
+      --border: #555555;
+
+      --focus: #000000;
+
+      --shadow: none;
+    }
+
+
+    body.high-contrast
+    .contact-card,
+
+    body.high-contrast
+    .contact-option,
+
+    body.high-contrast
+    .open-card,
+
+    body.high-contrast
+    .accessibility-panel {
+      border-width:
+        2px;
+    }
+
+
+    body.high-contrast
+    .highlight-note {
+      color:
+        #000000;
+    }
+
+
+    body.high-contrast
+    .nav-button,
+
+    body.high-contrast
+    .back-to-top {
+      border:
+        2px solid #000000;
+    }
+
+
+    /* =====================================
+       REDUCED MOTION
+    ====================================== */
+
+    body.reduce-motion *,
+    body.reduce-motion *::before,
+    body.reduce-motion *::after {
+      animation-duration:
+        0.01ms !important;
+
+      animation-iteration-count:
+        1 !important;
+
+      transition-duration:
+        0.01ms !important;
+
+      scroll-behavior:
+        auto !important;
+    }
+
+
+    body.reduce-motion
+    .contact-option:hover,
+
+    body.reduce-motion
+    .contact-option:focus-visible {
+      transform:
+        none;
+    }
+
+
+    @media
+    (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior:
+          auto;
       }
 
-      .nav-links,
-      .footer-links {
-        flex-wrap: wrap;
-        gap: 16px;
+
+      *,
+      *::before,
+      *::after {
+        animation-duration:
+          0.01ms !important;
+
+        animation-iteration-count:
+          1 !important;
+
+        transition-duration:
+          0.01ms !important;
+
+        scroll-behavior:
+          auto !important;
       }
+
+
+      .contact-option:hover,
+      .contact-option:focus-visible {
+        transform:
+          none;
+      }
+
+    }
+
+
+    /* =====================================
+       RESPONSIVE
+    ====================================== */
+
+    @media
+    (max-width: 1180px) {
+
+      .navbar {
+        flex-direction:
+          column;
+
+        align-items:
+          flex-start;
+
+        padding:
+          18px 0 22px;
+      }
+
+
+      .nav-right {
+        width:
+          100%;
+
+        justify-content:
+          space-between;
+
+        flex-wrap:
+          wrap;
+      }
+
+
+      .nav-links {
+        flex-wrap:
+          wrap;
+      }
+
+    }
+
+
+    @media
+    (max-width: 950px) {
 
       .hero,
-      .open-grid {
-        grid-template-columns: 1fr;
+      .open-grid,
+      .closing-cta {
+        grid-template-columns:
+          1fr;
       }
 
-      .hero {
-        padding: 36px 24px;
-      }
 
       .contact-card {
-        padding: 28px 22px;
+        max-width:
+          650px;
       }
+
+
+      .closing-email {
+        justify-self:
+          start;
+      }
+
+    }
+
+
+    @media
+    (max-width: 760px) {
+
+      .page {
+        width:
+          min(100% - 22px, 1180px);
+      }
+
+
+      .nav-right {
+        display:
+          grid;
+
+        gap:
+          16px;
+      }
+
+
+      .nav-links {
+        flex-wrap:
+          wrap;
+
+        gap:
+          10px 18px;
+      }
+
+
+      .nav-tools {
+        width:
+          100%;
+
+        justify-content:
+          space-between;
+      }
+
+
+      .hero {
+        margin-top:
+          38px;
+
+        gap:
+          38px;
+      }
+
+
+      .contact-card {
+        padding:
+          24px;
+      }
+
+
+      footer {
+        flex-direction:
+          column;
+      }
+
+
+      .accessibility-panel {
+        top:
+          16px;
+
+        right:
+          16px;
+      }
+
+    }
+
+
+    @media
+    (max-width: 520px) {
+
+      .hero h1 {
+        font-size:
+          2.55rem;
+      }
+
 
       .contact-option {
-        grid-template-columns: 44px 1fr;
+        grid-template-columns:
+          44px 1fr;
       }
 
-      .arrow {
-        display: none;
+
+      .contact-option .arrow {
+        display:
+          none;
       }
+
+
+      .closing-cta {
+        padding:
+          30px 24px;
+      }
+
+
+      .back-to-top {
+        right:
+          16px;
+
+        bottom:
+          16px;
+      }
+
     }
+
   </style>
+
 </head>
 
+
 <body>
-  <main class="page">
-    <nav class="navbar" aria-label="Main navigation">
-      <a href="index.html" aria-label="Linda portfolio home">
-        <div class="brand-name">Linda Laryea</div>
-        <div class="brand-subtitle">UX Research & Design</div>
-      </a>
 
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="case-studies.html">Case Studies</a>
-        <a href="about.html">About Me</a>
-        <a href="cv.html">CV</a>     
-    </nav>
 
-    <section class="hero">
-      <div>
-        <div class="gold-line"></div>
-        <div class="eyebrow">Contact</div>
+  <!-- =====================================
+       SKIP LINK
+  ====================================== -->
 
-        <h1>
-          Let’s create meaningful and
-          <span class="accent">inclusive experiences</span>
-          together.
-        </h1>
+  <a
+    class="skip-link"
+    href="#main-content"
+    data-i18n="skip"
+  >
+    Skip to main content
+  </a>
 
-        <p class="hero-text">
-          I’m open to UX research, interaction design, product design opportunities, and meaningful collaborations where human behaviour, clarity, and accessibility matter.
-        </p>
 
-        <div class="highlight-note">
-          <div class="note-icon">♥</div>
-          <div>
-            Whether you want to discuss a UX project, collaboration, or design opportunity, choose the easiest way to reach me.
+  <div
+    id="a11yStatus"
+    class="sr-only"
+    role="status"
+    aria-live="polite"
+  ></div>
+
+
+  <div class="page">
+
+
+    <!-- =====================================
+         NAVIGATION
+    ====================================== -->
+
+    <header data-no-read>
+
+      <nav
+        class="navbar"
+        aria-label="Main navigation"
+        data-i18n-aria-label="mainNavigation"
+      >
+
+
+        <a
+          href="index.html"
+          aria-label="Linda Laryea portfolio home"
+        >
+          <div class="brand-name">
+            Linda Laryea
           </div>
-        </div>
-      </div>
+        </a>
 
-      <aside class="contact-card" aria-label="Contact options">
-        <h2>Choose how to connect</h2>
-        <p>
-          Choose the easiest way to reach me. I’m open to UX research, design, and collaboration conversations.
-        </p>
 
-        <div class="contact-options">
-         <a href="mailto:linlaryea2@gmail.com" class="contact-option">
-  Email me
-</a>
-            <div class="option-icon">✉</div>
-            <div class="option-text">
-              <strong>Email me</strong>
-              <span>For project enquiries and opportunities</span>
+        <div class="nav-right">
+
+
+          <div class="nav-links">
+
+            <a
+              href="index.html"
+              data-i18n="home"
+            >
+              Home
+            </a>
+
+
+            <a
+              href="case-studies.html"
+              data-i18n="caseStudies"
+            >
+              Case Studies
+            </a>
+
+
+            <a
+              href="about.html"
+              data-i18n="aboutMe"
+            >
+              About Me
+            </a>
+
+
+            <a
+              href="cv.html"
+              data-i18n="cv"
+            >
+              CV
+            </a>
+
+
+            <a
+              href="contact.html"
+              class="nav-button"
+              aria-current="page"
+              data-i18n="letsConnect"
+            >
+              Let’s Connect
+            </a>
+
+          </div>
+
+
+          <!-- LANGUAGE + ACCESSIBILITY -->
+
+          <div class="nav-tools">
+
+
+            <div
+              class="language-switcher"
+              role="group"
+              aria-label="Choose language"
+              data-i18n-aria-label="chooseLanguage"
+            >
+
+              <button
+                type="button"
+                id="languageEN"
+                class="language-button active"
+                aria-pressed="true"
+                aria-label="Switch to English"
+                data-i18n-aria-label="switchEnglish"
+              >
+                EN
+              </button>
+
+
+              <button
+                type="button"
+                id="languageDE"
+                class="language-button"
+                aria-pressed="false"
+                aria-label="Switch to German"
+                data-i18n-aria-label="switchGerman"
+              >
+                DE
+              </button>
+
             </div>
-            <div class="arrow">↗</div>
-          </a>
 
-         <a
-  class="contact-option"
-  href="https://www.linkedin.com/in/linda-laryea-7bb2366b/"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <div class="contact-icon">
-    in
-  </div>
 
-  <div class="contact-option-text">
-    <strong>Connect on LinkedIn</strong>
-    <span>Let’s connect professionally</span>
-  </div>
+            <button
+              type="button"
+              id="accessibilityButton"
+              class="accessibility-button"
+              aria-expanded="false"
+              aria-controls="accessibilityPanel"
+            >
 
-  <div class="contact-arrow">
-    ↗
-  </div>
-</a>
+              <span aria-hidden="true">
+                Aa
+              </span>
 
-<a href="mailto:linlaryea2@gmail.com?subject=Let%27s%20schedule%20a%20chat" class="contact-option">
-  Let’s schedule a chat
-</a>
-            <div class="option-icon">▣</div>
-            <div class="option-text">
-              <strong>Schedule a chat</strong>
-              <span>For design discussions or collaborations</span>
-            </div>
-            <div class="arrow">↗</div>
-          </a>
+              <span data-i18n="accessibility">
+                Accessibility
+              </span>
+
+            </button>
+
+          </div>
+
         </div>
-      </aside>
-    </section>
 
-    <section class="open-to">
-      <div class="open-to-header">
-        <div class="gold-line"></div>
-        <div class="eyebrow">Open to</div>
-        <h2>Ways we can work together</h2>
+      </nav>
+
+    </header>
+
+
+    <!-- =====================================
+         ACCESSIBILITY PANEL
+    ====================================== -->
+
+    <aside
+      id="accessibilityPanel"
+      class="accessibility-panel"
+      aria-labelledby="accessibilityPanelTitle"
+      hidden
+      data-no-read
+    >
+
+
+      <div class="a11y-panel-header">
+
+        <div>
+
+          <h2
+            id="accessibilityPanelTitle"
+            data-i18n="accessibility"
+          >
+            Accessibility
+          </h2>
+
+
+          <p data-i18n="accessibilityDescription">
+            Adjust the page to suit your needs.
+          </p>
+
+        </div>
+
+
+        <button
+          type="button"
+          id="closeAccessibility"
+          class="panel-close"
+          aria-label="Close accessibility settings"
+          data-i18n-aria-label="closeAccessibility"
+        >
+          ×
+        </button>
+
       </div>
 
-      <div class="open-grid">
-        <article class="open-card">
-          <div class="option-icon">⌕</div>
-          <div>
-            <h3>UX Research</h3>
-            <p>
-              User interviews, usability testing, research synthesis, and insight-driven recommendations.
-            </p>
-          </div>
-        </article>
 
-        <article class="open-card">
-          <div class="option-icon">✦</div>
-          <div>
-            <h3>Interaction Design</h3>
-            <p>
-              Wireframes, user flows, prototypes, interface improvements, and accessible digital experiences.
-            </p>
-          </div>
-        </article>
+      <!-- TEXT SIZE -->
 
-        <article class="open-card">
-          <div class="option-icon">♡</div>
-          <div>
-            <h3>Collaboration</h3>
-            <p>
-              Design discussions, portfolio reviews, product ideas, and meaningful creative opportunities.
-            </p>
-          </div>
-        </article>
+      <div class="a11y-group">
+
+        <span
+          class="a11y-label"
+          data-i18n="textSize"
+        >
+          Text size
+        </span>
+
+
+        <div
+          class="text-size-controls"
+          role="group"
+          aria-label="Text size"
+          data-i18n-aria-label="textSize"
+        >
+
+          <button
+            type="button"
+            class="text-size-button"
+            data-size="small"
+            aria-label="Decrease text size"
+            data-i18n-aria-label="decreaseText"
+          >
+            A−
+          </button>
+
+
+          <button
+            type="button"
+            class="text-size-button active"
+            data-size="default"
+            aria-label="Default text size"
+            data-i18n-aria-label="defaultText"
+          >
+            A
+          </button>
+
+
+          <button
+            type="button"
+            class="text-size-button"
+            data-size="large"
+            aria-label="Increase text size"
+            data-i18n-aria-label="increaseText"
+          >
+            A+
+          </button>
+
+        </div>
+
       </div>
-    </section>
 
-    <footer>
+
+      <!-- HIGH CONTRAST -->
+
+      <div class="a11y-group">
+
+        <div class="toggle-row">
+
+          <div class="toggle-copy">
+
+            <strong data-i18n="highContrast">
+              High contrast
+            </strong>
+
+            <span data-i18n="highContrastDescription">
+              Increase visual contrast.
+            </span>
+
+          </div>
+
+
+          <label class="switch">
+
+            <input
+              id="contrastToggle"
+              type="checkbox"
+              aria-label="High contrast"
+              data-i18n-aria-label="highContrast"
+            />
+
+            <span
+              class="switch-track"
+              aria-hidden="true"
+            ></span>
+
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <!-- REDUCED MOTION -->
+
+      <div class="a11y-group">
+
+        <div class="toggle-row">
+
+          <div class="toggle-copy">
+
+            <strong data-i18n="reduceMotion">
+              Reduce motion
+            </strong>
+
+            <span data-i18n="reduceMotionDescription">
+              Minimise animation and movement.
+            </span>
+
+          </div>
+
+
+          <label class="switch">
+
+            <input
+              id="motionToggle"
+              type="checkbox"
+              aria-label="Reduce motion"
+              data-i18n-aria-label="reduceMotion"
+            />
+
+            <span
+              class="switch-track"
+              aria-hidden="true"
+            ></span>
+
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <!-- READ ALOUD -->
+
+      <div class="a11y-group">
+
+        <span
+          class="a11y-label"
+          data-i18n="readPage"
+        >
+          Read page aloud
+        </span>
+
+
+        <div class="read-controls">
+
+          <button
+            type="button"
+            id="readPlay"
+            class="read-button primary-read"
+            data-i18n="play"
+          >
+            Play
+          </button>
+
+
+          <button
+            type="button"
+            id="readPause"
+            class="read-button"
+            data-i18n="pause"
+          >
+            Pause
+          </button>
+
+
+          <button
+            type="button"
+            id="readStop"
+            class="read-button"
+            data-i18n="stop"
+          >
+            Stop
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- RESET -->
+
+      <div class="a11y-group">
+
+        <button
+          type="button"
+          id="resetAccessibility"
+          class="reset-button"
+          data-i18n="resetSettings"
+        >
+          Reset accessibility settings
+        </button>
+
+      </div>
+
+    </aside>
+
+
+    <!-- =====================================
+         MAIN CONTENT
+    ====================================== -->
+
+    <main
+      id="main-content"
+      tabindex="-1"
+    >
+
+
+      <!-- =================================
+           HERO
+      ================================== -->
+
+      <section
+        class="hero readable-content"
+        aria-labelledby="contact-heading"
+      >
+
+
+        <div class="hero-copy-panel">
+
+
+          <div class="eyebrow-row">
+
+            <span
+              class="gold-line"
+              aria-hidden="true"
+            ></span>
+
+            <span
+              class="eyebrow"
+              data-i18n="contact"
+            >
+              Contact
+            </span>
+
+          </div>
+
+
+          <h1 id="contact-heading">
+
+            <span data-i18n="heroTitleOne">
+              Let’s create meaningful and
+            </span>
+
+            <span
+              class="accent"
+              data-i18n="heroHighlight"
+            >
+              inclusive experiences
+            </span>
+
+            <span data-i18n="heroTitleTwo">
+              together.
+            </span>
+
+          </h1>
+
+
+          <p
+            class="hero-text"
+            data-i18n="heroCopy"
+          >
+            I’m open to UX research, interaction design,
+            product design opportunities, and meaningful
+            collaborations where human behaviour, clarity,
+            and accessibility matter.
+          </p>
+
+
+          <div class="highlight-note">
+
+            <div
+              class="note-icon"
+              aria-hidden="true"
+            >
+              ♥
+            </div>
+
+
+            <div data-i18n="heroNote">
+              Whether you want to discuss a UX project,
+              collaboration, or design opportunity, choose
+              the easiest way to reach me.
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- =================================
+             CONTACT OPTIONS
+        ================================== -->
+
+        <aside
+          class="contact-card"
+          aria-labelledby="connect-heading"
+        >
+
+          <h2
+            id="connect-heading"
+            data-i18n="chooseConnect"
+          >
+            Choose how to connect
+          </h2>
+
+
+          <p
+            class="contact-card-intro"
+            data-i18n="connectIntro"
+          >
+            No forms to fill in. Choose whichever option
+            works best for you.
+          </p>
+
+
+          <div class="contact-options">
+
+
+            <!-- EMAIL -->
+
+            <a
+              href="mailto:linlaryea2@gmail.com"
+              class="contact-option"
+            >
+
+              <div
+                class="option-icon"
+                aria-hidden="true"
+              >
+                ✉
+              </div>
+
+
+              <div class="option-text">
+
+                <strong data-i18n="emailMe">
+                  Email me
+                </strong>
+
+                <span>
+                  linlaryea2@gmail.com
+                </span>
+
+              </div>
+
+
+              <div
+                class="arrow"
+                aria-hidden="true"
+              >
+                ↗
+              </div>
+
+            </a>
+
+
+            <!-- LINKEDIN -->
+
+            <a
+              class="contact-option"
+              href="https://www.linkedin.com/in/linda-laryea-7bb2366b/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+
+              <div
+                class="option-icon"
+                aria-hidden="true"
+              >
+                in
+              </div>
+
+
+              <div class="option-text">
+
+                <strong data-i18n="linkedin">
+                  Connect on LinkedIn
+                </strong>
+
+                <span data-i18n="linkedinText">
+                  Let’s connect professionally
+                </span>
+
+              </div>
+
+
+              <div
+                class="arrow"
+                aria-hidden="true"
+              >
+                ↗
+              </div>
+
+
+              <span class="sr-only">
+                Opens in a new tab
+              </span>
+
+            </a>
+
+
+            <!-- SCHEDULE CHAT -->
+
+            <a
+              href="mailto:linlaryea2@gmail.com?subject=Let%27s%20schedule%20a%20chat"
+              class="contact-option"
+            >
+
+              <div
+                class="option-icon"
+                aria-hidden="true"
+              >
+                ◷
+              </div>
+
+
+              <div class="option-text">
+
+                <strong data-i18n="scheduleChat">
+                  Schedule a chat
+                </strong>
+
+                <span data-i18n="scheduleText">
+                  For design discussions or collaborations
+                </span>
+
+              </div>
+
+
+              <div
+                class="arrow"
+                aria-hidden="true"
+              >
+                ↗
+              </div>
+
+            </a>
+
+          </div>
+
+        </aside>
+
+      </section>
+
+
+      <!-- =================================
+           OPEN TO
+      ================================== -->
+
+      <section
+        class="open-to readable-content"
+        aria-labelledby="open-heading"
+      >
+
+
+        <div class="open-to-header">
+
+
+          <div class="eyebrow-row">
+
+            <span
+              class="gold-line"
+              aria-hidden="true"
+            ></span>
+
+            <span
+              class="eyebrow"
+              data-i18n="openTo"
+            >
+              Open to
+            </span>
+
+          </div>
+
+
+          <h2
+            id="open-heading"
+            data-i18n="workTogether"
+          >
+            Ways we can work together
+          </h2>
+
+
+          <p
+            class="open-to-intro"
+            data-i18n="openIntro"
+          >
+            I’m interested in projects where understanding
+            people and making products easier to use are
+            central to the work.
+          </p>
+
+        </div>
+
+
+        <div class="open-grid">
+
+
+          <article class="open-card">
+
+            <div
+              class="open-icon"
+              aria-hidden="true"
+            >
+              ⌕
+            </div>
+
+
+            <h3>
+              UX Research
+            </h3>
+
+
+            <p data-i18n="researchText">
+              User interviews, usability testing,
+              research synthesis, and insight-driven
+              recommendations.
+            </p>
+
+          </article>
+
+
+          <article class="open-card">
+
+            <div
+              class="open-icon"
+              aria-hidden="true"
+            >
+              ✦
+            </div>
+
+
+            <h3>
+              Interaction Design
+            </h3>
+
+
+            <p data-i18n="designText">
+              Wireframes, user flows, prototypes,
+              interface improvements, and accessible
+              digital experiences.
+            </p>
+
+          </article>
+
+
+          <article class="open-card">
+
+            <div
+              class="open-icon"
+              aria-hidden="true"
+            >
+              ♡
+            </div>
+
+
+            <h3 data-i18n="collaboration">
+              Collaboration
+            </h3>
+
+
+            <p data-i18n="collaborationText">
+              Design discussions, portfolio reviews,
+              product ideas, and meaningful creative
+              opportunities.
+            </p>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================
+           CLOSING CTA
+      ================================== -->
+
+      <section
+        class="closing-cta readable-content"
+        aria-labelledby="closing-heading"
+      >
+
+        <div class="closing-cta-copy">
+
+          <h2
+            id="closing-heading"
+            data-i18n="closingHeading"
+          >
+            Have something in mind?
+          </h2>
+
+
+          <p data-i18n="closingCopy">
+            Send me a message and tell me a little about
+            the project, opportunity, or idea you would
+            like to discuss.
+          </p>
+
+        </div>
+
+
+        <a
+          href="mailto:linlaryea2@gmail.com"
+          class="closing-email"
+          data-i18n="sendEmail"
+        >
+          Send an Email ↗
+        </a>
+
+      </section>
+
+    </main>
+
+
+    <!-- =====================================
+         FOOTER
+    ====================================== -->
+
+    <footer data-no-read>
+
+
       <div>
-        <div class="footer-brand">Linda Laryea</div>
-        <div class="footer-subtitle">UX Research & Design</div>
-        <div>© 2026 Linda Laryea. Designed with clarity, empathy, and accessibility in mind.</div>
+
+        <div class="footer-brand">
+          Linda Laryea
+        </div>
+
+
+        <div
+          class="footer-copy"
+          data-i18n="footerCopy"
+        >
+          © 2026 Linda Laryea. Designed with research,
+          empathy and accessibility in mind.
+        </div>
+
       </div>
+
 
       <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="index.html#work">Case Studies</a>
-        <a href="about.html">About Me</a>
-        <a class="active" href="contact.html">Contact</a>
+
+        <a
+          href="index.html"
+          data-i18n="home"
+        >
+          Home
+        </a>
+
+
+        <a
+          href="case-studies.html"
+          data-i18n="caseStudies"
+        >
+          Case Studies
+        </a>
+
+
+        <a
+          href="about.html"
+          data-i18n="aboutMe"
+        >
+          About Me
+        </a>
+
+
+        <a
+          href="cv.html"
+          data-i18n="cv"
+        >
+          CV
+        </a>
+
       </div>
+
     </footer>
-  </main>
+
+  </div>
+
+
+  <!-- =====================================
+       BACK TO TOP
+  ====================================== -->
+
+  <button
+    type="button"
+    id="backToTop"
+    class="back-to-top"
+    aria-label="Back to top"
+    data-i18n-aria-label="backToTop"
+    data-no-read
+  >
+    ↑
+  </button>
+
+
+  <!-- =====================================
+       JAVASCRIPT
+  ====================================== -->
+
+  <script>
+
+    /* =====================================
+       TRANSLATIONS
+    ====================================== */
+
+    const translations = {
+
+      en: {
+
+        pageTitle:
+          "Contact | Linda Laryea",
+
+        metaDescription:
+          "Contact Linda Laryea for UX research, interaction design, product design and collaboration opportunities.",
+
+
+        skip:
+          "Skip to main content",
+
+        mainNavigation:
+          "Main navigation",
+
+        chooseLanguage:
+          "Choose language",
+
+        switchEnglish:
+          "Switch to English",
+
+        switchGerman:
+          "Switch to German",
+
+
+        home:
+          "Home",
+
+        caseStudies:
+          "Case Studies",
+
+        aboutMe:
+          "About Me",
+
+        cv:
+          "CV",
+
+        letsConnect:
+          "Let’s Connect",
+
+        contact:
+          "Contact",
+
+
+        accessibility:
+          "Accessibility",
+
+        accessibilityDescription:
+          "Adjust the page to suit your needs.",
+
+        closeAccessibility:
+          "Close accessibility settings",
+
+        textSize:
+          "Text size",
+
+        decreaseText:
+          "Decrease text size",
+
+        defaultText:
+          "Default text size",
+
+        increaseText:
+          "Increase text size",
+
+        highContrast:
+          "High contrast",
+
+        highContrastDescription:
+          "Increase visual contrast.",
+
+        reduceMotion:
+          "Reduce motion",
+
+        reduceMotionDescription:
+          "Minimise animation and movement.",
+
+        readPage:
+          "Read page aloud",
+
+        play:
+          "Play",
+
+        pause:
+          "Pause",
+
+        stop:
+          "Stop",
+
+        resetSettings:
+          "Reset accessibility settings",
+
+
+        heroTitleOne:
+          "Let’s create meaningful and",
+
+        heroHighlight:
+          "inclusive experiences",
+
+        heroTitleTwo:
+          "together.",
+
+        heroCopy:
+          "I’m open to UX research, interaction design, product design opportunities, and meaningful collaborations where human behaviour, clarity, and accessibility matter.",
+
+        heroNote:
+          "Whether you want to discuss a UX project, collaboration, or design opportunity, choose the easiest way to reach me.",
+
+
+        chooseConnect:
+          "Choose how to connect",
+
+        connectIntro:
+          "No forms to fill in. Choose whichever option works best for you.",
+
+        emailMe:
+          "Email me",
+
+        linkedin:
+          "Connect on LinkedIn",
+
+        linkedinText:
+          "Let’s connect professionally",
+
+        scheduleChat:
+          "Schedule a chat",
+
+        scheduleText:
+          "For design discussions or collaborations",
+
+
+        openTo:
+          "Open to",
+
+        workTogether:
+          "Ways we can work together",
+
+        openIntro:
+          "I’m interested in projects where understanding people and making products easier to use are central to the work.",
+
+        researchText:
+          "User interviews, usability testing, research synthesis, and insight-driven recommendations.",
+
+        designText:
+          "Wireframes, user flows, prototypes, interface improvements, and accessible digital experiences.",
+
+        collaboration:
+          "Collaboration",
+
+        collaborationText:
+          "Design discussions, portfolio reviews, product ideas, and meaningful creative opportunities.",
+
+
+        closingHeading:
+          "Have something in mind?",
+
+        closingCopy:
+          "Send me a message and tell me a little about the project, opportunity, or idea you would like to discuss.",
+
+        sendEmail:
+          "Send an Email ↗",
+
+
+        footerCopy:
+          "© 2026 Linda Laryea. Designed with research, empathy and accessibility in mind.",
+
+
+        backToTop:
+          "Back to top",
+
+
+        languageChanged:
+          "Language changed to English.",
+
+        settingsReset:
+          "Accessibility settings reset.",
+
+        contrastEnabled:
+          "High contrast enabled.",
+
+        contrastDisabled:
+          "High contrast disabled.",
+
+        motionEnabled:
+          "Reduced motion enabled.",
+
+        motionDisabled:
+          "Reduced motion disabled.",
+
+        readingStarted:
+          "Reading started.",
+
+        readingPaused:
+          "Reading paused.",
+
+        readingResumed:
+          "Reading resumed.",
+
+        readingStopped:
+          "Reading stopped.",
+
+        readUnsupported:
+          "Read aloud is not supported by this browser."
+
+      },
+
+
+      de: {
+
+        pageTitle:
+          "Kontakt | Linda Laryea",
+
+        metaDescription:
+          "Kontakt zu Linda Laryea für UX Research, Interaction Design, Produktdesign und Kooperationen.",
+
+
+        skip:
+          "Zum Hauptinhalt springen",
+
+        mainNavigation:
+          "Hauptnavigation",
+
+        chooseLanguage:
+          "Sprache auswählen",
+
+        switchEnglish:
+          "Auf Englisch wechseln",
+
+        switchGerman:
+          "Auf Deutsch wechseln",
+
+
+        home:
+          "Startseite",
+
+        caseStudies:
+          "Fallstudien",
+
+        aboutMe:
+          "Über mich",
+
+        cv:
+          "Lebenslauf",
+
+        letsConnect:
+          "Kontakt aufnehmen",
+
+        contact:
+          "Kontakt",
+
+
+        accessibility:
+          "Barrierefreiheit",
+
+        accessibilityDescription:
+          "Passe die Seite an deine Bedürfnisse an.",
+
+        closeAccessibility:
+          "Einstellungen zur Barrierefreiheit schließen",
+
+        textSize:
+          "Textgröße",
+
+        decreaseText:
+          "Text verkleinern",
+
+        defaultText:
+          "Standardtextgröße",
+
+        increaseText:
+          "Text vergrößern",
+
+        highContrast:
+          "Hoher Kontrast",
+
+        highContrastDescription:
+          "Erhöht den visuellen Kontrast.",
+
+        reduceMotion:
+          "Bewegung reduzieren",
+
+        reduceMotionDescription:
+          "Animationen und Bewegungen minimieren.",
+
+        readPage:
+          "Seite vorlesen",
+
+        play:
+          "Start",
+
+        pause:
+          "Pause",
+
+        stop:
+          "Stopp",
+
+        resetSettings:
+          "Barrierefreiheit zurücksetzen",
+
+
+        heroTitleOne:
+          "Lass uns gemeinsam sinnvolle und",
+
+        heroHighlight:
+          "inklusive Erlebnisse",
+
+        heroTitleTwo:
+          "gestalten.",
+
+        heroCopy:
+          "Ich bin offen für Möglichkeiten in UX Research, Interaction Design und Produktdesign sowie für sinnvolle Kooperationen, bei denen menschliches Verhalten, Klarheit und Barrierefreiheit eine wichtige Rolle spielen.",
+
+        heroNote:
+          "Ob du ein UX-Projekt, eine Zusammenarbeit oder eine Designmöglichkeit besprechen möchtest – wähle einfach den Kontaktweg, der für dich am besten funktioniert.",
+
+
+        chooseConnect:
+          "So kannst du mich erreichen",
+
+        connectIntro:
+          "Kein Formular. Wähle einfach die Kontaktmöglichkeit, die für dich am besten passt.",
+
+        emailMe:
+          "E-Mail senden",
+
+        linkedin:
+          "Auf LinkedIn vernetzen",
+
+        linkedinText:
+          "Lass uns beruflich vernetzen",
+
+        scheduleChat:
+          "Gespräch vereinbaren",
+
+        scheduleText:
+          "Für Designgespräche oder Kooperationen",
+
+
+        openTo:
+          "Offen für",
+
+        workTogether:
+          "So können wir zusammenarbeiten",
+
+        openIntro:
+          "Mich interessieren Projekte, bei denen das Verständnis von Menschen und eine einfache Nutzung im Mittelpunkt stehen.",
+
+        researchText:
+          "Nutzerinterviews, Usability-Tests, Research-Synthese und erkenntnisbasierte Empfehlungen.",
+
+        designText:
+          "Wireframes, User Flows, Prototypen, Interface-Verbesserungen und barrierefreie digitale Erlebnisse.",
+
+        collaboration:
+          "Zusammenarbeit",
+
+        collaborationText:
+          "Designgespräche, Portfolio-Reviews, Produktideen und sinnvolle kreative Möglichkeiten.",
+
+
+        closingHeading:
+          "Du hast etwas im Kopf?",
+
+        closingCopy:
+          "Schreib mir und erzähle mir kurz etwas über das Projekt, die Möglichkeit oder die Idee, die du besprechen möchtest.",
+
+        sendEmail:
+          "E-Mail senden ↗",
+
+
+        footerCopy:
+          "© 2026 Linda Laryea. Mit Research, Empathie und Barrierefreiheit im Mittelpunkt gestaltet.",
+
+
+        backToTop:
+          "Nach oben",
+
+
+        languageChanged:
+          "Sprache auf Deutsch geändert.",
+
+        settingsReset:
+          "Einstellungen zur Barrierefreiheit wurden zurückgesetzt.",
+
+        contrastEnabled:
+          "Hoher Kontrast aktiviert.",
+
+        contrastDisabled:
+          "Hoher Kontrast deaktiviert.",
+
+        motionEnabled:
+          "Reduzierte Bewegung aktiviert.",
+
+        motionDisabled:
+          "Reduzierte Bewegung deaktiviert.",
+
+        readingStarted:
+          "Vorlesen gestartet.",
+
+        readingPaused:
+          "Vorlesen pausiert.",
+
+        readingResumed:
+          "Vorlesen fortgesetzt.",
+
+        readingStopped:
+          "Vorlesen gestoppt.",
+
+        readUnsupported:
+          "Die Vorlesefunktion wird von diesem Browser nicht unterstützt."
+
+      }
+
+    };
+
+
+    /* =====================================
+       ELEMENTS
+    ====================================== */
+
+    const languageEN =
+      document.getElementById(
+        "languageEN"
+      );
+
+
+    const languageDE =
+      document.getElementById(
+        "languageDE"
+      );
+
+
+    const accessibilityButton =
+      document.getElementById(
+        "accessibilityButton"
+      );
+
+
+    const accessibilityPanel =
+      document.getElementById(
+        "accessibilityPanel"
+      );
+
+
+    const closeAccessibility =
+      document.getElementById(
+        "closeAccessibility"
+      );
+
+
+    const contrastToggle =
+      document.getElementById(
+        "contrastToggle"
+      );
+
+
+    const motionToggle =
+      document.getElementById(
+        "motionToggle"
+      );
+
+
+    const textSizeButtons =
+      document.querySelectorAll(
+        ".text-size-button"
+      );
+
+
+    const readPlay =
+      document.getElementById(
+        "readPlay"
+      );
+
+
+    const readPause =
+      document.getElementById(
+        "readPause"
+      );
+
+
+    const readStop =
+      document.getElementById(
+        "readStop"
+      );
+
+
+    const resetAccessibility =
+      document.getElementById(
+        "resetAccessibility"
+      );
+
+
+    const backToTop =
+      document.getElementById(
+        "backToTop"
+      );
+
+
+    const a11yStatus =
+      document.getElementById(
+        "a11yStatus"
+      );
+
+
+    const metaDescription =
+      document.getElementById(
+        "metaDescription"
+      );
+
+
+    let currentLanguage =
+      localStorage.getItem(
+        "portfolioLanguage"
+      ) || "en";
+
+
+    let speechUtterance =
+      null;
+
+
+    let isPaused =
+      false;
+
+
+    /* =====================================
+       ANNOUNCEMENT
+    ====================================== */
+
+    function announce(message) {
+
+      a11yStatus.textContent =
+        "";
+
+
+      window.setTimeout(
+        () => {
+
+          a11yStatus.textContent =
+            message;
+
+        },
+        40
+      );
+
+    }
+
+
+    /* =====================================
+       LANGUAGE
+    ====================================== */
+
+    function applyLanguage(
+      language,
+      announceChange = false
+    ) {
+
+      currentLanguage =
+        language;
+
+
+      document.documentElement.lang =
+        language;
+
+
+      localStorage.setItem(
+        "portfolioLanguage",
+        language
+      );
+
+
+      document.title =
+        translations[language]
+          .pageTitle;
+
+
+      metaDescription.setAttribute(
+        "content",
+        translations[language]
+          .metaDescription
+      );
+
+
+      document
+        .querySelectorAll(
+          "[data-i18n]"
+        )
+        .forEach(
+          element => {
+
+            const key =
+              element.getAttribute(
+                "data-i18n"
+              );
+
+
+            if (
+              translations[language] &&
+              translations[language][key]
+            ) {
+
+              element.textContent =
+                translations[language][key];
+
+            }
+
+          }
+        );
+
+
+      document
+        .querySelectorAll(
+          "[data-i18n-aria-label]"
+        )
+        .forEach(
+          element => {
+
+            const key =
+              element.getAttribute(
+                "data-i18n-aria-label"
+              );
+
+
+            if (
+              translations[language] &&
+              translations[language][key]
+            ) {
+
+              element.setAttribute(
+                "aria-label",
+                translations[language][key]
+              );
+
+            }
+
+          }
+        );
+
+
+      const englishSelected =
+        language === "en";
+
+
+      languageEN.classList.toggle(
+        "active",
+        englishSelected
+      );
+
+
+      languageDE.classList.toggle(
+        "active",
+        !englishSelected
+      );
+
+
+      languageEN.setAttribute(
+        "aria-pressed",
+        englishSelected
+          ? "true"
+          : "false"
+      );
+
+
+      languageDE.setAttribute(
+        "aria-pressed",
+        !englishSelected
+          ? "true"
+          : "false"
+      );
+
+
+      if (announceChange) {
+
+        announce(
+          translations[language]
+            .languageChanged
+        );
+
+      }
+
+
+      stopReading(false);
+
+    }
+
+
+    languageEN.addEventListener(
+      "click",
+      () => {
+
+        applyLanguage(
+          "en",
+          true
+        );
+
+      }
+    );
+
+
+    languageDE.addEventListener(
+      "click",
+      () => {
+
+        applyLanguage(
+          "de",
+          true
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       ACCESSIBILITY PANEL
+    ====================================== */
+
+    function openAccessibilityPanel() {
+
+      accessibilityPanel.hidden =
+        false;
+
+
+      accessibilityButton.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
+
+      closeAccessibility.focus();
+
+    }
+
+
+    function closeAccessibilityPanel() {
+
+      accessibilityPanel.hidden =
+        true;
+
+
+      accessibilityButton.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+
+      accessibilityButton.focus();
+
+    }
+
+
+    accessibilityButton.addEventListener(
+      "click",
+      () => {
+
+        if (
+          accessibilityPanel.hidden
+        ) {
+
+          openAccessibilityPanel();
+
+        } else {
+
+          closeAccessibilityPanel();
+
+        }
+
+      }
+    );
+
+
+    closeAccessibility.addEventListener(
+      "click",
+      closeAccessibilityPanel
+    );
+
+
+    document.addEventListener(
+      "keydown",
+      event => {
+
+        if (
+          event.key === "Escape" &&
+          !accessibilityPanel.hidden
+        ) {
+
+          closeAccessibilityPanel();
+
+        }
+
+      }
+    );
+
+
+    document.addEventListener(
+      "click",
+      event => {
+
+        if (
+          accessibilityPanel.hidden
+        ) {
+
+          return;
+
+        }
+
+
+        const clickedInsidePanel =
+          accessibilityPanel.contains(
+            event.target
+          );
+
+
+        const clickedButton =
+          accessibilityButton.contains(
+            event.target
+          );
+
+
+        if (
+          !clickedInsidePanel &&
+          !clickedButton
+        ) {
+
+          accessibilityPanel.hidden =
+            true;
+
+
+          accessibilityButton.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =====================================
+       TEXT SIZE
+    ====================================== */
+
+    function applyTextSize(size) {
+
+      let scale =
+        1;
+
+
+      if (
+        size === "small"
+      ) {
+
+        scale =
+          0.92;
+
+      }
+
+
+      if (
+        size === "large"
+      ) {
+
+        scale =
+          1.15;
+
+      }
+
+
+      document.documentElement
+        .style
+        .setProperty(
+          "--text-scale",
+          scale
+        );
+
+
+      localStorage.setItem(
+        "portfolioTextSize",
+        size
+      );
+
+
+      textSizeButtons.forEach(
+        button => {
+
+          button.classList.toggle(
+            "active",
+            button.dataset.size === size
+          );
+
+        }
+      );
+
+    }
+
+
+    textSizeButtons.forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            applyTextSize(
+              button.dataset.size
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       HIGH CONTRAST
+    ====================================== */
+
+    function applyContrast(
+      enabled,
+      announceChange = false
+    ) {
+
+      document.body.classList.toggle(
+        "high-contrast",
+        enabled
+      );
+
+
+      contrastToggle.checked =
+        enabled;
+
+
+      localStorage.setItem(
+        "portfolioContrast",
+        enabled
+          ? "true"
+          : "false"
+      );
+
+
+      if (announceChange) {
+
+        announce(
+          enabled
+            ? translations[currentLanguage]
+                .contrastEnabled
+            : translations[currentLanguage]
+                .contrastDisabled
+        );
+
+      }
+
+    }
+
+
+    contrastToggle.addEventListener(
+      "change",
+      () => {
+
+        applyContrast(
+          contrastToggle.checked,
+          true
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       REDUCED MOTION
+    ====================================== */
+
+    function applyMotionPreference(
+      enabled,
+      announceChange = false
+    ) {
+
+      document.body.classList.toggle(
+        "reduce-motion",
+        enabled
+      );
+
+
+      motionToggle.checked =
+        enabled;
+
+
+      localStorage.setItem(
+        "portfolioReducedMotion",
+        enabled
+          ? "true"
+          : "false"
+      );
+
+
+      if (announceChange) {
+
+        announce(
+          enabled
+            ? translations[currentLanguage]
+                .motionEnabled
+            : translations[currentLanguage]
+                .motionDisabled
+        );
+
+      }
+
+    }
+
+
+    motionToggle.addEventListener(
+      "change",
+      () => {
+
+        applyMotionPreference(
+          motionToggle.checked,
+          true
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       READ ALOUD
+    ====================================== */
+
+    const speechSupported =
+      "speechSynthesis" in window &&
+      "SpeechSynthesisUtterance" in window;
+
+
+    if (!speechSupported) {
+
+      readPlay.disabled =
+        true;
+
+      readPause.disabled =
+        true;
+
+      readStop.disabled =
+        true;
+
+    }
+
+
+    function getReadablePageText() {
+
+      const readableSections =
+        document.querySelectorAll(
+          ".readable-content"
+        );
+
+
+      const textParts =
+        [];
+
+
+      readableSections.forEach(
+        section => {
+
+          const clone =
+            section.cloneNode(true);
+
+
+          clone
+            .querySelectorAll(
+              "[data-no-read], button, [aria-hidden='true']"
+            )
+            .forEach(
+              element => {
+
+                element.remove();
+
+              }
+            );
+
+
+          const sectionText =
+            clone.innerText
+              .replace(
+                /\s+/g,
+                " "
+              )
+              .trim();
+
+
+          if (sectionText) {
+
+            textParts.push(
+              sectionText
+            );
+
+          }
+
+        }
+      );
+
+
+      return textParts.join(
+        ". "
+      );
+
+    }
+
+
+    function startReading() {
+
+      if (!speechSupported) {
+
+        announce(
+          translations[currentLanguage]
+            .readUnsupported
+        );
+
+        return;
+
+      }
+
+
+      if (
+        window.speechSynthesis.speaking &&
+        isPaused
+      ) {
+
+        window.speechSynthesis.resume();
+
+
+        isPaused =
+          false;
+
+
+        announce(
+          translations[currentLanguage]
+            .readingResumed
+        );
+
+
+        return;
+
+      }
+
+
+      window.speechSynthesis.cancel();
+
+
+      const text =
+        getReadablePageText();
+
+
+      speechUtterance =
+        new SpeechSynthesisUtterance(
+          text
+        );
+
+
+      speechUtterance.lang =
+        currentLanguage === "de"
+          ? "de-DE"
+          : "en-US";
+
+
+      speechUtterance.rate =
+        0.95;
+
+
+      speechUtterance.pitch =
+        1;
+
+
+      speechUtterance.onend =
+        () => {
+
+          isPaused =
+            false;
+
+        };
+
+
+      window.speechSynthesis.speak(
+        speechUtterance
+      );
+
+
+      isPaused =
+        false;
+
+
+      announce(
+        translations[currentLanguage]
+          .readingStarted
+      );
+
+    }
+
+
+    function pauseReading() {
+
+      if (
+        speechSupported &&
+        window.speechSynthesis.speaking &&
+        !isPaused
+      ) {
+
+        window.speechSynthesis.pause();
+
+
+        isPaused =
+          true;
+
+
+        announce(
+          translations[currentLanguage]
+            .readingPaused
+        );
+
+      }
+
+    }
+
+
+    function stopReading(
+      announceStop = true
+    ) {
+
+      if (!speechSupported) {
+        return;
+      }
+
+
+      window.speechSynthesis.cancel();
+
+
+      isPaused =
+        false;
+
+
+      if (announceStop) {
+
+        announce(
+          translations[currentLanguage]
+            .readingStopped
+        );
+
+      }
+
+    }
+
+
+    readPlay.addEventListener(
+      "click",
+      startReading
+    );
+
+
+    readPause.addEventListener(
+      "click",
+      pauseReading
+    );
+
+
+    readStop.addEventListener(
+      "click",
+      () => {
+
+        stopReading(true);
+
+      }
+    );
+
+
+    /* =====================================
+       RESET
+    ====================================== */
+
+    resetAccessibility.addEventListener(
+      "click",
+      () => {
+
+        applyTextSize(
+          "default"
+        );
+
+
+        applyContrast(
+          false
+        );
+
+
+        applyMotionPreference(
+          false
+        );
+
+
+        stopReading(
+          false
+        );
+
+
+        localStorage.removeItem(
+          "portfolioTextSize"
+        );
+
+
+        localStorage.removeItem(
+          "portfolioContrast"
+        );
+
+
+        localStorage.removeItem(
+          "portfolioReducedMotion"
+        );
+
+
+        announce(
+          translations[currentLanguage]
+            .settingsReset
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       BACK TO TOP
+    ====================================== */
+
+    window.addEventListener(
+      "scroll",
+      () => {
+
+        backToTop.classList.toggle(
+          "visible",
+          window.scrollY > 500
+        );
+
+      },
+      {
+        passive: true
+      }
+    );
+
+
+    backToTop.addEventListener(
+      "click",
+      () => {
+
+        const reducedMotion =
+          document.body
+            .classList
+            .contains(
+              "reduce-motion"
+            ) ||
+
+          window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches;
+
+
+        window.scrollTo({
+
+          top:
+            0,
+
+          behavior:
+            reducedMotion
+              ? "auto"
+              : "smooth"
+
+        });
+
+      }
+    );
+
+
+    /* =====================================
+       LOAD SAVED PREFERENCES
+    ====================================== */
+
+    function loadPreferences() {
+
+      applyLanguage(
+        currentLanguage,
+        false
+      );
+
+
+      const savedTextSize =
+        localStorage.getItem(
+          "portfolioTextSize"
+        ) || "default";
+
+
+      applyTextSize(
+        savedTextSize
+      );
+
+
+      const savedContrast =
+        localStorage.getItem(
+          "portfolioContrast"
+        ) === "true";
+
+
+      applyContrast(
+        savedContrast,
+        false
+      );
+
+
+      const savedMotion =
+        localStorage.getItem(
+          "portfolioReducedMotion"
+        );
+
+
+      if (
+        savedMotion !== null
+      ) {
+
+        applyMotionPreference(
+          savedMotion === "true",
+          false
+        );
+
+      } else {
+
+        motionToggle.checked =
+          window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches;
+
+      }
+
+    }
+
+
+    loadPreferences();
+
+
+    /* =====================================
+       STOP SPEECH WHEN LEAVING PAGE
+    ====================================== */
+
+    window.addEventListener(
+      "beforeunload",
+      () => {
+
+        if (speechSupported) {
+
+          window.speechSynthesis.cancel();
+
+        }
+
+      }
+    );
+
+  </script>
+
 </body>
+
 </html>
