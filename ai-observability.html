@@ -1,18 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="/favicon.png" />
 
-  <title>AI Observability Investigation Assistant | Linda Laryea</title>
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    id="metaDescription"
+    name="description"
+    content="AI Observability Investigation Assistant — an interactive UX case study by Linda Laryea."
+  />
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="/favicon.png"
+  />
+
+  <title>
+    AI Observability Investigation Assistant | Linda Laryea
+  </title>
+
 
   <style>
+
+    /* =====================================
+       DESIGN TOKENS
+    ====================================== */
+
     :root {
       --page-bg: #FAF9FD;
       --white: #FFFFFF;
+      --surface: #FFFFFF;
 
       --magenta: #A80B63;
+      --magenta-dark: #83074C;
+
       --gold: #F3C24F;
 
       --ink: #111827;
@@ -40,8 +68,18 @@
       --dark-text: #F6F7FB;
       --dark-muted: #A9B3C8;
 
-      --shadow: 0 20px 55px rgba(24, 39, 75, 0.07);
+      --focus: #111827;
+
+      --shadow:
+        0 20px 55px rgba(24, 39, 75, 0.07);
+
+      --text-scale: 1;
     }
+
+
+    /* =====================================
+       RESET
+    ====================================== */
 
     * {
       box-sizing: border-box;
@@ -49,426 +87,1409 @@
       padding: 0;
     }
 
+
     html {
       scroll-behavior: smooth;
+
+      font-size:
+        calc(16px * var(--text-scale));
     }
 
+
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--page-bg);
-      color: var(--ink);
-      line-height: 1.6;
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      background:
+        var(--page-bg);
+
+      color:
+        var(--ink);
+
+      line-height:
+        1.6;
+
+      transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
     }
+
 
     button,
     a {
       font: inherit;
     }
 
+
     a {
       color: inherit;
       text-decoration: none;
     }
 
+
     button {
       border: 0;
+      cursor: pointer;
     }
+
 
     img {
       display: block;
       max-width: 100%;
     }
 
-    :focus-visible {
-      outline: 3px solid var(--gold);
-      outline-offset: 4px;
+
+    /* =====================================
+       SCREEN READER ONLY
+    ====================================== */
+
+    .sr-only {
+      position: absolute;
+
+      width: 1px;
+      height: 1px;
+
+      padding: 0;
+      margin: -1px;
+
+      overflow: hidden;
+
+      clip: rect(0, 0, 0, 0);
+
+      white-space: nowrap;
+
+      border: 0;
     }
+
+
+    /* =====================================
+       FOCUS
+    ====================================== */
+
+    :focus-visible {
+      outline:
+        3px solid var(--focus);
+
+      outline-offset:
+        4px;
+    }
+
+
+    .prototype-section :focus-visible,
+    .nav-button:focus-visible,
+    .cta-button:focus-visible {
+      outline-color:
+        var(--gold);
+    }
+
+
+    /* =====================================
+       SKIP LINK
+    ====================================== */
+
+    .skip-link {
+      position: fixed;
+
+      top: 12px;
+      left: 12px;
+
+      z-index: 99999;
+
+      padding:
+        12px 18px;
+
+      background:
+        var(--ink);
+
+      color:
+        #FFFFFF;
+
+      border-radius:
+        10px;
+
+      font-size:
+        0.875rem;
+
+      font-weight:
+        800;
+
+      transform:
+        translateY(-180%);
+
+      transition:
+        transform 0.2s ease;
+    }
+
+
+    .skip-link:focus {
+      transform:
+        translateY(0);
+    }
+
+
+    /* =====================================
+       PAGE
+    ====================================== */
 
     .page {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 24px 0 70px;
+      width:
+        min(1180px, calc(100% - 32px));
+
+      margin:
+        0 auto;
+
+      padding:
+        24px 0 70px;
     }
 
-    /* ==============================
-       NAV
-    ============================== */
+
+    /* =====================================
+       NAVIGATION
+    ====================================== */
 
     .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
+      display:
+        flex;
 
-      padding-bottom: 22px;
-      border-bottom: 1px solid var(--border);
+      justify-content:
+        space-between;
+
+      align-items:
+        center;
+
+      gap:
+        24px;
+
+      padding-bottom:
+        22px;
+
+      border-bottom:
+        1px solid var(--border);
     }
+
 
     .brand-name {
-      color: var(--magenta);
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: -0.4px;
+      color:
+        var(--magenta);
+
+      font-size:
+        1.75rem;
+
+      font-weight:
+        800;
+
+      letter-spacing:
+        -0.4px;
+
+      white-space:
+        nowrap;
     }
+
+
+    .nav-right {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        20px;
+    }
+
 
     .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 32px;
+      display:
+        flex;
 
-      font-size: 14px;
-      font-weight: 700;
+      align-items:
+        center;
+
+      gap:
+        32px;
+
+      font-size:
+        0.875rem;
+
+      font-weight:
+        700;
     }
+
+
+    .nav-links a {
+      min-height:
+        44px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+    }
+
 
     .nav-links a:hover,
     .nav-links .active {
-      color: var(--magenta);
+      color:
+        var(--magenta);
     }
+
 
     .nav-links .active {
-      border-bottom: 3px solid var(--magenta);
-      padding-bottom: 10px;
+      padding-bottom:
+        10px;
+
+      border-bottom:
+        3px solid var(--magenta);
     }
+
 
     .nav-button {
-      background: var(--magenta);
-      color: #FFFFFF !important;
+      min-height:
+        44px;
 
-      padding: 13px 22px;
-      border-radius: 12px;
+      padding:
+        0 22px;
 
-      border-bottom: none !important;
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF !important;
+
+      border-radius:
+        12px;
+
+      border-bottom:
+        none !important;
     }
+
+
+    .nav-button:hover {
+      background:
+        var(--magenta-dark);
+    }
+
+
+    /* =====================================
+       NAV ACCESSIBILITY TOOLS
+    ====================================== */
+
+    .nav-tools {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        8px;
+    }
+
+
+    .language-switcher {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      padding:
+        3px;
+
+      background:
+        var(--surface);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        10px;
+    }
+
+
+    .language-button {
+      min-width:
+        44px;
+
+      min-height:
+        40px;
+
+      padding:
+        0 9px;
+
+      background:
+        transparent;
+
+      color:
+        var(--body);
+
+      border:
+        0;
+
+      border-radius:
+        7px;
+
+      font-size:
+        0.75rem;
+
+      font-weight:
+        800;
+    }
+
+
+    .language-button.active {
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
+    }
+
+
+    .accessibility-button {
+      min-width:
+        44px;
+
+      min-height:
+        44px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      gap:
+        7px;
+
+      padding:
+        0 12px;
+
+      background:
+        var(--surface);
+
+      color:
+        var(--ink);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        10px;
+
+      font-size:
+        0.8rem;
+
+      font-weight:
+        800;
+    }
+
+
+    .accessibility-button:hover {
+      background:
+        var(--purple-soft);
+    }
+
+
+    /* =====================================
+       ACCESSIBILITY PANEL
+    ====================================== */
+
+    .accessibility-panel {
+      position:
+        fixed;
+
+      top:
+        92px;
+
+      right:
+        24px;
+
+      z-index:
+        10000;
+
+      width:
+        min(340px, calc(100vw - 32px));
+
+      padding:
+        22px;
+
+      background:
+        var(--surface);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        18px;
+
+      box-shadow:
+        0 24px 70px rgba(17, 24, 39, 0.16);
+    }
+
+
+    .accessibility-panel[hidden] {
+      display: none;
+    }
+
+
+    .a11y-panel-header {
+      display:
+        flex;
+
+      justify-content:
+        space-between;
+
+      align-items:
+        flex-start;
+
+      gap:
+        18px;
+
+      margin-bottom:
+        20px;
+    }
+
+
+    .a11y-panel-header h2 {
+      margin-bottom:
+        3px;
+
+      font-size:
+        1.1rem;
+    }
+
+
+    .a11y-panel-header p {
+      color:
+        var(--muted);
+
+      font-size:
+        0.76rem;
+    }
+
+
+    .panel-close {
+      min-width:
+        44px;
+
+      min-height:
+        44px;
+
+      background:
+        var(--purple-soft);
+
+      color:
+        var(--ink);
+
+      border-radius:
+        10px;
+
+      font-size:
+        1.25rem;
+    }
+
+
+    .a11y-group {
+      padding:
+        16px 0;
+
+      border-top:
+        1px solid var(--border);
+    }
+
+
+    .a11y-group:first-of-type {
+      padding-top:
+        0;
+
+      border-top:
+        0;
+    }
+
+
+    .a11y-label {
+      display:
+        block;
+
+      margin-bottom:
+        10px;
+
+      color:
+        var(--ink);
+
+      font-size:
+        0.8rem;
+
+      font-weight:
+        800;
+    }
+
+
+    .text-size-controls {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap:
+        8px;
+    }
+
+
+    .text-size-button {
+      min-height:
+        44px;
+
+      background:
+        var(--surface);
+
+      color:
+        var(--ink);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        9px;
+
+      font-weight:
+        800;
+    }
+
+
+    .text-size-button.active {
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
+
+      border-color:
+        var(--magenta);
+    }
+
+
+    .toggle-row {
+      min-height:
+        48px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        20px;
+    }
+
+
+    .toggle-copy strong {
+      display:
+        block;
+
+      font-size:
+        0.82rem;
+    }
+
+
+    .toggle-copy span {
+      display:
+        block;
+
+      margin-top:
+        2px;
+
+      color:
+        var(--muted);
+
+      font-size:
+        0.7rem;
+    }
+
+
+    .switch {
+      position:
+        relative;
+
+      width:
+        50px;
+
+      height:
+        28px;
+
+      flex:
+        0 0 auto;
+    }
+
+
+    .switch input {
+      position:
+        absolute;
+
+      opacity:
+        0;
+
+      width:
+        1px;
+
+      height:
+        1px;
+    }
+
+
+    .switch-track {
+      position:
+        absolute;
+
+      inset:
+        0;
+
+      background:
+        #D1D5DB;
+
+      border-radius:
+        999px;
+    }
+
+
+    .switch-track::after {
+      content:
+        "";
+
+      position:
+        absolute;
+
+      width:
+        20px;
+
+      height:
+        20px;
+
+      left:
+        4px;
+
+      top:
+        4px;
+
+      background:
+        #FFFFFF;
+
+      border-radius:
+        50%;
+
+      box-shadow:
+        0 2px 7px rgba(0, 0, 0, 0.18);
+
+      transition:
+        transform 0.2s ease;
+    }
+
+
+    .switch input:checked +
+    .switch-track {
+      background:
+        var(--magenta);
+    }
+
+
+    .switch input:checked +
+    .switch-track::after {
+      transform:
+        translateX(22px);
+    }
+
+
+    .switch input:focus-visible +
+    .switch-track {
+      outline:
+        3px solid var(--focus);
+
+      outline-offset:
+        3px;
+    }
+
+
+    .read-controls {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap:
+        8px;
+    }
+
+
+    .read-button {
+      min-height:
+        44px;
+
+      background:
+        var(--surface);
+
+      color:
+        var(--ink);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        9px;
+
+      font-size:
+        0.75rem;
+
+      font-weight:
+        800;
+    }
+
+
+    .read-button.primary-read {
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
+
+      border-color:
+        var(--magenta);
+    }
+
+
+    .read-button:disabled {
+      opacity:
+        0.45;
+
+      cursor:
+        not-allowed;
+    }
+
+
+    .reset-button {
+      width:
+        100%;
+
+      min-height:
+        44px;
+
+      background:
+        var(--surface);
+
+      color:
+        var(--magenta);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        9px;
+
+      font-size:
+        0.75rem;
+
+      font-weight:
+        800;
+    }
+
+
+    /* =====================================
+       BACK LINK
+    ====================================== */
 
     .back-link {
-      display: inline-flex;
-      margin: 30px 0 20px;
+      min-height:
+        44px;
 
-      color: var(--magenta);
-      font-size: 14px;
-      font-weight: 800;
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      margin:
+        30px 0 20px;
+
+      color:
+        var(--magenta);
+
+      font-size:
+        0.875rem;
+
+      font-weight:
+        800;
     }
 
-    /* ==============================
+
+    /* =====================================
        SHARED
-    ============================== */
+    ====================================== */
 
     .gold-line {
-      width: 46px;
-      height: 3px;
+      width:
+        46px;
 
-      background: var(--gold);
-      border-radius: 999px;
+      height:
+        3px;
 
-      margin-bottom: 14px;
+      margin-bottom:
+        14px;
+
+      background:
+        var(--gold);
+
+      border-radius:
+        999px;
     }
+
 
     .section-label {
-      color: var(--magenta);
+      margin-bottom:
+        10px;
 
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+      color:
+        var(--magenta);
 
-      margin-bottom: 10px;
+      font-size:
+        0.75rem;
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        1px;
+
+      text-transform:
+        uppercase;
     }
+
 
     .section-title {
-      font-size: clamp(32px, 4vw, 44px);
-      line-height: 1.08;
-      letter-spacing: -1px;
+      margin-bottom:
+        14px;
 
-      margin-bottom: 14px;
+      font-size:
+        clamp(2rem, 4vw, 2.75rem);
+
+      line-height:
+        1.08;
+
+      letter-spacing:
+        -1px;
     }
+
 
     .section-intro {
-      max-width: 830px;
+      max-width:
+        830px;
 
-      color: var(--body);
-      font-size: 16px;
-      line-height: 1.75;
+      color:
+        var(--body);
+
+      font-size:
+        1rem;
+
+      line-height:
+        1.75;
     }
+
 
     .section {
-      margin-top: 32px;
+      margin-top:
+        32px;
 
-      padding: 40px;
+      padding:
+        40px;
 
-      background: var(--white);
+      background:
+        var(--white);
 
-      border: 1px solid var(--border);
-      border-radius: 28px;
+      border:
+        1px solid var(--border);
 
-      box-shadow: var(--shadow);
+      border-radius:
+        28px;
+
+      box-shadow:
+        var(--shadow);
     }
 
-    /* ==============================
+
+    /* =====================================
        HERO
-    ============================== */
+    ====================================== */
 
     .hero {
-      background: #F2EFFA;
+      padding:
+        42px;
 
-      border: 1px solid #E4DDF3;
-      border-radius: 30px;
+      display:
+        grid;
 
-      padding: 42px;
+      grid-template-columns:
+        0.92fr 1.08fr;
 
-      display: grid;
-      grid-template-columns: 0.92fr 1.08fr;
-      gap: 46px;
-      align-items: center;
+      gap:
+        46px;
 
-      box-shadow: var(--shadow);
+      align-items:
+        center;
+
+      background:
+        #F2EFFA;
+
+      border:
+        1px solid #E4DDF3;
+
+      border-radius:
+        30px;
+
+      box-shadow:
+        var(--shadow);
     }
+
 
     .hero h1 {
-      max-width: 620px;
+      max-width:
+        620px;
 
-      font-size: clamp(48px, 5.8vw, 68px);
-      line-height: 1.02;
-      letter-spacing: -2px;
+      margin-bottom:
+        22px;
 
-      margin-bottom: 22px;
+      font-size:
+        clamp(3rem, 5.8vw, 4.25rem);
+
+      line-height:
+        1.02;
+
+      letter-spacing:
+        -2px;
     }
+
 
     .hero h1 span {
-      display: block;
-      color: var(--purple);
+      display:
+        block;
+
+      color:
+        var(--purple);
     }
+
 
     .hero-copy {
-      max-width: 580px;
+      max-width:
+        580px;
 
-      color: var(--body);
-      font-size: 18px;
-      line-height: 1.75;
+      color:
+        var(--body);
+
+      font-size:
+        1.125rem;
+
+      line-height:
+        1.75;
     }
+
 
     .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
+      display:
+        flex;
 
-      margin-top: 24px;
+      flex-wrap:
+        wrap;
+
+      gap:
+        9px;
+
+      margin-top:
+        24px;
     }
+
 
     .hero-tag {
-      padding: 8px 13px;
+      padding:
+        8px 13px;
 
-      background: #FFFFFF;
+      background:
+        #FFFFFF;
 
-      border: 1px solid #DDD5F8;
-      border-radius: 999px;
+      color:
+        #5D48B8;
 
-      color: #5D48B8;
+      border:
+        1px solid #DDD5F8;
 
-      font-size: 12px;
-      font-weight: 800;
+      border-radius:
+        999px;
+
+      font-size:
+        0.75rem;
+
+      font-weight:
+        800;
     }
+
 
     .hero-visual {
-      background: #FFFFFF;
+      padding:
+        10px;
 
-      border: 1px solid #DED8EA;
-      border-radius: 24px;
+      overflow:
+        hidden;
 
-      padding: 10px;
+      background:
+        #FFFFFF;
 
-      overflow: hidden;
+      border:
+        1px solid #DED8EA;
+
+      border-radius:
+        24px;
     }
+
 
     .hero-visual img {
-      width: 100%;
-      height: auto;
-      max-height: 390px;
+      width:
+        100%;
 
-      object-fit: contain;
+      height:
+        auto;
 
-      border-radius: 16px;
+      max-height:
+        390px;
+
+      object-fit:
+        contain;
+
+      border-radius:
+        16px;
     }
 
-    /* ==============================
+
+    /* =====================================
        CHALLENGE
-    ============================== */
+    ====================================== */
 
     .challenge-grid {
-      margin-top: 28px;
+      margin-top:
+        28px;
 
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap:
+        18px;
     }
+
 
     .challenge-card {
-      border-radius: 20px;
-      padding: 23px;
-      min-height: 155px;
+      min-height:
+        155px;
+
+      padding:
+        23px;
+
+      border-radius:
+        20px;
     }
+
 
     .challenge-card:nth-child(1) {
-      background: #F2EEFF;
+      background:
+        #F2EEFF;
     }
+
 
     .challenge-card:nth-child(2) {
-      background: #FFF3E6;
+      background:
+        #FFF3E6;
     }
+
 
     .challenge-card:nth-child(3) {
-      background: #EAF9F3;
+      background:
+        #EAF9F3;
     }
+
 
     .challenge-card strong {
-      display: block;
+      display:
+        block;
 
-      font-size: 16px;
-      margin-bottom: 8px;
+      margin-bottom:
+        8px;
+
+      font-size:
+        1rem;
     }
+
 
     .challenge-card p {
-      color: var(--body);
+      color:
+        var(--body);
 
-      font-size: 13px;
-      line-height: 1.7;
+      font-size:
+        0.8125rem;
+
+      line-height:
+        1.7;
     }
 
-    /* ==============================
-       DESIGN STRATEGY
-    ============================== */
+
+    /* =====================================
+       STRATEGY
+    ====================================== */
 
     .strategy-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      display:
+        grid;
 
-      margin-top: 28px;
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap:
+        18px;
+
+      margin-top:
+        28px;
     }
+
 
     .strategy-card {
-      padding: 24px;
+      padding:
+        24px;
 
-      border: 1px solid var(--border);
-      border-radius: 20px;
+      background:
+        #FBFAFE;
 
-      background: #FBFAFE;
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        20px;
     }
+
 
     .strategy-number {
-      width: 40px;
-      height: 40px;
+      width:
+        40px;
 
-      display: grid;
-      place-items: center;
+      height:
+        40px;
 
-      background: var(--purple);
-      color: #FFFFFF;
+      display:
+        grid;
 
-      border-radius: 12px;
+      place-items:
+        center;
 
-      font-size: 12px;
-      font-weight: 900;
+      margin-bottom:
+        17px;
 
-      margin-bottom: 17px;
+      background:
+        var(--purple);
+
+      color:
+        #FFFFFF;
+
+      border-radius:
+        12px;
+
+      font-size:
+        0.75rem;
+
+      font-weight:
+        900;
     }
+
 
     .strategy-card h3 {
-      font-size: 18px;
-      margin-bottom: 8px;
+      margin-bottom:
+        8px;
+
+      font-size:
+        1.125rem;
     }
+
 
     .strategy-card p {
-      color: var(--body);
+      color:
+        var(--body);
 
-      font-size: 13px;
-      line-height: 1.7;
+      font-size:
+        0.8125rem;
+
+      line-height:
+        1.7;
     }
 
-    /* ==============================
-       INTERACTION WRAPPER
-    ============================== */
+
+    /* =====================================
+       INTERACTIVE PROTOTYPE
+    ====================================== */
 
     .prototype-section {
-      margin-top: 34px;
+      margin-top:
+        34px;
 
-      background: var(--navy);
+      overflow:
+        hidden;
 
-      border: 1px solid #18243B;
-      border-radius: 30px;
+      background:
+        var(--navy);
 
-      overflow: hidden;
+      border:
+        1px solid #18243B;
+
+      border-radius:
+        30px;
 
       box-shadow:
         0 28px 70px rgba(6, 11, 24, 0.18);
     }
 
+
     .prototype-header {
-      padding: 28px 30px 24px;
+      padding:
+        28px 30px 24px;
 
-      border-bottom: 1px solid var(--dark-border);
+      display:
+        flex;
 
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 30px;
+      justify-content:
+        space-between;
+
+      align-items:
+        flex-start;
+
+      gap:
+        30px;
+
+      border-bottom:
+        1px solid var(--dark-border);
     }
+
 
     .prototype-label {
-      color: #A98CFF;
+      margin-bottom:
+        8px;
 
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 1.4px;
-      text-transform: uppercase;
+      color:
+        #A98CFF;
 
-      margin-bottom: 8px;
+      font-size:
+        0.6875rem;
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        1.4px;
+
+      text-transform:
+        uppercase;
     }
+
 
     .prototype-header h2 {
-      color: var(--dark-text);
+      margin-bottom:
+        7px;
 
-      font-size: 30px;
-      line-height: 1.15;
+      color:
+        var(--dark-text);
 
-      margin-bottom: 7px;
+      font-size:
+        1.875rem;
+
+      line-height:
+        1.15;
     }
+
 
     .prototype-header p {
-      max-width: 680px;
+      max-width:
+        680px;
 
-      color: var(--dark-muted);
+      color:
+        var(--dark-muted);
 
-      font-size: 14px;
-      line-height: 1.65;
+      font-size:
+        0.875rem;
+
+      line-height:
+        1.65;
     }
+
 
     .progress-wrap {
-      min-width: 170px;
+      min-width:
+        170px;
 
-      text-align: right;
+      text-align:
+        right;
     }
+
 
     .progress-text {
-      color: var(--dark-muted);
+      margin-bottom:
+        8px;
 
-      font-size: 11px;
-      margin-bottom: 8px;
+      color:
+        var(--dark-muted);
+
+      font-size:
+        0.6875rem;
     }
+
 
     .progress-track {
-      width: 170px;
-      height: 5px;
+      width:
+        170px;
 
-      background: #1A2740;
+      height:
+        5px;
 
-      border-radius: 999px;
+      overflow:
+        hidden;
 
-      overflow: hidden;
+      background:
+        #1A2740;
+
+      border-radius:
+        999px;
     }
 
+
     .progress-bar {
-      width: 10%;
-      height: 100%;
+      width:
+        10%;
+
+      height:
+        100%;
 
       background:
         linear-gradient(
@@ -477,715 +1498,1369 @@
           var(--purple-2)
         );
 
-      border-radius: 999px;
+      border-radius:
+        999px;
 
-      transition: width 220ms ease;
+      transition:
+        width 220ms ease;
     }
 
-    /* ==============================
-       PROTOTYPE SCREEN
-    ============================== */
 
     .prototype-screen {
-      min-height: 610px;
+      position:
+        relative;
 
-      padding: 52px;
+      min-height:
+        610px;
 
-      position: relative;
+      padding:
+        52px;
     }
+
 
     .screen-step {
-      color: #9F86F8;
+      margin-bottom:
+        16px;
 
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
+      color:
+        #9F86F8;
 
-      margin-bottom: 16px;
+      font-size:
+        0.6875rem;
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        1.2px;
+
+      text-transform:
+        uppercase;
     }
+
 
     .prototype-screen h3 {
-      max-width: 760px;
+      max-width:
+        760px;
 
-      color: var(--dark-text);
+      margin-bottom:
+        17px;
 
-      font-size: clamp(32px, 5vw, 50px);
-      line-height: 1.08;
+      color:
+        var(--dark-text);
 
-      letter-spacing: -1.3px;
+      font-size:
+        clamp(2rem, 5vw, 3.125rem);
 
-      margin-bottom: 17px;
+      line-height:
+        1.08;
+
+      letter-spacing:
+        -1.3px;
     }
+
 
     .screen-copy {
-      max-width: 720px;
+      max-width:
+        720px;
 
-      color: var(--dark-muted);
+      color:
+        var(--dark-muted);
 
-      font-size: 16px;
-      line-height: 1.75;
+      font-size:
+        1rem;
+
+      line-height:
+        1.75;
     }
+
 
     .screen-copy strong {
-      color: var(--dark-text);
+      color:
+        var(--dark-text);
     }
+
 
     .screen-question {
-      margin-top: 30px;
+      margin-top:
+        30px;
 
-      color: var(--dark-text);
+      color:
+        var(--dark-text);
 
-      font-size: 15px;
-      font-weight: 800;
+      font-size:
+        0.9375rem;
+
+      font-weight:
+        800;
     }
 
-    /* ==============================
-       BUTTONS
-    ============================== */
 
     .prototype-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
+      display:
+        flex;
 
-      margin-top: 28px;
+      flex-wrap:
+        wrap;
+
+      gap:
+        12px;
+
+      margin-top:
+        28px;
     }
+
 
     .prototype-button {
-      cursor: pointer;
+      min-height:
+        44px;
 
-      min-height: 44px;
+      padding:
+        12px 18px;
 
-      padding: 12px 18px;
+      background:
+        var(--purple);
 
-      border-radius: 10px;
+      color:
+        #FFFFFF;
 
-      background: var(--purple);
-      color: #FFFFFF;
+      border-radius:
+        10px;
 
-      font-size: 13px;
-      font-weight: 800;
+      font-size:
+        0.8125rem;
+
+      font-weight:
+        800;
     }
+
 
     .prototype-button:hover {
-      background: #8257F9;
+      background:
+        #8257F9;
     }
+
 
     .prototype-button.secondary {
-      background: #151F34;
-      color: #D4D9E5;
+      background:
+        #151F34;
 
-      border: 1px solid #2B3850;
+      color:
+        #D4D9E5;
+
+      border:
+        1px solid #2B3850;
     }
 
-    .prototype-button.secondary:hover {
-      background: #1C2941;
-    }
 
     .prototype-button.choice {
-      min-width: 200px;
+      min-width:
+        200px;
 
-      text-align: left;
+      text-align:
+        left;
 
-      background: #121D31;
+      background:
+        #121D31;
 
-      border: 1px solid #2B3850;
+      color:
+        #F0F2F7;
 
-      color: #F0F2F7;
+      border:
+        1px solid #2B3850;
     }
+
 
     .prototype-button.choice:hover {
-      border-color: #7956E9;
-      background: #191F3C;
+      background:
+        #191F3C;
+
+      border-color:
+        #7956E9;
     }
 
-    /* ==============================
-       DATA / CARDS
-    ============================== */
+
+    /* =====================================
+       DATA CARDS
+    ====================================== */
 
     .anomaly-card {
-      margin-top: 28px;
+      max-width:
+        760px;
 
-      max-width: 760px;
+      margin-top:
+        28px;
 
-      padding: 22px;
+      padding:
+        22px;
 
-      background: #FFF4F4;
+      background:
+        #FFF4F4;
 
-      border: 1px solid #F7D4D5;
-      border-radius: 16px;
+      color:
+        #1C2330;
 
-      color: #1C2330;
+      border:
+        1px solid #F7D4D5;
+
+      border-radius:
+        16px;
     }
+
 
     .anomaly-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
+      display:
+        flex;
 
-      margin-bottom: 16px;
+      justify-content:
+        space-between;
+
+      gap:
+        20px;
+
+      margin-bottom:
+        16px;
     }
+
 
     .anomaly-badge {
-      color: #E2535B;
+      color:
+        #E2535B;
 
-      font-size: 11px;
-      font-weight: 900;
-      text-transform: uppercase;
+      font-size:
+        0.6875rem;
+
+      font-weight:
+        900;
+
+      text-transform:
+        uppercase;
     }
+
 
     .anomaly-change {
-      color: #E2535B;
+      color:
+        #E2535B;
 
-      font-size: 26px;
-      font-weight: 900;
+      font-size:
+        1.625rem;
+
+      font-weight:
+        900;
     }
+
 
     .anomaly-card h4 {
-      font-size: 18px;
-      margin-bottom: 5px;
+      margin-bottom:
+        5px;
+
+      font-size:
+        1.125rem;
     }
+
 
     .anomaly-card p {
-      color: #5B6270;
+      color:
+        #5B6270;
 
-      font-size: 13px;
+      font-size:
+        0.8125rem;
     }
+
 
     .metric-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      display:
+        grid;
 
-      gap: 13px;
+      grid-template-columns:
+        repeat(4, 1fr);
 
-      margin-top: 28px;
+      gap:
+        13px;
+
+      margin-top:
+        28px;
     }
+
 
     .metric-card {
-      padding: 18px;
+      padding:
+        18px;
 
-      background: #111B2D;
+      background:
+        #111B2D;
 
-      border: 1px solid #24314A;
-      border-radius: 14px;
+      border:
+        1px solid #24314A;
+
+      border-radius:
+        14px;
     }
+
 
     .metric-card span {
-      display: block;
+      display:
+        block;
 
-      color: #8C98B0;
+      margin-bottom:
+        5px;
 
-      font-size: 10px;
-      text-transform: uppercase;
+      color:
+        #8C98B0;
 
-      margin-bottom: 5px;
+      font-size:
+        0.625rem;
+
+      text-transform:
+        uppercase;
     }
+
 
     .metric-card strong {
-      color: #FFFFFF;
+      color:
+        #FFFFFF;
 
-      font-size: 21px;
+      font-size:
+        1.3125rem;
     }
+
 
     .metric-card.alert strong {
-      color: #F0737B;
+      color:
+        #F0737B;
     }
+
 
     .metric-card.good strong {
-      color: #59D29D;
+      color:
+        #59D29D;
     }
 
-    /* ==============================
-       CHANGE LIST
-    ============================== */
 
     .change-list,
     .health-list {
-      max-width: 760px;
+      max-width:
+        760px;
 
-      margin-top: 28px;
+      margin-top:
+        28px;
 
-      display: grid;
-      gap: 11px;
+      display:
+        grid;
+
+      gap:
+        11px;
     }
+
 
     .change-row,
     .health-row {
-      background: #111B2D;
+      padding:
+        15px 17px;
 
-      border: 1px solid #233049;
-      border-radius: 12px;
+      display:
+        flex;
 
-      padding: 15px 17px;
+      justify-content:
+        space-between;
 
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      align-items:
+        center;
 
-      gap: 18px;
+      gap:
+        18px;
+
+      background:
+        #111B2D;
+
+      border:
+        1px solid #233049;
+
+      border-radius:
+        12px;
     }
+
 
     .change-row strong,
     .health-row strong {
-      color: var(--dark-text);
+      color:
+        var(--dark-text);
 
-      font-size: 14px;
+      font-size:
+        0.875rem;
     }
+
 
     .change-row span,
     .health-row span {
-      color: var(--dark-muted);
+      color:
+        var(--dark-muted);
 
-      font-size: 12px;
+      font-size:
+        0.75rem;
     }
+
 
     .status-good {
-      color: #53D19B !important;
-      font-weight: 800;
+      color:
+        #53D19B !important;
+
+      font-weight:
+        800;
     }
+
 
     .status-change {
-      color: #B69DFF !important;
-      font-weight: 800;
+      color:
+        #B69DFF !important;
+
+      font-weight:
+        800;
     }
 
-    /* ==============================
-       TIMELINE
-    ============================== */
 
     .timeline-box {
-      max-width: 760px;
+      max-width:
+        760px;
 
-      margin-top: 28px;
+      margin-top:
+        28px;
 
-      padding: 24px;
+      padding:
+        24px;
 
-      background: #111B2D;
+      background:
+        #111B2D;
 
-      border: 1px solid #25334D;
-      border-radius: 16px;
+      border:
+        1px solid #25334D;
+
+      border-radius:
+        16px;
     }
+
 
     .timeline-item {
-      display: grid;
-      grid-template-columns: 90px 1fr;
+      display:
+        grid;
 
-      gap: 17px;
+      grid-template-columns:
+        90px 1fr;
 
-      padding: 11px 0;
+      gap:
+        17px;
 
-      border-bottom: 1px solid #202D45;
+      padding:
+        11px 0;
+
+      border-bottom:
+        1px solid #202D45;
     }
+
 
     .timeline-item:last-child {
-      border-bottom: 0;
+      border-bottom:
+        0;
     }
+
 
     .timeline-time {
-      color: #A98CFF;
+      color:
+        #A98CFF;
 
-      font-size: 12px;
-      font-weight: 900;
+      font-size:
+        0.75rem;
+
+      font-weight:
+        900;
     }
+
 
     .timeline-text {
-      color: #D6DCE8;
+      color:
+        #D6DCE8;
 
-      font-size: 13px;
+      font-size:
+        0.8125rem;
     }
 
-    /* ==============================
-       ROOT CAUSE
-    ============================== */
 
     .compare-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
+      max-width:
+        900px;
 
-      max-width: 900px;
+      margin-top:
+        28px;
 
-      margin-top: 28px;
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap:
+        18px;
     }
+
 
     .compare-card {
-      padding: 22px;
+      padding:
+        22px;
 
-      background: #111B2D;
+      background:
+        #111B2D;
 
-      border: 1px solid #24324B;
-      border-radius: 16px;
+      border:
+        1px solid #24324B;
+
+      border-radius:
+        16px;
     }
+
 
     .compare-card.highlight {
-      border-color: #7656DE;
-      background: #161C35;
+      background:
+        #161C35;
+
+      border-color:
+        #7656DE;
     }
+
 
     .compare-label {
-      color: #8D99AF;
+      margin-bottom:
+        10px;
 
-      font-size: 10px;
-      font-weight: 900;
-      text-transform: uppercase;
+      color:
+        #8D99AF;
 
-      margin-bottom: 10px;
+      font-size:
+        0.625rem;
+
+      font-weight:
+        900;
+
+      text-transform:
+        uppercase;
     }
+
 
     .compare-card p {
-      color: #E0E4EC;
+      color:
+        #E0E4EC;
 
-      font-size: 14px;
-      line-height: 1.7;
+      font-size:
+        0.875rem;
+
+      line-height:
+        1.7;
     }
+
 
     .cause-callout {
-      max-width: 900px;
+      max-width:
+        900px;
 
-      margin-top: 16px;
+      margin-top:
+        16px;
 
-      padding: 17px 20px;
+      padding:
+        17px 20px;
 
-      background: #1A1432;
+      background:
+        #1A1432;
 
-      border: 1px solid #503992;
-      border-radius: 14px;
+      color:
+        #DDD0FF;
 
-      color: #DDD0FF;
+      border:
+        1px solid #503992;
 
-      font-size: 13px;
-      line-height: 1.65;
+      border-radius:
+        14px;
+
+      font-size:
+        0.8125rem;
+
+      line-height:
+        1.65;
     }
 
-    /* ==============================
-       WHY DESIGN
-    ============================== */
 
     .question-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display:
+        grid;
 
-      gap: 15px;
+      grid-template-columns:
+        repeat(3, 1fr);
 
-      margin-top: 28px;
+      gap:
+        15px;
+
+      margin-top:
+        28px;
     }
+
 
     .question-card {
-      padding: 22px;
+      padding:
+        22px;
 
-      background: #111B2D;
+      background:
+        #111B2D;
 
-      border: 1px solid #24314A;
-      border-radius: 16px;
+      border:
+        1px solid #24314A;
+
+      border-radius:
+        16px;
     }
+
 
     .question-card span {
-      display: block;
+      display:
+        block;
 
-      color: #9578F4;
+      margin-bottom:
+        8px;
 
-      font-size: 10px;
-      font-weight: 900;
-      text-transform: uppercase;
+      color:
+        #9578F4;
 
-      margin-bottom: 8px;
+      font-size:
+        0.625rem;
+
+      font-weight:
+        900;
+
+      text-transform:
+        uppercase;
     }
+
 
     .question-card strong {
-      display: block;
+      display:
+        block;
 
-      color: #FFFFFF;
+      margin-bottom:
+        7px;
 
-      font-size: 17px;
+      color:
+        #FFFFFF;
 
-      margin-bottom: 7px;
+      font-size:
+        1.0625rem;
     }
+
 
     .question-card p {
-      color: #9EABC0;
+      color:
+        #9EABC0;
 
-      font-size: 12px;
-      line-height: 1.6;
+      font-size:
+        0.75rem;
+
+      line-height:
+        1.6;
     }
 
-    /* ==============================
-       PROTOTYPE FOOTER
-    ============================== */
+
+    /* =====================================
+       PROTOTYPE CONTROLS
+    ====================================== */
 
     .prototype-controls {
-      padding: 18px 30px;
+      padding:
+        18px 30px;
 
-      background: #091220;
+      display:
+        flex;
 
-      border-top: 1px solid var(--dark-border);
+      justify-content:
+        space-between;
 
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      align-items:
+        center;
 
-      gap: 20px;
+      gap:
+        20px;
+
+      background:
+        #091220;
+
+      border-top:
+        1px solid var(--dark-border);
     }
+
 
     .control-left,
     .control-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        10px;
     }
+
 
     .control-button {
-      cursor: pointer;
+      min-height:
+        44px;
 
-      padding: 9px 13px;
+      padding:
+        9px 13px;
 
-      color: #BBC4D4;
-      background: transparent;
+      display:
+        inline-flex;
 
-      border: 1px solid #28354C;
-      border-radius: 9px;
+      align-items:
+        center;
 
-      font-size: 12px;
-      font-weight: 700;
+      justify-content:
+        center;
+
+      background:
+        transparent;
+
+      color:
+        #BBC4D4;
+
+      border:
+        1px solid #28354C;
+
+      border-radius:
+        9px;
+
+      font-size:
+        0.75rem;
+
+      font-weight:
+        700;
     }
+
 
     .control-button:hover {
-      color: #FFFFFF;
-      border-color: #6C50CE;
+      color:
+        #FFFFFF;
+
+      border-color:
+        #6C50CE;
     }
+
 
     .control-button:disabled {
-      opacity: 0.35;
-      cursor: not-allowed;
+      opacity:
+        0.35;
+
+      cursor:
+        not-allowed;
     }
 
-    /* ==============================
+
+    /* =====================================
        WHY IT WORKS
-    ============================== */
+    ====================================== */
 
     .why-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      display:
+        grid;
 
-      margin-top: 28px;
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap:
+        18px;
+
+      margin-top:
+        28px;
     }
+
 
     .why-card {
-      padding: 24px;
+      padding:
+        24px;
 
-      border-radius: 20px;
+      border-radius:
+        20px;
     }
+
 
     .why-card:nth-child(1) {
-      background: #F1EDFF;
+      background:
+        #F1EDFF;
     }
+
 
     .why-card:nth-child(2) {
-      background: #EAF9F3;
+      background:
+        #EAF9F3;
     }
+
 
     .why-card:nth-child(3) {
-      background: #FFF2E6;
+      background:
+        #FFF2E6;
     }
+
 
     .why-card small {
-      color: #7357CB;
+      display:
+        block;
 
-      display: block;
+      margin-bottom:
+        7px;
 
-      font-size: 10px;
-      font-weight: 900;
-      text-transform: uppercase;
+      color:
+        #7357CB;
 
-      margin-bottom: 7px;
+      font-size:
+        0.625rem;
+
+      font-weight:
+        900;
+
+      text-transform:
+        uppercase;
     }
+
 
     .why-card h3 {
-      font-size: 18px;
+      margin-bottom:
+        8px;
 
-      margin-bottom: 8px;
+      font-size:
+        1.125rem;
     }
+
 
     .why-card p {
-      color: var(--body);
+      color:
+        var(--body);
 
-      font-size: 13px;
-      line-height: 1.7;
+      font-size:
+        0.8125rem;
+
+      line-height:
+        1.7;
     }
 
-    /* ==============================
-       ACCESSIBILITY
-    ============================== */
+
+    /* =====================================
+       ACCESSIBILITY SECTION
+    ====================================== */
 
     .access-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      display:
+        grid;
 
-      margin-top: 35px;
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap:
+        20px;
+
+      margin-top:
+        35px;
     }
+
 
     .access-card {
-      padding: 30px 22px 22px;
+      padding:
+        30px 22px 22px;
 
-      background: #FAFAFC;
+      background:
+        #FAFAFC;
 
-      border: 1px solid var(--border);
-      border-radius: 20px;
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        20px;
     }
+
 
     .access-number {
-      width: 48px;
-      height: 48px;
+      width:
+        48px;
 
-      display: grid;
-      place-items: center;
+      height:
+        48px;
 
-      margin: -48px auto 20px;
+      display:
+        grid;
 
-      border-radius: 50%;
+      place-items:
+        center;
 
-      background: var(--purple);
-      color: #FFFFFF;
+      margin:
+        -48px auto 20px;
 
-      font-size: 15px;
-      font-weight: 900;
+      background:
+        var(--purple);
+
+      color:
+        #FFFFFF;
+
+      border-radius:
+        50%;
+
+      font-size:
+        0.9375rem;
+
+      font-weight:
+        900;
     }
+
 
     .access-card h3 {
-      font-size: 17px;
-      margin-bottom: 9px;
+      margin-bottom:
+        9px;
+
+      font-size:
+        1.0625rem;
     }
+
 
     .access-card p {
-      color: var(--body);
+      color:
+        var(--body);
 
-      font-size: 13px;
-      line-height: 1.7;
+      font-size:
+        0.8125rem;
+
+      line-height:
+        1.7;
     }
 
-    /* ==============================
+
+    /* =====================================
        REFLECTION
-    ============================== */
+    ====================================== */
 
     .reflection-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      display:
+        grid;
 
-      margin-top: 26px;
+      grid-template-columns:
+        1fr 1fr;
+
+      gap:
+        20px;
+
+      margin-top:
+        26px;
     }
+
 
     .reflection-card {
-      padding: 25px;
+      padding:
+        25px;
 
-      background: #FBFAFE;
+      background:
+        #FBFAFE;
 
-      border: 1px solid var(--border);
-      border-radius: 20px;
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        20px;
     }
+
 
     .reflection-card h3 {
-      color: #634AC3;
+      margin-bottom:
+        10px;
 
-      font-size: 19px;
+      color:
+        #634AC3;
 
-      margin-bottom: 10px;
+      font-size:
+        1.1875rem;
     }
+
 
     .reflection-card p {
-      color: var(--body);
+      color:
+        var(--body);
 
-      font-size: 14px;
-      line-height: 1.75;
+      font-size:
+        0.875rem;
+
+      line-height:
+        1.75;
     }
 
-    /* ==============================
+
+    /* =====================================
        CTA
-    ============================== */
+    ====================================== */
 
     .cta {
-      margin-top: 34px;
+      margin-top:
+        34px;
 
-      padding: 38px 40px;
+      padding:
+        38px 40px;
 
-      background: var(--navy);
+      display:
+        grid;
 
-      border-radius: 26px;
+      grid-template-columns:
+        1fr auto;
 
-      color: #FFFFFF;
+      gap:
+        25px;
 
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 25px;
-      align-items: center;
+      align-items:
+        center;
+
+      background:
+        var(--navy);
+
+      color:
+        #FFFFFF;
+
+      border-radius:
+        26px;
     }
+
 
     .cta h2 {
-      font-size: 30px;
-      line-height: 1.2;
+      margin-bottom:
+        7px;
 
-      margin-bottom: 7px;
+      font-size:
+        1.875rem;
+
+      line-height:
+        1.2;
     }
+
 
     .cta p {
-      color: #B8C2D3;
+      color:
+        #B8C2D3;
     }
+
 
     .cta-button {
-      padding: 14px 22px;
+      min-height:
+        48px;
 
-      background: var(--purple);
-      color: #FFFFFF;
+      padding:
+        0 22px;
 
-      border-radius: 11px;
+      display:
+        inline-flex;
 
-      font-weight: 900;
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      background:
+        var(--purple);
+
+      color:
+        #FFFFFF;
+
+      border-radius:
+        11px;
+
+      font-weight:
+        900;
     }
 
-    /* ==============================
+
+    /* =====================================
        FOOTER
-    ============================== */
+    ====================================== */
 
     footer {
-      margin-top: 58px;
+      margin-top:
+        58px;
 
-      padding-top: 32px;
+      padding-top:
+        32px;
 
-      border-top: 1px solid var(--border);
+      display:
+        flex;
 
-      display: flex;
-      justify-content: space-between;
-      gap: 22px;
+      justify-content:
+        space-between;
 
-      color: var(--muted);
+      gap:
+        22px;
 
-      font-size: 12px;
+      color:
+        var(--muted);
+
+      border-top:
+        1px solid var(--border);
+
+      font-size:
+        0.75rem;
     }
+
 
     .footer-brand {
-      color: var(--magenta);
+      color:
+        var(--magenta);
 
-      font-size: 22px;
-      font-weight: 800;
+      font-size:
+        1.375rem;
+
+      font-weight:
+        800;
     }
 
-    /* ==============================
-       RESPONSIVE
-    ============================== */
 
-    @media (max-width: 1000px) {
+    /* =====================================
+       BACK TO TOP
+    ====================================== */
+
+    .back-to-top {
+      position:
+        fixed;
+
+      right:
+        24px;
+
+      bottom:
+        24px;
+
+      z-index:
+        9000;
+
+      width:
+        50px;
+
+      height:
+        50px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      background:
+        var(--magenta);
+
+      color:
+        #FFFFFF;
+
+      border:
+        0;
+
+      border-radius:
+        50%;
+
+      box-shadow:
+        0 10px 30px rgba(168, 11, 99, 0.25);
+
+      font-size:
+        1.25rem;
+
+      font-weight:
+        900;
+
+      opacity:
+        0;
+
+      visibility:
+        hidden;
+
+      transform:
+        translateY(12px);
+
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0.2s ease;
+    }
+
+
+    .back-to-top.visible {
+      opacity:
+        1;
+
+      visibility:
+        visible;
+
+      transform:
+        translateY(0);
+    }
+
+
+    /* =====================================
+       HIGH CONTRAST
+    ====================================== */
+
+    body.high-contrast {
+      --page-bg: #FFFFFF;
+      --white: #FFFFFF;
+      --surface: #FFFFFF;
+
+      --magenta: #7B0048;
+      --magenta-dark: #580033;
+
+      --gold: #A56600;
+
+      --ink: #000000;
+      --body: #111111;
+      --muted: #303030;
+      --border: #555555;
+
+      --purple: #4024B8;
+      --purple-2: #5E35D8;
+      --purple-soft: #F3F0FF;
+
+      --focus: #000000;
+
+      --shadow: none;
+    }
+
+
+    body.high-contrast
+    .hero,
+
+    body.high-contrast
+    .section,
+
+    body.high-contrast
+    .strategy-card,
+
+    body.high-contrast
+    .access-card,
+
+    body.high-contrast
+    .reflection-card,
+
+    body.high-contrast
+    .accessibility-panel {
+      border-width:
+        2px;
+    }
+
+
+    body.high-contrast
+    .prototype-section {
+      border:
+        2px solid #FFFFFF;
+    }
+
+
+    body.high-contrast
+    .nav-button,
+
+    body.high-contrast
+    .cta-button,
+
+    body.high-contrast
+    .back-to-top {
+      border:
+        2px solid #000000;
+    }
+
+
+    /* =====================================
+       REDUCED MOTION
+    ====================================== */
+
+    body.reduce-motion *,
+    body.reduce-motion *::before,
+    body.reduce-motion *::after {
+      animation-duration:
+        0.01ms !important;
+
+      animation-iteration-count:
+        1 !important;
+
+      transition-duration:
+        0.01ms !important;
+
+      scroll-behavior:
+        auto !important;
+    }
+
+
+    @media
+    (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior:
+          auto;
+      }
+
+
+      *,
+      *::before,
+      *::after {
+        animation-duration:
+          0.01ms !important;
+
+        animation-iteration-count:
+          1 !important;
+
+        transition-duration:
+          0.01ms !important;
+
+        scroll-behavior:
+          auto !important;
+      }
+
+    }
+
+
+    /* =====================================
+       RESPONSIVE
+    ====================================== */
+
+    @media
+    (max-width: 1180px) {
 
       .navbar {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction:
+          column;
+
+        align-items:
+          flex-start;
+
+        padding:
+          18px 0 22px;
       }
 
-      .nav-links {
-        flex-wrap: wrap;
-        gap: 18px;
+
+      .nav-right {
+        width:
+          100%;
+
+        justify-content:
+          space-between;
+
+        flex-wrap:
+          wrap;
       }
+
+
+      .nav-links {
+        flex-wrap:
+          wrap;
+      }
+
+    }
+
+
+    @media
+    (max-width: 1000px) {
 
       .hero,
       .challenge-grid,
@@ -1196,1349 +2871,3306 @@
       .access-grid,
       .reflection-grid,
       .cta {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
       }
+
 
       .hero-visual img {
-        max-height: none;
+        max-height:
+          none;
       }
+
 
       .prototype-header {
-        flex-direction: column;
+        flex-direction:
+          column;
       }
+
 
       .progress-wrap {
-        width: 100%;
-        text-align: left;
+        width:
+          100%;
+
+        text-align:
+          left;
       }
+
 
       .progress-track {
-        width: 100%;
+        width:
+          100%;
       }
+
 
       .compare-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
       }
 
+
       .prototype-screen {
-        padding: 36px 28px;
+        padding:
+          36px 28px;
       }
+
 
       footer {
-        flex-direction: column;
+        flex-direction:
+          column;
       }
+
     }
 
-    @media (max-width: 620px) {
+
+    @media
+    (max-width: 760px) {
 
       .page {
-        width: min(100% - 20px, 1180px);
+        width:
+          min(100% - 22px, 1180px);
       }
+
+
+      .nav-right {
+        display:
+          grid;
+
+        gap:
+          16px;
+      }
+
+
+      .nav-links {
+        gap:
+          10px 18px;
+      }
+
+
+      .nav-tools {
+        width:
+          100%;
+
+        justify-content:
+          space-between;
+      }
+
+
+      .accessibility-panel {
+        top:
+          16px;
+
+        right:
+          16px;
+      }
+
+    }
+
+
+    @media
+    (max-width: 620px) {
 
       .section {
-        padding: 25px;
+        padding:
+          25px;
       }
+
 
       .hero {
-        padding: 25px;
+        padding:
+          25px;
       }
+
 
       .prototype-screen {
-        min-height: 650px;
-        padding: 28px 20px;
+        min-height:
+          650px;
+
+        padding:
+          28px 20px;
       }
 
+
       .prototype-controls {
-        flex-direction: column;
-        align-items: stretch;
+        flex-direction:
+          column;
+
+        align-items:
+          stretch;
       }
+
 
       .control-left,
       .control-right {
-        justify-content: center;
+        justify-content:
+          center;
       }
+
+
+      .back-to-top {
+        right:
+          16px;
+
+        bottom:
+          16px;
+      }
+
     }
+
   </style>
+
 </head>
+
 
 <body>
 
-  <main class="page">
 
-    <!-- NAVIGATION -->
+  <!-- =====================================
+       SKIP LINK
+  ====================================== -->
 
-    <nav class="navbar" aria-label="Main navigation">
+  <a
+    class="skip-link"
+    href="#main-content"
+    data-i18n="skip"
+  >
+    Skip to main content
+  </a>
 
-      <a href="index.html">
-        <div class="brand-name">
-          Linda Laryea
+
+  <div
+    id="a11yStatus"
+    class="sr-only"
+    role="status"
+    aria-live="polite"
+  ></div>
+
+
+  <div class="page">
+
+
+    <!-- =====================================
+         NAVIGATION
+    ====================================== -->
+
+    <header data-no-read>
+
+      <nav
+        class="navbar"
+        aria-label="Main navigation"
+        data-i18n-aria-label="mainNavigation"
+      >
+
+
+        <a
+          href="index.html"
+          aria-label="Linda Laryea portfolio home"
+        >
+
+          <div class="brand-name">
+            Linda Laryea
+          </div>
+
+        </a>
+
+
+        <div class="nav-right">
+
+
+          <div class="nav-links">
+
+            <a
+              href="index.html"
+              data-i18n="home"
+            >
+              Home
+            </a>
+
+
+            <a
+              href="case-studies.html"
+              class="active"
+              aria-current="page"
+              data-i18n="caseStudies"
+            >
+              Case Studies
+            </a>
+
+
+            <a
+              href="about.html"
+              data-i18n="aboutMe"
+            >
+              About Me
+            </a>
+
+
+            <a
+              href="cv.html"
+              data-i18n="cv"
+            >
+              CV
+            </a>
+
+
+            <a
+              href="contact.html"
+              class="nav-button"
+              data-i18n="letsConnect"
+            >
+              Let’s Connect
+            </a>
+
+          </div>
+
+
+          <div class="nav-tools">
+
+
+            <div
+              class="language-switcher"
+              role="group"
+              aria-label="Choose language"
+              data-i18n-aria-label="chooseLanguage"
+            >
+
+              <button
+                type="button"
+                id="languageEN"
+                class="language-button active"
+                aria-pressed="true"
+                aria-label="Switch to English"
+                data-i18n-aria-label="switchEnglish"
+              >
+                EN
+              </button>
+
+
+              <button
+                type="button"
+                id="languageDE"
+                class="language-button"
+                aria-pressed="false"
+                aria-label="Switch to German"
+                data-i18n-aria-label="switchGerman"
+              >
+                DE
+              </button>
+
+            </div>
+
+
+            <button
+              type="button"
+              id="accessibilityButton"
+              class="accessibility-button"
+              aria-expanded="false"
+              aria-controls="accessibilityPanel"
+            >
+
+              <span aria-hidden="true">
+                Aa
+              </span>
+
+              <span data-i18n="accessibility">
+                Accessibility
+              </span>
+
+            </button>
+
+          </div>
+
         </div>
+
+      </nav>
+
+    </header>
+
+
+    <!-- =====================================
+         ACCESSIBILITY PANEL
+    ====================================== -->
+
+    <aside
+      id="accessibilityPanel"
+      class="accessibility-panel"
+      aria-labelledby="accessibilityPanelTitle"
+      hidden
+      data-no-read
+    >
+
+
+      <div class="a11y-panel-header">
+
+        <div>
+
+          <h2
+            id="accessibilityPanelTitle"
+            data-i18n="accessibility"
+          >
+            Accessibility
+          </h2>
+
+
+          <p data-i18n="accessibilityDescription">
+            Adjust the page to suit your needs.
+          </p>
+
+        </div>
+
+
+        <button
+          type="button"
+          id="closeAccessibility"
+          class="panel-close"
+          aria-label="Close accessibility settings"
+          data-i18n-aria-label="closeAccessibility"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <div class="a11y-group">
+
+        <span
+          class="a11y-label"
+          data-i18n="textSize"
+        >
+          Text size
+        </span>
+
+
+        <div
+          class="text-size-controls"
+          role="group"
+          aria-label="Text size"
+          data-i18n-aria-label="textSize"
+        >
+
+          <button
+            type="button"
+            class="text-size-button"
+            data-size="small"
+            aria-label="Decrease text size"
+            data-i18n-aria-label="decreaseText"
+          >
+            A−
+          </button>
+
+
+          <button
+            type="button"
+            class="text-size-button active"
+            data-size="default"
+            aria-label="Default text size"
+            data-i18n-aria-label="defaultText"
+          >
+            A
+          </button>
+
+
+          <button
+            type="button"
+            class="text-size-button"
+            data-size="large"
+            aria-label="Increase text size"
+            data-i18n-aria-label="increaseText"
+          >
+            A+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="a11y-group">
+
+        <div class="toggle-row">
+
+          <div class="toggle-copy">
+
+            <strong data-i18n="highContrast">
+              High contrast
+            </strong>
+
+            <span data-i18n="highContrastDescription">
+              Increase visual contrast.
+            </span>
+
+          </div>
+
+
+          <label class="switch">
+
+            <input
+              id="contrastToggle"
+              type="checkbox"
+              aria-label="High contrast"
+              data-i18n-aria-label="highContrast"
+            />
+
+            <span
+              class="switch-track"
+              aria-hidden="true"
+            ></span>
+
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <div class="a11y-group">
+
+        <div class="toggle-row">
+
+          <div class="toggle-copy">
+
+            <strong data-i18n="reduceMotion">
+              Reduce motion
+            </strong>
+
+            <span data-i18n="reduceMotionDescription">
+              Minimise animation and movement.
+            </span>
+
+          </div>
+
+
+          <label class="switch">
+
+            <input
+              id="motionToggle"
+              type="checkbox"
+              aria-label="Reduce motion"
+              data-i18n-aria-label="reduceMotion"
+            />
+
+            <span
+              class="switch-track"
+              aria-hidden="true"
+            ></span>
+
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <div class="a11y-group">
+
+        <span
+          class="a11y-label"
+          data-i18n="readPage"
+        >
+          Read page aloud
+        </span>
+
+
+        <div class="read-controls">
+
+          <button
+            type="button"
+            id="readPlay"
+            class="read-button primary-read"
+            data-i18n="play"
+          >
+            Play
+          </button>
+
+
+          <button
+            type="button"
+            id="readPause"
+            class="read-button"
+            data-i18n="pause"
+          >
+            Pause
+          </button>
+
+
+          <button
+            type="button"
+            id="readStop"
+            class="read-button"
+            data-i18n="stop"
+          >
+            Stop
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="a11y-group">
+
+        <button
+          type="button"
+          id="resetAccessibility"
+          class="reset-button"
+          data-i18n="resetSettings"
+        >
+          Reset accessibility settings
+        </button>
+
+      </div>
+
+    </aside>
+
+
+    <!-- =====================================
+         MAIN
+    ====================================== -->
+
+    <main
+      id="main-content"
+      tabindex="-1"
+    >
+
+
+      <a
+        class="back-link"
+        href="case-studies.html"
+        data-i18n="backCaseStudies"
+        data-no-read
+      >
+        ← Back to Case Studies
       </a>
 
 
-      <div class="nav-links">
+      <!-- =================================
+           HERO
+      ================================== -->
 
-        <a href="index.html">
-          Home
-        </a>
+      <section
+        class="hero readable-content"
+        aria-labelledby="ai-heading"
+      >
 
-        <a
-          href="case-studies.html"
-          class="active"
+        <div>
+
+          <div
+            class="gold-line"
+            aria-hidden="true"
+          ></div>
+
+
+          <div
+            class="section-label"
+            data-i18n="caseStudyLabel"
+          >
+            Interactive UX Case Study
+          </div>
+
+
+          <h1 id="ai-heading">
+
+            AI Observability
+
+            <span data-i18n="heroHighlight">
+              Investigation Assistant
+            </span>
+
+          </h1>
+
+
+          <p
+            class="hero-copy"
+            data-i18n="heroCopy"
+          >
+            A guided investigation experience that helps teams move from
+            anomaly to understanding without confronting an entire monitoring
+            system at once.
+          </p>
+
+
+          <div class="hero-tags">
+
+            <span
+              class="hero-tag"
+              data-i18n="interactionDesign"
+            >
+              Interaction Design
+            </span>
+
+            <span
+              class="hero-tag"
+              data-i18n="dashboardUX"
+            >
+              Dashboard UX
+            </span>
+
+            <span
+              class="hero-tag"
+              data-i18n="progressiveDisclosure"
+            >
+              Progressive Disclosure
+            </span>
+
+            <span
+              class="hero-tag"
+              data-i18n="aiMonitoring"
+            >
+              AI Monitoring
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+          <img
+            src="case-card-ai-observability.png"
+            alt="AI Observability monitoring dashboard"
+            data-i18n-alt="heroImageAlt"
+          />
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================
+           DESIGN CHALLENGE
+      ================================== -->
+
+      <section class="section readable-content">
+
+        <div
+          class="gold-line"
+          aria-hidden="true"
+        ></div>
+
+
+        <div
+          class="section-label"
+          data-i18n="challengeLabel"
         >
-          Case Studies
-        </a>
+          Design Challenge
+        </div>
 
-        <a href="about.html">
-          About Me
-        </a>
 
-        <a href="cv.html">
-          CV
-        </a>
+        <h2
+          class="section-title"
+          data-i18n="challengeTitle"
+        >
+          Showing everything can still leave users unsure what to do.
+        </h2>
+
+
+        <p
+          class="section-intro"
+          data-i18n="challengeIntro"
+        >
+          Observability tools contain large amounts of valuable information,
+          but during an incident the user’s problem is not simply access to
+          data. They need to understand what changed, whether it matters,
+          and where to investigate next.
+        </p>
+
+
+        <div class="challenge-grid">
+
+
+          <article class="challenge-card">
+
+            <strong data-i18n="overloadTitle">
+              Information overload
+            </strong>
+
+            <p data-i18n="overloadText">
+              Dense dashboards force users to interpret several metrics
+              and competing signals at once.
+            </p>
+
+          </article>
+
+
+          <article class="challenge-card">
+
+            <strong data-i18n="pathTitle">
+              Unclear investigation path
+            </strong>
+
+            <p data-i18n="pathText">
+              Knowing that something changed does not automatically tell
+              the user what deserves attention first.
+            </p>
+
+          </article>
+
+
+          <article class="challenge-card">
+
+            <strong data-i18n="meaningTitle">
+              Data without meaning
+            </strong>
+
+            <p data-i18n="meaningText">
+              Monitoring information becomes more useful when it supports
+              a decision rather than simply reporting a number.
+            </p>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================
+           DESIGN STRATEGY
+      ================================== -->
+
+      <section class="section readable-content">
+
+        <div
+          class="gold-line"
+          aria-hidden="true"
+        ></div>
+
+
+        <div
+          class="section-label"
+          data-i18n="strategyLabel"
+        >
+          Design Strategy
+        </div>
+
+
+        <h2
+          class="section-title"
+          data-i18n="strategyTitle"
+        >
+          Turn investigation into a guided sequence.
+        </h2>
+
+
+        <p
+          class="section-intro"
+          data-i18n="strategyIntro"
+        >
+          Instead of exposing the entire observability environment immediately,
+          the experience reveals information according to the decision the user
+          needs to make at that moment.
+        </p>
+
+
+        <div class="strategy-grid">
+
+
+          <article class="strategy-card">
+
+            <div
+              class="strategy-number"
+              aria-hidden="true"
+            >
+              01
+            </div>
+
+
+            <h3 data-i18n="progressiveTitle">
+              Progressive disclosure
+            </h3>
+
+
+            <p data-i18n="progressiveText">
+              Reveal complexity gradually so each screen answers one clear
+              investigation question.
+            </p>
+
+          </article>
+
+
+          <article class="strategy-card">
+
+            <div
+              class="strategy-number"
+              aria-hidden="true"
+            >
+              02
+            </div>
+
+
+            <h3 data-i18n="investigateTitle">
+              Investigate before explaining
+            </h3>
+
+
+            <p data-i18n="investigateText">
+              Let users gather evidence before presenting a conclusion about
+              the likely root cause.
+            </p>
+
+          </article>
+
+
+          <article class="strategy-card">
+
+            <div
+              class="strategy-number"
+              aria-hidden="true"
+            >
+              03
+            </div>
+
+
+            <h3 data-i18n="actionTitle">
+              Actionable next steps
+            </h3>
+
+
+            <p data-i18n="actionText">
+              Every state should help the user decide where to look or what
+              to do next.
+            </p>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================
+           INTERACTIVE INVESTIGATION
+      ================================== -->
+
+      <section
+        class="prototype-section readable-content"
+        id="prototype"
+        aria-labelledby="prototype-heading"
+      >
+
+
+        <div class="prototype-header">
+
+          <div>
+
+            <div
+              class="prototype-label"
+              data-i18n="prototypeLabel"
+            >
+              Interactive Investigation
+            </div>
+
+
+            <h2
+              id="prototype-heading"
+              data-i18n="prototypeTitle"
+            >
+              Follow the anomaly from signal to root cause
+            </h2>
+
+
+            <p data-i18n="prototypeIntro">
+              This prototype demonstrates the interaction strategy rather than
+              a production monitoring environment. Move through the investigation
+              one decision at a time.
+            </p>
+
+          </div>
+
+
+          <div
+            class="progress-wrap"
+            data-no-read
+          >
+
+            <div
+              class="progress-text"
+              id="progressText"
+              aria-live="polite"
+            >
+              Step 1 of 10
+            </div>
+
+
+            <div
+              class="progress-track"
+              role="progressbar"
+              id="progressTrack"
+              aria-valuemin="1"
+              aria-valuemax="10"
+              aria-valuenow="1"
+              aria-label="Investigation progress"
+            >
+
+              <div
+                class="progress-bar"
+                id="progressBar"
+              ></div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="prototype-screen"
+          id="prototypeScreen"
+          tabindex="-1"
+          aria-live="polite"
+          aria-atomic="true"
+        ></div>
+
+
+        <div
+          class="prototype-controls"
+          data-no-read
+        >
+
+          <div class="control-left">
+
+            <button
+              class="control-button"
+              id="backButton"
+              type="button"
+              data-i18n="back"
+            >
+              ← Back
+            </button>
+
+
+            <button
+              class="control-button"
+              id="replayButton"
+              type="button"
+              data-i18n="replay"
+            >
+              Replay interaction
+            </button>
+
+          </div>
+
+
+          <div class="control-right">
+
+            <a
+              class="control-button"
+              href="case-studies.html"
+              data-i18n="exitCaseStudy"
+            >
+              Exit case study
+            </a>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================
+           WHY IT WORKS
+      ================================== -->
+
+      <section class="section readable-content">
+
+        <div
+          class="gold-line"
+          aria-hidden="true"
+        ></div>
+
+
+        <div
+          class="section-label"
+          data-i18n="whyLabel"
+        >
+          Why This Interaction Works
+        </div>
+
+
+        <h2
+          class="section-title"
+          data-i18n="whyTitle"
+        >
+          The investigation is organised around three questions.
+        </h2>
+
+
+        <div class="why-grid">
+
+
+          <article class="why-card">
+
+            <small data-i18n="questionOne">
+              Question 01
+            </small>
+
+            <h3 data-i18n="whatHappened">
+              What happened?
+            </h3>
+
+            <p data-i18n="whatHappenedText">
+              Start with the observable change and enough context to understand
+              why it deserves attention.
+            </p>
+
+          </article>
+
+
+          <article class="why-card">
+
+            <small data-i18n="questionTwo">
+              Question 02
+            </small>
+
+            <h3 data-i18n="whatMean">
+              What does it mean?
+            </h3>
+
+            <p data-i18n="whatMeanText">
+              Connect the anomaly to impact, recent changes and environmental
+              evidence before presenting a conclusion.
+            </p>
+
+          </article>
+
+
+          <article class="why-card">
+
+            <small data-i18n="questionThree">
+              Question 03
+            </small>
+
+            <h3 data-i18n="whatNext">
+              What should I do next?
+            </h3>
+
+            <p data-i18n="whatNextText">
+              End with a clear direction so the experience supports action,
+              not just interpretation.
+            </p>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================
+           ACCESSIBILITY
+      ================================== -->
+
+      <section class="section readable-content">
+
+        <div
+          class="gold-line"
+          aria-hidden="true"
+        ></div>
+
+
+        <div
+          class="section-label"
+          data-i18n="accessibilitySection"
+        >
+          Accessibility
+        </div>
+
+
+        <h2
+          class="section-title"
+          data-i18n="accessibilityTitle"
+        >
+          Reducing cognitive load without removing control.
+        </h2>
+
+
+        <p
+          class="section-intro"
+          data-i18n="accessibilityIntro"
+        >
+          Accessibility in this interaction is closely tied to predictability,
+          information hierarchy, navigation and the amount of information the
+          user is expected to process at once.
+        </p>
+
+
+        <div class="access-grid">
+
+
+          <article class="access-card">
+
+            <div
+              class="access-number"
+              aria-hidden="true"
+            >
+              1
+            </div>
+
+
+            <h3 data-i18n="clearHierarchy">
+              Clear hierarchy
+            </h3>
+
+
+            <p data-i18n="clearHierarchyText">
+              Each state exposes one main question and one primary next action,
+              reducing competition for attention.
+            </p>
+
+          </article>
+
+
+          <article class="access-card">
+
+            <div
+              class="access-number"
+              aria-hidden="true"
+            >
+              2
+            </div>
+
+
+            <h3 data-i18n="moreThanColour">
+              More than colour
+            </h3>
+
+
+            <p data-i18n="moreThanColourText">
+              Status and severity combine labels, text and structural position
+              rather than depending on colour alone.
+            </p>
+
+          </article>
+
+
+          <article class="access-card">
+
+            <div
+              class="access-number"
+              aria-hidden="true"
+            >
+              3
+            </div>
+
+
+            <h3 data-i18n="reversibleNavigation">
+              Reversible navigation
+            </h3>
+
+
+            <p data-i18n="reversibleNavigationText">
+              Back, replay and exit controls give users predictable ways to
+              revisit information or leave the experience without becoming trapped.
+            </p>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================
+           REFLECTION
+      ================================== -->
+
+      <section class="section readable-content">
+
+        <div
+          class="gold-line"
+          aria-hidden="true"
+        ></div>
+
+
+        <div
+          class="section-label"
+          data-i18n="reflectionLabel"
+        >
+          Reflection
+        </div>
+
+
+        <h2
+          class="section-title"
+          data-i18n="reflectionTitle"
+        >
+          Observability is also an information-sequencing problem.
+        </h2>
+
+
+        <div class="reflection-grid">
+
+
+          <article class="reflection-card">
+
+            <h3 data-i18n="whatChanged">
+              What changed
+            </h3>
+
+
+            <p data-i18n="whatChangedText">
+              I moved away from treating the dashboard as the primary experience.
+              The investigation itself became the product flow, with the dashboard
+              appearing only when its context became useful.
+            </p>
+
+          </article>
+
+
+          <article class="reflection-card">
+
+            <h3 data-i18n="whatLearned">
+              What I learned
+            </h3>
+
+
+            <p data-i18n="whatLearnedText">
+              Complex systems do not always need simpler data. Sometimes they need
+              better sequencing — showing the right information when the user is
+              ready to use it.
+            </p>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================
+           CTA
+      ================================== -->
+
+      <section
+        class="cta readable-content"
+        aria-labelledby="cta-heading"
+      >
+
+        <div>
+
+          <h2
+            id="cta-heading"
+            data-i18n="ctaHeading"
+          >
+            Interested in thoughtful interaction design?
+          </h2>
+
+
+          <p data-i18n="ctaText">
+            Let’s connect to discuss UX research, complex systems,
+            accessibility and interaction design.
+          </p>
+
+        </div>
+
 
         <a
+          class="cta-button"
           href="contact.html"
-          class="nav-button"
+          data-i18n="letsConnect"
+          data-no-read
         >
           Let’s Connect
         </a>
 
-      </div>
+      </section>
 
-    </nav>
+    </main>
 
 
-    <a
-      class="back-link"
-      href="case-studies.html"
-    >
-      ← Back to Case Studies
-    </a>
+    <!-- =====================================
+         FOOTER
+    ====================================== -->
 
-
-    <!-- HERO -->
-
-    <section class="hero">
-
-      <div>
-
-        <div class="gold-line"></div>
-
-        <div class="section-label">
-          Interactive UX Case Study
-        </div>
-
-        <h1>
-          AI Observability
-          <span>Investigation Assistant</span>
-        </h1>
-
-        <p class="hero-copy">
-          A guided investigation experience that helps teams move from
-          anomaly to understanding without confronting an entire monitoring
-          system at once.
-        </p>
-
-
-        <div class="hero-tags">
-
-          <span class="hero-tag">
-            Interaction Design
-          </span>
-
-          <span class="hero-tag">
-            Dashboard UX
-          </span>
-
-          <span class="hero-tag">
-            Progressive Disclosure
-          </span>
-
-          <span class="hero-tag">
-            AI Monitoring
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <div class="hero-visual">
-
-        <img
-          src="case-card-ai-observability.png"
-          alt="AI Observability monitoring dashboard"
-        />
-
-      </div>
-
-    </section>
-
-
-    <!-- DESIGN CHALLENGE -->
-
-    <section class="section">
-
-      <div class="gold-line"></div>
-
-      <div class="section-label">
-        Design Challenge
-      </div>
-
-      <h2 class="section-title">
-        Showing everything can still leave users unsure what to do.
-      </h2>
-
-      <p class="section-intro">
-        Observability tools contain large amounts of valuable information,
-        but during an incident the user’s problem is not simply access to
-        data. They need to understand what changed, whether it matters,
-        and where to investigate next.
-      </p>
-
-
-      <div class="challenge-grid">
-
-        <article class="challenge-card">
-
-          <strong>
-            Information overload
-          </strong>
-
-          <p>
-            Dense dashboards force users to interpret several metrics
-            and competing signals at once.
-          </p>
-
-        </article>
-
-
-        <article class="challenge-card">
-
-          <strong>
-            Unclear investigation path
-          </strong>
-
-          <p>
-            Knowing that something changed does not automatically tell
-            the user what deserves attention first.
-          </p>
-
-        </article>
-
-
-        <article class="challenge-card">
-
-          <strong>
-            Data without meaning
-          </strong>
-
-          <p>
-            Monitoring information becomes more useful when it supports
-            a decision rather than simply reporting a number.
-          </p>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- DESIGN STRATEGY -->
-
-    <section class="section">
-
-      <div class="gold-line"></div>
-
-      <div class="section-label">
-        Design Strategy
-      </div>
-
-      <h2 class="section-title">
-        Turn investigation into a guided sequence.
-      </h2>
-
-      <p class="section-intro">
-        Instead of exposing the entire observability environment immediately,
-        the experience reveals information according to the decision the user
-        needs to make at that moment.
-      </p>
-
-
-      <div class="strategy-grid">
-
-        <article class="strategy-card">
-
-          <div class="strategy-number">
-            01
-          </div>
-
-          <h3>
-            Progressive disclosure
-          </h3>
-
-          <p>
-            Reveal complexity gradually so each screen answers one clear
-            investigation question.
-          </p>
-
-        </article>
-
-
-        <article class="strategy-card">
-
-          <div class="strategy-number">
-            02
-          </div>
-
-          <h3>
-            Investigate before explaining
-          </h3>
-
-          <p>
-            Let users gather evidence before presenting a conclusion about
-            the likely root cause.
-          </p>
-
-        </article>
-
-
-        <article class="strategy-card">
-
-          <div class="strategy-number">
-            03
-          </div>
-
-          <h3>
-            Actionable next steps
-          </h3>
-
-          <p>
-            Every state should help the user decide where to look or what
-            to do next.
-          </p>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- INTERACTIVE EXPERIENCE -->
-
-    <section
-      class="prototype-section"
-      id="prototype"
-    >
-
-      <div class="prototype-header">
-
-        <div>
-
-          <div class="prototype-label">
-            Interactive Investigation
-          </div>
-
-          <h2>
-            Follow the anomaly from signal to root cause
-          </h2>
-
-          <p>
-            This prototype demonstrates the interaction strategy rather than
-            a production monitoring environment. Move through the investigation
-            one decision at a time.
-          </p>
-
-        </div>
-
-
-        <div class="progress-wrap">
-
-          <div
-            class="progress-text"
-            id="progressText"
-          >
-            Step 1 of 10
-          </div>
-
-          <div class="progress-track">
-            <div
-              class="progress-bar"
-              id="progressBar"
-            ></div>
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div
-        class="prototype-screen"
-        id="prototypeScreen"
-        aria-live="polite"
-      ></div>
-
-
-      <div class="prototype-controls">
-
-        <div class="control-left">
-
-          <button
-            class="control-button"
-            id="backButton"
-            type="button"
-          >
-            ← Back
-          </button>
-
-          <button
-            class="control-button"
-            id="replayButton"
-            type="button"
-          >
-            Replay interaction
-          </button>
-
-        </div>
-
-
-        <div class="control-right">
-
-          <a
-            class="control-button"
-            href="case-studies.html"
-          >
-            Exit case study
-          </a>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- WHY IT WORKS -->
-
-    <section class="section">
-
-      <div class="gold-line"></div>
-
-      <div class="section-label">
-        Why This Interaction Works
-      </div>
-
-      <h2 class="section-title">
-        The investigation is organised around three questions.
-      </h2>
-
-
-      <div class="why-grid">
-
-        <article class="why-card">
-
-          <small>
-            Question 01
-          </small>
-
-          <h3>
-            What happened?
-          </h3>
-
-          <p>
-            Start with the observable change and enough context to understand
-            why it deserves attention.
-          </p>
-
-        </article>
-
-
-        <article class="why-card">
-
-          <small>
-            Question 02
-          </small>
-
-          <h3>
-            What does it mean?
-          </h3>
-
-          <p>
-            Connect the anomaly to impact, recent changes and environmental
-            evidence before presenting a conclusion.
-          </p>
-
-        </article>
-
-
-        <article class="why-card">
-
-          <small>
-            Question 03
-          </small>
-
-          <h3>
-            What should I do next?
-          </h3>
-
-          <p>
-            End with a clear direction so the experience supports action,
-            not just interpretation.
-          </p>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- ACCESSIBILITY -->
-
-    <section class="section">
-
-      <div class="gold-line"></div>
-
-      <div class="section-label">
-        Accessibility
-      </div>
-
-      <h2 class="section-title">
-        Reducing cognitive load without removing control.
-      </h2>
-
-      <p class="section-intro">
-        Accessibility in this interaction is closely tied to predictability,
-        information hierarchy, navigation and the amount of information the
-        user is expected to process at once.
-      </p>
-
-
-      <div class="access-grid">
-
-        <article class="access-card">
-
-          <div class="access-number">
-            1
-          </div>
-
-          <h3>
-            Clear hierarchy
-          </h3>
-
-          <p>
-            Each state exposes one main question and one primary next action,
-            reducing competition for attention.
-          </p>
-
-        </article>
-
-
-        <article class="access-card">
-
-          <div class="access-number">
-            2
-          </div>
-
-          <h3>
-            More than colour
-          </h3>
-
-          <p>
-            Status and severity combine labels, text and structural position
-            rather than depending on colour alone.
-          </p>
-
-        </article>
-
-
-        <article class="access-card">
-
-          <div class="access-number">
-            3
-          </div>
-
-          <h3>
-            Reversible navigation
-          </h3>
-
-          <p>
-            Back, replay and exit controls give users predictable ways to
-            revisit information or leave the experience without becoming trapped.
-          </p>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- REFLECTION -->
-
-    <section class="section">
-
-      <div class="gold-line"></div>
-
-      <div class="section-label">
-        Reflection
-      </div>
-
-      <h2 class="section-title">
-        Observability is also an information-sequencing problem.
-      </h2>
-
-
-      <div class="reflection-grid">
-
-        <article class="reflection-card">
-
-          <h3>
-            What changed
-          </h3>
-
-          <p>
-            I moved away from treating the dashboard as the primary experience.
-            The investigation itself became the product flow, with the dashboard
-            appearing only when its context became useful.
-          </p>
-
-        </article>
-
-
-        <article class="reflection-card">
-
-          <h3>
-            What I learned
-          </h3>
-
-          <p>
-            Complex systems do not always need simpler data. Sometimes they need
-            better sequencing — showing the right information when the user is
-            ready to use it.
-          </p>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- CTA -->
-
-    <section class="cta">
-
-      <div>
-
-        <h2>
-          Interested in thoughtful interaction design?
-        </h2>
-
-        <p>
-          Let’s connect to discuss UX research, complex systems,
-          accessibility and interaction design.
-        </p>
-
-      </div>
-
-
-      <a
-        class="cta-button"
-        href="contact.html"
-      >
-        Let’s Connect
-      </a>
-
-    </section>
-
-
-    <!-- FOOTER -->
-
-    <footer>
+    <footer data-no-read>
 
       <div class="footer-brand">
         Linda Laryea
       </div>
 
-      <div>
+
+      <div data-i18n="footerCopy">
         © 2026 Linda Laryea. Designed with research,
         empathy and accessibility in mind.
       </div>
 
     </footer>
 
-  </main>
+  </div>
+
+
+  <!-- =====================================
+       BACK TO TOP
+  ====================================== -->
+
+  <button
+    type="button"
+    id="backToTop"
+    class="back-to-top"
+    aria-label="Back to top"
+    data-i18n-aria-label="backToTop"
+    data-no-read
+  >
+    ↑
+  </button>
 
 
   <script>
 
-    const screen = document.getElementById("prototypeScreen");
-    const progressText = document.getElementById("progressText");
-    const progressBar = document.getElementById("progressBar");
-    const backButton = document.getElementById("backButton");
-    const replayButton = document.getElementById("replayButton");
+    /* =====================================
+       STATIC TRANSLATIONS
+    ====================================== */
 
-    let currentStep = 0;
+    const translations = {
 
-    const steps = [
+      en: {
 
-      /* 01 */
-      {
-        label: "01 / Scenario Introduction",
+        pageTitle:
+          "AI Observability Investigation Assistant | Linda Laryea",
 
-        content: `
-          <div class="screen-step">
-            01 / Scenario Introduction
-          </div>
+        metaDescription:
+          "AI Observability Investigation Assistant — an interactive UX case study by Linda Laryea.",
 
-          <h3>
-            Something has changed.
-          </h3>
+        skip:
+          "Skip to main content",
 
-          <p class="screen-copy">
-            It’s Monday morning. Candidate CV summaries are suddenly
-            <strong>35% longer than usual</strong>.
-            Nothing obvious has failed, but the behaviour is different
-            enough to deserve investigation.
-          </p>
+        mainNavigation:
+          "Main navigation",
 
-          <p class="screen-question">
-            What would you look at first?
-          </p>
+        chooseLanguage:
+          "Choose language",
 
-          <div class="prototype-actions">
+        switchEnglish:
+          "Switch to English",
 
-            <button
-              class="prototype-button"
-              type="button"
-              onclick="goToStep(1)"
-            >
-              Review anomaly →
-            </button>
+        switchGerman:
+          "Switch to German",
 
-          </div>
-        `
+        home:
+          "Home",
+
+        caseStudies:
+          "Case Studies",
+
+        aboutMe:
+          "About Me",
+
+        cv:
+          "CV",
+
+        letsConnect:
+          "Let’s Connect",
+
+        accessibility:
+          "Accessibility",
+
+        accessibilityDescription:
+          "Adjust the page to suit your needs.",
+
+        closeAccessibility:
+          "Close accessibility settings",
+
+        textSize:
+          "Text size",
+
+        decreaseText:
+          "Decrease text size",
+
+        defaultText:
+          "Default text size",
+
+        increaseText:
+          "Increase text size",
+
+        highContrast:
+          "High contrast",
+
+        highContrastDescription:
+          "Increase visual contrast.",
+
+        reduceMotion:
+          "Reduce motion",
+
+        reduceMotionDescription:
+          "Minimise animation and movement.",
+
+        readPage:
+          "Read page aloud",
+
+        play:
+          "Play",
+
+        pause:
+          "Pause",
+
+        stop:
+          "Stop",
+
+        resetSettings:
+          "Reset accessibility settings",
+
+        backCaseStudies:
+          "← Back to Case Studies",
+
+        caseStudyLabel:
+          "Interactive UX Case Study",
+
+        heroHighlight:
+          "Investigation Assistant",
+
+        heroCopy:
+          "A guided investigation experience that helps teams move from anomaly to understanding without confronting an entire monitoring system at once.",
+
+        interactionDesign:
+          "Interaction Design",
+
+        dashboardUX:
+          "Dashboard UX",
+
+        progressiveDisclosure:
+          "Progressive Disclosure",
+
+        aiMonitoring:
+          "AI Monitoring",
+
+        heroImageAlt:
+          "AI Observability monitoring dashboard",
+
+        challengeLabel:
+          "Design Challenge",
+
+        challengeTitle:
+          "Showing everything can still leave users unsure what to do.",
+
+        challengeIntro:
+          "Observability tools contain large amounts of valuable information, but during an incident the user’s problem is not simply access to data. They need to understand what changed, whether it matters, and where to investigate next.",
+
+        overloadTitle:
+          "Information overload",
+
+        overloadText:
+          "Dense dashboards force users to interpret several metrics and competing signals at once.",
+
+        pathTitle:
+          "Unclear investigation path",
+
+        pathText:
+          "Knowing that something changed does not automatically tell the user what deserves attention first.",
+
+        meaningTitle:
+          "Data without meaning",
+
+        meaningText:
+          "Monitoring information becomes more useful when it supports a decision rather than simply reporting a number.",
+
+        strategyLabel:
+          "Design Strategy",
+
+        strategyTitle:
+          "Turn investigation into a guided sequence.",
+
+        strategyIntro:
+          "Instead of exposing the entire observability environment immediately, the experience reveals information according to the decision the user needs to make at that moment.",
+
+        progressiveTitle:
+          "Progressive disclosure",
+
+        progressiveText:
+          "Reveal complexity gradually so each screen answers one clear investigation question.",
+
+        investigateTitle:
+          "Investigate before explaining",
+
+        investigateText:
+          "Let users gather evidence before presenting a conclusion about the likely root cause.",
+
+        actionTitle:
+          "Actionable next steps",
+
+        actionText:
+          "Every state should help the user decide where to look or what to do next.",
+
+        prototypeLabel:
+          "Interactive Investigation",
+
+        prototypeTitle:
+          "Follow the anomaly from signal to root cause",
+
+        prototypeIntro:
+          "This prototype demonstrates the interaction strategy rather than a production monitoring environment. Move through the investigation one decision at a time.",
+
+        back:
+          "← Back",
+
+        replay:
+          "Replay interaction",
+
+        exitCaseStudy:
+          "Exit case study",
+
+        whyLabel:
+          "Why This Interaction Works",
+
+        whyTitle:
+          "The investigation is organised around three questions.",
+
+        questionOne:
+          "Question 01",
+
+        questionTwo:
+          "Question 02",
+
+        questionThree:
+          "Question 03",
+
+        whatHappened:
+          "What happened?",
+
+        whatHappenedText:
+          "Start with the observable change and enough context to understand why it deserves attention.",
+
+        whatMean:
+          "What does it mean?",
+
+        whatMeanText:
+          "Connect the anomaly to impact, recent changes and environmental evidence before presenting a conclusion.",
+
+        whatNext:
+          "What should I do next?",
+
+        whatNextText:
+          "End with a clear direction so the experience supports action, not just interpretation.",
+
+        accessibilitySection:
+          "Accessibility",
+
+        accessibilityTitle:
+          "Reducing cognitive load without removing control.",
+
+        accessibilityIntro:
+          "Accessibility in this interaction is closely tied to predictability, information hierarchy, navigation and the amount of information the user is expected to process at once.",
+
+        clearHierarchy:
+          "Clear hierarchy",
+
+        clearHierarchyText:
+          "Each state exposes one main question and one primary next action, reducing competition for attention.",
+
+        moreThanColour:
+          "More than colour",
+
+        moreThanColourText:
+          "Status and severity combine labels, text and structural position rather than depending on colour alone.",
+
+        reversibleNavigation:
+          "Reversible navigation",
+
+        reversibleNavigationText:
+          "Back, replay and exit controls give users predictable ways to revisit information or leave the experience without becoming trapped.",
+
+        reflectionLabel:
+          "Reflection",
+
+        reflectionTitle:
+          "Observability is also an information-sequencing problem.",
+
+        whatChanged:
+          "What changed",
+
+        whatChangedText:
+          "I moved away from treating the dashboard as the primary experience. The investigation itself became the product flow, with the dashboard appearing only when its context became useful.",
+
+        whatLearned:
+          "What I learned",
+
+        whatLearnedText:
+          "Complex systems do not always need simpler data. Sometimes they need better sequencing — showing the right information when the user is ready to use it.",
+
+        ctaHeading:
+          "Interested in thoughtful interaction design?",
+
+        ctaText:
+          "Let’s connect to discuss UX research, complex systems, accessibility and interaction design.",
+
+        footerCopy:
+          "© 2026 Linda Laryea. Designed with research, empathy and accessibility in mind.",
+
+        backToTop:
+          "Back to top",
+
+        languageChanged:
+          "Language changed to English.",
+
+        settingsReset:
+          "Accessibility settings reset.",
+
+        contrastEnabled:
+          "High contrast enabled.",
+
+        contrastDisabled:
+          "High contrast disabled.",
+
+        motionEnabled:
+          "Reduced motion enabled.",
+
+        motionDisabled:
+          "Reduced motion disabled.",
+
+        readingStarted:
+          "Reading started.",
+
+        readingPaused:
+          "Reading paused.",
+
+        readingResumed:
+          "Reading resumed.",
+
+        readingStopped:
+          "Reading stopped.",
+
+        readUnsupported:
+          "Read aloud is not supported by this browser.",
+
+        progress:
+          "Step",
+
+        progressOf:
+          "of",
+
+        progressLabel:
+          "Investigation progress"
       },
 
 
-      /* 02 */
-      {
-        label: "02 / Anomaly Detected",
+      de: {
 
-        content: `
-          <div class="screen-step">
-            02 / Anomaly Detected
-          </div>
+        pageTitle:
+          "AI Observability Investigation Assistant | Linda Laryea",
 
-          <h3>
-            Unusual behaviour detected.
-          </h3>
+        metaDescription:
+          "AI Observability Investigation Assistant — eine interaktive UX-Fallstudie von Linda Laryea.",
 
-          <p class="screen-copy">
-            Candidate CV summaries are significantly longer than the
-            established baseline.
-          </p>
+        skip:
+          "Zum Hauptinhalt springen",
 
-          <div class="anomaly-card">
+        mainNavigation:
+          "Hauptnavigation",
 
-            <div class="anomaly-head">
+        chooseLanguage:
+          "Sprache auswählen",
 
-              <div>
+        switchEnglish:
+          "Auf Englisch wechseln",
 
-                <div class="anomaly-badge">
-                  Current anomaly
+        switchGerman:
+          "Auf Deutsch wechseln",
+
+        home:
+          "Startseite",
+
+        caseStudies:
+          "Fallstudien",
+
+        aboutMe:
+          "Über mich",
+
+        cv:
+          "Lebenslauf",
+
+        letsConnect:
+          "Kontakt aufnehmen",
+
+        accessibility:
+          "Barrierefreiheit",
+
+        accessibilityDescription:
+          "Passe die Seite an deine Bedürfnisse an.",
+
+        closeAccessibility:
+          "Einstellungen zur Barrierefreiheit schließen",
+
+        textSize:
+          "Textgröße",
+
+        decreaseText:
+          "Text verkleinern",
+
+        defaultText:
+          "Standardtextgröße",
+
+        increaseText:
+          "Text vergrößern",
+
+        highContrast:
+          "Hoher Kontrast",
+
+        highContrastDescription:
+          "Erhöht den visuellen Kontrast.",
+
+        reduceMotion:
+          "Bewegung reduzieren",
+
+        reduceMotionDescription:
+          "Animationen und Bewegungen minimieren.",
+
+        readPage:
+          "Seite vorlesen",
+
+        play:
+          "Start",
+
+        pause:
+          "Pause",
+
+        stop:
+          "Stopp",
+
+        resetSettings:
+          "Barrierefreiheit zurücksetzen",
+
+        backCaseStudies:
+          "← Zurück zu den Fallstudien",
+
+        caseStudyLabel:
+          "Interaktive UX-Fallstudie",
+
+        heroHighlight:
+          "Investigation Assistant",
+
+        heroCopy:
+          "Eine geführte Untersuchung, die Teams von einer Anomalie zu einem besseren Verständnis führt, ohne sofort das gesamte Monitoring-System zeigen zu müssen.",
+
+        interactionDesign:
+          "Interaction Design",
+
+        dashboardUX:
+          "Dashboard UX",
+
+        progressiveDisclosure:
+          "Progressive Disclosure",
+
+        aiMonitoring:
+          "AI Monitoring",
+
+        heroImageAlt:
+          "AI-Observability-Monitoring-Dashboard",
+
+        challengeLabel:
+          "Design-Herausforderung",
+
+        challengeTitle:
+          "Alles zu zeigen kann Nutzer:innen trotzdem unsicher lassen, was sie tun sollen.",
+
+        challengeIntro:
+          "Observability-Tools enthalten große Mengen wertvoller Informationen. Während eines Vorfalls besteht das Problem jedoch nicht nur darin, auf Daten zuzugreifen. Nutzer:innen müssen verstehen, was sich verändert hat, ob es relevant ist und wo sie als Nächstes untersuchen sollten.",
+
+        overloadTitle:
+          "Informationsüberlastung",
+
+        overloadText:
+          "Dichte Dashboards zwingen Nutzer:innen dazu, mehrere Metriken und konkurrierende Signale gleichzeitig zu interpretieren.",
+
+        pathTitle:
+          "Unklarer Untersuchungsweg",
+
+        pathText:
+          "Zu wissen, dass sich etwas verändert hat, zeigt noch nicht automatisch, was zuerst untersucht werden sollte.",
+
+        meaningTitle:
+          "Daten ohne Bedeutung",
+
+        meaningText:
+          "Monitoring-Informationen werden hilfreicher, wenn sie Entscheidungen unterstützen, anstatt lediglich Zahlen anzuzeigen.",
+
+        strategyLabel:
+          "Designstrategie",
+
+        strategyTitle:
+          "Die Untersuchung als geführte Abfolge gestalten.",
+
+        strategyIntro:
+          "Anstatt sofort die gesamte Observability-Umgebung offenzulegen, zeigt die Erfahrung Informationen passend zu der Entscheidung, die Nutzer:innen in diesem Moment treffen müssen.",
+
+        progressiveTitle:
+          "Progressive Disclosure",
+
+        progressiveText:
+          "Komplexität wird schrittweise sichtbar, sodass jeder Bildschirm eine klare Untersuchungsfrage beantwortet.",
+
+        investigateTitle:
+          "Erst untersuchen, dann erklären",
+
+        investigateText:
+          "Nutzer:innen sammeln zunächst Hinweise, bevor eine Schlussfolgerung über die wahrscheinlichste Ursache präsentiert wird.",
+
+        actionTitle:
+          "Konkrete nächste Schritte",
+
+        actionText:
+          "Jeder Zustand hilft dabei zu entscheiden, wo als Nächstes gesucht oder welche Aktion ausgeführt werden sollte.",
+
+        prototypeLabel:
+          "Interaktive Untersuchung",
+
+        prototypeTitle:
+          "Von der Anomalie bis zur Ursache",
+
+        prototypeIntro:
+          "Dieser Prototyp demonstriert die Interaktionsstrategie und keine produktive Monitoring-Umgebung. Die Untersuchung erfolgt Entscheidung für Entscheidung.",
+
+        back:
+          "← Zurück",
+
+        replay:
+          "Interaktion wiederholen",
+
+        exitCaseStudy:
+          "Fallstudie verlassen",
+
+        whyLabel:
+          "Warum diese Interaktion funktioniert",
+
+        whyTitle:
+          "Die Untersuchung basiert auf drei Fragen.",
+
+        questionOne:
+          "Frage 01",
+
+        questionTwo:
+          "Frage 02",
+
+        questionThree:
+          "Frage 03",
+
+        whatHappened:
+          "Was ist passiert?",
+
+        whatHappenedText:
+          "Mit der beobachtbaren Veränderung beginnen und genügend Kontext geben, um zu verstehen, warum sie Aufmerksamkeit verdient.",
+
+        whatMean:
+          "Was bedeutet es?",
+
+        whatMeanText:
+          "Die Anomalie mit Auswirkungen, jüngsten Änderungen und Umgebungsdaten verbinden, bevor eine Schlussfolgerung präsentiert wird.",
+
+        whatNext:
+          "Was sollte ich als Nächstes tun?",
+
+        whatNextText:
+          "Mit einer klaren Richtung enden, sodass die Erfahrung Handlungen unterstützt und nicht nur Interpretation.",
+
+        accessibilitySection:
+          "Barrierefreiheit",
+
+        accessibilityTitle:
+          "Kognitive Belastung reduzieren, ohne Kontrolle zu entfernen.",
+
+        accessibilityIntro:
+          "Barrierefreiheit ist in dieser Interaktion eng mit Vorhersehbarkeit, Informationshierarchie, Navigation und der Menge an Informationen verbunden, die gleichzeitig verarbeitet werden müssen.",
+
+        clearHierarchy:
+          "Klare Hierarchie",
+
+        clearHierarchyText:
+          "Jeder Zustand zeigt eine zentrale Frage und eine primäre nächste Aktion, wodurch weniger Elemente gleichzeitig um Aufmerksamkeit konkurrieren.",
+
+        moreThanColour:
+          "Mehr als Farbe",
+
+        moreThanColourText:
+          "Status und Schweregrad werden durch Beschriftungen, Text und strukturelle Position kommuniziert und nicht nur durch Farbe.",
+
+        reversibleNavigation:
+          "Umkehrbare Navigation",
+
+        reversibleNavigationText:
+          "Zurück-, Wiederholen- und Verlassen-Funktionen ermöglichen es, Informationen erneut anzusehen oder die Erfahrung jederzeit zu verlassen.",
+
+        reflectionLabel:
+          "Reflexion",
+
+        reflectionTitle:
+          "Observability ist auch ein Problem der Informationsreihenfolge.",
+
+        whatChanged:
+          "Was sich verändert hat",
+
+        whatChangedText:
+          "Ich behandelte das Dashboard nicht mehr als primäre Erfahrung. Stattdessen wurde die Untersuchung selbst zum Produktfluss und das Dashboard erschien erst, wenn sein Kontext wirklich hilfreich war.",
+
+        whatLearned:
+          "Was ich gelernt habe",
+
+        whatLearnedText:
+          "Komplexe Systeme brauchen nicht immer einfachere Daten. Manchmal brauchen sie eine bessere Reihenfolge – also die richtigen Informationen genau dann, wenn Nutzer:innen bereit sind, sie zu verwenden.",
+
+        ctaHeading:
+          "Interesse an durchdachtem Interaction Design?",
+
+        ctaText:
+          "Lass uns über UX Research, komplexe Systeme, Barrierefreiheit und Interaction Design sprechen.",
+
+        footerCopy:
+          "© 2026 Linda Laryea. Mit Research, Empathie und Barrierefreiheit im Mittelpunkt gestaltet.",
+
+        backToTop:
+          "Nach oben",
+
+        languageChanged:
+          "Sprache auf Deutsch geändert.",
+
+        settingsReset:
+          "Einstellungen zur Barrierefreiheit wurden zurückgesetzt.",
+
+        contrastEnabled:
+          "Hoher Kontrast aktiviert.",
+
+        contrastDisabled:
+          "Hoher Kontrast deaktiviert.",
+
+        motionEnabled:
+          "Reduzierte Bewegung aktiviert.",
+
+        motionDisabled:
+          "Reduzierte Bewegung deaktiviert.",
+
+        readingStarted:
+          "Vorlesen gestartet.",
+
+        readingPaused:
+          "Vorlesen pausiert.",
+
+        readingResumed:
+          "Vorlesen fortgesetzt.",
+
+        readingStopped:
+          "Vorlesen gestoppt.",
+
+        readUnsupported:
+          "Die Vorlesefunktion wird von diesem Browser nicht unterstützt.",
+
+        progress:
+          "Schritt",
+
+        progressOf:
+          "von",
+
+        progressLabel:
+          "Fortschritt der Untersuchung"
+      }
+
+    };
+
+
+    /* =====================================
+       INTERACTION COPY
+    ====================================== */
+
+    const interactionSteps = {
+
+      en: [
+
+        {
+          label:
+            "01 / Scenario Introduction",
+
+          content: `
+            <div class="screen-step">
+              01 / Scenario Introduction
+            </div>
+
+            <h3>
+              Something has changed.
+            </h3>
+
+            <p class="screen-copy">
+              It’s Monday morning. Candidate CV summaries are suddenly
+              <strong>35% longer than usual</strong>.
+              Nothing obvious has failed, but the behaviour is different
+              enough to deserve investigation.
+            </p>
+
+            <p class="screen-question">
+              What would you look at first?
+            </p>
+
+            <div class="prototype-actions">
+
+              <button
+                class="prototype-button"
+                type="button"
+                data-step="1"
+              >
+                Review anomaly →
+              </button>
+
+            </div>
+          `
+        },
+
+
+        {
+          label:
+            "02 / Anomaly Detected",
+
+          content: `
+            <div class="screen-step">
+              02 / Anomaly Detected
+            </div>
+
+            <h3>
+              Unusual behaviour detected.
+            </h3>
+
+            <p class="screen-copy">
+              Candidate CV summaries are significantly longer than the
+              established baseline.
+            </p>
+
+            <div class="anomaly-card">
+
+              <div class="anomaly-head">
+
+                <div>
+
+                  <div class="anomaly-badge">
+                    Current anomaly
+                  </div>
+
+                  <h4>
+                    Summary length is longer than usual
+                  </h4>
+
+                  <p>
+                    Compared with the recent baseline
+                  </p>
+
                 </div>
 
-                <h4>
-                  Summary length is longer than usual
-                </h4>
+                <div class="anomaly-change">
+                  +35%
+                </div>
+
+              </div>
+
+            </div>
+
+            <p class="screen-question">
+              What would you investigate first?
+            </p>
+
+            <div class="prototype-actions">
+
+              <button
+                class="prototype-button choice"
+                type="button"
+                data-step="2"
+              >
+                Check user impact
+              </button>
+
+              <button
+                class="prototype-button choice"
+                type="button"
+                data-alternate="true"
+              >
+                Look at recent changes
+              </button>
+
+            </div>
+          `
+        },
+
+
+        {
+          label:
+            "03 / Dashboard Reveal",
+
+          content: `
+            <div class="screen-step">
+              03 / Dashboard Reveal
+            </div>
+
+            <h3>
+              What is the system seeing?
+            </h3>
+
+            <p class="screen-copy">
+              The anomaly is real, but summary length is only one part
+              of the picture. The next question is whether the change
+              is affecting the user experience or system behaviour.
+            </p>
+
+            <div class="metric-grid">
+
+              <div class="metric-card alert">
+                <span>Summary length</span>
+                <strong>+35%</strong>
+              </div>
+
+              <div class="metric-card">
+                <span>Latency</span>
+                <strong>+18%</strong>
+              </div>
+
+              <div class="metric-card">
+                <span>Token cost</span>
+                <strong>+12%</strong>
+              </div>
+
+              <div class="metric-card">
+                <span>Support signals</span>
+                <strong>4</strong>
+              </div>
+
+            </div>
+
+            <div class="prototype-actions">
+
+              <button
+                class="prototype-button"
+                type="button"
+                data-step="3"
+              >
+                Check impact →
+              </button>
+
+            </div>
+          `
+        },
+
+
+        {
+          label:
+            "04 / Impact Check",
+
+          content: `
+            <div class="screen-step">
+              04 / Impact Check
+            </div>
+
+            <h3>
+              So, is this actually a problem?
+            </h3>
+
+            <p class="screen-copy">
+              Longer summaries are accompanied by higher latency and
+              increased generation cost. Users can still complete the task,
+              but the behavioural change now has measurable impact.
+            </p>
+
+            <div class="metric-grid">
+
+              <div class="metric-card alert">
+                <span>Summary length</span>
+                <strong>+35%</strong>
+              </div>
+
+              <div class="metric-card alert">
+                <span>Latency</span>
+                <strong>+18%</strong>
+              </div>
+
+              <div class="metric-card alert">
+                <span>Token cost</span>
+                <strong>+12%</strong>
+              </div>
+
+              <div class="metric-card">
+                <span>Error rate</span>
+                <strong>Stable</strong>
+              </div>
+
+            </div>
+
+            <p class="screen-question">
+              The behaviour changed. What changed around the same time?
+            </p>
+
+            <div class="prototype-actions">
+
+              <button
+                class="prototype-button"
+                type="button"
+                data-step="4"
+              >
+                Review recent changes →
+              </button>
+
+            </div>
+          `
+        },
+
+
+        {
+          label:
+            "05 / What Changed",
+
+          content: `
+            <div class="screen-step">
+              05 / What Changed
+            </div>
+
+            <h3>
+              What changed?
+            </h3>
+
+            <p class="screen-copy">
+              Three recent configuration changes overlap with the anomaly window.
+              One of them occurred almost immediately before the behaviour shifted.
+            </p>
+
+            <div class="change-list">
+
+              <div class="change-row">
+                <strong>Prompt updated</strong>
+                <span class="status-change">7:40 AM</span>
+              </div>
+
+              <div class="change-row">
+                <strong>Embedding model updated</strong>
+                <span>Yesterday</span>
+              </div>
+
+              <div class="change-row">
+                <strong>Retrieval configuration updated</strong>
+                <span>3 days ago</span>
+              </div>
+
+            </div>
+
+            <p class="screen-question">
+              Which change would you investigate first?
+            </p>
+
+            <div class="prototype-actions">
+
+              <button
+                class="prototype-button"
+                type="button"
+                data-step="5"
+              >
+                Investigate prompt change →
+              </button>
+
+            </div>
+          `
+        },
+
+
+        {
+          label:
+            "06 / Investigation",
+
+          content: `
+            <div class="screen-step">
+              06 / Investigation
+            </div>
+
+            <h3>
+              The timing looks suspicious.
+            </h3>
+
+            <p class="screen-copy">
+              The prompt changed two minutes before the anomaly began.
+              That does not prove causation, but it gives the investigation
+              a strong next hypothesis.
+            </p>
+
+            <div class="timeline-box">
+
+              <div class="timeline-item">
+
+                <div class="timeline-time">
+                  7:40 AM
+                </div>
+
+                <div class="timeline-text">
+                  Prompt configuration updated
+                </div>
+
+              </div>
+
+
+              <div class="timeline-item">
+
+                <div class="timeline-time">
+                  7:42 AM
+                </div>
+
+                <div class="timeline-text">
+                  Summary length begins increasing
+                </div>
+
+              </div>
+
+
+              <div class="timeline-item">
+
+                <div class="timeline-time">
+                  7:47 AM
+                </div>
+
+                <div class="timeline-text">
+                  Latency begins moving above baseline
+                </div>
+
+              </div>
+
+            </div>
+
+            <p class="screen-question">
+              Before blaming the prompt, is anything else unhealthy?
+            </p>
+
+            <div class="prototype-actions">
+
+              <button
+                class="prototype-button"
+                type="button"
+                data-step="6"
+              >
+                Check environment →
+              </button>
+
+            </div>
+          `
+        },
+
+
+        {
+          label:
+            "07 / Environment Check",
+
+          content: `
+            <div class="screen-step">
+              07 / Environment Check
+            </div>
+
+            <h3>
+              Is anything else behaving unusually?
+            </h3>
+
+            <p class="screen-copy">
+              The surrounding infrastructure appears healthy.
+              This reduces the number of plausible explanations
+              and increases confidence in the configuration hypothesis.
+            </p>
+
+            <div class="health-list">
+
+              <div class="health-row">
+                <strong>API</strong>
+                <span class="status-good">Healthy</span>
+              </div>
+
+              <div class="health-row">
+                <strong>Request queue</strong>
+                <span class="status-good">Healthy</span>
+              </div>
+
+              <div class="health-row">
+                <strong>Retrieval service</strong>
+                <span class="status-good">Healthy</span>
+              </div>
+
+              <div class="health-row">
+                <strong>Error rate</strong>
+                <span class="status-good">Stable</span>
+              </div>
+
+            </div>
+
+            <div class="prototype-actions">
+
+              <button
+                class="prototype-button"
+                type="button"
+                data-step="7"
+              >
+                Inspect root cause →
+              </button>
+
+            </div>
+          `
+        },
+
+
+        {
+          label:
+            "08 / Root Cause",
+
+          content: `
+            <div class="screen-step">
+              08 / Root Cause
+            </div>
+
+            <h3>
+              There’s the difference.
+            </h3>
+
+            <p class="screen-copy">
+              Comparing the prompt versions reveals one meaningful change
+              in how the model was instructed to summarise candidate information.
+            </p>
+
+            <div class="compare-grid">
+
+              <article class="compare-card">
+
+                <div class="compare-label">
+                  Previous prompt
+                </div>
 
                 <p>
-                  Compared with the recent baseline
+                  “Summarise the candidate’s most relevant qualifications
+                  and experience in a concise format.”
                 </p>
 
+              </article>
+
+
+              <article class="compare-card highlight">
+
+                <div class="compare-label">
+                  Updated prompt
+                </div>
+
+                <p>
+                  “Provide a detailed overview of the candidate’s experience,
+                  qualifications, achievements and potential fit for the role.”
+                </p>
+
+              </article>
+
+            </div>
+
+
+            <div class="cause-callout">
+              The updated instruction encourages substantially more detailed
+              responses, which explains the longer summaries, higher token use
+              and additional latency.
+            </div>
+
+
+            <div class="prototype-actions">
+
+              <button
+                class="prototype-button"
+                type="button"
+                data-step="8"
+              >
+                See resolution →
+              </button>
+
+            </div>
+          `
+        },
+
+
+        {
+          label:
+            "09 / Resolution",
+
+          content: `
+            <div class="screen-step">
+              09 / Resolution
+            </div>
+
+            <h3>
+              The system returns toward normal.
+            </h3>
+
+            <p class="screen-copy">
+              After restoring the previous instruction, the affected metrics
+              begin moving back toward their established baseline.
+            </p>
+
+            <div class="metric-grid">
+
+              <div class="metric-card good">
+                <span>Summary length</span>
+                <strong>Returning</strong>
               </div>
 
-              <div class="anomaly-change">
-                +35%
+              <div class="metric-card good">
+                <span>Latency</span>
+                <strong>Improving</strong>
+              </div>
+
+              <div class="metric-card good">
+                <span>Token cost</span>
+                <strong>Improving</strong>
+              </div>
+
+              <div class="metric-card good">
+                <span>Error rate</span>
+                <strong>Stable</strong>
               </div>
 
             </div>
 
-          </div>
+            <div class="prototype-actions">
 
-          <p class="screen-question">
-            What would you investigate first?
-          </p>
+              <button
+                class="prototype-button"
+                type="button"
+                data-step="9"
+              >
+                Why this design? →
+              </button>
 
-          <div class="prototype-actions">
-
-            <button
-              class="prototype-button choice"
-              type="button"
-              onclick="goToStep(2)"
-            >
-              Check user impact
-            </button>
-
-            <button
-              class="prototype-button choice"
-              type="button"
-              onclick="showAlternateResponse()"
-            >
-              Look at recent changes
-            </button>
-
-          </div>
-        `
-      },
+            </div>
+          `
+        },
 
 
-      /* 03 */
-      {
-        label: "03 / Dashboard Reveal",
+        {
+          label:
+            "10 / Why This Design",
 
-        content: `
-          <div class="screen-step">
-            03 / Dashboard Reveal
-          </div>
-
-          <h3>
-            What is the system seeing?
-          </h3>
-
-          <p class="screen-copy">
-            The anomaly is real, but summary length is only one part
-            of the picture. The next question is whether the change
-            is affecting the user experience or system behaviour.
-          </p>
-
-          <div class="metric-grid">
-
-            <div class="metric-card alert">
-              <span>Summary length</span>
-              <strong>+35%</strong>
+          content: `
+            <div class="screen-step">
+              10 / Why This Design
             </div>
 
-            <div class="metric-card">
-              <span>Latency</span>
-              <strong>+18%</strong>
+            <h3>
+              What happened? What does it mean? What should I do next?
+            </h3>
+
+            <p class="screen-copy">
+              The interface is intentionally structured as an investigation
+              rather than a dashboard tour. Information appears when it becomes
+              useful to the next decision.
+            </p>
+
+            <div class="question-grid">
+
+              <article class="question-card">
+
+                <span>01</span>
+
+                <strong>
+                  What happened?
+                </strong>
+
+                <p>
+                  Establish the anomaly and give it enough context to matter.
+                </p>
+
+              </article>
+
+
+              <article class="question-card">
+
+                <span>02</span>
+
+                <strong>
+                  What does it mean?
+                </strong>
+
+                <p>
+                  Reveal impact, changes and evidence before concluding.
+                </p>
+
+              </article>
+
+
+              <article class="question-card">
+
+                <span>03</span>
+
+                <strong>
+                  What should I do next?
+                </strong>
+
+                <p>
+                  Give the user a clear next move at every stage.
+                </p>
+
+              </article>
+
             </div>
 
-            <div class="metric-card">
-              <span>Token cost</span>
-              <strong>+12%</strong>
+            <div class="prototype-actions">
+
+              <button
+                class="prototype-button"
+                type="button"
+                data-step="0"
+              >
+                Replay investigation ↻
+              </button>
+
+            </div>
+          `
+        }
+
+      ],
+
+
+      de: [
+
+        {
+          label:
+            "01 / Szenario",
+
+          content: `
+            <div class="screen-step">
+              01 / Szenario
             </div>
 
-            <div class="metric-card">
-              <span>Support signals</span>
-              <strong>4</strong>
+            <h3>
+              Etwas hat sich verändert.
+            </h3>
+
+            <p class="screen-copy">
+              Es ist Montagmorgen. Die Zusammenfassungen von Bewerber-CVs
+              sind plötzlich <strong>35 % länger als gewöhnlich</strong>.
+              Es ist nichts offensichtlich ausgefallen, aber das Verhalten
+              hat sich genug verändert, um untersucht zu werden.
+            </p>
+
+            <p class="screen-question">
+              Was würdest du zuerst prüfen?
+            </p>
+
+            <div class="prototype-actions">
+
+              <button
+                class="prototype-button"
+                type="button"
+                data-step="1"
+              >
+                Anomalie prüfen →
+              </button>
+
+            </div>
+          `
+        },
+
+
+        {
+          label:
+            "02 / Anomalie erkannt",
+
+          content: `
+            <div class="screen-step">
+              02 / Anomalie erkannt
             </div>
 
-          </div>
+            <h3>
+              Ungewöhnliches Verhalten erkannt.
+            </h3>
 
-          <div class="prototype-actions">
+            <p class="screen-copy">
+              Die Zusammenfassungen der Bewerber-CVs sind deutlich länger
+              als die etablierte Basislinie.
+            </p>
 
-            <button
-              class="prototype-button"
-              type="button"
-              onclick="goToStep(3)"
-            >
-              Check impact →
-            </button>
+            <div class="anomaly-card">
 
-          </div>
-        `
-      },
+              <div class="anomaly-head">
 
+                <div>
 
-      /* 04 */
-      {
-        label: "04 / Impact Check",
+                  <div class="anomaly-badge">
+                    Aktuelle Anomalie
+                  </div>
 
-        content: `
-          <div class="screen-step">
-            04 / Impact Check
-          </div>
+                  <h4>
+                    Zusammenfassungen sind länger als üblich
+                  </h4>
 
-          <h3>
-            So, is this actually a problem?
-          </h3>
+                  <p>
+                    Im Vergleich zur aktuellen Basislinie
+                  </p>
 
-          <p class="screen-copy">
-            Longer summaries are accompanied by higher latency and
-            increased generation cost. Users can still complete the task,
-            but the behavioural change now has measurable impact.
-          </p>
+                </div>
 
-          <div class="metric-grid">
+                <div class="anomaly-change">
+                  +35 %
+                </div>
 
-            <div class="metric-card alert">
-              <span>Summary length</span>
-              <strong>+35%</strong>
-            </div>
-
-            <div class="metric-card alert">
-              <span>Latency</span>
-              <strong>+18%</strong>
-            </div>
-
-            <div class="metric-card alert">
-              <span>Token cost</span>
-              <strong>+12%</strong>
-            </div>
-
-            <div class="metric-card">
-              <span>Error rate</span>
-              <strong>Stable</strong>
-            </div>
-
-          </div>
-
-          <p class="screen-question">
-            The behaviour changed. What changed around the same time?
-          </p>
-
-          <div class="prototype-actions">
-
-            <button
-              class="prototype-button"
-              type="button"
-              onclick="goToStep(4)"
-            >
-              Review recent changes →
-            </button>
-
-          </div>
-        `
-      },
-
-
-      /* 05 */
-      {
-        label: "05 / What Changed",
-
-        content: `
-          <div class="screen-step">
-            05 / What Changed
-          </div>
-
-          <h3>
-            What changed?
-          </h3>
-
-          <p class="screen-copy">
-            Three recent configuration changes overlap with the anomaly window.
-            One of them occurred almost immediately before the behaviour shifted.
-          </p>
-
-          <div class="change-list">
-
-            <div class="change-row">
-              <strong>Prompt updated</strong>
-              <span class="status-change">7:40 AM</span>
-            </div>
-
-            <div class="change-row">
-              <strong>Embedding model updated</strong>
-              <span>Yesterday</span>
-            </div>
-
-            <div class="change-row">
-              <strong>Retrieval configuration updated</strong>
-              <span>3 days ago</span>
-            </div>
-
-          </div>
-
-          <p class="screen-question">
-            Which change would you investigate first?
-          </p>
-
-          <div class="prototype-actions">
-
-            <button
-              class="prototype-button"
-              type="button"
-              onclick="goToStep(5)"
-            >
-              Investigate prompt change →
-            </button>
-
-          </div>
-        `
-      },
-
-
-      /* 06 */
-      {
-        label: "06 / Investigation",
-
-        content: `
-          <div class="screen-step">
-            06 / Investigation
-          </div>
-
-          <h3>
-            The timing looks suspicious.
-          </h3>
-
-          <p class="screen-copy">
-            The prompt changed two minutes before the anomaly began.
-            That does not prove causation, but it gives the investigation
-            a strong next hypothesis.
-          </p>
-
-          <div class="timeline-box">
-
-            <div class="timeline-item">
-              <div class="timeline-time">
-                7:40 AM
               </div>
 
-              <div class="timeline-text">
-                Prompt configuration updated
-              </div>
             </div>
 
-            <div class="timeline-item">
-              <div class="timeline-time">
-                7:42 AM
-              </div>
+            <p class="screen-question">
+              Was würdest du zuerst untersuchen?
+            </p>
 
-              <div class="timeline-text">
-                Summary length begins increasing
-              </div>
+            <div class="prototype-actions">
+
+              <button
+                class="prototype-button choice"
+                type="button"
+                data-step="2"
+              >
+                Auswirkungen auf Nutzer:innen prüfen
+              </button>
+
+              <button
+                class="prototype-button choice"
+                type="button"
+                data-alternate="true"
+              >
+                Letzte Änderungen ansehen
+              </button>
+
+            </div>
+          `
+        },
+
+
+        {
+          label:
+            "03 / Dashboard",
+
+          content: `
+            <div class="screen-step">
+              03 / Dashboard
             </div>
 
-            <div class="timeline-item">
-              <div class="timeline-time">
-                7:47 AM
-              </div>
+            <h3>
+              Was sieht das System?
+            </h3>
 
-              <div class="timeline-text">
-                Latency begins moving above baseline
-              </div>
-            </div>
+            <p class="screen-copy">
+              Die Anomalie ist real, aber die Länge der Zusammenfassungen
+              ist nur ein Teil des Bildes. Als Nächstes muss geklärt werden,
+              ob sich die Änderung auf die Nutzererfahrung oder das
+              Systemverhalten auswirkt.
+            </p>
 
-          </div>
+            <div class="metric-grid">
 
-          <p class="screen-question">
-            Before blaming the prompt, is anything else unhealthy?
-          </p>
-
-          <div class="prototype-actions">
-
-            <button
-              class="prototype-button"
-              type="button"
-              onclick="goToStep(6)"
-            >
-              Check environment →
-            </button>
-
-          </div>
-        `
-      },
-
-
-      /* 07 */
-      {
-        label: "07 / Environment Check",
-
-        content: `
-          <div class="screen-step">
-            07 / Environment Check
-          </div>
-
-          <h3>
-            Is anything else behaving unusually?
-          </h3>
-
-          <p class="screen-copy">
-            The surrounding infrastructure appears healthy.
-            This reduces the number of plausible explanations
-            and increases confidence in the configuration hypothesis.
-          </p>
-
-          <div class="health-list">
-
-            <div class="health-row">
-              <strong>API</strong>
-              <span class="status-good">Healthy</span>
-            </div>
-
-            <div class="health-row">
-              <strong>Request queue</strong>
-              <span class="status-good">Healthy</span>
-            </div>
-
-            <div class="health-row">
-              <strong>Retrieval service</strong>
-              <span class="status-good">Healthy</span>
-            </div>
-
-            <div class="health-row">
-              <strong>Error rate</strong>
-              <span class="status-good">Stable</span>
-            </div>
-
-          </div>
-
-          <div class="prototype-actions">
-
-            <button
-              class="prototype-button"
-              type="button"
-              onclick="goToStep(7)"
-            >
-              Inspect root cause →
-            </button>
-
-          </div>
-        `
-      },
-
-
-      /* 08 */
-      {
-        label: "08 / Root Cause",
-
-        content: `
-          <div class="screen-step">
-            08 / Root Cause
-          </div>
-
-          <h3>
-            There’s the difference.
-          </h3>
-
-          <p class="screen-copy">
-            Comparing the prompt versions reveals one meaningful change
-            in how the model was instructed to summarise candidate information.
-          </p>
-
-          <div class="compare-grid">
-
-            <article class="compare-card">
-
-              <div class="compare-label">
-                Previous prompt
+              <div class="metric-card alert">
+                <span>Zusammenfassung</span>
+                <strong>+35 %</strong>
               </div>
 
-              <p>
-                “Summarise the candidate’s most relevant qualifications
-                and experience in a concise format.”
-              </p>
-
-            </article>
-
-
-            <article class="compare-card highlight">
-
-              <div class="compare-label">
-                Updated prompt
+              <div class="metric-card">
+                <span>Latenz</span>
+                <strong>+18 %</strong>
               </div>
 
-              <p>
-                “Provide a detailed overview of the candidate’s experience,
-                qualifications, achievements and potential fit for the role.”
-              </p>
+              <div class="metric-card">
+                <span>Token-Kosten</span>
+                <strong>+12 %</strong>
+              </div>
 
-            </article>
+              <div class="metric-card">
+                <span>Support-Signale</span>
+                <strong>4</strong>
+              </div>
 
-          </div>
-
-
-          <div class="cause-callout">
-            The updated instruction encourages substantially more detailed
-            responses, which explains the longer summaries, higher token use
-            and additional latency.
-          </div>
-
-
-          <div class="prototype-actions">
-
-            <button
-              class="prototype-button"
-              type="button"
-              onclick="goToStep(8)"
-            >
-              See resolution →
-            </button>
-
-          </div>
-        `
-      },
-
-
-      /* 09 */
-      {
-        label: "09 / Resolution",
-
-        content: `
-          <div class="screen-step">
-            09 / Resolution
-          </div>
-
-          <h3>
-            The system returns toward normal.
-          </h3>
-
-          <p class="screen-copy">
-            After restoring the previous instruction, the affected metrics
-            begin moving back toward their established baseline.
-          </p>
-
-          <div class="metric-grid">
-
-            <div class="metric-card good">
-              <span>Summary length</span>
-              <strong>Returning</strong>
             </div>
 
-            <div class="metric-card good">
-              <span>Latency</span>
-              <strong>Improving</strong>
+            <div class="prototype-actions">
+
+              <button
+                class="prototype-button"
+                type="button"
+                data-step="3"
+              >
+                Auswirkungen prüfen →
+              </button>
+
+            </div>
+          `
+        },
+
+
+        {
+          label:
+            "04 / Auswirkungen",
+
+          content: `
+            <div class="screen-step">
+              04 / Auswirkungen
             </div>
 
-            <div class="metric-card good">
-              <span>Token cost</span>
-              <strong>Improving</strong>
+            <h3>
+              Ist das tatsächlich ein Problem?
+            </h3>
+
+            <p class="screen-copy">
+              Die längeren Zusammenfassungen gehen mit höherer Latenz
+              und steigenden Generierungskosten einher.
+              Nutzer:innen können die Aufgabe weiterhin abschließen,
+              aber die Verhaltensänderung hat jetzt messbare Auswirkungen.
+            </p>
+
+            <div class="metric-grid">
+
+              <div class="metric-card alert">
+                <span>Zusammenfassung</span>
+                <strong>+35 %</strong>
+              </div>
+
+              <div class="metric-card alert">
+                <span>Latenz</span>
+                <strong>+18 %</strong>
+              </div>
+
+              <div class="metric-card alert">
+                <span>Token-Kosten</span>
+                <strong>+12 %</strong>
+              </div>
+
+              <div class="metric-card">
+                <span>Fehlerrate</span>
+                <strong>Stabil</strong>
+              </div>
+
             </div>
 
-            <div class="metric-card good">
-              <span>Error rate</span>
-              <strong>Stable</strong>
+            <p class="screen-question">
+              Das Verhalten hat sich verändert. Was änderte sich ungefähr zur gleichen Zeit?
+            </p>
+
+            <div class="prototype-actions">
+
+              <button
+                class="prototype-button"
+                type="button"
+                data-step="4"
+              >
+                Letzte Änderungen prüfen →
+              </button>
+
+            </div>
+          `
+        },
+
+
+        {
+          label:
+            "05 / Was hat sich geändert?",
+
+          content: `
+            <div class="screen-step">
+              05 / Was hat sich geändert?
             </div>
 
-          </div>
+            <h3>
+              Was hat sich geändert?
+            </h3>
 
-          <div class="prototype-actions">
+            <p class="screen-copy">
+              Drei Konfigurationsänderungen überschneiden sich mit dem
+              Zeitraum der Anomalie. Eine davon geschah fast unmittelbar
+              bevor sich das Verhalten änderte.
+            </p>
 
-            <button
-              class="prototype-button"
-              type="button"
-              onclick="goToStep(9)"
-            >
-              Why this design? →
-            </button>
+            <div class="change-list">
 
-          </div>
-        `
-      },
+              <div class="change-row">
+                <strong>Prompt aktualisiert</strong>
+                <span class="status-change">07:40</span>
+              </div>
 
+              <div class="change-row">
+                <strong>Embedding-Modell aktualisiert</strong>
+                <span>Gestern</span>
+              </div>
 
-      /* 10 */
-      {
-        label: "10 / Why This Design",
+              <div class="change-row">
+                <strong>Retrieval-Konfiguration aktualisiert</strong>
+                <span>Vor 3 Tagen</span>
+              </div>
 
-        content: `
-          <div class="screen-step">
-            10 / Why This Design
-          </div>
+            </div>
 
-          <h3>
-            What happened? What does it mean? What should I do next?
-          </h3>
+            <p class="screen-question">
+              Welche Änderung würdest du zuerst untersuchen?
+            </p>
 
-          <p class="screen-copy">
-            The interface is intentionally structured as an investigation
-            rather than a dashboard tour. Information appears when it becomes
-            useful to the next decision.
-          </p>
+            <div class="prototype-actions">
 
-          <div class="question-grid">
+              <button
+                class="prototype-button"
+                type="button"
+                data-step="5"
+              >
+                Prompt-Änderung untersuchen →
+              </button>
 
-            <article class="question-card">
-              <span>01</span>
-              <strong>What happened?</strong>
-              <p>
-                Establish the anomaly and give it enough context to matter.
-              </p>
-            </article>
-
-            <article class="question-card">
-              <span>02</span>
-              <strong>What does it mean?</strong>
-              <p>
-                Reveal impact, changes and evidence before concluding.
-              </p>
-            </article>
-
-            <article class="question-card">
-              <span>03</span>
-              <strong>What should I do next?</strong>
-              <p>
-                Give the user a clear next move at every stage.
-              </p>
-            </article>
-
-          </div>
-
-          <div class="prototype-actions">
-
-            <button
-              class="prototype-button"
-              type="button"
-              onclick="goToStep(0)"
-            >
-              Replay investigation ↻
-            </button>
-
-          </div>
-        `
-      }
-
-    ];
+            </div>
+          `
+        },
 
 
-    function renderStep() {
+        {
+          label:
+            "06 / Untersuchung",
 
-      const step = steps[currentStep];
+          content: `
+            <div class="screen-step">
+              06 / Untersuchung
+            </div>
 
-      screen.innerHTML = step.content;
+            <h3>
+              Der Zeitpunkt wirkt auffällig.
+            </h3>
 
-      const total = steps.length;
+            <p class="screen-copy">
+              Der Prompt wurde zwei Minuten vor Beginn der Anomalie geändert.
+              Das beweist noch keine Ursache, liefert aber eine starke
+              nächste Hypothese.
+            </p>
 
-      progressText.textContent =
-        `Step ${currentStep + 1} of ${total}`;
+            <div class="timeline-box">
 
-      progressBar.style.width =
-        `${((currentStep + 1) / total) * 100}%`;
+              <div class="timeline-item">
 
-      backButton.disabled =
-        currentStep === 0;
-    }
+                <div class="timeline-time">
+                  07:40
+                </div>
 
+                <div class="timeline-text">
+                  Prompt-Konfiguration aktualisiert
+                </div>
 
-    function goToStep(index) {
-
-      if (index < 0 || index >= steps.length) {
-        return;
-      }
-
-      currentStep = index;
-
-      renderStep();
-
-      document
-        .getElementById("prototype")
-        .scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-    }
+              </div>
 
 
-    function showAlternateResponse() {
+              <div class="timeline-item">
 
-      screen.innerHTML = `
+                <div class="timeline-time">
+                  07:42
+                </div>
+
+                <div class="timeline-text">
+                  Zusammenfassungen werden länger
+                </div>
+
+              </div>
+
+
+              <div class="timeline-item">
+
+                <div class="timeline-time">
+                  07:47
+                </div>
+
+                <div class="timeline-text">
+                  Latenz steigt über die Basislinie
+                </div>
+
+              </div>
+
+            </div>
+
+            <p class="screen-question">
+              Bevor der Prompt verantwortlich gemacht wird: Ist etwas anderes ungesund?
+            </p>
+
+            <div class="prototype-actions">
+
+              <button
+                class="prototype-button"
+                type="button"
+                data-step="6"
+              >
+                Umgebung prüfen →
+              </button>
+
+            </div>
+          `
+        },
+
+
+        {
+          label:
+            "07 / Umgebungsprüfung",
+
+          content: `
+            <div class="screen-step">
+              07 / Umgebungsprüfung
+            </div>
+
+            <h3>
+              Verhält sich noch etwas ungewöhnlich?
+            </h3>
+
+            <p class="screen-copy">
+              Die umliegende Infrastruktur scheint gesund zu sein.
+              Dadurch sinkt die Anzahl plausibler Erklärungen und
+              das Vertrauen in die Konfigurationshypothese steigt.
+            </p>
+
+            <div class="health-list">
+
+              <div class="health-row">
+                <strong>API</strong>
+                <span class="status-good">Gesund</span>
+              </div>
+
+              <div class="health-row">
+                <strong>Request Queue</strong>
+                <span class="status-good">Gesund</span>
+              </div>
+
+              <div class="health-row">
+                <strong>Retrieval Service</strong>
+                <span class="status-good">Gesund</span>
+              </div>
+
+              <div class="health-row">
+                <strong>Fehlerrate</strong>
+                <span class="status-good">Stabil</span>
+              </div>
+
+            </div>
+
+            <div class="prototype-actions">
+
+              <button
+                class="prototype-button"
+                type="button"
+                data-step="7"
+              >
+                Ursache untersuchen →
+              </button>
+
+            </div>
+          `
+        },
+
+
+        {
+          label:
+            "08 / Ursache",
+
+          content: `
+            <div class="screen-step">
+              08 / Ursache
+            </div>
+
+            <h3>
+              Hier liegt der Unterschied.
+            </h3>
+
+            <p class="screen-copy">
+              Der Vergleich der Prompt-Versionen zeigt eine relevante
+              Veränderung darin, wie das Modell Kandidateninformationen
+              zusammenfassen sollte.
+            </p>
+
+            <div class="compare-grid">
+
+              <article class="compare-card">
+
+                <div class="compare-label">
+                  Vorheriger Prompt
+                </div>
+
+                <p>
+                  „Fasse die relevantesten Qualifikationen und Erfahrungen
+                  des Kandidaten in einem prägnanten Format zusammen.“
+                </p>
+
+              </article>
+
+
+              <article class="compare-card highlight">
+
+                <div class="compare-label">
+                  Neuer Prompt
+                </div>
+
+                <p>
+                  „Erstelle einen detaillierten Überblick über Erfahrungen,
+                  Qualifikationen, Leistungen und mögliche Eignung für die Rolle.“
+                </p>
+
+              </article>
+
+            </div>
+
+
+            <div class="cause-callout">
+              Die aktualisierte Anweisung fördert deutlich ausführlichere
+              Antworten. Das erklärt längere Zusammenfassungen, höheren
+              Token-Verbrauch und zusätzliche Latenz.
+            </div>
+
+
+            <div class="prototype-actions">
+
+              <button
+                class="prototype-button"
+                type="button"
+                data-step="8"
+              >
+                Lösung ansehen →
+              </button>
+
+            </div>
+          `
+        },
+
+
+        {
+          label:
+            "09 / Lösung",
+
+          content: `
+            <div class="screen-step">
+              09 / Lösung
+            </div>
+
+            <h3>
+              Das System kehrt zur Normalität zurück.
+            </h3>
+
+            <p class="screen-copy">
+              Nach der Wiederherstellung der vorherigen Anweisung bewegen
+              sich die betroffenen Metriken wieder in Richtung ihrer
+              etablierten Basislinie.
+            </p>
+
+            <div class="metric-grid">
+
+              <div class="metric-card good">
+                <span>Zusammenfassung</span>
+                <strong>Normalisiert</strong>
+              </div>
+
+              <div class="metric-card good">
+                <span>Latenz</span>
+                <strong>Verbessert sich</strong>
+              </div>
+
+              <div class="metric-card good">
+                <span>Token-Kosten</span>
+                <strong>Verbessern sich</strong>
+              </div>
+
+              <div class="metric-card good">
+                <span>Fehlerrate</span>
+                <strong>Stabil</strong>
+              </div>
+
+            </div>
+
+            <div class="prototype-actions">
+
+              <button
+                class="prototype-button"
+                type="button"
+                data-step="9"
+              >
+                Warum dieses Design? →
+              </button>
+
+            </div>
+          `
+        },
+
+
+        {
+          label:
+            "10 / Warum dieses Design?",
+
+          content: `
+            <div class="screen-step">
+              10 / Warum dieses Design?
+            </div>
+
+            <h3>
+              Was ist passiert? Was bedeutet es? Was sollte ich als Nächstes tun?
+            </h3>
+
+            <p class="screen-copy">
+              Die Oberfläche ist bewusst als Untersuchung und nicht als
+              Dashboard-Tour aufgebaut. Informationen erscheinen genau dann,
+              wenn sie für die nächste Entscheidung hilfreich werden.
+            </p>
+
+            <div class="question-grid">
+
+              <article class="question-card">
+
+                <span>01</span>
+
+                <strong>
+                  Was ist passiert?
+                </strong>
+
+                <p>
+                  Die Anomalie identifizieren und genügend Kontext geben,
+                  damit ihre Bedeutung verständlich wird.
+                </p>
+
+              </article>
+
+
+              <article class="question-card">
+
+                <span>02</span>
+
+                <strong>
+                  Was bedeutet es?
+                </strong>
+
+                <p>
+                  Auswirkungen, Änderungen und Belege zeigen,
+                  bevor eine Schlussfolgerung gezogen wird.
+                </p>
+
+              </article>
+
+
+              <article class="question-card">
+
+                <span>03</span>
+
+                <strong>
+                  Was sollte ich als Nächstes tun?
+                </strong>
+
+                <p>
+                  In jeder Phase einen klaren nächsten Schritt anbieten.
+                </p>
+
+              </article>
+
+            </div>
+
+            <div class="prototype-actions">
+
+              <button
+                class="prototype-button"
+                type="button"
+                data-step="0"
+              >
+                Untersuchung wiederholen ↻
+              </button>
+
+            </div>
+          `
+        }
+
+      ]
+
+    };
+
+
+    /* =====================================
+       ALTERNATE SCREEN COPY
+    ====================================== */
+
+    const alternateScreens = {
+
+      en: `
         <div class="screen-step">
           02B / Not Yet
         </div>
@@ -2562,7 +6194,7 @@
           <button
             class="prototype-button"
             type="button"
-            onclick="goToStep(2)"
+            data-step="2"
           >
             View impact →
           </button>
@@ -2570,43 +6202,1474 @@
           <button
             class="prototype-button secondary"
             type="button"
-            onclick="goToStep(1)"
+            data-step="1"
           >
             ← Return
           </button>
 
         </div>
-      `;
+      `,
+
+
+      de: `
+        <div class="screen-step">
+          02B / Noch nicht
+        </div>
+
+        <h3>
+          Aktuelle Änderungen sind relevant — aber hat die Anomalie überhaupt Auswirkungen?
+        </h3>
+
+        <p class="screen-copy">
+          Eine Konfigurationsänderung kann verdächtig sein, ohne tatsächlich
+          schädlich zu sein. Bevor sich die Untersuchung auf eine Ursache
+          festlegt, wird geprüft, ob sich für Nutzer:innen oder Systemleistung
+          etwas Bedeutendes verändert hat.
+        </p>
+
+        <p class="screen-question">
+          Prüfe zuerst die Auswirkungen.
+        </p>
+
+        <div class="prototype-actions">
+
+          <button
+            class="prototype-button"
+            type="button"
+            data-step="2"
+          >
+            Auswirkungen ansehen →
+          </button>
+
+          <button
+            class="prototype-button secondary"
+            type="button"
+            data-step="1"
+          >
+            ← Zurück
+          </button>
+
+        </div>
+      `
+
+    };
+
+
+    /* =====================================
+       ELEMENTS
+    ====================================== */
+
+    const languageEN =
+      document.getElementById("languageEN");
+
+    const languageDE =
+      document.getElementById("languageDE");
+
+    const accessibilityButton =
+      document.getElementById("accessibilityButton");
+
+    const accessibilityPanel =
+      document.getElementById("accessibilityPanel");
+
+    const closeAccessibility =
+      document.getElementById("closeAccessibility");
+
+    const contrastToggle =
+      document.getElementById("contrastToggle");
+
+    const motionToggle =
+      document.getElementById("motionToggle");
+
+    const textSizeButtons =
+      document.querySelectorAll(".text-size-button");
+
+    const readPlay =
+      document.getElementById("readPlay");
+
+    const readPause =
+      document.getElementById("readPause");
+
+    const readStop =
+      document.getElementById("readStop");
+
+    const resetAccessibility =
+      document.getElementById("resetAccessibility");
+
+    const backToTop =
+      document.getElementById("backToTop");
+
+    const a11yStatus =
+      document.getElementById("a11yStatus");
+
+    const metaDescription =
+      document.getElementById("metaDescription");
+
+    const screen =
+      document.getElementById("prototypeScreen");
+
+    const progressText =
+      document.getElementById("progressText");
+
+    const progressBar =
+      document.getElementById("progressBar");
+
+    const progressTrack =
+      document.getElementById("progressTrack");
+
+    const backButton =
+      document.getElementById("backButton");
+
+    const replayButton =
+      document.getElementById("replayButton");
+
+
+    let currentLanguage =
+      localStorage.getItem(
+        "portfolioLanguage"
+      ) || "en";
+
+
+    let currentStep =
+      0;
+
+
+    let showingAlternate =
+      false;
+
+
+    let speechUtterance =
+      null;
+
+
+    let isPaused =
+      false;
+
+
+    /* =====================================
+       ANNOUNCE
+    ====================================== */
+
+    function announce(message) {
+
+      a11yStatus.textContent =
+        "";
+
+
+      window.setTimeout(
+        () => {
+
+          a11yStatus.textContent =
+            message;
+
+        },
+        40
+      );
+
     }
 
 
+    /* =====================================
+       PROTOTYPE EVENT BINDING
+    ====================================== */
+
+    function bindPrototypeButtons() {
+
+      screen
+        .querySelectorAll("[data-step]")
+        .forEach(
+          button => {
+
+            button.addEventListener(
+              "click",
+              () => {
+
+                const index =
+                  Number(
+                    button.dataset.step
+                  );
+
+
+                goToStep(index);
+
+              }
+            );
+
+          }
+        );
+
+
+      const alternateButton =
+        screen.querySelector(
+          "[data-alternate='true']"
+        );
+
+
+      if (alternateButton) {
+
+        alternateButton.addEventListener(
+          "click",
+          showAlternateResponse
+        );
+
+      }
+
+    }
+
+
+    /* =====================================
+       RENDER PROTOTYPE STEP
+    ====================================== */
+
+    function renderStep(
+      focusScreen = false
+    ) {
+
+      showingAlternate =
+        false;
+
+
+      const steps =
+        interactionSteps[currentLanguage];
+
+
+      const step =
+        steps[currentStep];
+
+
+      screen.innerHTML =
+        step.content;
+
+
+      const total =
+        steps.length;
+
+
+      progressText.textContent =
+        `${translations[currentLanguage].progress} ${currentStep + 1} ${translations[currentLanguage].progressOf} ${total}`;
+
+
+      progressBar.style.width =
+        `${((currentStep + 1) / total) * 100}%`;
+
+
+      progressTrack.setAttribute(
+        "aria-valuenow",
+        currentStep + 1
+      );
+
+
+      progressTrack.setAttribute(
+        "aria-label",
+        translations[currentLanguage]
+          .progressLabel
+      );
+
+
+      backButton.disabled =
+        currentStep === 0;
+
+
+      bindPrototypeButtons();
+
+
+      if (focusScreen) {
+
+        window.setTimeout(
+          () => {
+
+            screen.focus({
+              preventScroll: true
+            });
+
+          },
+          50
+        );
+
+      }
+
+    }
+
+
+    /* =====================================
+       NAVIGATE PROTOTYPE
+    ====================================== */
+
+    function goToStep(index) {
+
+      const steps =
+        interactionSteps[currentLanguage];
+
+
+      if (
+        index < 0 ||
+        index >= steps.length
+      ) {
+
+        return;
+
+      }
+
+
+      currentStep =
+        index;
+
+
+      renderStep(true);
+
+
+      const reducedMotion =
+        document.body.classList.contains(
+          "reduce-motion"
+        ) ||
+
+        window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+
+      document
+        .getElementById("prototype")
+        .scrollIntoView({
+
+          behavior:
+            reducedMotion
+              ? "auto"
+              : "smooth",
+
+          block:
+            "start"
+
+        });
+
+    }
+
+
+    /* =====================================
+       ALTERNATE RESPONSE
+    ====================================== */
+
+    function showAlternateResponse() {
+
+      showingAlternate =
+        true;
+
+
+      screen.innerHTML =
+        alternateScreens[currentLanguage];
+
+
+      bindPrototypeButtons();
+
+
+      window.setTimeout(
+        () => {
+
+          screen.focus({
+            preventScroll: true
+          });
+
+        },
+        50
+      );
+
+    }
+
+
+    /* =====================================
+       PROTOTYPE CONTROLS
+    ====================================== */
+
     backButton.addEventListener(
       "click",
-      () => goToStep(currentStep - 1)
-    );
+      () => {
+
+        if (showingAlternate) {
+
+          goToStep(1);
+
+          return;
+
+        }
 
 
-    replayButton.addEventListener(
-      "click",
-      () => goToStep(0)
-    );
+        if (currentStep > 0) {
 
+          goToStep(
+            currentStep - 1
+          );
 
-    document.addEventListener(
-      "keydown",
-      (event) => {
-
-        if (event.key === "ArrowLeft" && currentStep > 0) {
-          goToStep(currentStep - 1);
         }
 
       }
     );
 
 
-    renderStep();
+    replayButton.addEventListener(
+      "click",
+      () => {
+
+        goToStep(0);
+
+      }
+    );
+
+
+    document.addEventListener(
+      "keydown",
+      event => {
+
+        /*
+          Don't interfere when the user
+          is typing or interacting with
+          form controls.
+        */
+
+        const tagName =
+          document.activeElement
+            ?.tagName
+            ?.toLowerCase();
+
+
+        if (
+          tagName === "input" ||
+          tagName === "textarea" ||
+          tagName === "select"
+        ) {
+
+          return;
+
+        }
+
+
+        if (
+          event.key === "ArrowLeft" &&
+          currentStep > 0
+        ) {
+
+          goToStep(
+            currentStep - 1
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =====================================
+       LANGUAGE
+    ====================================== */
+
+    function applyLanguage(
+      language,
+      announceChange = false
+    ) {
+
+      currentLanguage =
+        language;
+
+
+      document.documentElement.lang =
+        language;
+
+
+      localStorage.setItem(
+        "portfolioLanguage",
+        language
+      );
+
+
+      document.title =
+        translations[language]
+          .pageTitle;
+
+
+      metaDescription.setAttribute(
+        "content",
+        translations[language]
+          .metaDescription
+      );
+
+
+      document
+        .querySelectorAll(
+          "[data-i18n]"
+        )
+        .forEach(
+          element => {
+
+            const key =
+              element.getAttribute(
+                "data-i18n"
+              );
+
+
+            if (
+              translations[language] &&
+              translations[language][key]
+            ) {
+
+              element.textContent =
+                translations[language][key];
+
+            }
+
+          }
+        );
+
+
+      document
+        .querySelectorAll(
+          "[data-i18n-aria-label]"
+        )
+        .forEach(
+          element => {
+
+            const key =
+              element.getAttribute(
+                "data-i18n-aria-label"
+              );
+
+
+            if (
+              translations[language] &&
+              translations[language][key]
+            ) {
+
+              element.setAttribute(
+                "aria-label",
+                translations[language][key]
+              );
+
+            }
+
+          }
+        );
+
+
+      document
+        .querySelectorAll(
+          "[data-i18n-alt]"
+        )
+        .forEach(
+          element => {
+
+            const key =
+              element.getAttribute(
+                "data-i18n-alt"
+              );
+
+
+            if (
+              translations[language] &&
+              translations[language][key]
+            ) {
+
+              element.alt =
+                translations[language][key];
+
+            }
+
+          }
+        );
+
+
+      const englishSelected =
+        language === "en";
+
+
+      languageEN.classList.toggle(
+        "active",
+        englishSelected
+      );
+
+
+      languageDE.classList.toggle(
+        "active",
+        !englishSelected
+      );
+
+
+      languageEN.setAttribute(
+        "aria-pressed",
+        englishSelected
+          ? "true"
+          : "false"
+      );
+
+
+      languageDE.setAttribute(
+        "aria-pressed",
+        !englishSelected
+          ? "true"
+          : "false"
+      );
+
+
+      /*
+        Re-render whichever prototype
+        screen is currently visible
+        in the new language.
+      */
+
+      if (showingAlternate) {
+
+        showAlternateResponse();
+
+      } else {
+
+        renderStep(false);
+
+      }
+
+
+      if (announceChange) {
+
+        announce(
+          translations[language]
+            .languageChanged
+        );
+
+      }
+
+
+      stopReading(false);
+
+    }
+
+
+    languageEN.addEventListener(
+      "click",
+      () => {
+
+        applyLanguage(
+          "en",
+          true
+        );
+
+      }
+    );
+
+
+    languageDE.addEventListener(
+      "click",
+      () => {
+
+        applyLanguage(
+          "de",
+          true
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       ACCESSIBILITY PANEL
+    ====================================== */
+
+    function openAccessibilityPanel() {
+
+      accessibilityPanel.hidden =
+        false;
+
+
+      accessibilityButton.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
+
+      closeAccessibility.focus();
+
+    }
+
+
+    function closeAccessibilityPanel() {
+
+      accessibilityPanel.hidden =
+        true;
+
+
+      accessibilityButton.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+
+      accessibilityButton.focus();
+
+    }
+
+
+    accessibilityButton.addEventListener(
+      "click",
+      () => {
+
+        if (
+          accessibilityPanel.hidden
+        ) {
+
+          openAccessibilityPanel();
+
+        } else {
+
+          closeAccessibilityPanel();
+
+        }
+
+      }
+    );
+
+
+    closeAccessibility.addEventListener(
+      "click",
+      closeAccessibilityPanel
+    );
+
+
+    document.addEventListener(
+      "keydown",
+      event => {
+
+        if (
+          event.key === "Escape" &&
+          !accessibilityPanel.hidden
+        ) {
+
+          closeAccessibilityPanel();
+
+        }
+
+      }
+    );
+
+
+    document.addEventListener(
+      "click",
+      event => {
+
+        if (
+          accessibilityPanel.hidden
+        ) {
+
+          return;
+
+        }
+
+
+        const inside =
+          accessibilityPanel.contains(
+            event.target
+          );
+
+
+        const trigger =
+          accessibilityButton.contains(
+            event.target
+          );
+
+
+        if (
+          !inside &&
+          !trigger
+        ) {
+
+          accessibilityPanel.hidden =
+            true;
+
+
+          accessibilityButton.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =====================================
+       TEXT SIZE
+    ====================================== */
+
+    function applyTextSize(size) {
+
+      let scale =
+        1;
+
+
+      if (
+        size === "small"
+      ) {
+
+        scale =
+          0.92;
+
+      }
+
+
+      if (
+        size === "large"
+      ) {
+
+        scale =
+          1.15;
+
+      }
+
+
+      document.documentElement
+        .style
+        .setProperty(
+          "--text-scale",
+          scale
+        );
+
+
+      localStorage.setItem(
+        "portfolioTextSize",
+        size
+      );
+
+
+      textSizeButtons.forEach(
+        button => {
+
+          button.classList.toggle(
+            "active",
+            button.dataset.size === size
+          );
+
+        }
+      );
+
+    }
+
+
+    textSizeButtons.forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            applyTextSize(
+              button.dataset.size
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       HIGH CONTRAST
+    ====================================== */
+
+    function applyContrast(
+      enabled,
+      announceChange = false
+    ) {
+
+      document.body.classList.toggle(
+        "high-contrast",
+        enabled
+      );
+
+
+      contrastToggle.checked =
+        enabled;
+
+
+      localStorage.setItem(
+        "portfolioContrast",
+        enabled
+          ? "true"
+          : "false"
+      );
+
+
+      if (announceChange) {
+
+        announce(
+          enabled
+            ? translations[currentLanguage]
+                .contrastEnabled
+            : translations[currentLanguage]
+                .contrastDisabled
+        );
+
+      }
+
+    }
+
+
+    contrastToggle.addEventListener(
+      "change",
+      () => {
+
+        applyContrast(
+          contrastToggle.checked,
+          true
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       REDUCED MOTION
+    ====================================== */
+
+    function applyMotionPreference(
+      enabled,
+      announceChange = false,
+      persist = true
+    ) {
+
+      document.body.classList.toggle(
+        "reduce-motion",
+        enabled
+      );
+
+
+      motionToggle.checked =
+        enabled;
+
+
+      if (persist) {
+
+        localStorage.setItem(
+          "portfolioReducedMotion",
+          enabled
+            ? "true"
+            : "false"
+        );
+
+      }
+
+
+      if (announceChange) {
+
+        announce(
+          enabled
+            ? translations[currentLanguage]
+                .motionEnabled
+            : translations[currentLanguage]
+                .motionDisabled
+        );
+
+      }
+
+    }
+
+
+    motionToggle.addEventListener(
+      "change",
+      () => {
+
+        applyMotionPreference(
+          motionToggle.checked,
+          true,
+          true
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       READ ALOUD
+    ====================================== */
+
+    const speechSupported =
+      "speechSynthesis" in window &&
+      "SpeechSynthesisUtterance" in window;
+
+
+    if (!speechSupported) {
+
+      readPlay.disabled =
+        true;
+
+      readPause.disabled =
+        true;
+
+      readStop.disabled =
+        true;
+
+    }
+
+
+    function getReadablePageText() {
+
+      const readableSections =
+        document.querySelectorAll(
+          ".readable-content"
+        );
+
+
+      const textParts =
+        [];
+
+
+      readableSections.forEach(
+        section => {
+
+          const clone =
+            section.cloneNode(true);
+
+
+          clone
+            .querySelectorAll(
+              "[data-no-read], img, button, [aria-hidden='true']"
+            )
+            .forEach(
+              element => {
+
+                element.remove();
+
+              }
+            );
+
+
+          const sectionText =
+            clone.innerText
+              .replace(
+                /\s+/g,
+                " "
+              )
+              .trim();
+
+
+          if (sectionText) {
+
+            textParts.push(
+              sectionText
+            );
+
+          }
+
+        }
+      );
+
+
+      return textParts.join(
+        ". "
+      );
+
+    }
+
+
+    function startReading() {
+
+      if (!speechSupported) {
+
+        announce(
+          translations[currentLanguage]
+            .readUnsupported
+        );
+
+        return;
+
+      }
+
+
+      if (
+        window.speechSynthesis.speaking &&
+        isPaused
+      ) {
+
+        window.speechSynthesis.resume();
+
+
+        isPaused =
+          false;
+
+
+        announce(
+          translations[currentLanguage]
+            .readingResumed
+        );
+
+
+        return;
+
+      }
+
+
+      window.speechSynthesis.cancel();
+
+
+      const text =
+        getReadablePageText();
+
+
+      speechUtterance =
+        new SpeechSynthesisUtterance(
+          text
+        );
+
+
+      speechUtterance.lang =
+        currentLanguage === "de"
+          ? "de-DE"
+          : "en-US";
+
+
+      speechUtterance.rate =
+        0.95;
+
+
+      speechUtterance.pitch =
+        1;
+
+
+      speechUtterance.onend =
+        () => {
+
+          isPaused =
+            false;
+
+        };
+
+
+      window.speechSynthesis.speak(
+        speechUtterance
+      );
+
+
+      isPaused =
+        false;
+
+
+      announce(
+        translations[currentLanguage]
+          .readingStarted
+      );
+
+    }
+
+
+    function pauseReading() {
+
+      if (
+        speechSupported &&
+        window.speechSynthesis.speaking &&
+        !isPaused
+      ) {
+
+        window.speechSynthesis.pause();
+
+
+        isPaused =
+          true;
+
+
+        announce(
+          translations[currentLanguage]
+            .readingPaused
+        );
+
+      }
+
+    }
+
+
+    function stopReading(
+      announceStop = true
+    ) {
+
+      if (!speechSupported) {
+
+        return;
+
+      }
+
+
+      window.speechSynthesis.cancel();
+
+
+      isPaused =
+        false;
+
+
+      if (announceStop) {
+
+        announce(
+          translations[currentLanguage]
+            .readingStopped
+        );
+
+      }
+
+    }
+
+
+    readPlay.addEventListener(
+      "click",
+      startReading
+    );
+
+
+    readPause.addEventListener(
+      "click",
+      pauseReading
+    );
+
+
+    readStop.addEventListener(
+      "click",
+      () => {
+
+        stopReading(true);
+
+      }
+    );
+
+
+    /* =====================================
+       RESET ACCESSIBILITY
+    ====================================== */
+
+    resetAccessibility.addEventListener(
+      "click",
+      () => {
+
+        applyTextSize(
+          "default"
+        );
+
+
+        applyContrast(
+          false
+        );
+
+
+        stopReading(
+          false
+        );
+
+
+        localStorage.removeItem(
+          "portfolioTextSize"
+        );
+
+
+        localStorage.removeItem(
+          "portfolioContrast"
+        );
+
+
+        localStorage.removeItem(
+          "portfolioReducedMotion"
+        );
+
+
+        const systemReducedMotion =
+          window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches;
+
+
+        applyMotionPreference(
+          systemReducedMotion,
+          false,
+          false
+        );
+
+
+        announce(
+          translations[currentLanguage]
+            .settingsReset
+        );
+
+      }
+    );
+
+
+    /* =====================================
+       BACK TO TOP
+    ====================================== */
+
+    window.addEventListener(
+      "scroll",
+      () => {
+
+        backToTop.classList.toggle(
+          "visible",
+          window.scrollY > 500
+        );
+
+      },
+      {
+        passive: true
+      }
+    );
+
+
+    backToTop.addEventListener(
+      "click",
+      () => {
+
+        const reducedMotion =
+          document.body.classList.contains(
+            "reduce-motion"
+          ) ||
+
+          window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches;
+
+
+        window.scrollTo({
+
+          top:
+            0,
+
+          behavior:
+            reducedMotion
+              ? "auto"
+              : "smooth"
+
+        });
+
+      }
+    );
+
+
+    /* =====================================
+       LOAD SAVED SETTINGS
+    ====================================== */
+
+    function loadPreferences() {
+
+      applyLanguage(
+        currentLanguage,
+        false
+      );
+
+
+      const savedTextSize =
+        localStorage.getItem(
+          "portfolioTextSize"
+        ) || "default";
+
+
+      applyTextSize(
+        savedTextSize
+      );
+
+
+      const savedContrast =
+        localStorage.getItem(
+          "portfolioContrast"
+        ) === "true";
+
+
+      applyContrast(
+        savedContrast,
+        false
+      );
+
+
+      const savedMotion =
+        localStorage.getItem(
+          "portfolioReducedMotion"
+        );
+
+
+      if (
+        savedMotion !== null
+      ) {
+
+        applyMotionPreference(
+          savedMotion === "true",
+          false,
+          false
+        );
+
+      } else {
+
+        const systemReducedMotion =
+          window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches;
+
+
+        applyMotionPreference(
+          systemReducedMotion,
+          false,
+          false
+        );
+
+      }
+
+    }
+
+
+    loadPreferences();
+
+
+    /* =====================================
+       SYSTEM MOTION CHANGES
+    ====================================== */
+
+    const motionMediaQuery =
+      window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      );
+
+
+    motionMediaQuery.addEventListener(
+      "change",
+      event => {
+
+        const savedMotion =
+          localStorage.getItem(
+            "portfolioReducedMotion"
+          );
+
+
+        if (
+          savedMotion === null
+        ) {
+
+          applyMotionPreference(
+            event.matches,
+            false,
+            false
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =====================================
+       STOP SPEECH ON EXIT
+    ====================================== */
+
+    window.addEventListener(
+      "beforeunload",
+      () => {
+
+        if (speechSupported) {
+
+          window.speechSynthesis.cancel();
+
+        }
+
+      }
+    );
 
   </script>
 
 </body>
+
 </html>
