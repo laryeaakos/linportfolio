@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8" />
 
   <meta
@@ -10,8 +11,9 @@
   />
 
   <meta
+    id="metaDescription"
     name="description"
-    content="Linda Laryea — UX Researcher and Interaction Designer focused on research, accessibility and clear digital experiences."
+    content="Linda Laryea — UX Researcher and Interaction Designer creating clear, accessible digital experiences through research-led design."
   />
 
   <link
@@ -32,7 +34,9 @@
     ====================================== */
 
     :root {
+
       --bg: #FFF9FC;
+      --white: #FFFFFF;
       --surface: #FFFFFF;
 
       --magenta: #A80B63;
@@ -44,8 +48,6 @@
       --purple-soft: #F3EEFA;
       --green-soft: #EAF7F0;
 
-      --green: #159447;
-
       --dark: #111827;
       --body: #4B5563;
       --muted: #6B7280;
@@ -55,7 +57,7 @@
       --focus: #111827;
 
       --shadow:
-        0 18px 55px rgba(80, 47, 67, 0.07);
+        0 18px 50px rgba(80, 47, 67, 0.06);
 
       --text-scale: 1;
     }
@@ -67,6 +69,8 @@
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
 
@@ -79,38 +83,23 @@
 
 
     body {
-      margin: 0;
-
       font-family:
         Arial,
         Helvetica,
         sans-serif;
 
-      background: var(--bg);
-      color: var(--dark);
+      background:
+        var(--bg);
 
-      line-height: 1.6;
+      color:
+        var(--dark);
+
+      line-height:
+        1.6;
 
       transition:
         background-color 0.2s ease,
         color 0.2s ease;
-    }
-
-
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-
-    button,
-    a {
-      font: inherit;
-    }
-
-
-    button {
-      cursor: pointer;
     }
 
 
@@ -120,13 +109,20 @@
     }
 
 
-    p {
-      color: var(--body);
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+
+    img {
+      display: block;
+      max-width: 100%;
     }
 
 
     /* =====================================
-       VISUALLY HIDDEN
+       SCREEN READER ONLY
     ====================================== */
 
     .sr-only {
@@ -149,19 +145,22 @@
 
 
     /* =====================================
-       KEYBOARD FOCUS
+       FOCUS
     ====================================== */
 
     :focus-visible {
-      outline: 3px solid var(--focus);
-      outline-offset: 4px;
+      outline:
+        3px solid var(--focus);
+
+      outline-offset:
+        4px;
     }
 
 
-    .primary-button:focus-visible,
-    .nav-cta:focus-visible,
-    .case-button:focus-visible {
-      outline-color: var(--gold);
+    .nav-button:focus-visible,
+    .btn-primary:focus-visible {
+      outline-color:
+        var(--gold);
     }
 
 
@@ -177,17 +176,26 @@
 
       z-index: 99999;
 
-      padding: 12px 18px;
+      padding:
+        12px 18px;
 
-      background: var(--dark);
-      color: #FFFFFF;
+      background:
+        var(--dark);
 
-      border-radius: 10px;
+      color:
+        #FFFFFF;
 
-      font-size: 0.875rem;
-      font-weight: 800;
+      border-radius:
+        10px;
 
-      transform: translateY(-180%);
+      font-size:
+        0.875rem;
+
+      font-weight:
+        800;
+
+      transform:
+        translateY(-180%);
 
       transition:
         transform 0.2s ease;
@@ -195,50 +203,53 @@
 
 
     .skip-link:focus {
-      transform: translateY(0);
+      transform:
+        translateY(0);
     }
 
 
     /* =====================================
-       PAGE WIDTH
+       PAGE
     ====================================== */
 
-    .site-shell {
+    .page {
       width:
         min(1180px, calc(100% - 32px));
 
       margin:
         0 auto;
+
+      padding:
+        24px 0 70px;
     }
 
 
     /* =====================================
-       HEADER / NAV
+       NAVIGATION
     ====================================== */
 
-    .site-header {
-      width: 100%;
-
-      background:
-        var(--bg);
-    }
-
-
     .navbar {
-      min-height: 84px;
+      display:
+        flex;
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      align-items:
+        center;
 
-      gap: 24px;
+      justify-content:
+        space-between;
+
+      gap:
+        24px;
+
+      padding-bottom:
+        22px;
 
       border-bottom:
         1px solid var(--border);
     }
 
 
-    .brand {
+    .brand-name {
       color:
         var(--magenta);
 
@@ -249,7 +260,7 @@
         800;
 
       letter-spacing:
-        -0.04em;
+        -0.4px;
 
       white-space:
         nowrap;
@@ -257,38 +268,26 @@
 
 
     .nav-right {
-      display: flex;
-      align-items: center;
-
-      gap: 20px;
-    }
-
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-
-      gap: 28px;
-
-      list-style:
-        none;
-
-      padding: 0;
-      margin: 0;
-    }
-
-
-    .nav-links a {
-      min-height: 44px;
-
       display:
-        inline-flex;
+        flex;
 
       align-items:
         center;
 
-      color:
-        var(--dark);
+      gap:
+        20px;
+    }
+
+
+    .nav-links {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        32px;
 
       font-size:
         0.875rem;
@@ -298,22 +297,40 @@
     }
 
 
+    .nav-links a {
+      min-height:
+        44px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+    }
+
+
     .nav-links a:hover,
-    .nav-links a[aria-current="page"] {
+    .nav-links .active {
       color:
         var(--magenta);
     }
 
 
-    .nav-links a[aria-current="page"] {
+    .nav-links .active {
+      padding-bottom:
+        10px;
+
       border-bottom:
         3px solid var(--magenta);
     }
 
 
-    .nav-cta {
+    .nav-button {
       min-height:
         44px;
+
+      padding:
+        0 22px;
 
       display:
         inline-flex;
@@ -324,9 +341,6 @@
       justify-content:
         center;
 
-      padding:
-        0 20px;
-
       background:
         var(--magenta);
 
@@ -334,30 +348,44 @@
         #FFFFFF !important;
 
       border-radius:
-        11px;
+        12px;
 
       border-bottom:
-        0 !important;
+        none !important;
+    }
+
+
+    .nav-button:hover {
+      background:
+        var(--magenta-dark);
     }
 
 
     /* =====================================
-       NAV ACCESSIBILITY CONTROLS
+       LANGUAGE + ACCESSIBILITY
     ====================================== */
 
     .nav-tools {
-      display: flex;
-      align-items: center;
+      display:
+        flex;
 
-      gap: 8px;
+      align-items:
+        center;
+
+      gap:
+        8px;
     }
 
 
     .language-switcher {
-      display: flex;
-      align-items: center;
+      display:
+        flex;
 
-      padding: 3px;
+      align-items:
+        center;
+
+      padding:
+        3px;
 
       background:
         var(--surface);
@@ -380,17 +408,17 @@
       padding:
         0 9px;
 
-      border:
-        0;
-
-      border-radius:
-        7px;
-
       background:
         transparent;
 
       color:
         var(--body);
+
+      border:
+        0;
+
+      border-radius:
+        7px;
 
       font-size:
         0.75rem;
@@ -425,7 +453,8 @@
       justify-content:
         center;
 
-      gap: 7px;
+      gap:
+        7px;
 
       padding:
         0 12px;
@@ -519,8 +548,8 @@
 
 
     .a11y-panel-header h2 {
-      margin:
-        0 0 3px;
+      margin-bottom:
+        3px;
 
       font-size:
         1.1rem;
@@ -528,14 +557,11 @@
 
 
     .a11y-panel-header p {
-      margin:
-        0;
+      color:
+        var(--muted);
 
       font-size:
         0.76rem;
-
-      color:
-        var(--muted);
     }
 
 
@@ -546,17 +572,17 @@
       min-height:
         44px;
 
-      border:
-        0;
-
-      border-radius:
-        10px;
-
       background:
         var(--purple-soft);
 
       color:
         var(--dark);
+
+      border:
+        0;
+
+      border-radius:
+        10px;
 
       font-size:
         1.25rem;
@@ -573,10 +599,10 @@
 
 
     .a11y-group:first-of-type {
-      border-top:
+      padding-top:
         0;
 
-      padding-top:
+      border-top:
         0;
     }
 
@@ -587,9 +613,6 @@
 
       margin-bottom:
         10px;
-
-      color:
-        var(--dark);
 
       font-size:
         0.8rem;
@@ -619,17 +642,17 @@
       min-height:
         44px;
 
-      border:
-        1px solid var(--border);
-
-      border-radius:
-        9px;
-
       background:
         var(--surface);
 
       color:
         var(--dark);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        9px;
 
       font-weight:
         800;
@@ -649,10 +672,13 @@
 
 
     /* =====================================
-       ACCESSIBILITY SWITCHES
+       TOGGLES
     ====================================== */
 
     .toggle-row {
+      min-height:
+        48px;
+
       display:
         flex;
 
@@ -664,9 +690,6 @@
 
       gap:
         20px;
-
-      min-height:
-        48px;
     }
 
 
@@ -736,9 +759,6 @@
 
       border-radius:
         999px;
-
-      transition:
-        background 0.2s ease;
     }
 
 
@@ -820,29 +840,23 @@
       min-height:
         44px;
 
-      border:
-        1px solid var(--border);
-
-      border-radius:
-        9px;
-
       background:
         var(--surface);
 
       color:
         var(--dark);
 
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        9px;
+
       font-size:
         0.75rem;
 
       font-weight:
         800;
-    }
-
-
-    .read-button:hover {
-      background:
-        var(--purple-soft);
     }
 
 
@@ -874,17 +888,17 @@
       min-height:
         44px;
 
-      border:
-        1px solid var(--border);
-
-      border-radius:
-        9px;
-
       background:
         var(--surface);
 
       color:
         var(--magenta);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        9px;
 
       font-size:
         0.75rem;
@@ -895,94 +909,58 @@
 
 
     /* =====================================
-       MAIN
-    ====================================== */
-
-    main {
-      padding:
-        48px 0 0;
-    }
-
-
-    /* =====================================
        HERO
     ====================================== */
 
     .hero {
+      margin-top:
+        56px;
+
       display:
         grid;
 
       grid-template-columns:
-        minmax(0, 1.03fr)
-        minmax(360px, 0.97fr);
+        minmax(0, 1fr)
+        minmax(420px, 0.9fr);
 
       gap:
-        48px;
+        54px;
 
       align-items:
         center;
     }
 
 
-    /*
-       This replaces the old
-       "UX Research · Interaction Design"
-       hero eyebrow.
-    */
-
-    .hero-intro {
-      margin:
-        0 0 20px;
-
-      color:
-        var(--dark);
-
-      font-size:
-        1rem;
-
-      font-weight:
-        600;
-
-      line-height:
-        1.5;
+    .hero-copy {
+      padding:
+        20px 0;
     }
 
 
     .hero h1 {
       max-width:
-        730px;
-
-      margin:
-        0;
-
-      color:
-        var(--dark);
+        650px;
 
       font-size:
-        clamp(3.2rem, 6.2vw, 5.7rem);
+        clamp(3.7rem, 6vw, 5.25rem);
 
       line-height:
-        0.99;
+        1.03;
 
       letter-spacing:
-        -0.055em;
+        -3px;
+
+      font-weight:
+        800;
     }
 
 
-    /*
-       Main headline remains dark.
-    */
-
-    .hero-main {
-      color:
-        var(--dark);
+    .hero-main,
+    .hero-highlight {
+      display:
+        inline;
     }
 
-
-    /*
-       Only this phrase receives
-       the magenta highlight.
-    */
 
     .hero-highlight {
       color:
@@ -990,22 +968,10 @@
     }
 
 
-    .hero-description {
-      max-width:
-        670px;
-
-      margin:
-        25px 0 0;
-
-      font-size:
-        1.08rem;
-
-      line-height:
-        1.8;
-    }
-
-
     .hero-actions {
+      margin-top:
+        34px;
+
       display:
         flex;
 
@@ -1014,16 +980,16 @@
 
       gap:
         12px;
-
-      margin-top:
-        28px;
     }
 
 
-    .primary-button,
-    .secondary-button {
+    .btn-primary,
+    .btn-secondary {
       min-height:
         48px;
+
+      padding:
+        0 20px;
 
       display:
         inline-flex;
@@ -1034,21 +1000,18 @@
       justify-content:
         center;
 
-      padding:
-        0 20px;
-
       border-radius:
         11px;
 
       font-size:
-        0.84rem;
+        0.875rem;
 
       font-weight:
         800;
     }
 
 
-    .primary-button {
+    .btn-primary {
       background:
         var(--magenta);
 
@@ -1057,13 +1020,13 @@
     }
 
 
-    .primary-button:hover {
+    .btn-primary:hover {
       background:
         var(--magenta-dark);
     }
 
 
-    .secondary-button {
+    .btn-secondary {
       background:
         var(--surface);
 
@@ -1075,22 +1038,25 @@
     }
 
 
-    .secondary-button:hover {
+    .btn-secondary:hover {
       background:
         var(--pink-soft);
     }
 
 
     /* =====================================
-       HERO VISUAL
+       DESIGN APPROACH CARD
     ====================================== */
 
-    .hero-visual {
+    .approach-shell {
+      position:
+        relative;
+
       min-height:
         470px;
 
-      position:
-        relative;
+      padding:
+        40px;
 
       display:
         flex;
@@ -1101,24 +1067,25 @@
       justify-content:
         center;
 
-      padding:
-        32px;
-
       overflow:
         hidden;
 
       background:
-        var(--purple-soft);
+        linear-gradient(
+          145deg,
+          #F3EEFA 0%,
+          #F9F4F8 100%
+        );
 
       border:
         1px solid var(--border);
 
       border-radius:
-        32px;
+        30px;
     }
 
 
-    .hero-visual::before {
+    .approach-shell::before {
       content:
         "";
 
@@ -1126,29 +1093,26 @@
         absolute;
 
       width:
-        250px;
+        230px;
 
       height:
-        250px;
-
-      top:
-        -85px;
+        230px;
 
       right:
+        -70px;
+
+      top:
         -60px;
 
       background:
-        var(--gold);
-
-      opacity:
-        0.18;
+        rgba(243, 194, 79, 0.18);
 
       border-radius:
         50%;
     }
 
 
-    .hero-visual::after {
+    .approach-shell::after {
       content:
         "";
 
@@ -1161,24 +1125,21 @@
       height:
         180px;
 
-      bottom:
-        -80px;
-
       left:
-        -65px;
+        -70px;
+
+      bottom:
+        -70px;
 
       background:
-        var(--magenta);
-
-      opacity:
-        0.09;
+        rgba(168, 11, 99, 0.09);
 
       border-radius:
         50%;
     }
 
 
-    .hero-message-card {
+    .approach-card {
       position:
         relative;
 
@@ -1198,74 +1159,80 @@
         1px solid var(--border);
 
       border-radius:
-        23px;
+        24px;
 
       box-shadow:
         var(--shadow);
     }
 
 
-    .hero-message-card small {
-      display:
-        block;
-
+    .approach-label {
       margin-bottom:
-        12px;
+        13px;
 
       color:
         var(--magenta);
 
       font-size:
-        0.68rem;
+        0.7rem;
 
       font-weight:
         900;
 
       letter-spacing:
-        0.09em;
+        1.1px;
 
       text-transform:
         uppercase;
     }
 
 
-    .hero-message-card h2 {
-      margin:
-        0;
+    .approach-card h2 {
+      margin-bottom:
+        13px;
 
       font-size:
-        1.7rem;
+        1.85rem;
 
       line-height:
-        1.25;
+        1.2;
+
+      letter-spacing:
+        -0.5px;
     }
 
 
-    .hero-message-card p {
-      margin:
-        14px 0 0;
+    .approach-card > p {
+      color:
+        var(--body);
 
       font-size:
-        0.88rem;
+        0.9rem;
 
       line-height:
         1.7;
     }
 
 
-    .mini-insights {
+    .approach-list {
+      margin-top:
+        24px;
+
       display:
         grid;
 
       gap:
-        10px;
-
-      margin-top:
-        22px;
+        11px;
     }
 
 
-    .mini-insight {
+    .approach-item {
+      min-height:
+        48px;
+
+      padding:
+        12px 14px;
+
       display:
         flex;
 
@@ -1273,26 +1240,23 @@
         center;
 
       gap:
-        11px;
-
-      padding:
-        11px 13px;
+        12px;
 
       background:
-        var(--bg);
+        #FFF9FC;
 
       border-radius:
-        10px;
+        11px;
 
       font-size:
-        0.76rem;
+        0.8rem;
 
       font-weight:
         700;
     }
 
 
-    .insight-dot {
+    .approach-dot {
       width:
         9px;
 
@@ -1311,13 +1275,31 @@
 
 
     /* =====================================
-       FOUNDATION STRIP
+       FOUNDATION
     ====================================== */
 
-    .foundation-strip {
+    .foundation {
       margin-top:
-        58px;
+        74px;
+    }
 
+
+    .foundation-heading {
+      margin-bottom:
+        20px;
+
+      font-size:
+        clamp(1.7rem, 3vw, 2.2rem);
+
+      line-height:
+        1.2;
+
+      letter-spacing:
+        -0.6px;
+    }
+
+
+    .foundation-grid {
       display:
         grid;
 
@@ -1334,13 +1316,19 @@
         1px solid var(--border);
 
       border-radius:
-        18px;
+        20px;
+
+      box-shadow:
+        0 12px 35px rgba(80, 47, 67, 0.035);
     }
 
 
     .foundation-item {
       min-height:
         86px;
+
+      padding:
+        20px;
 
       display:
         flex;
@@ -1351,69 +1339,52 @@
       justify-content:
         center;
 
-      padding:
-        18px;
-
       text-align:
         center;
 
       font-size:
-        0.79rem;
+        0.9rem;
 
       font-weight:
         800;
+    }
 
-      border-right:
+
+    .foundation-item +
+    .foundation-item {
+      border-left:
         1px solid var(--border);
     }
 
 
-    .foundation-item:last-child {
-      border-right:
-        0;
-    }
-
-
     /* =====================================
-       SECTION EYEBROW
+       SELECTED WORK
     ====================================== */
 
-    .eyebrow {
-      display:
-        inline-flex;
-
-      align-items:
-        center;
-
-      gap:
-        10px;
-
-      margin-bottom:
-        18px;
-
-      color:
-        var(--magenta);
-
-      font-size:
-        0.73rem;
-
-      font-weight:
-        900;
-
-      letter-spacing:
-        0.11em;
-
-      text-transform:
-        uppercase;
+    .work-section {
+      margin-top:
+        82px;
     }
 
 
-    .eyebrow-line {
+    .section-heading {
+      max-width:
+        720px;
+
+      margin-bottom:
+        30px;
+    }
+
+
+    .gold-line {
       width:
-        42px;
+        46px;
 
       height:
         3px;
+
+      margin-bottom:
+        13px;
 
       background:
         var(--gold);
@@ -1423,349 +1394,157 @@
     }
 
 
-    /* =====================================
-       SECTION HEADER
-    ====================================== */
-
-    .section-intro {
-      margin-top:
-        92px;
-
-      max-width:
-        730px;
-    }
-
-
-    .section-intro h2 {
-      margin:
-        0;
-
-      font-size:
-        clamp(2rem, 4vw, 3.3rem);
-
-      line-height:
-        1.1;
-
-      letter-spacing:
-        -0.04em;
-    }
-
-
-    .section-intro p {
-      margin:
-        16px 0 0;
-
-      font-size:
-        0.97rem;
-
-      line-height:
-        1.75;
-    }
-
-
-    /* =====================================
-       FEATURED PROJECT
-    ====================================== */
-
-    .featured-project {
-      margin-top:
-        30px;
-
-      display:
-        grid;
-
-      grid-template-columns:
-        minmax(0, 0.9fr)
-        minmax(380px, 1.1fr);
-
-      gap:
-        40px;
-
-      align-items:
-        center;
-
-      padding:
-        38px;
-
-      background:
-        var(--surface);
-
-      border:
-        1px solid var(--border);
-
-      border-radius:
-        28px;
-
-      box-shadow:
-        var(--shadow);
-    }
-
-
-    .project-label {
+    .eyebrow {
       margin-bottom:
-        13px;
+        9px;
 
       color:
         var(--magenta);
 
       font-size:
-        0.7rem;
+        0.72rem;
 
       font-weight:
         900;
 
       letter-spacing:
-        0.1em;
+        1px;
 
       text-transform:
         uppercase;
     }
 
 
-    .featured-project h3 {
-      margin:
-        0;
+    .section-heading h2 {
+      margin-bottom:
+        12px;
 
       font-size:
-        2rem;
+        clamp(2rem, 4vw, 2.8rem);
 
       line-height:
-        1.2;
+        1.12;
+
+      letter-spacing:
+        -1px;
     }
 
 
-    .featured-project p {
-      margin:
-        16px 0 0;
+    .section-heading p {
+      color:
+        var(--body);
 
       font-size:
-        0.9rem;
+        0.95rem;
 
       line-height:
         1.75;
     }
 
 
-    .project-benefits {
+    /* =====================================
+       FEATURED CASE STUDY
+    ====================================== */
+
+    .featured-case {
       display:
         grid;
 
-      gap:
-        11px;
+      grid-template-columns:
+        1.05fr 0.95fr;
 
-      margin-top:
-        22px;
-    }
-
-
-    .benefit {
-      display:
-        flex;
-
-      align-items:
-        flex-start;
-
-      gap:
-        11px;
-
-      color:
-        var(--body);
-
-      font-size:
-        0.82rem;
-
-      line-height:
-        1.55;
-    }
-
-
-    .benefit-icon {
-      width:
-        22px;
-
-      height:
-        22px;
-
-      flex:
-        0 0 auto;
-
-      display:
-        flex;
-
-      align-items:
-        center;
-
-      justify-content:
-        center;
-
-      margin-top:
-        1px;
+      overflow:
+        hidden;
 
       background:
-        var(--green-soft);
+        var(--surface);
 
-      color:
-        var(--green);
+      border:
+        1px solid var(--border);
 
       border-radius:
-        50%;
+        27px;
 
-      font-size:
-        0.7rem;
-
-      font-weight:
-        900;
+      box-shadow:
+        var(--shadow);
     }
 
 
-    .case-button {
+    .case-image {
       min-height:
-        48px;
+        440px;
+
+      padding:
+        30px;
 
       display:
-        inline-flex;
+        flex;
 
       align-items:
         center;
 
       justify-content:
         center;
-
-      margin-top:
-        25px;
-
-      padding:
-        0 19px;
-
-      background:
-        var(--magenta);
-
-      color:
-        #FFFFFF;
-
-      border-radius:
-        11px;
-
-      font-size:
-        0.82rem;
-
-      font-weight:
-        800;
-    }
-
-
-    .case-button:hover {
-      background:
-        var(--magenta-dark);
-    }
-
-
-    .project-image {
-      padding:
-        16px;
 
       background:
         var(--purple-soft);
-
-      border-radius:
-        21px;
     }
 
 
-    .project-image img {
+    .case-image img {
       width:
         100%;
 
-      height:
-        auto;
+      max-height:
+        390px;
 
-      background:
-        #FFFFFF;
+      object-fit:
+        contain;
 
       border-radius:
         15px;
     }
 
 
-    /* =====================================
-       THREE CARDS
-    ====================================== */
-
-    .overview-grid {
-      margin-top:
-        32px;
-
-      display:
-        grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
-      gap:
-        18px;
-    }
-
-
-    .overview-card {
-      min-height:
-        245px;
-
+    .case-content {
       padding:
-        26px;
+        44px;
 
-      border:
-        1px solid var(--border);
-
-      border-radius:
-        21px;
-    }
-
-
-    .overview-card:nth-child(1) {
-      background:
-        var(--pink-soft);
-    }
-
-
-    .overview-card:nth-child(2) {
-      background:
-        var(--green-soft);
-    }
-
-
-    .overview-card:nth-child(3) {
-      background:
-        var(--purple-soft);
-    }
-
-
-    .card-number {
       display:
         flex;
 
-      align-items:
-        center;
+      flex-direction:
+        column;
 
       justify-content:
         center;
+    }
 
+
+    .case-number {
       width:
-        38px;
+        40px;
 
       height:
-        38px;
+        40px;
 
       margin-bottom:
         20px;
 
+      display:
+        grid;
+
+      place-items:
+        center;
+
       background:
-        var(--surface);
+        var(--pink-soft);
 
       color:
         var(--magenta);
 
       border-radius:
-        10px;
+        11px;
 
       font-size:
         0.75rem;
@@ -1775,30 +1554,75 @@
     }
 
 
-    .overview-card h3 {
-      margin:
-        0;
+    .case-content h3 {
+      margin-bottom:
+        15px;
 
       font-size:
-        1.25rem;
-    }
-
-
-    .overview-card p {
-      margin:
-        12px 0 0;
-
-      font-size:
-        0.82rem;
+        clamp(1.8rem, 3vw, 2.4rem);
 
       line-height:
-        1.7;
+        1.18;
+
+      letter-spacing:
+        -0.7px;
     }
 
 
-    .overview-card a {
+    .case-description {
+      color:
+        var(--body);
+
+      font-size:
+        0.95rem;
+
+      line-height:
+        1.75;
+    }
+
+
+    .case-tags {
+      margin-top:
+        22px;
+
+      display:
+        flex;
+
+      flex-wrap:
+        wrap;
+
+      gap:
+        8px;
+    }
+
+
+    .case-tag {
+      padding:
+        7px 11px;
+
+      background:
+        var(--pink-soft);
+
+      color:
+        var(--magenta-dark);
+
+      border-radius:
+        999px;
+
+      font-size:
+        0.7rem;
+
+      font-weight:
+        800;
+    }
+
+
+    .case-link {
       min-height:
         44px;
+
+      margin-top:
+        26px;
 
       display:
         inline-flex;
@@ -1806,17 +1630,186 @@
       align-items:
         center;
 
-      margin-top:
-        15px;
+      gap:
+        8px;
+
+      align-self:
+        flex-start;
 
       color:
         var(--magenta);
 
       font-size:
+        0.875rem;
+
+      font-weight:
+        900;
+    }
+
+
+    .case-link:hover {
+      text-decoration:
+        underline;
+    }
+
+
+    /* =====================================
+       MY PROCESS + ABOUT
+    ====================================== */
+
+    .home-info {
+      margin-top:
+        78px;
+
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap:
+        20px;
+    }
+
+
+    .info-card {
+      min-height:
+        300px;
+
+      padding:
+        32px;
+
+      display:
+        flex;
+
+      flex-direction:
+        column;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        23px;
+
+      box-shadow:
+        0 12px 35px rgba(80, 47, 67, 0.035);
+    }
+
+
+    .info-card.process {
+      background:
+        var(--pink-soft);
+    }
+
+
+    .info-card.about {
+      background:
+        var(--purple-soft);
+    }
+
+
+    .info-number {
+      width:
+        40px;
+
+      height:
+        40px;
+
+      margin-bottom:
+        24px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      background:
+        #FFFFFF;
+
+      color:
+        var(--magenta);
+
+      border-radius:
+        11px;
+
+      font-size:
+        0.75rem;
+
+      font-weight:
+        900;
+    }
+
+
+    .info-card h2 {
+      margin-bottom:
+        13px;
+
+      font-size:
+        1.45rem;
+    }
+
+
+    .info-card p {
+      max-width:
+        520px;
+
+      color:
+        var(--body);
+
+      font-size:
+        0.9rem;
+
+      line-height:
+        1.75;
+    }
+
+
+    .process-flow {
+      margin-top:
+        20px;
+
+      color:
+        var(--dark);
+
+      font-size:
         0.78rem;
 
       font-weight:
-        800;
+        900;
+
+      letter-spacing:
+        0.1px;
+    }
+
+
+    .info-link {
+      min-height:
+        44px;
+
+      margin-top:
+        auto;
+
+      padding-top:
+        26px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      align-self:
+        flex-start;
+
+      color:
+        var(--magenta);
+
+      font-size:
+        0.82rem;
+
+      font-weight:
+        900;
     }
 
 
@@ -1826,7 +1819,10 @@
 
     .cta {
       margin-top:
-        88px;
+        78px;
+
+      padding:
+        40px;
 
       display:
         grid;
@@ -1840,9 +1836,6 @@
       align-items:
         center;
 
-      padding:
-        42px;
-
       background:
         var(--magenta);
 
@@ -1850,16 +1843,37 @@
         #FFFFFF;
 
       border-radius:
-        27px;
+        26px;
+    }
+
+
+    .cta-label {
+      margin-bottom:
+        8px;
+
+      color:
+        #F8CFE3;
+
+      font-size:
+        0.7rem;
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        1px;
+
+      text-transform:
+        uppercase;
     }
 
 
     .cta h2 {
-      margin:
-        0;
+      margin-bottom:
+        8px;
 
       font-size:
-        2rem;
+        1.9rem;
 
       line-height:
         1.2;
@@ -1868,46 +1882,49 @@
 
     .cta p {
       max-width:
-        680px;
-
-      margin:
-        9px 0 0;
+        700px;
 
       color:
         #FBE8F2;
     }
 
 
-    .cta a {
-      min-height:
-        48px;
-
+    .cta-actions {
       display:
-        inline-flex;
+        flex;
 
-      align-items:
-        center;
+      flex-wrap:
+        wrap;
 
-      justify-content:
-        center;
+      gap:
+        10px;
+    }
 
-      padding:
-        0 22px;
 
+    .cta .btn-primary {
       background:
         #FFFFFF;
 
       color:
         var(--magenta);
+    }
 
-      border-radius:
-        11px;
 
-      font-weight:
-        900;
+    .cta .btn-secondary {
+      background:
+        transparent;
 
-      white-space:
-        nowrap;
+      color:
+        #FFFFFF;
+
+      border-color:
+        rgba(255, 255, 255, 0.45);
+    }
+
+
+    .cta .btn-secondary:hover {
+      background:
+        rgba(255, 255, 255, 0.1);
     }
 
 
@@ -1917,10 +1934,10 @@
 
     footer {
       margin-top:
-        58px;
+        60px;
 
-      padding:
-        32px 0 42px;
+      padding-top:
+        31px;
 
       display:
         flex;
@@ -1932,10 +1949,16 @@
         space-between;
 
       gap:
-        28px;
+        25px;
 
       border-top:
         1px solid var(--border);
+
+      color:
+        var(--muted);
+
+      font-size:
+        0.75rem;
     }
 
 
@@ -1944,22 +1967,10 @@
         var(--magenta);
 
       font-size:
-        1.35rem;
+        1.375rem;
 
       font-weight:
         800;
-    }
-
-
-    .footer-copy {
-      margin-top:
-        6px;
-
-      color:
-        var(--muted);
-
-      font-size:
-        0.74rem;
     }
 
 
@@ -1971,7 +1982,7 @@
         wrap;
 
       gap:
-        18px;
+        20px;
     }
 
 
@@ -1984,12 +1995,6 @@
 
       align-items:
         center;
-
-      color:
-        var(--body);
-
-      font-size:
-        0.76rem;
 
       font-weight:
         700;
@@ -2085,11 +2090,13 @@
 
 
     /* =====================================
-       HIGH CONTRAST MODE
+       HIGH CONTRAST
     ====================================== */
 
     body.high-contrast {
+
       --bg: #FFFFFF;
+      --white: #FFFFFF;
       --surface: #FFFFFF;
 
       --magenta: #7B0048;
@@ -2098,16 +2105,14 @@
       --gold: #A56600;
 
       --pink-soft: #FFF2F8;
-      --purple-soft: #F2F0F7;
-      --green-soft: #EDF8F0;
-
-      --green: #006B30;
+      --purple-soft: #F4F2FF;
+      --green-soft: #F1FFF6;
 
       --dark: #000000;
       --body: #111111;
       --muted: #303030;
 
-      --border: #616161;
+      --border: #555555;
 
       --focus: #000000;
 
@@ -2116,16 +2121,19 @@
 
 
     body.high-contrast
-    .hero-visual,
+    .approach-shell,
 
     body.high-contrast
-    .overview-card,
+    .approach-card,
 
     body.high-contrast
-    .featured-project,
+    .foundation-grid,
 
     body.high-contrast
-    .foundation-strip,
+    .featured-case,
+
+    body.high-contrast
+    .info-card,
 
     body.high-contrast
     .accessibility-panel {
@@ -2135,13 +2143,7 @@
 
 
     body.high-contrast
-    .primary-button,
-
-    body.high-contrast
-    .nav-cta,
-
-    body.high-contrast
-    .case-button,
+    .nav-button,
 
     body.high-contrast
     .back-to-top {
@@ -2204,7 +2206,7 @@
     ====================================== */
 
     @media
-    (max-width: 1060px) {
+    (max-width: 1180px) {
 
       .navbar {
         flex-direction:
@@ -2214,7 +2216,7 @@
           flex-start;
 
         padding:
-          22px 0;
+          18px 0 22px;
       }
 
 
@@ -2235,34 +2237,51 @@
           wrap;
       }
 
+    }
+
+
+    @media
+    (max-width: 1000px) {
+
+      .hero,
+      .featured-case,
+      .home-info,
+      .cta {
+        grid-template-columns:
+          1fr;
+      }
+
 
       .hero {
-        grid-template-columns:
-          1fr;
+        gap:
+          40px;
       }
 
 
-      .hero-visual {
+      .approach-shell {
         min-height:
-          390px;
+          auto;
+
+        padding:
+          45px;
       }
 
 
-      .featured-project {
-        grid-template-columns:
-          1fr;
+      .case-image {
+        min-height:
+          auto;
       }
 
 
-      .project-image {
-        max-width:
-          760px;
+      .cta-actions {
+        justify-self:
+          start;
       }
 
 
-      .overview-grid {
-        grid-template-columns:
-          1fr;
+      footer {
+        flex-direction:
+          column;
       }
 
     }
@@ -2271,7 +2290,7 @@
     @media
     (max-width: 760px) {
 
-      .site-shell {
+      .page {
         width:
           min(100% - 22px, 1180px);
       }
@@ -2301,81 +2320,34 @@
       }
 
 
-      main {
-        padding-top:
-          34px;
+      .hero {
+        margin-top:
+          38px;
       }
 
 
-      .hero h1 {
-        font-size:
-          clamp(2.7rem, 13vw, 4rem);
-      }
-
-
-      .hero-visual {
-        min-height:
-          340px;
-
-        padding:
-          20px;
-      }
-
-
-      .hero-message-card {
-        padding:
-          24px;
-      }
-
-
-      .foundation-strip {
+      .foundation-grid {
         grid-template-columns:
           1fr 1fr;
       }
 
 
-      .foundation-item:nth-child(2) {
-        border-right:
+      .foundation-item +
+      .foundation-item {
+        border-left:
           0;
       }
 
 
-      .foundation-item:nth-child(-n+2) {
-        border-bottom:
+      .foundation-item:nth-child(even) {
+        border-left:
           1px solid var(--border);
       }
 
 
-      .section-intro {
-        margin-top:
-          68px;
-      }
-
-
-      .featured-project {
-        padding:
-          23px;
-      }
-
-
-      .cta {
-        grid-template-columns:
-          1fr;
-
-        padding:
-          28px;
-      }
-
-
-      .cta a {
-        justify-self:
-          start;
-      }
-
-
-      footer {
-        flex-direction:
-          column;
+      .foundation-item:nth-child(n + 3) {
+        border-top:
+          1px solid var(--border);
       }
 
 
@@ -2391,39 +2363,59 @@
 
 
     @media
-    (max-width: 480px) {
+    (max-width: 600px) {
 
-      .foundation-strip {
+      .hero h1 {
+        font-size:
+          3.15rem;
+
+        letter-spacing:
+          -2px;
+      }
+
+
+      .approach-shell {
+        padding:
+          24px;
+      }
+
+
+      .approach-card {
+        padding:
+          25px;
+      }
+
+
+      .foundation-grid {
         grid-template-columns:
           1fr;
       }
 
 
-      .foundation-item {
-        border-right:
+      .foundation-item,
+      .foundation-item:nth-child(even) {
+        border-left:
           0;
+      }
 
-        border-bottom:
+
+      .foundation-item:nth-child(n + 2) {
+        border-top:
           1px solid var(--border);
       }
 
 
-      .foundation-item:last-child {
-        border-bottom:
-          0;
+      .case-content,
+      .info-card,
+      .cta {
+        padding:
+          26px;
       }
 
 
-      .hero-actions {
-        flex-direction:
-          column;
-      }
-
-
-      .primary-button,
-      .secondary-button {
-        width:
-          100%;
+      .case-image {
+        padding:
+          20px;
       }
 
 
@@ -2466,16 +2458,14 @@
   ></div>
 
 
-  <!-- =====================================
-       HEADER
-  ====================================== -->
+  <div class="page">
 
-  <header
-    class="site-header"
-    data-no-read
-  >
 
-    <div class="site-shell">
+    <!-- =====================================
+         NAVIGATION
+    ====================================== -->
+
+    <header data-no-read>
 
       <nav
         class="navbar"
@@ -2486,83 +2476,65 @@
 
         <a
           href="index.html"
-          class="brand"
-          aria-label="Linda Laryea home"
+          aria-label="Linda Laryea portfolio home"
         >
-          Linda Laryea
+
+          <div class="brand-name">
+            Linda Laryea
+          </div>
+
         </a>
 
 
         <div class="nav-right">
 
 
-          <ul class="nav-links">
+          <div class="nav-links">
 
-            <li>
-
-              <a
-                href="index.html"
-                aria-current="page"
-                data-i18n="home"
-              >
-                Home
-              </a>
-
-            </li>
+            <a
+              href="index.html"
+              class="active"
+              aria-current="page"
+              data-i18n="home"
+            >
+              Home
+            </a>
 
 
-            <li>
-
-              <a
-                href="case-studies.html"
-                data-i18n="caseStudies"
-              >
-                Case Studies
-              </a>
-
-            </li>
+            <a
+              href="case-studies.html"
+              data-i18n="caseStudies"
+            >
+              Case Studies
+            </a>
 
 
-            <li>
-
-              <a
-                href="about.html"
-                data-i18n="aboutMe"
-              >
-                About Me
-              </a>
-
-            </li>
+            <a
+              href="about.html"
+              data-i18n="aboutMe"
+            >
+              About Me
+            </a>
 
 
-            <li>
-
-              <a
-                href="cv.html"
-                data-i18n="cv"
-              >
-                CV
-              </a>
-
-            </li>
+            <a
+              href="cv.html"
+              data-i18n="cv"
+            >
+              CV
+            </a>
 
 
-            <li>
+            <a
+              href="contact.html"
+              class="nav-button"
+              data-i18n="letsConnect"
+            >
+              Let’s Connect
+            </a>
 
-              <a
-                href="contact.html"
-                class="nav-cta"
-                data-i18n="letsConnect"
-              >
-                Let’s Connect
-              </a>
+          </div>
 
-            </li>
-
-          </ul>
-
-
-          <!-- ACCESSIBILITY TOOLS -->
 
           <div class="nav-tools">
 
@@ -2580,6 +2552,7 @@
                 class="language-button active"
                 aria-pressed="true"
                 aria-label="Switch to English"
+                data-i18n-aria-label="switchEnglish"
               >
                 EN
               </button>
@@ -2590,7 +2563,8 @@
                 id="languageDE"
                 class="language-button"
                 aria-pressed="false"
-                aria-label="Auf Deutsch wechseln"
+                aria-label="Switch to German"
+                data-i18n-aria-label="switchGerman"
               >
                 DE
               </button>
@@ -2622,821 +2596,836 @@
 
       </nav>
 
-    </div>
-
-  </header>
-
-
-  <!-- =====================================
-       ACCESSIBILITY PANEL
-  ====================================== -->
-
-  <aside
-    id="accessibilityPanel"
-    class="accessibility-panel"
-    aria-labelledby="accessibilityPanelTitle"
-    hidden
-    data-no-read
-  >
-
-
-    <div class="a11y-panel-header">
-
-      <div>
-
-        <h2
-          id="accessibilityPanelTitle"
-          data-i18n="accessibility"
-        >
-          Accessibility
-        </h2>
-
-
-        <p data-i18n="accessibilityDescription">
-          Adjust the page to suit your needs.
-        </p>
-
-      </div>
-
-
-      <button
-        type="button"
-        id="closeAccessibility"
-        class="panel-close"
-        aria-label="Close accessibility settings"
-        data-i18n-aria-label="closeAccessibility"
-      >
-        ×
-      </button>
-
-    </div>
-
-
-    <!-- TEXT SIZE -->
-
-    <div class="a11y-group">
-
-      <span
-        class="a11y-label"
-        data-i18n="textSize"
-      >
-        Text size
-      </span>
-
-
-      <div
-        class="text-size-controls"
-        role="group"
-        aria-label="Text size"
-        data-i18n-aria-label="textSize"
-      >
-
-        <button
-          type="button"
-          class="text-size-button"
-          data-size="small"
-          aria-label="Decrease text size"
-          data-i18n-aria-label="decreaseText"
-        >
-          A−
-        </button>
-
-
-        <button
-          type="button"
-          class="text-size-button active"
-          data-size="default"
-          aria-label="Default text size"
-          data-i18n-aria-label="defaultText"
-        >
-          A
-        </button>
-
-
-        <button
-          type="button"
-          class="text-size-button"
-          data-size="large"
-          aria-label="Increase text size"
-          data-i18n-aria-label="increaseText"
-        >
-          A+
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <!-- HIGH CONTRAST -->
-
-    <div class="a11y-group">
-
-      <div class="toggle-row">
-
-        <div class="toggle-copy">
-
-          <strong data-i18n="highContrast">
-            High contrast
-          </strong>
-
-          <span data-i18n="highContrastDescription">
-            Increase visual contrast.
-          </span>
-
-        </div>
-
-
-        <label class="switch">
-
-          <input
-            id="contrastToggle"
-            type="checkbox"
-            aria-label="High contrast"
-            data-i18n-aria-label="highContrast"
-          />
-
-          <span
-            class="switch-track"
-            aria-hidden="true"
-          ></span>
-
-        </label>
-
-      </div>
-
-    </div>
-
-
-    <!-- REDUCED MOTION -->
-
-    <div class="a11y-group">
-
-      <div class="toggle-row">
-
-        <div class="toggle-copy">
-
-          <strong data-i18n="reduceMotion">
-            Reduce motion
-          </strong>
-
-          <span data-i18n="reduceMotionDescription">
-            Minimise animation and movement.
-          </span>
-
-        </div>
-
-
-        <label class="switch">
-
-          <input
-            id="motionToggle"
-            type="checkbox"
-            aria-label="Reduce motion"
-            data-i18n-aria-label="reduceMotion"
-          />
-
-          <span
-            class="switch-track"
-            aria-hidden="true"
-          ></span>
-
-        </label>
-
-      </div>
-
-    </div>
-
-
-    <!-- READ ALOUD -->
-
-    <div class="a11y-group">
-
-      <span
-        class="a11y-label"
-        data-i18n="readPage"
-      >
-        Read page aloud
-      </span>
-
-
-      <div class="read-controls">
-
-        <button
-          type="button"
-          id="readPlay"
-          class="read-button primary-read"
-          data-i18n="play"
-        >
-          Play
-        </button>
-
-
-        <button
-          type="button"
-          id="readPause"
-          class="read-button"
-          data-i18n="pause"
-        >
-          Pause
-        </button>
-
-
-        <button
-          type="button"
-          id="readStop"
-          class="read-button"
-          data-i18n="stop"
-        >
-          Stop
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <!-- RESET -->
-
-    <div class="a11y-group">
-
-      <button
-        type="button"
-        id="resetAccessibility"
-        class="reset-button"
-        data-i18n="resetSettings"
-      >
-        Reset accessibility settings
-      </button>
-
-    </div>
-
-  </aside>
-
-
-  <!-- =====================================
-       MAIN CONTENT
-  ====================================== -->
-
-  <main
-    id="main-content"
-    class="site-shell"
-    tabindex="-1"
-  >
+    </header>
 
 
     <!-- =====================================
-         HERO
+         ACCESSIBILITY PANEL
     ====================================== -->
 
-    <section
-      class="hero readable-content"
-      aria-labelledby="hero-heading"
+    <aside
+      id="accessibilityPanel"
+      class="accessibility-panel"
+      aria-labelledby="accessibilityPanelTitle"
+      hidden
+      data-no-read
     >
 
 
-      <div>
+      <div class="a11y-panel-header">
+
+        <div>
+
+          <h2
+            id="accessibilityPanelTitle"
+            data-i18n="accessibility"
+          >
+            Accessibility
+          </h2>
 
 
-        <!-- UPDATED INTRO -->
+          <p data-i18n="accessibilityDescription">
+            Adjust the page to suit your needs.
+          </p>
 
-        <p
-          class="hero-intro"
-          data-i18n="heroIntro"
+        </div>
+
+
+        <button
+          type="button"
+          id="closeAccessibility"
+          class="panel-close"
+          aria-label="Close accessibility settings"
+          data-i18n-aria-label="closeAccessibility"
         >
-          Hi, I’m Linda Laryea
-        </p>
+          ×
+        </button>
+
+      </div>
 
 
-        <!-- UPDATED HEADLINE -->
+      <!-- TEXT SIZE -->
 
-        <h1 id="hero-heading">
+      <div class="a11y-group">
 
-          <span
-            class="hero-main"
-            data-i18n="heroTitleMain"
-          >
-           Where users struggle, I design
-          </span>
+        <span
+          class="a11y-label"
+          data-i18n="textSize"
+        >
+          Text size
+        </span>
 
-          <span
-            class="hero-highlight"
-            data-i18n="heroTitleHighlight"
-          >
-            simpler ways forward.
-          </span>
-
-        </h1>
 
         <div
-          class="hero-actions"
-          data-no-read
+          class="text-size-controls"
+          role="group"
+          aria-label="Text size"
+          data-i18n-aria-label="textSize"
         >
 
-          <a
-            href="case-studies.html"
-            class="primary-button"
-            data-i18n="viewCaseStudies"
+          <button
+            type="button"
+            class="text-size-button"
+            data-size="small"
+            aria-label="Decrease text size"
+            data-i18n-aria-label="decreaseText"
           >
-            View Case Studies
-          </a>
+            A−
+          </button>
 
 
-          <a
-            href="about.html"
-            class="secondary-button"
-            data-i18n="aboutMe"
+          <button
+            type="button"
+            class="text-size-button active"
+            data-size="default"
+            aria-label="Default text size"
+            data-i18n-aria-label="defaultText"
           >
-            About Me
-          </a>
+            A
+          </button>
+
+
+          <button
+            type="button"
+            class="text-size-button"
+            data-size="large"
+            aria-label="Increase text size"
+            data-i18n-aria-label="increaseText"
+          >
+            A+
+          </button>
 
         </div>
 
       </div>
 
 
-      <!-- HERO VISUAL -->
+      <!-- HIGH CONTRAST -->
 
-      <div
-        class="hero-visual"
-        aria-label="Design principles overview"
-        data-i18n-aria-label="designPrinciplesOverview"
+      <div class="a11y-group">
+
+        <div class="toggle-row">
+
+          <div class="toggle-copy">
+
+            <strong data-i18n="highContrast">
+              High contrast
+            </strong>
+
+            <span data-i18n="highContrastDescription">
+              Increase visual contrast.
+            </span>
+
+          </div>
+
+
+          <label class="switch">
+
+            <input
+              id="contrastToggle"
+              type="checkbox"
+              aria-label="High contrast"
+              data-i18n-aria-label="highContrast"
+            />
+
+            <span
+              class="switch-track"
+              aria-hidden="true"
+            ></span>
+
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <!-- REDUCED MOTION -->
+
+      <div class="a11y-group">
+
+        <div class="toggle-row">
+
+          <div class="toggle-copy">
+
+            <strong data-i18n="reduceMotion">
+              Reduce motion
+            </strong>
+
+            <span data-i18n="reduceMotionDescription">
+              Minimise animation and movement.
+            </span>
+
+          </div>
+
+
+          <label class="switch">
+
+            <input
+              id="motionToggle"
+              type="checkbox"
+              aria-label="Reduce motion"
+              data-i18n-aria-label="reduceMotion"
+            />
+
+            <span
+              class="switch-track"
+              aria-hidden="true"
+            ></span>
+
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <!-- READ ALOUD -->
+
+      <div class="a11y-group">
+
+        <span
+          class="a11y-label"
+          data-i18n="readPage"
+        >
+          Read page aloud
+        </span>
+
+
+        <div class="read-controls">
+
+          <button
+            type="button"
+            id="readPlay"
+            class="read-button primary-read"
+            data-i18n="play"
+          >
+            Play
+          </button>
+
+
+          <button
+            type="button"
+            id="readPause"
+            class="read-button"
+            data-i18n="pause"
+          >
+            Pause
+          </button>
+
+
+          <button
+            type="button"
+            id="readStop"
+            class="read-button"
+            data-i18n="stop"
+          >
+            Stop
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- RESET -->
+
+      <div class="a11y-group">
+
+        <button
+          type="button"
+          id="resetAccessibility"
+          class="reset-button"
+          data-i18n="resetSettings"
+        >
+          Reset accessibility settings
+        </button>
+
+      </div>
+
+    </aside>
+
+
+    <!-- =====================================
+         MAIN
+    ====================================== -->
+
+    <main
+      id="main-content"
+      tabindex="-1"
+    >
+
+
+      <!-- =================================
+           HERO
+      ================================== -->
+
+      <section
+        class="hero readable-content"
+        aria-labelledby="hero-heading"
       >
 
-        <article class="hero-message-card">
 
-          <small data-i18n="designApproach">
-            My design approach
-          </small>
+        <div class="hero-copy">
 
 
-          <h2 data-i18n="understandBeforeDesign">
-            Understand before designing.
+          <h1 id="hero-heading">
+
+            <span
+              class="hero-main"
+              data-i18n="heroTitleMain"
+            >
+              Where users struggle, I design
+            </span>
+
+            <span
+              class="hero-highlight"
+              data-i18n="heroTitleHighlight"
+            >
+              simpler ways forward.
+            </span>
+
+          </h1>
+
+
+          <div
+            class="hero-actions"
+            data-no-read
+          >
+
+            <a
+              href="case-studies.html"
+              class="btn-primary"
+              data-i18n="viewCaseStudies"
+            >
+              View Case Studies
+            </a>
+
+
+            <a
+              href="about.html"
+              class="btn-secondary"
+              data-i18n="aboutMe"
+            >
+              About Me
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- DESIGN APPROACH -->
+
+        <aside
+          class="approach-shell"
+          aria-labelledby="approach-heading"
+        >
+
+          <div class="approach-card">
+
+            <div
+              class="approach-label"
+              data-i18n="designApproach"
+            >
+              My Design Approach
+            </div>
+
+
+            <h2
+              id="approach-heading"
+              data-i18n="approachTitle"
+            >
+              Understand before designing.
+            </h2>
+
+
+            <p data-i18n="approachText">
+              I look beyond the interface to understand behaviour,
+              context and the real reason a problem exists.
+            </p>
+
+
+            <div class="approach-list">
+
+
+              <div class="approach-item">
+
+                <span
+                  class="approach-dot"
+                  aria-hidden="true"
+                ></span>
+
+                <span data-i18n="approachPointOne">
+                  Research the real problem
+                </span>
+
+              </div>
+
+
+              <div class="approach-item">
+
+                <span
+                  class="approach-dot"
+                  aria-hidden="true"
+                ></span>
+
+                <span data-i18n="approachPointTwo">
+                  Reduce cognitive load
+                </span>
+
+              </div>
+
+
+              <div class="approach-item">
+
+                <span
+                  class="approach-dot"
+                  aria-hidden="true"
+                ></span>
+
+                <span data-i18n="approachPointThree">
+                  Design accessibly from the start
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </aside>
+
+      </section>
+
+
+      <!-- =================================
+           FOUNDATION
+      ================================== -->
+
+      <section
+        class="foundation readable-content"
+        aria-labelledby="foundation-heading"
+      >
+
+
+        <h2
+          id="foundation-heading"
+          class="foundation-heading"
+          data-i18n="foundationHeading"
+        >
+          A multidisciplinary foundation
+        </h2>
+
+
+        <div class="foundation-grid">
+
+
+          <div
+            class="foundation-item"
+            data-i18n="psychology"
+          >
+            Psychology
+          </div>
+
+
+          <div
+            class="foundation-item"
+            data-i18n="cognitiveScience"
+          >
+            Cognitive Science
+          </div>
+
+
+          <div
+            class="foundation-item"
+            data-i18n="uxResearch"
+          >
+            UX Research
+          </div>
+
+
+          <div
+            class="foundation-item"
+            data-i18n="accessibilityField"
+          >
+            Accessibility
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================
+           SELECTED WORK
+      ================================== -->
+
+      <section
+        class="work-section readable-content"
+        aria-labelledby="selected-work-heading"
+      >
+
+
+        <header class="section-heading">
+
+
+          <div
+            class="gold-line"
+            aria-hidden="true"
+          ></div>
+
+
+          <div
+            class="eyebrow"
+            data-i18n="selectedWork"
+          >
+            Selected Work
+          </div>
+
+
+          <h2
+            id="selected-work-heading"
+            data-i18n="selectedWorkHeading"
+          >
+            Research-led design in practice
           </h2>
 
 
-          <p data-i18n="approachDescription">
-            I look beyond the interface to understand behaviour,
-            context and the real reason a problem exists.
+          <p data-i18n="selectedWorkIntro">
+            A closer look at how research, interaction design and
+            accessibility come together in real product decisions.
           </p>
 
+        </header>
 
-          <div class="mini-insights">
+
+        <article class="featured-case">
 
 
-            <div class="mini-insight">
+          <div class="case-image">
+
+            <img
+              src="attendance_kiosk_interface_states.png"
+              alt="Final interface states for the Elysian Fields Attendance Kiosk"
+              data-i18n-alt="elysianAlt"
+              loading="lazy"
+            />
+
+          </div>
+
+
+          <div class="case-content">
+
+
+            <div
+              class="case-number"
+              aria-hidden="true"
+            >
+              01
+            </div>
+
+
+            <h3>
+              Elysian Fields Attendance Kiosk
+            </h3>
+
+
+            <p
+              class="case-description"
+              data-i18n="elysianDescription"
+            >
+              An RFID-enabled kiosk designed to reduce morning
+              check-in friction and support clear, inclusive
+              school workflows.
+            </p>
+
+
+            <div
+              class="case-tags"
+              data-no-read
+            >
 
               <span
-                class="insight-dot"
-                aria-hidden="true"
-              ></span>
+                class="case-tag"
+                data-i18n="uxResearch"
+              >
+                UX Research
+              </span>
 
-              <span data-i18n="insightResearch">
-                Research the real problem
+
+              <span
+                class="case-tag"
+                data-i18n="interactionDesign"
+              >
+                Interaction Design
+              </span>
+
+
+              <span
+                class="case-tag"
+                data-i18n="accessibilityField"
+              >
+                Accessibility
               </span>
 
             </div>
 
 
-            <div class="mini-insight">
+            <a
+              href="elysian-fields.html"
+              class="case-link"
+              data-no-read
+            >
 
-              <span
-                class="insight-dot"
-                aria-hidden="true"
-              ></span>
-
-              <span data-i18n="insightCognitive">
-                Reduce cognitive load
+              <span data-i18n="viewCaseStudy">
+                View Case Study
               </span>
 
-            </div>
-
-
-            <div class="mini-insight">
-
-              <span
-                class="insight-dot"
-                aria-hidden="true"
-              ></span>
-
-              <span data-i18n="insightAccessibility">
-                Design accessibly from the start
+              <span aria-hidden="true">
+                →
               </span>
 
-            </div>
+            </a>
 
           </div>
 
         </article>
 
-      </div>
-
-    </section>
+      </section>
 
 
-    <!-- =====================================
-         FOUNDATION
-    ====================================== -->
+      <!-- =================================
+           MY PROCESS + ABOUT
+      ================================== -->
 
-    <section
-      class="foundation-strip readable-content"
-      aria-label="Professional foundation"
-      data-i18n-aria-label="professionalFoundation"
-    >
-
-      <div
-        class="foundation-item"
-        data-i18n="psychology"
+      <section
+        class="home-info readable-content"
+        aria-label="My process and background"
+        data-i18n-aria-label="homeInfoLabel"
       >
-        Psychology
-      </div>
 
 
-      <div
-        class="foundation-item"
-        data-i18n="cognitiveScience"
-      >
-        Cognitive Science
-      </div>
+        <!-- MY PROCESS -->
 
+        <article class="info-card process">
 
-      <div
-        class="foundation-item"
-        data-i18n="uxResearch"
-      >
-        UX Research
-      </div>
-
-
-      <div
-        class="foundation-item"
-        data-i18n="accessibility"
-      >
-        Accessibility
-      </div>
-
-    </section>
-
-
-    <!-- =====================================
-         SELECTED WORK
-    ====================================== -->
-
-    <section
-      class="readable-content"
-      aria-labelledby="featured-heading"
-    >
-
-      <div class="section-intro">
-
-        <div class="eyebrow">
-
-          <span
-            class="eyebrow-line"
-            aria-hidden="true"
-          ></span>
-
-          <span data-i18n="selectedWork">
-            Selected Work
-          </span>
-
-        </div>
-
-
-        <h2
-          id="featured-heading"
-          data-i18n="featuredHeading"
-        >
-          Research-led design grounded in real behaviour.
-        </h2>
-
-
-        <p data-i18n="featuredIntro">
-          A closer look at how research findings can reshape
-          the direction of a product when the original assumption
-          turns out to be wrong.
-        </p>
-
-      </div>
-
-
-      <!-- FEATURED PROJECT -->
-
-      <article class="featured-project">
-
-
-        <div>
 
           <div
-            class="project-label"
-            data-i18n="featuredCaseStudy"
+            class="info-number"
+            aria-hidden="true"
           >
-            Featured Case Study
+            01
           </div>
 
 
-          <h3>
-            Elysian Fields Attendance Kiosk
-          </h3>
+          <h2 data-i18n="myProcess">
+            My Process
+          </h2>
 
 
-          <p data-i18n="elysianDescription">
-            I researched an existing staff attendance process and
-            discovered that the central problem was not resistance
-            to the system, but delayed, memory-based logging.
-            The resulting solution moved away from a mobile concept
-            toward an RFID-enabled shared kiosk placed in the natural
-            arrival path.
+          <p data-i18n="processText">
+            I begin by understanding context and behaviour,
+            define the real problem, explore possible solutions,
+            and test whether the design actually works.
           </p>
 
 
-          <div class="project-benefits">
-
-
-            <div class="benefit">
-
-              <span
-                class="benefit-icon"
-                aria-hidden="true"
-              >
-                ✓
-              </span>
-
-              <span data-i18n="elysianBenefitOne">
-                Research changed the original product direction.
-              </span>
-
-            </div>
-
-
-            <div class="benefit">
-
-              <span
-                class="benefit-icon"
-                aria-hidden="true"
-              >
-                ✓
-              </span>
-
-              <span data-i18n="elysianBenefitTwo">
-                RFID identification reduced interaction effort.
-              </span>
-
-            </div>
-
-
-            <div class="benefit">
-
-              <span
-                class="benefit-icon"
-                aria-hidden="true"
-              >
-                ✓
-              </span>
-
-              <span data-i18n="elysianBenefitThree">
-                Accessibility was considered in the physical and
-                digital experience.
-              </span>
-
-            </div>
-
+          <div
+            class="process-flow"
+            data-i18n="processFlow"
+          >
+            Research → Define → Design → Test
           </div>
 
 
           <a
-            href="elysian-fields.html"
-            class="case-button"
-            data-i18n="viewCaseStudy"
+            href="case-studies.html"
+            class="info-link"
             data-no-read
           >
-            View Case Study
+
+            <span data-i18n="exploreWork">
+              Explore my work
+            </span>
+
+            &nbsp;→
+
+          </a>
+
+        </article>
+
+
+        <!-- ABOUT -->
+
+        <article class="info-card about">
+
+
+          <div
+            class="info-number"
+            aria-hidden="true"
+          >
+            02
+          </div>
+
+
+          <h2 data-i18n="aboutMe">
+            About Me
+          </h2>
+
+
+          <p data-i18n="aboutCardText">
+            My background in Psychology and Cognitive Science
+            helps me connect behavioural understanding with
+            practical interaction design.
+          </p>
+
+
+          <a
+            href="about.html"
+            class="info-link"
+            data-no-read
+          >
+
+            <span data-i18n="readStory">
+              Read my story
+            </span>
+
+            &nbsp;→
+
+          </a>
+
+        </article>
+
+      </section>
+
+
+      <!-- =================================
+           CTA
+      ================================== -->
+
+      <section
+        class="cta readable-content"
+        aria-labelledby="cta-heading"
+      >
+
+
+        <div>
+
+
+          <div
+            class="cta-label"
+            data-i18n="workTogether"
+          >
+            Let’s Work Together
+          </div>
+
+
+          <h2
+            id="cta-heading"
+            data-i18n="ctaHeading"
+          >
+            Interested in thoughtful, accessible design?
+          </h2>
+
+
+          <p data-i18n="ctaText">
+            I’m open to UX research, interaction design,
+            product design opportunities, and meaningful collaborations.
+          </p>
+
+        </div>
+
+
+        <div
+          class="cta-actions"
+          data-no-read
+        >
+
+          <a
+            class="btn-primary"
+            href="contact.html"
+            data-i18n="letsConnect"
+          >
+            Let’s Connect
+          </a>
+
+
+          <a
+            class="btn-secondary"
+            href="case-studies.html"
+            data-i18n="viewCaseStudies"
+          >
+            View Case Studies
           </a>
 
         </div>
 
+      </section>
 
-        <div class="project-image">
-
-          <img
-            src="attendance_kiosk_interface_states.png"
-            alt="Elysian Fields attendance kiosk interface showing RFID identification, attendance confirmation and reset states"
-            data-i18n-alt="elysianImageAlt"
-            loading="lazy"
-          />
-
-        </div>
-
-      </article>
-
-    </section>
+    </main>
 
 
     <!-- =====================================
-         OVERVIEW CARDS
+         FOOTER
     ====================================== -->
 
-    <section
-      class="overview-grid readable-content"
-      aria-label="Portfolio overview"
-      data-i18n-aria-label="portfolioOverview"
-    >
+    <footer data-no-read>
 
 
-      <article class="overview-card">
+      <div>
 
-        <div
-          class="card-number"
-          aria-hidden="true"
-        >
-          01
+        <div class="footer-brand">
+          Linda Laryea
         </div>
 
 
-        <h3 data-i18n="myProcess">
-          My Process
-        </h3>
+        <div data-i18n="footerCopy">
+          © 2026 Linda Laryea. Designed with research,
+          empathy and accessibility in mind.
+        </div>
+
+      </div>
 
 
-        <p data-i18n="processDescription">
-          I begin by understanding context and behaviour,
-          define the real problem, explore possible solutions,
-          and test whether the design actually works.
-        </p>
+      <div class="footer-links">
+
+        <a
+          href="index.html"
+          data-i18n="home"
+        >
+          Home
+        </a>
 
 
         <a
           href="case-studies.html"
-          data-i18n="exploreWork"
-          data-no-read
+          data-i18n="caseStudies"
         >
-          Explore my work →
+          Case Studies
         </a>
-
-      </article>
-
-
-      <article class="overview-card">
-
-        <div
-          class="card-number"
-          aria-hidden="true"
-        >
-          02
-        </div>
-
-
-        <h3 data-i18n="whatIDo">
-          What I Do
-        </h3>
-
-
-        <p data-i18n="whatIDoDescription">
-          UX research, user interviews, usability testing,
-          journey mapping, interaction design, prototyping
-          and accessibility-focused product thinking.
-        </p>
-
-
-        <a
-          href="case-studies.html"
-          data-i18n="seeCaseStudies"
-          data-no-read
-        >
-          See case studies →
-        </a>
-
-      </article>
-
-
-      <article class="overview-card">
-
-        <div
-          class="card-number"
-          aria-hidden="true"
-        >
-          03
-        </div>
-
-
-        <h3 data-i18n="aboutMe">
-          About Me
-        </h3>
-
-
-        <p data-i18n="aboutDescription">
-          My background in Psychology and Cognitive Science
-          helps me connect behavioural understanding with
-          practical interaction design.
-        </p>
 
 
         <a
           href="about.html"
-          data-i18n="readMyStory"
-          data-no-read
+          data-i18n="aboutMe"
         >
-          Read my story →
+          About Me
         </a>
 
-      </article>
 
-    </section>
-
-
-    <!-- =====================================
-         CTA
-    ====================================== -->
-
-    <section
-      class="cta readable-content"
-      aria-labelledby="cta-heading"
-    >
-
-      <div>
-
-        <h2
-          id="cta-heading"
-          data-i18n="ctaHeading"
+        <a
+          href="cv.html"
+          data-i18n="cv"
         >
-          Let’s create something meaningful.
-        </h2>
-
-
-        <p data-i18n="ctaDescription">
-          I’m interested in UX research, interaction design
-          and thoughtful digital products where accessibility
-          and user understanding matter.
-        </p>
+          CV
+        </a>
 
       </div>
 
+    </footer>
 
-      <a
-        href="contact.html"
-        data-i18n="letsConnect"
-        data-no-read
-      >
-        Let’s Connect
-      </a>
-
-    </section>
-
-  </main>
-
-
-  <!-- =====================================
-       FOOTER
-  ====================================== -->
-
-  <footer
-    class="site-shell"
-    data-no-read
-  >
-
-    <div>
-
-      <div class="footer-brand">
-        Linda Laryea
-      </div>
-
-
-      <div
-        class="footer-copy"
-        data-i18n="footerCopy"
-      >
-        Designed with research, empathy and accessibility in mind.
-      </div>
-
-    </div>
-
-
-    <div class="footer-links">
-
-      <a
-        href="mailto:linlaryea2@gmail.com"
-        data-i18n="email"
-      >
-        Email
-      </a>
-
-
-      <a
-        href="https://www.linkedin.com/in/linda-laryea-7bb2366b/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        LinkedIn
-
-        <span class="sr-only">
-          opens in a new tab
-        </span>
-
-      </a>
-
-    </div>
-
-  </footer>
+  </div>
 
 
   <!-- =====================================
@@ -3469,6 +3458,13 @@
 
       en: {
 
+        pageTitle:
+          "Linda Laryea | UX Researcher & Interaction Designer",
+
+        metaDescription:
+          "Linda Laryea — UX Researcher and Interaction Designer creating clear, accessible digital experiences through research-led design.",
+
+
         skip:
           "Skip to main content",
 
@@ -3477,6 +3473,13 @@
 
         chooseLanguage:
           "Choose language",
+
+        switchEnglish:
+          "Switch to English",
+
+        switchGerman:
+          "Switch to German",
+
 
         home:
           "Home",
@@ -3492,6 +3495,7 @@
 
         letsConnect:
           "Let’s Connect",
+
 
         accessibility:
           "Accessibility",
@@ -3542,47 +3546,37 @@
           "Reset accessibility settings",
 
 
-        /* HERO */
-
-        heroIntro:
-          "Hi, I’m Linda Laryea",
-
         heroTitleMain:
-          "I research where users struggle, then design",
+          "Where users struggle, I design",
 
         heroTitleHighlight:
           "simpler ways forward.",
 
-        heroDescription:
-          "UX Researcher and Interaction Designer focused on turning user insights into clear, accessible digital experiences.",
-
-
         viewCaseStudies:
           "View Case Studies",
 
-        designPrinciplesOverview:
-          "Design principles overview",
 
         designApproach:
-          "My design approach",
+          "My Design Approach",
 
-        understandBeforeDesign:
+        approachTitle:
           "Understand before designing.",
 
-        approachDescription:
+        approachText:
           "I look beyond the interface to understand behaviour, context and the real reason a problem exists.",
 
-        insightResearch:
+        approachPointOne:
           "Research the real problem",
 
-        insightCognitive:
+        approachPointTwo:
           "Reduce cognitive load",
 
-        insightAccessibility:
+        approachPointThree:
           "Design accessibly from the start",
 
-        professionalFoundation:
-          "Professional foundation",
+
+        foundationHeading:
+          "A multidisciplinary foundation",
 
         psychology:
           "Psychology",
@@ -3593,77 +3587,70 @@
         uxResearch:
           "UX Research",
 
+        accessibilityField:
+          "Accessibility",
+
+
         selectedWork:
           "Selected Work",
 
-        featuredHeading:
-          "Research-led design grounded in real behaviour.",
+        selectedWorkHeading:
+          "Research-led design in practice",
 
-        featuredIntro:
-          "A closer look at how research findings can reshape the direction of a product when the original assumption turns out to be wrong.",
-
-        featuredCaseStudy:
-          "Featured Case Study",
+        selectedWorkIntro:
+          "A closer look at how research, interaction design and accessibility come together in real product decisions.",
 
         elysianDescription:
-          "I researched an existing staff attendance process and discovered that the central problem was not resistance to the system, but delayed, memory-based logging. The resulting solution moved away from a mobile concept toward an RFID-enabled shared kiosk placed in the natural arrival path.",
+          "An RFID-enabled kiosk designed to reduce morning check-in friction and support clear, inclusive school workflows.",
 
-        elysianBenefitOne:
-          "Research changed the original product direction.",
+        elysianAlt:
+          "Final interface states for the Elysian Fields Attendance Kiosk",
 
-        elysianBenefitTwo:
-          "RFID identification reduced interaction effort.",
-
-        elysianBenefitThree:
-          "Accessibility was considered in the physical and digital experience.",
+        interactionDesign:
+          "Interaction Design",
 
         viewCaseStudy:
           "View Case Study",
 
-        elysianImageAlt:
-          "Elysian Fields attendance kiosk interface showing RFID identification, attendance confirmation and reset states",
 
-        portfolioOverview:
-          "Portfolio overview",
+        homeInfoLabel:
+          "My process and background",
 
         myProcess:
           "My Process",
 
-        processDescription:
+        processText:
           "I begin by understanding context and behaviour, define the real problem, explore possible solutions, and test whether the design actually works.",
 
+        processFlow:
+          "Research → Define → Design → Test",
+
         exploreWork:
-          "Explore my work →",
+          "Explore my work",
 
-        whatIDo:
-          "What I Do",
-
-        whatIDoDescription:
-          "UX research, user interviews, usability testing, journey mapping, interaction design, prototyping and accessibility-focused product thinking.",
-
-        seeCaseStudies:
-          "See case studies →",
-
-        aboutDescription:
+        aboutCardText:
           "My background in Psychology and Cognitive Science helps me connect behavioural understanding with practical interaction design.",
 
-        readMyStory:
-          "Read my story →",
+        readStory:
+          "Read my story",
+
+
+        workTogether:
+          "Let’s Work Together",
 
         ctaHeading:
-          "Let’s create something meaningful.",
+          "Interested in thoughtful, accessible design?",
 
-        ctaDescription:
-          "I’m interested in UX research, interaction design and thoughtful digital products where accessibility and user understanding matter.",
+        ctaText:
+          "I’m open to UX research, interaction design, product design opportunities, and meaningful collaborations.",
+
 
         footerCopy:
-          "Designed with research, empathy and accessibility in mind.",
-
-        email:
-          "Email",
+          "© 2026 Linda Laryea. Designed with research, empathy and accessibility in mind.",
 
         backToTop:
           "Back to top",
+
 
         languageChanged:
           "Language changed to English.",
@@ -3703,6 +3690,13 @@
 
       de: {
 
+        pageTitle:
+          "Linda Laryea | UX Researcherin & Interaction Designerin",
+
+        metaDescription:
+          "Linda Laryea — UX Researcherin und Interaction Designerin für klare, barrierefreie und research-basierte digitale Erlebnisse.",
+
+
         skip:
           "Zum Hauptinhalt springen",
 
@@ -3711,6 +3705,13 @@
 
         chooseLanguage:
           "Sprache auswählen",
+
+        switchEnglish:
+          "Auf Englisch wechseln",
+
+        switchGerman:
+          "Auf Deutsch wechseln",
+
 
         home:
           "Startseite",
@@ -3726,6 +3727,7 @@
 
         letsConnect:
           "Kontakt aufnehmen",
+
 
         accessibility:
           "Barrierefreiheit",
@@ -3776,47 +3778,37 @@
           "Barrierefreiheit zurücksetzen",
 
 
-        /* HERO */
-
-        heroIntro:
-          "Hi, ich bin Linda Laryea",
-
         heroTitleMain:
-          "Ich erforsche, wo Nutzer:innen auf Hürden stoßen, und gestalte",
+          "Wo Nutzer:innen auf Hürden stoßen, gestalte ich",
 
         heroTitleHighlight:
-          "einfachere Wege nach vorn.",
-
-        heroDescription:
-          "UX Researcherin und Interaction Designerin mit dem Fokus darauf, Erkenntnisse über Nutzer:innen in klare und barrierefreie digitale Erlebnisse zu übersetzen.",
-
+          "einfachere Wege.",
 
         viewCaseStudies:
           "Fallstudien ansehen",
 
-        designPrinciplesOverview:
-          "Überblick über meine Designprinzipien",
 
         designApproach:
           "Mein Designansatz",
 
-        understandBeforeDesign:
+        approachTitle:
           "Verstehen, bevor ich gestalte.",
 
-        approachDescription:
-          "Ich betrachte nicht nur die Benutzeroberfläche, sondern versuche Verhalten, Kontext und die tatsächliche Ursache eines Problems zu verstehen.",
+        approachText:
+          "Ich schaue über die Oberfläche hinaus, um Verhalten, Kontext und den eigentlichen Grund eines Problems zu verstehen.",
 
-        insightResearch:
+        approachPointOne:
           "Das eigentliche Problem erforschen",
 
-        insightCognitive:
+        approachPointTwo:
           "Kognitive Belastung reduzieren",
 
-        insightAccessibility:
+        approachPointThree:
           "Barrierefreiheit von Anfang an mitdenken",
 
-        professionalFoundation:
-          "Professionelle Grundlagen",
+
+        foundationHeading:
+          "Ein multidisziplinäres Fundament",
 
         psychology:
           "Psychologie",
@@ -3827,77 +3819,70 @@
         uxResearch:
           "UX Research",
 
+        accessibilityField:
+          "Barrierefreiheit",
+
+
         selectedWork:
           "Ausgewählte Arbeiten",
 
-        featuredHeading:
-          "Research-basiertes Design, das sich am realen Verhalten orientiert.",
+        selectedWorkHeading:
+          "Research-basierte Gestaltung in der Praxis",
 
-        featuredIntro:
-          "Ein Beispiel dafür, wie Forschung die Richtung eines Produkts verändern kann, wenn sich die ursprüngliche Annahme als falsch herausstellt.",
-
-        featuredCaseStudy:
-          "Ausgewählte Fallstudie",
+        selectedWorkIntro:
+          "Ein Einblick darin, wie Research, Interaction Design und Barrierefreiheit in konkreten Produktentscheidungen zusammenkommen.",
 
         elysianDescription:
-          "Ich untersuchte einen bestehenden Prozess zur Anwesenheitserfassung von Mitarbeitenden und stellte fest, dass nicht die Ablehnung des Systems das zentrale Problem war, sondern die verzögerte, erinnerungsbasierte Dokumentation. Dadurch entwickelte sich die Lösung von einem mobilen Konzept zu einem gemeinsam genutzten RFID-Kiosk im natürlichen Ankunftsweg.",
+          "Ein RFID-gestützter Kiosk, der Reibung beim morgendlichen Einchecken reduziert und klare, inklusive Abläufe in der Schule unterstützt.",
 
-        elysianBenefitOne:
-          "Die Forschung veränderte die ursprüngliche Produktrichtung.",
+        elysianAlt:
+          "Finale Interface-Zustände des Elysian Fields Anwesenheitskiosks",
 
-        elysianBenefitTwo:
-          "RFID-Identifikation reduzierte den Interaktionsaufwand.",
-
-        elysianBenefitThree:
-          "Barrierefreiheit wurde sowohl im physischen als auch im digitalen Nutzungserlebnis berücksichtigt.",
+        interactionDesign:
+          "Interaction Design",
 
         viewCaseStudy:
           "Fallstudie ansehen",
 
-        elysianImageAlt:
-          "Benutzeroberfläche des Elysian Fields Anwesenheitskiosks mit RFID-Identifikation, Anwesenheitsbestätigung und automatischem Zurücksetzen",
 
-        portfolioOverview:
-          "Portfolio-Überblick",
+        homeInfoLabel:
+          "Mein Prozess und mein Hintergrund",
 
         myProcess:
           "Mein Prozess",
 
-        processDescription:
-          "Ich beginne damit, Kontext und Verhalten zu verstehen, definiere das eigentliche Problem, untersuche mögliche Lösungen und teste anschließend, ob das Design tatsächlich funktioniert.",
+        processText:
+          "Ich beginne damit, Kontext und Verhalten zu verstehen, definiere das eigentliche Problem, entwickle mögliche Lösungen und teste, ob das Design tatsächlich funktioniert.",
+
+        processFlow:
+          "Research → Definieren → Gestalten → Testen",
 
         exploreWork:
-          "Meine Arbeiten ansehen →",
+          "Meine Arbeiten ansehen",
 
-        whatIDo:
-          "Was ich mache",
+        aboutCardText:
+          "Mein Hintergrund in Psychologie und Kognitionswissenschaft hilft mir, Verhaltensverständnis mit praktischem Interaction Design zu verbinden.",
 
-        whatIDoDescription:
-          "UX Research, Nutzerinterviews, Usability-Tests, Journey Mapping, Interaction Design, Prototyping und barrierefreies Produktdenken.",
+        readStory:
+          "Mehr über mich",
 
-        seeCaseStudies:
-          "Fallstudien ansehen →",
 
-        aboutDescription:
-          "Mein Hintergrund in Psychologie und Kognitionswissenschaft hilft mir, menschliches Verhalten mit praktischem Interaction Design zu verbinden.",
-
-        readMyStory:
-          "Mehr über mich →",
+        workTogether:
+          "Zusammenarbeiten",
 
         ctaHeading:
-          "Lass uns etwas Sinnvolles gestalten.",
+          "Interesse an durchdachtem, barrierefreiem Design?",
 
-        ctaDescription:
-          "Ich interessiere mich für UX Research, Interaction Design und durchdachte digitale Produkte, bei denen Barrierefreiheit und echtes Nutzerverständnis eine wichtige Rolle spielen.",
+        ctaText:
+          "Ich bin offen für UX Research, Interaction Design, Produktdesign und sinnvolle Kooperationen.",
+
 
         footerCopy:
-          "Mit Research, Empathie und Barrierefreiheit im Mittelpunkt gestaltet.",
-
-        email:
-          "E-Mail",
+          "© 2026 Linda Laryea. Mit Research, Empathie und Barrierefreiheit im Mittelpunkt gestaltet.",
 
         backToTop:
           "Nach oben",
+
 
         languageChanged:
           "Sprache auf Deutsch geändert.",
@@ -4025,6 +4010,12 @@
       );
 
 
+    const metaDescription =
+      document.getElementById(
+        "metaDescription"
+      );
+
+
     let currentLanguage =
       localStorage.getItem(
         "portfolioLanguage"
@@ -4040,7 +4031,7 @@
 
 
     /* =====================================
-       SCREEN READER ANNOUNCEMENTS
+       ANNOUNCEMENTS
     ====================================== */
 
     function announce(message) {
@@ -4082,6 +4073,18 @@
       localStorage.setItem(
         "portfolioLanguage",
         language
+      );
+
+
+      document.title =
+        translations[language]
+          .pageTitle;
+
+
+      metaDescription.setAttribute(
+        "content",
+        translations[language]
+          .metaDescription
       );
 
 
@@ -4217,21 +4220,27 @@
 
     languageEN.addEventListener(
       "click",
-      () =>
+      () => {
+
         applyLanguage(
           "en",
           true
-        )
+        );
+
+      }
     );
 
 
     languageDE.addEventListener(
       "click",
-      () =>
+      () => {
+
         applyLanguage(
           "de",
           true
-        )
+        );
+
+      }
     );
 
 
@@ -4323,7 +4332,9 @@
         if (
           accessibilityPanel.hidden
         ) {
+
           return;
+
         }
 
 
@@ -4496,7 +4507,8 @@
 
     function applyMotionPreference(
       enabled,
-      announceChange = false
+      announceChange = false,
+      persist = true
     ) {
 
       document.body.classList.toggle(
@@ -4509,12 +4521,16 @@
         enabled;
 
 
-      localStorage.setItem(
-        "portfolioReducedMotion",
-        enabled
-          ? "true"
-          : "false"
-      );
+      if (persist) {
+
+        localStorage.setItem(
+          "portfolioReducedMotion",
+          enabled
+            ? "true"
+            : "false"
+        );
+
+      }
 
 
       if (announceChange) {
@@ -4538,6 +4554,7 @@
 
         applyMotionPreference(
           motionToggle.checked,
+          true,
           true
         );
 
@@ -4589,7 +4606,7 @@
 
           clone
             .querySelectorAll(
-              "[data-no-read], img, button"
+              "[data-no-read], img, button, [aria-hidden='true']"
             )
             .forEach(
               element => {
@@ -4748,7 +4765,9 @@
     ) {
 
       if (!speechSupported) {
+
         return;
+
       }
 
 
@@ -4785,8 +4804,11 @@
 
     readStop.addEventListener(
       "click",
-      () =>
-        stopReading(true)
+      () => {
+
+        stopReading(true);
+
+      }
     );
 
 
@@ -4808,11 +4830,6 @@
         );
 
 
-        applyMotionPreference(
-          false
-        );
-
-
         stopReading(
           false
         );
@@ -4830,6 +4847,19 @@
 
         localStorage.removeItem(
           "portfolioReducedMotion"
+        );
+
+
+        const systemReducedMotion =
+          window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches;
+
+
+        applyMotionPreference(
+          systemReducedMotion,
+          false,
+          false
         );
 
 
@@ -4895,7 +4925,7 @@
 
 
     /* =====================================
-       LOAD SAVED PREFERENCES
+       LOAD SAVED SETTINGS
     ====================================== */
 
     function loadPreferences() {
@@ -4909,8 +4939,7 @@
       const savedTextSize =
         localStorage.getItem(
           "portfolioTextSize"
-        ) ||
-        "default";
+        ) || "default";
 
 
       applyTextSize(
@@ -4942,19 +4971,23 @@
 
         applyMotionPreference(
           savedMotion === "true",
+          false,
           false
         );
 
       } else {
 
-        const systemPrefersReducedMotion =
+        const systemReducedMotion =
           window.matchMedia(
             "(prefers-reduced-motion: reduce)"
           ).matches;
 
 
-        motionToggle.checked =
-          systemPrefersReducedMotion;
+        applyMotionPreference(
+          systemReducedMotion,
+          false,
+          false
+        );
 
       }
 
@@ -4965,7 +4998,43 @@
 
 
     /* =====================================
-       STOP SPEECH WHEN LEAVING PAGE
+       OS MOTION PREFERENCE
+    ====================================== */
+
+    const motionMediaQuery =
+      window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      );
+
+
+    motionMediaQuery.addEventListener(
+      "change",
+      event => {
+
+        const savedMotion =
+          localStorage.getItem(
+            "portfolioReducedMotion"
+          );
+
+
+        if (
+          savedMotion === null
+        ) {
+
+          applyMotionPreference(
+            event.matches,
+            false,
+            false
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =====================================
+       STOP SPEECH WHEN LEAVING
     ====================================== */
 
     window.addEventListener(
