@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8" />
 
   <meta
@@ -13,7 +12,7 @@
   <meta
     id="metaDescription"
     name="description"
-    content="About Linda Laryea, UX Researcher and Interaction Designer with a background in Cognitive Science and Psychology."
+    content="About Linda Laryea, a UX Researcher and Interaction Designer with a background in Psychology and Cognitive Science."
   />
 
   <link
@@ -39,6 +38,7 @@
       --soft: #FFF7FB;
       --soft-pink: #FDE7F1;
       --soft-purple: #F4EEFA;
+      --green-soft: #ECFDF3;
 
       --magenta: #A80B63;
       --magenta-dark: #83074C;
@@ -50,8 +50,6 @@
       --muted: #6B7280;
 
       --border: #F2D8E7;
-
-      --green-soft: #ECFDF3;
 
       --focus: #111827;
 
@@ -144,7 +142,7 @@
 
 
     /* =====================================
-       FOCUS
+       KEYBOARD FOCUS
     ====================================== */
 
     :focus-visible {
@@ -228,8 +226,8 @@
     ====================================== */
 
     .navbar {
-      padding:
-        0 0 22px;
+      padding-bottom:
+        22px;
 
       display:
         flex;
@@ -286,7 +284,7 @@
         center;
 
       gap:
-        34px;
+        32px;
 
       font-size:
         0.875rem;
@@ -349,25 +347,19 @@
       border-radius:
         12px;
 
-      font-weight:
-        800;
-
       border-bottom:
-        none !important;
+        0 !important;
     }
 
 
     .nav-button:hover {
       background:
         var(--magenta-dark);
-
-      color:
-        #FFFFFF !important;
     }
 
 
     /* =====================================
-       ACCESSIBILITY TOOLS
+       NAV ACCESSIBILITY TOOLS
     ====================================== */
 
     .nav-tools {
@@ -449,6 +441,9 @@
       min-height:
         44px;
 
+      padding:
+        0 12px;
+
       display:
         inline-flex;
 
@@ -460,9 +455,6 @@
 
       gap:
         7px;
-
-      padding:
-        0 12px;
 
       background:
         var(--surface);
@@ -552,8 +544,8 @@
 
 
     .a11y-panel-header h2 {
-      margin:
-        0 0 3px;
+      margin-bottom:
+        3px;
 
       font-size:
         1.1rem;
@@ -561,9 +553,6 @@
 
 
     .a11y-panel-header p {
-      margin:
-        0;
-
       color:
         var(--muted);
 
@@ -621,9 +610,6 @@
       margin-bottom:
         10px;
 
-      color:
-        var(--dark);
-
       font-size:
         0.8rem;
 
@@ -631,8 +617,6 @@
         800;
     }
 
-
-    /* TEXT SIZE */
 
     .text-size-controls {
       display:
@@ -678,8 +662,6 @@
         var(--magenta);
     }
 
-
-    /* TOGGLES */
 
     .toggle-row {
       min-height:
@@ -765,9 +747,6 @@
 
       border-radius:
         999px;
-
-      transition:
-        background 0.2s ease;
     }
 
 
@@ -829,8 +808,6 @@
     }
 
 
-    /* READ ALOUD */
-
     .read-controls {
       display:
         grid;
@@ -864,12 +841,6 @@
 
       font-weight:
         800;
-    }
-
-
-    .read-button:hover {
-      background:
-        var(--soft-purple);
     }
 
 
@@ -922,7 +893,7 @@
 
 
     /* =====================================
-       SHARED ORIGINAL DESIGN
+       SHARED
     ====================================== */
 
     .gold-line {
@@ -1041,8 +1012,7 @@
         #FFFFFF;
 
       border:
-        2px solid
-        rgba(255, 255, 255, 0.55);
+        2px solid rgba(255, 255, 255, 0.55);
     }
 
 
@@ -1061,7 +1031,7 @@
         grid;
 
       grid-template-columns:
-        1.25fr 0.75fr;
+        1.18fr 0.82fr;
 
       gap:
         64px;
@@ -1070,7 +1040,7 @@
         center;
 
       background:
-        #FFFFFF;
+        var(--surface);
 
       border:
         1px solid var(--border);
@@ -1085,7 +1055,7 @@
 
     .hero h1 {
       max-width:
-        720px;
+        760px;
 
       margin-bottom:
         28px;
@@ -1190,8 +1160,14 @@
     ====================================== */
 
     .profile-card {
+      width:
+        100%;
+
       padding:
-        34px;
+        36px 28px;
+
+      text-align:
+        center;
 
       background:
         var(--soft);
@@ -1202,36 +1178,42 @@
       border-radius:
         28px;
 
-      text-align:
-        center;
-
       box-shadow:
         0 16px 40px
         rgba(24, 39, 75, 0.05);
     }
 
 
+    /*
+      REVIEW UPDATE:
+      Larger portrait so the About page
+      feels more personal and balanced.
+    */
+
     .portrait-wrap {
+      width:
+        240px;
+
+      height:
+        240px;
+
+      margin:
+        0 auto 26px;
+
       position:
         relative;
 
-      width:
-        180px;
-
-      height:
-        180px;
-
-      margin:
-        0 auto 22px;
-
       overflow:
         hidden;
+
+      background:
+        var(--soft-pink);
 
       border:
         1px solid var(--border);
 
       border-radius:
-        28px;
+        30px;
 
       box-shadow:
         0 14px 34px
@@ -1247,16 +1229,16 @@
         absolute;
 
       width:
-        150px;
+        190px;
 
       height:
-        150px;
-
-      top:
-        -16px;
+        190px;
 
       left:
-        15px;
+        25px;
+
+      top:
+        -20px;
 
       z-index:
         0;
@@ -1284,15 +1266,21 @@
 
       object-fit:
         cover;
+
+      object-position:
+        center;
+
+      border-radius:
+        30px;
     }
 
 
     .profile-card h2 {
       margin-bottom:
-        6px;
+        8px;
 
       font-size:
-        1.875rem;
+        1.9rem;
 
       line-height:
         1.1;
@@ -1300,34 +1288,22 @@
 
 
     .profile-role {
-      margin-bottom:
-        12px;
-
       color:
         var(--magenta);
 
       font-size:
-        0.9375rem;
+        0.95rem;
 
       font-weight:
         900;
-    }
 
-
-    .profile-tags {
-      color:
-        var(--muted);
-
-      font-size:
-        0.875rem;
-
-      font-weight:
-        700;
+      line-height:
+        1.5;
     }
 
 
     /* =====================================
-       STORY GRID
+       STORY / VALUES / SKILLS
     ====================================== */
 
     .story-grid {
@@ -1353,7 +1329,7 @@
         28px;
 
       background:
-        #FFFFFF;
+        var(--surface);
 
       border:
         1px solid var(--border);
@@ -1368,6 +1344,9 @@
 
 
     .story-heading {
+      margin-bottom:
+        26px;
+
       display:
         flex;
 
@@ -1376,9 +1355,6 @@
 
       gap:
         14px;
-
-      margin-bottom:
-        26px;
     }
 
 
@@ -1639,7 +1615,7 @@
         hidden;
 
       background:
-        #FFFFFF;
+        var(--surface);
 
       border:
         1px solid var(--border);
@@ -1795,14 +1771,14 @@
       height:
         38px;
 
+      margin-bottom:
+        14px;
+
       display:
         grid;
 
       place-items:
         center;
-
-      margin-bottom:
-        14px;
 
       background:
         var(--magenta);
@@ -2041,7 +2017,7 @@
         grid;
 
       grid-template-columns:
-        1fr auto 1fr;
+        1fr auto;
 
       gap:
         24px;
@@ -2078,6 +2054,9 @@
 
       justify-content:
         flex-end;
+
+      flex-wrap:
+        wrap;
 
       gap:
         24px;
@@ -2200,7 +2179,7 @@
       --surface: #FFFFFF;
 
       --soft: #FFFFFF;
-      --soft-pink: #FFF1F7;
+      --soft-pink: #FFF2F8;
       --soft-purple: #F4F2FF;
 
       --magenta: #7B0048;
@@ -2243,22 +2222,19 @@
 
 
     body.high-contrast
-    .highlight-note {
-      color:
-        #000000;
-    }
-
-
-    body.high-contrast
     .nav-button,
-
-    body.high-contrast
-    .btn-primary,
 
     body.high-contrast
     .back-to-top {
       border:
         2px solid #000000;
+    }
+
+
+    body.high-contrast
+    .highlight-note {
+      color:
+        #000000;
     }
 
 
@@ -2381,16 +2357,25 @@
 
       .hero {
         padding:
-          36px 26px;
+          36px 28px;
       }
 
 
       .profile-card {
-        width:
-          100%;
-
         max-width:
-          480px;
+          560px;
+
+        justify-self:
+          center;
+      }
+
+
+      .portrait-wrap {
+        width:
+          250px;
+
+        height:
+          250px;
       }
 
 
@@ -2411,29 +2396,14 @@
 
 
       footer {
-        display:
-          flex;
-
-        flex-direction:
-          column;
-
-        align-items:
-          flex-start;
-
-        gap:
-          18px;
+        grid-template-columns:
+          1fr;
       }
 
 
       .footer-links {
         justify-content:
           flex-start;
-
-        flex-wrap:
-          wrap;
-
-        gap:
-          12px 18px;
       }
 
     }
@@ -2458,9 +2428,6 @@
 
 
       .nav-links {
-        flex-wrap:
-          wrap;
-
         gap:
           10px 18px;
       }
@@ -2489,9 +2456,33 @@
     @media
     (max-width: 640px) {
 
+      .hero {
+        padding:
+          30px 22px;
+      }
+
+
       .hero h1 {
         font-size:
           2.5rem;
+      }
+
+
+      .hero-copy {
+        font-size:
+          1rem;
+      }
+
+
+      .portrait-wrap {
+        width:
+          min(240px, 100%);
+
+        height:
+          auto;
+
+        aspect-ratio:
+          1 / 1;
       }
 
 
@@ -2562,6 +2553,7 @@
         data-i18n-aria-label="mainNavigation"
       >
 
+
         <a
           href="index.html"
           aria-label="Linda Laryea portfolio home"
@@ -2596,8 +2588,8 @@
 
 
             <a
-              class="active"
               href="about.html"
+              class="active"
               aria-current="page"
               data-i18n="aboutMe"
             >
@@ -2614,8 +2606,8 @@
 
 
             <a
-              class="nav-button"
               href="contact.html"
+              class="nav-button"
               data-i18n="letsConnect"
             >
               Let’s Connect
@@ -2623,8 +2615,6 @@
 
           </div>
 
-
-          <!-- LANGUAGE + ACCESSIBILITY -->
 
           <div class="nav-tools">
 
@@ -2734,8 +2724,6 @@
       </div>
 
 
-      <!-- TEXT SIZE -->
-
       <div class="a11y-group">
 
         <span
@@ -2790,8 +2778,6 @@
       </div>
 
 
-      <!-- CONTRAST -->
-
       <div class="a11y-group">
 
         <div class="toggle-row">
@@ -2801,7 +2787,6 @@
             <strong data-i18n="highContrast">
               High contrast
             </strong>
-
 
             <span data-i18n="highContrastDescription">
               Increase visual contrast.
@@ -2831,8 +2816,6 @@
       </div>
 
 
-      <!-- MOTION -->
-
       <div class="a11y-group">
 
         <div class="toggle-row">
@@ -2842,7 +2825,6 @@
             <strong data-i18n="reduceMotion">
               Reduce motion
             </strong>
-
 
             <span data-i18n="reduceMotionDescription">
               Minimise animation and movement.
@@ -2871,8 +2853,6 @@
 
       </div>
 
-
-      <!-- READ ALOUD -->
 
       <div class="a11y-group">
 
@@ -2920,8 +2900,6 @@
       </div>
 
 
-      <!-- RESET -->
-
       <div class="a11y-group">
 
         <button
@@ -2957,7 +2935,9 @@
         aria-labelledby="about-heading"
       >
 
+
         <div>
+
 
           <div class="eyebrow-row">
 
@@ -2976,6 +2956,9 @@
           </div>
 
 
+          <!-- REVIEW UPDATE:
+               shorter headline -->
+
           <h1 id="about-heading">
 
             <span data-i18n="heroTitleOne">
@@ -2986,24 +2969,24 @@
               class="accent"
               data-i18n="heroHighlight"
             >
-              accessibility
-            </span>
-
-            <span data-i18n="heroTitleTwo">
-              at the centre.
+              accessibility.
             </span>
 
           </h1>
 
+
+          <!-- REVIEW UPDATE:
+               Bachelor first, then Master -->
 
           <p
             class="hero-copy"
             data-i18n="heroCopy"
           >
             I’m a UX Researcher and Interaction Designer with a
-            Master’s degree in Cognitive Science and a Bachelor’s
-            degree in Psychology. My work is shaped by a deep interest
-            in how people think, behave, and interact with digital systems.
+            Bachelor’s degree in Psychology and a Master’s degree
+            in Cognitive Science. My work is shaped by a deep
+            interest in how people think, behave, and interact
+            with digital systems.
           </p>
 
 
@@ -3017,9 +3000,10 @@
             </div>
 
 
-            <div data-i18n="heroNote">
-              My goal is to create digital experiences that feel clear,
-              inclusive, and easy to use for real people in real contexts.
+            <div data-i18n="goalText">
+              My goal is to create digital experiences that feel
+              clear, inclusive, and easy to use for real people
+              in real contexts.
             </div>
 
           </div>
@@ -3027,17 +3011,24 @@
         </div>
 
 
-        <!-- PROFILE -->
+        <!-- =================================
+             PROFILE CARD
+        ================================== -->
 
-        <aside class="profile-card">
+        <aside
+          class="profile-card"
+          aria-label="Linda Laryea profile"
+          data-i18n-aria-label="profileLabel"
+        >
+
 
           <div class="portrait-wrap">
 
             <img
               src="linda-profile.png"
               alt="Portrait of Linda Laryea"
-              data-i18n-alt="portraitAlt"
               class="portrait-photo"
+              data-i18n-alt="portraitAlt"
             />
 
           </div>
@@ -3056,12 +3047,11 @@
           </div>
 
 
-          <div
-            class="profile-tags"
-            data-i18n="profileTags"
-          >
-            Cognitive Science • Psychology • Accessibility
-          </div>
+          <!--
+            REVIEW UPDATE:
+            Repeated Cognitive Science / Psychology /
+            Accessibility line removed.
+          -->
 
         </aside>
 
@@ -3074,12 +3064,12 @@
 
       <section
         class="story-grid readable-content"
-        aria-label="About Linda Laryea"
-        data-i18n-aria-label="aboutSection"
+        aria-label="Background, design values and skills"
+        data-i18n-aria-label="storySectionLabel"
       >
 
 
-        <!-- STORY -->
+        <!-- MY STORY -->
 
         <article class="story-card">
 
@@ -3100,17 +3090,17 @@
           </div>
 
 
-          <p data-i18n="storyOne">
-            My academic journey in Cognitive Science and Psychology
+          <p data-i18n="storyParagraphOne">
+            My academic journey in Psychology and Cognitive Science
             gave me a strong foundation in how people perceive,
             think, learn, and make decisions.
           </p>
 
 
-          <p data-i18n="storyTwo">
+          <p data-i18n="storyParagraphTwo">
             This understanding fuels my passion for creating
-            user-centred designs that are intuitive,
-            accessible, and meaningful.
+            user-centred designs that are intuitive, accessible,
+            and meaningful.
           </p>
 
 
@@ -3124,14 +3114,14 @@
             class="story-closing"
             data-i18n="storyClosing"
           >
-            I believe great design starts with deep empathy
-            and ends with meaningful impact.
+            I believe great design starts with deep empathy and
+            ends with meaningful impact.
           </p>
 
         </article>
 
 
-        <!-- VALUES -->
+        <!-- DESIGN VALUES -->
 
         <article class="story-card">
 
@@ -3164,6 +3154,7 @@
                 ♡
               </div>
 
+
               <div>
 
                 <strong data-i18n="humanCentred">
@@ -3171,8 +3162,8 @@
                 </strong>
 
                 <span data-i18n="humanCentredText">
-                  I design for real human needs,
-                  not just business goals.
+                  I design for real human needs, not just
+                  business goals.
                 </span>
 
               </div>
@@ -3189,6 +3180,7 @@
                 ✣
               </div>
 
+
               <div>
 
                 <strong data-i18n="accessibleByDesign">
@@ -3196,8 +3188,8 @@
                 </strong>
 
                 <span data-i18n="accessibleByDesignText">
-                  I believe everyone deserves equal
-                  access to digital tools.
+                  I believe everyone deserves equal access
+                  to digital tools.
                 </span>
 
               </div>
@@ -3214,6 +3206,7 @@
                 ↗
               </div>
 
+
               <div>
 
                 <strong data-i18n="evidenceBased">
@@ -3221,8 +3214,8 @@
                 </strong>
 
                 <span data-i18n="evidenceBasedText">
-                  I use research and data to inform
-                  better design decisions.
+                  I use research and data to inform better
+                  design decisions.
                 </span>
 
               </div>
@@ -3239,6 +3232,7 @@
                 ✦
               </div>
 
+
               <div>
 
                 <strong data-i18n="clarity">
@@ -3246,8 +3240,8 @@
                 </strong>
 
                 <span data-i18n="clarityText">
-                  I create experiences that are
-                  easy to understand and use.
+                  I create experiences that are easy to
+                  understand and use.
                 </span>
 
               </div>
@@ -3382,7 +3376,7 @@
 
           <p
             class="skill-note"
-            data-i18n="skillsNote"
+            data-i18n="skillNote"
           >
             Combining research, psychology, and visual design
             to create thoughtful digital experiences.
@@ -3401,6 +3395,7 @@
         class="approach readable-content"
         aria-labelledby="approach-heading"
       >
+
 
         <div class="approach-copy">
 
@@ -3430,7 +3425,7 @@
 
             <span
               class="accent"
-              data-i18n="approachHighlight"
+              data-i18n="approachTitleHighlight"
             >
               meaningful design
             </span>
@@ -3493,7 +3488,8 @@
 
             <p data-i18n="defineText">
               I identify the core problem, key user needs,
-              and design opportunities before jumping into solutions.
+              and design opportunities before jumping into
+              solutions.
             </p>
 
           </article>
@@ -3515,8 +3511,9 @@
 
 
             <p data-i18n="designText">
-              I create flows, wireframes, and interfaces that
-              reduce friction and make tasks easier to complete.
+              I create flows, wireframes, and interfaces
+              that reduce friction and make tasks easier
+              to complete.
             </p>
 
           </article>
@@ -3558,8 +3555,8 @@
         aria-labelledby="cta-heading"
       >
 
-        <div class="cta-copy">
 
+        <div class="cta-copy">
 
           <div
             class="cta-label"
@@ -3573,12 +3570,11 @@
             id="cta-heading"
             data-i18n="ctaHeading"
           >
-            Interested in thoughtful,
-            accessible design?
+            Interested in thoughtful, accessible design?
           </h2>
 
 
-          <p data-i18n="ctaCopy">
+          <p data-i18n="ctaText">
             I’m open to UX research, interaction design,
             product design opportunities, and meaningful
             collaborations where human behaviour, clarity,
@@ -3623,6 +3619,7 @@
 
     <footer data-no-read>
 
+
       <div>
 
         <div class="footer-brand">
@@ -3632,13 +3629,10 @@
 
         <div data-i18n="footerCopy">
           © 2026 Linda Laryea. Designed with research,
-          empathy, and accessibility in mind.
+          empathy and accessibility in mind.
         </div>
 
       </div>
-
-
-      <div></div>
 
 
       <div class="footer-links">
@@ -3660,8 +3654,9 @@
 
 
         <a
-          class="active"
           href="about.html"
+          class="active"
+          aria-current="page"
           data-i18n="aboutMe"
         >
           About Me
@@ -3673,14 +3668,6 @@
           data-i18n="cv"
         >
           CV
-        </a>
-
-
-        <a
-          href="contact.html"
-          data-i18n="contact"
-        >
-          Contact
         </a>
 
       </div>
@@ -3712,10 +3699,6 @@
 
   <script>
 
-    /* =====================================
-       TRANSLATIONS
-    ====================================== */
-
     const translations = {
 
       en: {
@@ -3724,7 +3707,8 @@
           "About Me | Linda Laryea",
 
         metaDescription:
-          "About Linda Laryea, UX Researcher and Interaction Designer with a background in Cognitive Science and Psychology.",
+          "About Linda Laryea, a UX Researcher and Interaction Designer with a background in Psychology and Cognitive Science.",
+
 
         skip:
           "Skip to main content",
@@ -3741,6 +3725,7 @@
         switchGerman:
           "Switch to German",
 
+
         home:
           "Home",
 
@@ -3756,8 +3741,6 @@
         letsConnect:
           "Let’s Connect",
 
-        contact:
-          "Contact",
 
         accessibility:
           "Accessibility",
@@ -3807,20 +3790,22 @@
         resetSettings:
           "Reset accessibility settings",
 
+
         heroTitleOne:
           "Designing with empathy, research, and",
 
         heroHighlight:
-          "accessibility",
-
-        heroTitleTwo:
-          "at the centre.",
+          "accessibility.",
 
         heroCopy:
-          "I’m a UX Researcher and Interaction Designer with a Master’s degree in Cognitive Science and a Bachelor’s degree in Psychology. My work is shaped by a deep interest in how people think, behave, and interact with digital systems.",
+          "I’m a UX Researcher and Interaction Designer with a Bachelor’s degree in Psychology and a Master’s degree in Cognitive Science. My work is shaped by a deep interest in how people think, behave, and interact with digital systems.",
 
-        heroNote:
+        goalText:
           "My goal is to create digital experiences that feel clear, inclusive, and easy to use for real people in real contexts.",
+
+
+        profileLabel:
+          "Linda Laryea profile",
 
         portraitAlt:
           "Portrait of Linda Laryea",
@@ -3828,23 +3813,22 @@
         profileRole:
           "UX Researcher & Interaction Designer",
 
-        profileTags:
-          "Cognitive Science • Psychology • Accessibility",
 
-        aboutSection:
-          "About Linda Laryea",
+        storySectionLabel:
+          "Background, design values and skills",
 
         myStory:
           "My Story",
 
-        storyOne:
-          "My academic journey in Cognitive Science and Psychology gave me a strong foundation in how people perceive, think, learn, and make decisions.",
+        storyParagraphOne:
+          "My academic journey in Psychology and Cognitive Science gave me a strong foundation in how people perceive, think, learn, and make decisions.",
 
-        storyTwo:
+        storyParagraphTwo:
           "This understanding fuels my passion for creating user-centred designs that are intuitive, accessible, and meaningful.",
 
         storyClosing:
           "I believe great design starts with deep empathy and ends with meaningful impact.",
+
 
         designValues:
           "My Design Values",
@@ -3873,6 +3857,7 @@
         clarityText:
           "I create experiences that are easy to understand and use.",
 
+
         skillsTools:
           "Skills & Tools",
 
@@ -3897,8 +3882,9 @@
         tools:
           "Tools",
 
-        skillsNote:
+        skillNote:
           "Combining research, psychology, and visual design to create thoughtful digital experiences.",
+
 
         myApproach:
           "My Approach",
@@ -3906,11 +3892,12 @@
         approachTitleOne:
           "How I turn research into",
 
-        approachHighlight:
+        approachTitleHighlight:
           "meaningful design",
 
         approachIntro:
           "My process begins with understanding real people, then translating insights into clear, accessible, and usable digital experiences.",
+
 
         understand:
           "Understand",
@@ -3936,23 +3923,26 @@
         testText:
           "I test ideas with users, refine interactions, and improve clarity, accessibility, and usability.",
 
+
         workTogether:
           "Let’s Work Together",
 
         ctaHeading:
           "Interested in thoughtful, accessible design?",
 
-        ctaCopy:
+        ctaText:
           "I’m open to UX research, interaction design, product design opportunities, and meaningful collaborations where human behaviour, clarity, and accessibility matter.",
 
         viewCaseStudies:
           "View Case Studies",
 
+
         footerCopy:
-          "© 2026 Linda Laryea. Designed with research, empathy, and accessibility in mind.",
+          "© 2026 Linda Laryea. Designed with research, empathy and accessibility in mind.",
 
         backToTop:
           "Back to top",
+
 
         languageChanged:
           "Language changed to English.",
@@ -3986,6 +3976,7 @@
 
         readUnsupported:
           "Read aloud is not supported by this browser."
+
       },
 
 
@@ -3995,7 +3986,8 @@
           "Über mich | Linda Laryea",
 
         metaDescription:
-          "Über Linda Laryea, UX Researcherin und Interaction Designerin mit Hintergrund in Kognitionswissenschaft und Psychologie.",
+          "Über Linda Laryea, UX Researcherin und Interaction Designerin mit einem Hintergrund in Psychologie und Kognitionswissenschaft.",
+
 
         skip:
           "Zum Hauptinhalt springen",
@@ -4012,6 +4004,7 @@
         switchGerman:
           "Auf Deutsch wechseln",
 
+
         home:
           "Startseite",
 
@@ -4027,8 +4020,6 @@
         letsConnect:
           "Kontakt aufnehmen",
 
-        contact:
-          "Kontakt",
 
         accessibility:
           "Barrierefreiheit",
@@ -4078,20 +4069,22 @@
         resetSettings:
           "Barrierefreiheit zurücksetzen",
 
+
         heroTitleOne:
-          "Design mit Empathie, Research und",
+          "Mit Empathie, Research und",
 
         heroHighlight:
-          "Barrierefreiheit",
-
-        heroTitleTwo:
-          "im Mittelpunkt.",
+          "Barrierefreiheit gestalten.",
 
         heroCopy:
-          "Ich bin UX Researcherin und Interaction Designerin mit einem Masterabschluss in Kognitionswissenschaft und einem Bachelorabschluss in Psychologie. Meine Arbeit ist geprägt von einem tiefen Interesse daran, wie Menschen denken, sich verhalten und mit digitalen Systemen interagieren.",
+          "Ich bin UX Researcherin & Interaction Designerin mit einem Bachelorabschluss in Psychologie und einem Masterabschluss in Kognitionswissenschaft. Mich interessiert besonders, wie Menschen denken, sich verhalten und mit digitalen Systemen interagieren.",
 
-        heroNote:
-          "Mein Ziel ist es, digitale Erlebnisse zu gestalten, die klar, inklusiv und für echte Menschen in realen Nutzungskontexten einfach zu bedienen sind.",
+        goalText:
+          "Mein Ziel ist es, digitale Erlebnisse zu gestalten, die für reale Menschen in realen Kontexten klar, inklusiv und einfach zu nutzen sind.",
+
+
+        profileLabel:
+          "Profil von Linda Laryea",
 
         portraitAlt:
           "Porträt von Linda Laryea",
@@ -4099,23 +4092,22 @@
         profileRole:
           "UX Researcherin & Interaction Designerin",
 
-        profileTags:
-          "Kognitionswissenschaft • Psychologie • Barrierefreiheit",
 
-        aboutSection:
-          "Über Linda Laryea",
+        storySectionLabel:
+          "Hintergrund, Designwerte und Fähigkeiten",
 
         myStory:
           "Meine Geschichte",
 
-        storyOne:
-          "Mein akademischer Weg in Kognitionswissenschaft und Psychologie hat mir eine starke Grundlage dafür gegeben, wie Menschen wahrnehmen, denken, lernen und Entscheidungen treffen.",
+        storyParagraphOne:
+          "Mein akademischer Weg in Psychologie und Kognitionswissenschaft gab mir eine starke Grundlage dafür, wie Menschen wahrnehmen, denken, lernen und Entscheidungen treffen.",
 
-        storyTwo:
-          "Dieses Verständnis prägt meine Leidenschaft für nutzerzentriertes Design, das intuitiv, barrierefrei und sinnvoll ist.",
+        storyParagraphTwo:
+          "Dieses Verständnis prägt meine Leidenschaft für nutzerzentrierte Designs, die intuitiv, barrierefrei und sinnvoll sind.",
 
         storyClosing:
-          "Ich glaube, dass gutes Design mit tiefer Empathie beginnt und mit einer sinnvollen Wirkung endet.",
+          "Ich glaube, dass gutes Design mit tiefem Einfühlungsvermögen beginnt und mit bedeutungsvoller Wirkung endet.",
+
 
         designValues:
           "Meine Designwerte",
@@ -4124,13 +4116,13 @@
           "Menschenzentriert",
 
         humanCentredText:
-          "Ich gestalte für echte menschliche Bedürfnisse und nicht nur für Unternehmensziele.",
+          "Ich gestalte für echte menschliche Bedürfnisse und nicht nur für Geschäftsziele.",
 
         accessibleByDesign:
           "Barrierefreiheit von Anfang an",
 
         accessibleByDesignText:
-          "Ich glaube, dass alle Menschen gleichberechtigten Zugang zu digitalen Werkzeugen verdienen.",
+          "Ich glaube, dass alle Menschen gleichberechtigten Zugang zu digitalen Produkten verdienen.",
 
         evidenceBased:
           "Evidenzbasiert",
@@ -4142,10 +4134,11 @@
           "Klarheit & Einfachheit",
 
         clarityText:
-          "Ich gestalte Erlebnisse, die leicht verständlich und einfach zu nutzen sind.",
+          "Ich gestalte Erlebnisse, die leicht zu verstehen und zu nutzen sind.",
+
 
         skillsTools:
-          "Kompetenzen & Tools",
+          "Fähigkeiten & Tools",
 
         interviews:
           "Interviews",
@@ -4154,7 +4147,7 @@
           "Personas",
 
         testing:
-          "Usability-Tests",
+          "Tests",
 
         wireframes:
           "Wireframes",
@@ -4163,13 +4156,14 @@
           "Prototypen",
 
         flows:
-          "User Flows",
+          "Flows",
 
         tools:
           "Tools",
 
-        skillsNote:
+        skillNote:
           "Ich verbinde Research, Psychologie und visuelles Design, um durchdachte digitale Erlebnisse zu gestalten.",
+
 
         myApproach:
           "Mein Ansatz",
@@ -4177,29 +4171,30 @@
         approachTitleOne:
           "Wie ich Research in",
 
-        approachHighlight:
-          "sinnvolles Design verwandle",
+        approachTitleHighlight:
+          "sinnvolles Design übersetze",
 
         approachIntro:
           "Mein Prozess beginnt damit, echte Menschen zu verstehen und Erkenntnisse anschließend in klare, barrierefreie und nutzbare digitale Erlebnisse zu übersetzen.",
+
 
         understand:
           "Verstehen",
 
         understandText:
-          "Ich beginne damit, Nutzer:innen, ihre Ziele, Frustrationen, Verhaltensweisen und ihren realen Nutzungskontext kennenzulernen.",
+          "Ich lerne Nutzer:innen, ihre Ziele, Herausforderungen, Verhaltensweisen und ihren realen Kontext kennen.",
 
         define:
           "Definieren",
 
         defineText:
-          "Ich identifiziere das Kernproblem, wichtige Nutzerbedürfnisse und Designmöglichkeiten, bevor ich Lösungen entwickle.",
+          "Ich identifiziere das Kernproblem, zentrale Nutzerbedürfnisse und Designchancen, bevor ich Lösungen entwickle.",
 
         design:
           "Gestalten",
 
         designText:
-          "Ich entwickle Abläufe, Wireframes und Benutzeroberflächen, die Reibung reduzieren und Aufgaben leichter machen.",
+          "Ich entwickle Flows, Wireframes und Interfaces, die Reibung reduzieren und Aufgaben leichter machen.",
 
         test:
           "Testen",
@@ -4207,23 +4202,26 @@
         testText:
           "Ich teste Ideen mit Nutzer:innen, verfeinere Interaktionen und verbessere Klarheit, Barrierefreiheit und Usability.",
 
+
         workTogether:
-          "Lass uns zusammenarbeiten",
+          "Zusammenarbeiten",
 
         ctaHeading:
-          "Interessiert an durchdachtem, barrierefreiem Design?",
+          "Interesse an durchdachtem, barrierefreiem Design?",
 
-        ctaCopy:
-          "Ich bin offen für Möglichkeiten in UX Research, Interaction Design und Produktdesign sowie für sinnvolle Kooperationen, bei denen menschliches Verhalten, Klarheit und Barrierefreiheit eine wichtige Rolle spielen.",
+        ctaText:
+          "Ich bin offen für UX Research, Interaction Design, Produktdesign und sinnvolle Kooperationen, bei denen menschliches Verhalten, Klarheit und Barrierefreiheit wichtig sind.",
 
         viewCaseStudies:
           "Fallstudien ansehen",
+
 
         footerCopy:
           "© 2026 Linda Laryea. Mit Research, Empathie und Barrierefreiheit im Mittelpunkt gestaltet.",
 
         backToTop:
           "Nach oben",
+
 
         languageChanged:
           "Sprache auf Deutsch geändert.",
@@ -4257,6 +4255,7 @@
 
         readUnsupported:
           "Die Vorlesefunktion wird von diesem Browser nicht unterstützt."
+
       }
 
     };
@@ -4267,72 +4266,125 @@
     ====================================== */
 
     const languageEN =
-      document.getElementById("languageEN");
+      document.getElementById(
+        "languageEN"
+      );
+
 
     const languageDE =
-      document.getElementById("languageDE");
+      document.getElementById(
+        "languageDE"
+      );
+
 
     const accessibilityButton =
-      document.getElementById("accessibilityButton");
+      document.getElementById(
+        "accessibilityButton"
+      );
+
 
     const accessibilityPanel =
-      document.getElementById("accessibilityPanel");
+      document.getElementById(
+        "accessibilityPanel"
+      );
+
 
     const closeAccessibility =
-      document.getElementById("closeAccessibility");
+      document.getElementById(
+        "closeAccessibility"
+      );
+
 
     const contrastToggle =
-      document.getElementById("contrastToggle");
+      document.getElementById(
+        "contrastToggle"
+      );
+
 
     const motionToggle =
-      document.getElementById("motionToggle");
+      document.getElementById(
+        "motionToggle"
+      );
+
 
     const textSizeButtons =
-      document.querySelectorAll(".text-size-button");
+      document.querySelectorAll(
+        ".text-size-button"
+      );
+
 
     const readPlay =
-      document.getElementById("readPlay");
+      document.getElementById(
+        "readPlay"
+      );
+
 
     const readPause =
-      document.getElementById("readPause");
+      document.getElementById(
+        "readPause"
+      );
+
 
     const readStop =
-      document.getElementById("readStop");
+      document.getElementById(
+        "readStop"
+      );
+
 
     const resetAccessibility =
-      document.getElementById("resetAccessibility");
+      document.getElementById(
+        "resetAccessibility"
+      );
+
 
     const backToTop =
-      document.getElementById("backToTop");
+      document.getElementById(
+        "backToTop"
+      );
+
 
     const a11yStatus =
-      document.getElementById("a11yStatus");
+      document.getElementById(
+        "a11yStatus"
+      );
+
 
     const metaDescription =
-      document.getElementById("metaDescription");
+      document.getElementById(
+        "metaDescription"
+      );
 
 
     let currentLanguage =
-      localStorage.getItem("portfolioLanguage") || "en";
+      localStorage.getItem(
+        "portfolioLanguage"
+      ) || "en";
+
 
     let speechUtterance =
       null;
+
 
     let isPaused =
       false;
 
 
     /* =====================================
-       ANNOUNCE
+       ANNOUNCEMENTS
     ====================================== */
 
     function announce(message) {
 
-      a11yStatus.textContent = "";
+      a11yStatus.textContent =
+        "";
+
 
       window.setTimeout(
         () => {
-          a11yStatus.textContent = message;
+
+          a11yStatus.textContent =
+            message;
+
         },
         40
       );
@@ -4364,80 +4416,98 @@
 
 
       document.title =
-        translations[language].pageTitle;
+        translations[language]
+          .pageTitle;
 
 
       metaDescription.setAttribute(
         "content",
-        translations[language].metaDescription
+        translations[language]
+          .metaDescription
       );
 
 
       document
-        .querySelectorAll("[data-i18n]")
-        .forEach(element => {
+        .querySelectorAll(
+          "[data-i18n]"
+        )
+        .forEach(
+          element => {
 
-          const key =
-            element.getAttribute("data-i18n");
-
-
-          if (
-            translations[language] &&
-            translations[language][key]
-          ) {
-
-            element.textContent =
-              translations[language][key];
-
-          }
-
-        });
+            const key =
+              element.getAttribute(
+                "data-i18n"
+              );
 
 
-      document
-        .querySelectorAll("[data-i18n-aria-label]")
-        .forEach(element => {
-
-          const key =
-            element.getAttribute(
-              "data-i18n-aria-label"
-            );
-
-
-          if (
-            translations[language] &&
-            translations[language][key]
-          ) {
-
-            element.setAttribute(
-              "aria-label",
+            if (
+              translations[language] &&
               translations[language][key]
-            );
+            ) {
+
+              element.textContent =
+                translations[language][key];
+
+            }
 
           }
-
-        });
+        );
 
 
       document
-        .querySelectorAll("[data-i18n-alt]")
-        .forEach(element => {
+        .querySelectorAll(
+          "[data-i18n-aria-label]"
+        )
+        .forEach(
+          element => {
 
-          const key =
-            element.getAttribute("data-i18n-alt");
+            const key =
+              element.getAttribute(
+                "data-i18n-aria-label"
+              );
 
 
-          if (
-            translations[language] &&
-            translations[language][key]
-          ) {
+            if (
+              translations[language] &&
+              translations[language][key]
+            ) {
 
-            element.alt =
-              translations[language][key];
+              element.setAttribute(
+                "aria-label",
+                translations[language][key]
+              );
+
+            }
 
           }
+        );
 
-        });
+
+      document
+        .querySelectorAll(
+          "[data-i18n-alt]"
+        )
+        .forEach(
+          element => {
+
+            const key =
+              element.getAttribute(
+                "data-i18n-alt"
+              );
+
+
+            if (
+              translations[language] &&
+              translations[language][key]
+            ) {
+
+              element.alt =
+                translations[language][key];
+
+            }
+
+          }
+        );
 
 
       const englishSelected =
@@ -4475,7 +4545,8 @@
       if (announceChange) {
 
         announce(
-          translations[language].languageChanged
+          translations[language]
+            .languageChanged
         );
 
       }
@@ -4488,13 +4559,27 @@
 
     languageEN.addEventListener(
       "click",
-      () => applyLanguage("en", true)
+      () => {
+
+        applyLanguage(
+          "en",
+          true
+        );
+
+      }
     );
 
 
     languageDE.addEventListener(
       "click",
-      () => applyLanguage("de", true)
+      () => {
+
+        applyLanguage(
+          "de",
+          true
+        );
+
+      }
     );
 
 
@@ -4540,7 +4625,9 @@
       "click",
       () => {
 
-        if (accessibilityPanel.hidden) {
+        if (
+          accessibilityPanel.hidden
+        ) {
 
           openAccessibilityPanel();
 
@@ -4581,22 +4668,30 @@
       "click",
       event => {
 
-        if (accessibilityPanel.hidden) {
+        if (
+          accessibilityPanel.hidden
+        ) {
+
           return;
+
         }
 
 
-        const clickedInsidePanel =
-          accessibilityPanel.contains(event.target);
+        const inside =
+          accessibilityPanel.contains(
+            event.target
+          );
 
 
-        const clickedButton =
-          accessibilityButton.contains(event.target);
+        const trigger =
+          accessibilityButton.contains(
+            event.target
+          );
 
 
         if (
-          !clickedInsidePanel &&
-          !clickedButton
+          !inside &&
+          !trigger
         ) {
 
           accessibilityPanel.hidden =
@@ -4624,13 +4719,23 @@
         1;
 
 
-      if (size === "small") {
-        scale = 0.92;
+      if (
+        size === "small"
+      ) {
+
+        scale =
+          0.92;
+
       }
 
 
-      if (size === "large") {
-        scale = 1.15;
+      if (
+        size === "large"
+      ) {
+
+        scale =
+          1.15;
+
       }
 
 
@@ -4648,28 +4753,36 @@
       );
 
 
-      textSizeButtons.forEach(button => {
+      textSizeButtons.forEach(
+        button => {
 
-        button.classList.toggle(
-          "active",
-          button.dataset.size === size
-        );
+          button.classList.toggle(
+            "active",
+            button.dataset.size === size
+          );
 
-      });
+        }
+      );
 
     }
 
 
-    textSizeButtons.forEach(button => {
+    textSizeButtons.forEach(
+      button => {
 
-      button.addEventListener(
-        "click",
-        () => {
-          applyTextSize(button.dataset.size);
-        }
-      );
+        button.addEventListener(
+          "click",
+          () => {
 
-    });
+            applyTextSize(
+              button.dataset.size
+            );
+
+          }
+        );
+
+      }
+    );
 
 
     /* =====================================
@@ -4693,7 +4806,9 @@
 
       localStorage.setItem(
         "portfolioContrast",
-        enabled ? "true" : "false"
+        enabled
+          ? "true"
+          : "false"
       );
 
 
@@ -4701,8 +4816,10 @@
 
         announce(
           enabled
-            ? translations[currentLanguage].contrastEnabled
-            : translations[currentLanguage].contrastDisabled
+            ? translations[currentLanguage]
+                .contrastEnabled
+            : translations[currentLanguage]
+                .contrastDisabled
         );
 
       }
@@ -4729,7 +4846,8 @@
 
     function applyMotionPreference(
       enabled,
-      announceChange = false
+      announceChange = false,
+      persist = true
     ) {
 
       document.body.classList.toggle(
@@ -4742,18 +4860,26 @@
         enabled;
 
 
-      localStorage.setItem(
-        "portfolioReducedMotion",
-        enabled ? "true" : "false"
-      );
+      if (persist) {
+
+        localStorage.setItem(
+          "portfolioReducedMotion",
+          enabled
+            ? "true"
+            : "false"
+        );
+
+      }
 
 
       if (announceChange) {
 
         announce(
           enabled
-            ? translations[currentLanguage].motionEnabled
-            : translations[currentLanguage].motionDisabled
+            ? translations[currentLanguage]
+                .motionEnabled
+            : translations[currentLanguage]
+                .motionDisabled
         );
 
       }
@@ -4767,6 +4893,7 @@
 
         applyMotionPreference(
           motionToggle.checked,
+          true,
           true
         );
 
@@ -4809,39 +4936,50 @@
         [];
 
 
-      readableSections.forEach(section => {
+      readableSections.forEach(
+        section => {
 
-        const clone =
-          section.cloneNode(true);
-
-
-        clone
-          .querySelectorAll(
-            "[data-no-read], img, button, [aria-hidden='true']"
-          )
-          .forEach(element => {
-
-            element.remove();
-
-          });
+          const clone =
+            section.cloneNode(true);
 
 
-        const sectionText =
-          clone.innerText
-            .replace(/\s+/g, " ")
-            .trim();
+          clone
+            .querySelectorAll(
+              "[data-no-read], img, button, [aria-hidden='true']"
+            )
+            .forEach(
+              element => {
+
+                element.remove();
+
+              }
+            );
 
 
-        if (sectionText) {
+          const text =
+            clone.innerText
+              .replace(
+                /\s+/g,
+                " "
+              )
+              .trim();
 
-          textParts.push(sectionText);
+
+          if (text) {
+
+            textParts.push(
+              text
+            );
+
+          }
 
         }
+      );
 
-      });
 
-
-      return textParts.join(". ");
+      return textParts.join(
+        ". "
+      );
 
     }
 
@@ -4851,7 +4989,8 @@
       if (!speechSupported) {
 
         announce(
-          translations[currentLanguage].readUnsupported
+          translations[currentLanguage]
+            .readUnsupported
         );
 
         return;
@@ -4866,13 +5005,16 @@
 
         window.speechSynthesis.resume();
 
+
         isPaused =
           false;
 
 
         announce(
-          translations[currentLanguage].readingResumed
+          translations[currentLanguage]
+            .readingResumed
         );
+
 
         return;
 
@@ -4887,7 +5029,9 @@
 
 
       speechUtterance =
-        new SpeechSynthesisUtterance(text);
+        new SpeechSynthesisUtterance(
+          text
+        );
 
 
       speechUtterance.lang =
@@ -4923,7 +5067,8 @@
 
 
       announce(
-        translations[currentLanguage].readingStarted
+        translations[currentLanguage]
+          .readingStarted
       );
 
     }
@@ -4939,12 +5084,14 @@
 
         window.speechSynthesis.pause();
 
+
         isPaused =
           true;
 
 
         announce(
-          translations[currentLanguage].readingPaused
+          translations[currentLanguage]
+            .readingPaused
         );
 
       }
@@ -4957,11 +5104,14 @@
     ) {
 
       if (!speechSupported) {
+
         return;
+
       }
 
 
       window.speechSynthesis.cancel();
+
 
       isPaused =
         false;
@@ -4970,7 +5120,8 @@
       if (announceStop) {
 
         announce(
-          translations[currentLanguage].readingStopped
+          translations[currentLanguage]
+            .readingStopped
         );
 
       }
@@ -4992,7 +5143,11 @@
 
     readStop.addEventListener(
       "click",
-      () => stopReading(true)
+      () => {
+
+        stopReading(true);
+
+      }
     );
 
 
@@ -5004,13 +5159,19 @@
       "click",
       () => {
 
-        applyTextSize("default");
+        applyTextSize(
+          "default"
+        );
 
-        applyContrast(false);
 
-        applyMotionPreference(false);
+        applyContrast(
+          false
+        );
 
-        stopReading(false);
+
+        stopReading(
+          false
+        );
 
 
         localStorage.removeItem(
@@ -5028,8 +5189,22 @@
         );
 
 
+        const systemReducedMotion =
+          window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches;
+
+
+        applyMotionPreference(
+          systemReducedMotion,
+          false,
+          false
+        );
+
+
         announce(
-          translations[currentLanguage].settingsReset
+          translations[currentLanguage]
+            .settingsReset
         );
 
       }
@@ -5061,9 +5236,11 @@
       () => {
 
         const reducedMotion =
-          document.body.classList.contains(
-            "reduce-motion"
-          ) ||
+          document.body
+            .classList
+            .contains(
+              "reduce-motion"
+            ) ||
 
           window.matchMedia(
             "(prefers-reduced-motion: reduce)"
@@ -5072,7 +5249,8 @@
 
         window.scrollTo({
 
-          top: 0,
+          top:
+            0,
 
           behavior:
             reducedMotion
@@ -5086,16 +5264,10 @@
 
 
     /* =====================================
-       LOAD SAVED SETTINGS
+       LOAD SETTINGS
     ====================================== */
 
     function loadPreferences() {
-
-      /*
-        These are the same storage keys
-        used on index.html and
-        case-studies.html.
-      */
 
       applyLanguage(
         currentLanguage,
@@ -5132,19 +5304,29 @@
         );
 
 
-      if (savedMotion !== null) {
+      if (
+        savedMotion !== null
+      ) {
 
         applyMotionPreference(
           savedMotion === "true",
+          false,
           false
         );
 
       } else {
 
-        motionToggle.checked =
+        const systemReducedMotion =
           window.matchMedia(
             "(prefers-reduced-motion: reduce)"
           ).matches;
+
+
+        applyMotionPreference(
+          systemReducedMotion,
+          false,
+          false
+        );
 
       }
 
@@ -5155,7 +5337,43 @@
 
 
     /* =====================================
-       STOP SPEECH WHEN LEAVING
+       SYSTEM MOTION CHANGES
+    ====================================== */
+
+    const motionMediaQuery =
+      window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      );
+
+
+    motionMediaQuery.addEventListener(
+      "change",
+      event => {
+
+        const savedMotion =
+          localStorage.getItem(
+            "portfolioReducedMotion"
+          );
+
+
+        if (
+          savedMotion === null
+        ) {
+
+          applyMotionPreference(
+            event.matches,
+            false,
+            false
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =====================================
+       STOP SPEECH ON EXIT
     ====================================== */
 
     window.addEventListener(
